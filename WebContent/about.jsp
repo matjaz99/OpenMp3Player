@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/mstyles.css"/>
 <title>About</title>
 </head>
 <body>
-<div>
-<h4>About</h4>
+<div class="small">
+<h2>About</h2>
 <div>OpenMp3Player is a web application for playing mp3 files.</div><br><br>
 <h4>The idea</h4>
 <div>I wanted to have some sort of remote controller to control 
@@ -57,11 +58,25 @@ mp3 files (in any directory). In first case all mp3 files from defined directory
 are loaded. Currently the playlists can only be modified manually in text editor.<br>
 <br>
 <br>
-If playlists are modified Tomcat must be restarted to take effect.<br>
 Backup playlists before OpenMp3Player is updated to newer version.
 </div>
-<h4>History</h4>
+<br>
+<br>
+<h2>History</h2>
 <div>
+
+<h3>1.3.1</h3>
+<p>march 2014</p>
+<ul>
+<li>GUI improvements</li>
+<li>buttons replaced by icons</li>
+<li>dropdown menu in player gui (containing playlist editor)</li>
+<li>alert (javascript) if playlist name is empty (when saving queue)</li>
+<li>added popup box on button clicks</li>
+<li>changed styling to black and white</li>
+<li>bug fixes</li>
+</ul>
+<br>
 
 <h3>1.3.0</h3>
 <p>march 2014</p>
@@ -79,6 +94,7 @@ Backup playlists before OpenMp3Player is updated to newer version.
 <li>added logger</li>
 <li>minor bug fixes</li>
 </ul>
+<br>
 
 <h3>1.2.0</h3>
 <p>january 2014</p>
@@ -90,6 +106,7 @@ Backup playlists before OpenMp3Player is updated to newer version.
 <li>corrected bug to play on Windows</li>
 <li>NPE was thrown in watchdog when shutting down Tomcat</li>
 </ul>
+<br>
 
 <h3>1.1.1</h3>
 <p>january 2014</p>
@@ -99,6 +116,7 @@ Backup playlists before OpenMp3Player is updated to newer version.
 <li>refresh button to refresh currently playing song</li>
 <li>more styles</li>
 </ul>
+<br>
 
 <h3>1.1.0</h3>
 <p>january 2014</p>
@@ -107,6 +125,7 @@ Backup playlists before OpenMp3Player is updated to newer version.
 reloading page</li>
 <li>added jquery</li>
 </ul>
+<br>
 
 <h3>1.0.0</h3>
 <p>january 2014</p>
@@ -118,20 +137,20 @@ reloading page</li>
 <li>Each song in playlist has play button</li>
 <li>Playlists manually editable</li>
 </ul>
+<br>
 
 </div>
-<h4>Plans for future</h4>
+<h2>Plans for future</h2>
 <div>- control sound volume<br>
 - better playlist management<br>
+- settings<br>
 - pause button<br>
 - ID3 Tag support<br>
 - warning if file does not exist<br>
-- reload playlists without restarting tomcat<br>
-- remove xml file when playist is deleted<br>
 - migrate to Jetty<br>
 - SOAP interface<br>
 - REST interface<br>
-- CLI interface (telnet)<br></div>
+- FTP download of files<br></div>
 </div>
 </body>
 </html>

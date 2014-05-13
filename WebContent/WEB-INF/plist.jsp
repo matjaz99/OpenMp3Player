@@ -21,14 +21,30 @@
 		<tr>
 			
 			<td class="<%=oddEven%>">
-				<button onclick="onButton('play',<%=i%>)">&gt;</button>
+<%-- 				<button onclick="onButton('play',<%=i%>)">&gt;</button> --%>
+				<img id="playBtn<%=i%>" src="img/play.png" onclick="onButton('play',<%=i%>, 'Play')" 
+						onmouseover="onMouse('#playBtn<%=i%>', 'img/play-shadow.png')" 
+						onmouseout="onMouse('#playBtn<%=i%>', 'img/play.png')" 
+						onmousedown="onMouse('#playBtn<%=i%>', 'img/play-pressed.png')" 
+						onmouseup="onMouse('#playBtn<%=i%>', 'img/play-shadow.png')">
+			</td>
+			<td class="<%=oddEven%>">
+				<div><%=f.getTitle()%></div>
+				<div class="small">Path: <%=f.getPath()%></div>
+			</td>
+			<td class="<%=oddEven%>">
 				<%
 					if (!mng.getPlistMng().getShowPlaylist().getSource().equals("queue")) { %>
-						<button onclick="onButton('queue',<%=i%>)">Q</button>
+						<img id="qBtn<%=i%>" src="img/toqueue.png" onclick="onButton('queue',<%=i%>, 'Put to queue')" 
+								onmouseover="onMouse('#qBtn<%=i%>', 'img/toqueue-shadow.png')" 
+								onmouseout="onMouse('#qBtn<%=i%>', 'img/toqueue.png')" 
+								onmousedown="onMouse('#qBtn<%=i%>', 'img/toqueue-pressed.png')" 
+								onmouseup="onMouse('#qBtn<%=i%>', 'img/toqueue-shadow.png')">
+<%-- 						<button onclick="onButton('queue',<%=i%>)">Q</button> --%>
 				<%	} // end if
 				%>
+				
 			</td>
-			<td class="<%=oddEven%>"><%=f.getTitle()%></td>
 		</tr>
 		<%
 				} // end for

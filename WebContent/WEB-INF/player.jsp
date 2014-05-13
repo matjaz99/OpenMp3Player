@@ -3,14 +3,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="mstyles.css"/>
+<link rel="stylesheet" type="text/css" href="css/mstyles.css"/>
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="omp3p.js"></script>
 <title>OpenMp3Player</title>
 </head>
 <body>
 
 <div>
 
+<div id="popup_box">
+    <div id="popup_text">Clicked</div>
+       
+</div>
 <div>
 
 	<jsp:include page="pgui.jsp"></jsp:include>

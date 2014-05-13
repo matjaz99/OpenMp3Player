@@ -36,6 +36,10 @@ public class PlistMng {
 		queue.setSource("queue");
 	}
 
+	
+	/**
+	 * Load all playlists from playlists.xml.
+	 */
 	public void loadPlaylists() {
 
 		Playlists plists = unmarshall();
@@ -44,13 +48,17 @@ public class PlistMng {
 	}
 	
 	
+	/**
+	 * Return list of all loaded playlists
+	 * @return
+	 */
 	public List<Playlist> getPlaylists() {
 		return playlists;
 	}
 
-	public void setPlaylists(List<Playlist> playlists) {
-		this.playlists = playlists;
-	}
+//	public void setPlaylists(List<Playlist> playlists) {
+//		this.playlists = playlists;
+//	}
 
 	/**
 	 * Return active playlist.
@@ -71,15 +79,21 @@ public class PlistMng {
 		return p;
 	}
 
+	
 	/**
 	 * Set name of active playlist.
-	 * @param plistName
+	 * @param name
 	 */
-	public void setActivePlaylist(String plistName) {
-		logger.debug("PlistMng:setActivePlaylist(): " + plistName);
-		this.activePlaylist = plistName;
+	public void setActivePlaylist(String name) {
+		logger.debug("PlistMng:setActivePlaylist(): " + name);
+		this.activePlaylist = name;
 	}
 	
+	
+	/**
+	 * Return show playlist.
+	 * @return plist
+	 */
 	public Playlist getShowPlaylist() {
 		Playlist p = null;
 		for (Playlist plist : playlists) {
@@ -95,9 +109,14 @@ public class PlistMng {
 		return p;
 	}
 
-	public void setShowPlaylist(String plistName) {
-		logger.debug("PlistMng:setShowPlaylist(): " + plistName);
-		this.showPlaylist = plistName;
+	
+	/**
+	 * Set name of 'show playlist'.
+	 * @param name
+	 */
+	public void setShowPlaylist(String name) {
+		logger.debug("PlistMng:setShowPlaylist(): " + name);
+		this.showPlaylist = name;
 	}
 	
 	/**
@@ -108,6 +127,12 @@ public class PlistMng {
 		logger.debug("PlistMng:resetActivePlaylist(): active: " + activePlaylist);
 	}
 	
+	
+	/**
+	 * Create new playlist with given name and source and save to playlists.xml
+	 * @param name
+	 * @param source
+	 */
 	public void addPlaylist(String name, String source) {
 		
 		Playlist p = new Playlist();
@@ -120,6 +145,11 @@ public class PlistMng {
 		
 	}
 	
+	
+	/**
+	 * Remove the playlist from playlists.xml. If this playlist is xml, then delete also xml file.
+	 * @param name
+	 */
 	public void removePlaylist(String name) {
 		
 		deletePlistFile(name);
@@ -134,6 +164,12 @@ public class PlistMng {
 		}
 		
 		playlists = list;
+		
+		// if deleted playlist was actove, set another playlist as active
+		if (activePlaylist.equals(name) || showPlaylist.equals(name)) {
+			setActivePlaylist(playlists.get(0).getName());
+			setShowPlaylist(playlists.get(0).getName());
+		}
 		
 		marshall();
 		
@@ -279,6 +315,11 @@ public class PlistMng {
 	}
 	
 	
+	/**
+	 * Delete playlist xml file from the system (if playlist type is xml). If playlist is directory, 
+	 * directory will not be removed.
+	 * @param name
+	 */
 	public void deletePlistFile(String name) {
 		
 		for (Playlist plist : playlists) {
@@ -288,7 +329,7 @@ public class PlistMng {
 				if (plist.getSource().endsWith(".xml")) {
 					
 					File f = new File(Mng.HOME_DIR + "playlists/" + plist.getSource());
-					logger.debug("PlistMng:deletePlistFile(): deleted file: " + f.getAbsolutePath());
+					logger.debug("PlistMng:deletePlistFile(): delete xml file: " + f.getAbsolutePath());
 					f.delete();
 					
 				}

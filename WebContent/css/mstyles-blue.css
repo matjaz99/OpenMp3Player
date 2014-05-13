@@ -7,7 +7,12 @@
 
 body {
 	font: 38px Verdana, Arial, Helvetica, sans-serif;
+	color: black;
 	background-color: #badfff;
+}
+
+h2 {
+	color: black;
 }
 
 .border {
@@ -34,3 +39,11 @@ td.even {
 	background-color: #badfff;
 }
 
+.small {
+	font-size: 12px;
+}
+
+#ddPanel {
+/* 	padding:50px; */
+	display:none;
+}

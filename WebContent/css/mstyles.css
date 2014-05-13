@@ -1,0 +1,76 @@
+@CHARSET "UTF-8";
+
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	font: 38px Verdana, Arial, Helvetica, sans-serif;
+	color: white;
+	background-color: #222222;
+}
+
+h2 {
+	color: white;
+}
+
+
+.border {
+	padding: 10px;
+	border: 1px solid #ffffff;
+	margin: 0px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	font-size: 38px;
+	color: #333333;
+	padding: 5px;
+}
+
+td.odd {
+	background-color: #dddddd;
+}
+
+td.even {
+	background-color: #ffffff;
+}
+
+.small {
+	font-size: 12px;
+}
+
+#ddPanel {
+/* 	padding:50px; */
+	display:none;
+}
+
+/* ko to zrihtas, daj se v moder stil!!!!!!! */
+#popup_box { 
+    display: none;
+    position: fixed;  
+    left: 300px;
+    top: 30%;
+    z-index: 100;
+    
+    background: #222222;
+    opacity:0.7;
+    filter:Alpha(opacity=70); /* IE8 and earlier */
+    
+    /*border: 2px solid #000000;*/
+    border-bottom-left-radius: 7px 7px;
+	border-bottom-right-radius: 7px 7px;
+	border-top-left-radius: 7px 7px;
+	border-top-right-radius: 7px 7px;
+	
+    padding: 10px;  
+    font-size: 38px;
+    font-weight: bold;
+    color: white;
+    
+}
+
