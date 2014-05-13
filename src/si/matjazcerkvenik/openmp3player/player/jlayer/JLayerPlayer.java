@@ -28,6 +28,7 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 		
 		
 		player = new SoundJLayer(file.getFile().getAbsolutePath(), this);
+		System.out.println("play: absolutePath: " + file.getFile().getAbsolutePath());
 		player.play();
 		status = PlayerStatus.PLAYING;
 		

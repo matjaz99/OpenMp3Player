@@ -60,6 +60,23 @@ are loaded. Currently the playlists can only be modified manually in text editor
 If playlists are modified Tomcat must be restarted to take effect.<br>
 Backup playlists before OpenMp3Player is updated to newer version.
 </div>
+<h4>History</h4>
+<div>
+<h3>1.1.0</h3>
+<ul>
+<li>Play, Stop, Next, Prev buttons enchanced with AJAX functionality to avoid 
+reloading page.</li>
+</ul>
+<h3>1.0.0</h3>
+<ul>
+<li>Play, Stop, Next, Prev buttons</li>
+<li>Show currently playing song</li>
+<li>Select playlist</li>
+<li>Show songs in current playlist</li>
+<li>Each song in playlist has play button</li>
+<li>Playlists manually editable</li>
+</ul>
+</div>
 <h4>Plans for future</h4>
 <div>- control sound volume<br>
 - better playlist management<br>

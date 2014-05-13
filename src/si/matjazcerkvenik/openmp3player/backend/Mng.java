@@ -92,7 +92,7 @@ public class Mng {
 		return player;
 	}
 
-	public void play(int index) {
+	public String play(int index) {
 		
 		if (currentlyPlaying != null) {
 			stop();
@@ -102,31 +102,24 @@ public class Mng {
 		System.out.println("play: " + currentlyPlaying);
 		player.play(currentlyPlaying);
 		
-//		while (player.getStatus() != PlayerStatus.STOPPED) {
-//			
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//			
-//		}
-//		System.out.println("Loop ended");
+		return currentlyPlaying.getTitle();
 		
 	}
 	
-	public void stop() {
+	public String stop() {
 		if (currentlyPlaying == null) {
-			return;
+			return "null";
 		}
 		System.out.println("stop: " + currentlyPlaying);
 		player.stop();
 		currentlyPlaying = null;
+		
+		return "null";
 	}
 	
-	public void next() {
+	public String next() {
 		if (currentlyPlaying == null) {
-			return;
+			return "null";
 		}
 		if (currentlyPlaying.getIndex() 
 				== activePlaylist.getMp3Files().size() - 1) {
@@ -134,19 +127,19 @@ public class Mng {
 		} else {
 			play(currentlyPlaying.getIndex() + 1);
 		}
-		
+		return currentlyPlaying.getTitle();
 	}
 	
-	public void prev() {
+	public String prev() {
 		if (currentlyPlaying == null) {
-			return;
+			return "null";
 		}
 		if (currentlyPlaying.getIndex() == 0) {
 			play(activePlaylist.getMp3Files().size() - 1);
 		} else {
 			play(currentlyPlaying.getIndex() - 1);
 		}
-		
+		return currentlyPlaying.getTitle();
 	}
 	
 //	@Override

@@ -1,23 +1,42 @@
 <%@page import="si.matjazcerkvenik.openmp3player.backend.Playlist"%>
 <%@page session="true" import="java.util.*,si.matjazcerkvenik.openmp3player.backend.Mng" %>
 <jsp:useBean id="mng" scope="application" class="si.matjazcerkvenik.openmp3player.backend.Mng"></jsp:useBean>
+
+<script type="text/javascript">
+function onButton(button, index){  
+
+  var i = "";
+  if (index != null) {
+	i = "&index=" + index;
+	}
+  $.ajax({  
+    type: "POST",  
+    url: "player",  
+    data: "button=" + button + i,  
+    success: function(result){  
+    	$("#currentlyPlaying").html("Currently playing: " + result);
+    }                
+  });  
+}
+</script>
+
 <div style="float: left;">
-<form name="prev" action="player" method="post" style="display:inline;">
+<form name="prev" action="javascript:onButton('prev')" method="post" style="display:inline;">
 	<input type="hidden" name="prev" /> 
 	<input type="hidden" name="button" value="prev"/>
 	<input type="submit" value="Prev"/>
 </form>
-<form name="play" action="player" method="post" style="display:inline;">
+<form name="play" action="javascript:onButton('play')" method="post" style="display:inline;">
 	<input type="hidden" name="play" /> 
 	<input type="hidden" name="button" value="play"/>
 	<input type="submit" value="Play"/>
 </form>
-<form name="next" action="player" method="post" style="display:inline;">
+<form name="next" action="javascript:onButton('next')" method="post" style="display:inline;">
 	<input type="hidden" name="next" /> 
 	<input type="hidden" name="button" value="next"/>
 	<input type="submit" value="Next"/>
 </form>
-<form name="stop" action="player" method="post" style="display:inline;">
+<form name="stop" action="javascript:onButton('stop')" method="post" style="display:inline;">
 	<input type="hidden" name="stop" /> 
 	<input type="hidden" name="button" value="stop"/>
 	<input type="submit" value="Stop"/>
@@ -44,6 +63,12 @@
 <!-- 	<input type="hidden" name="dir" />  -->
 	<input type="hidden" name="button" value="selectDir"/>
 	<input type="submit" value="OK"/>
+</form>
+
+<form name="refreshForm" action="javascript:onButton('refresh')" method="post" style="display:inline;">
+	<input type="hidden" name="refresh" /> 
+	<input type="hidden" name="button" value="refresh"/>
+	<input type="submit" value="Refresh"/>
 </form>
 </div>
 <div style="clear: both;"></div>

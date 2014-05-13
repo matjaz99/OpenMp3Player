@@ -4,7 +4,7 @@
 <%@page session="true" import="java.util.*,si.matjazcerkvenik.openmp3player.backend.Mng" %>
 <jsp:useBean id="mng" scope="application" class="si.matjazcerkvenik.openmp3player.backend.Mng"></jsp:useBean>
 <div>
-<div>Currently playing: <%=mng.getCurrentlyPlaying()%></div>
+<div id="currentlyPlaying">Currently playing: <%=mng.getCurrentlyPlaying()%></div>
 </div>
 <table border="1" cellpadding="2">
   <tr>
@@ -21,7 +21,7 @@
 		<tr>
 			
 			<td>
-				<form name="play" action="player" method="post">
+				<form name="play" action="javascript:onButton('play',<%=i%>)" method="post">
 					<input type="hidden" name="index" value="<%=i%>"/> 
 					<input type="hidden" name="button" value="play"/>
 					<input type="submit" value="&gt;"/>

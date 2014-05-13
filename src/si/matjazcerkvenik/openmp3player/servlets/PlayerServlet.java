@@ -1,6 +1,7 @@
 package si.matjazcerkvenik.openmp3player.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -40,6 +41,8 @@ public class PlayerServlet extends HttpServlet {
 		String buttonPressed = request.getParameter("button");
 		System.out.println("Button pressed: " + buttonPressed);
 		
+		PrintWriter out = response.getWriter();
+		
 		if (buttonPressed == null) {
 
 			ServletContext sc = getServletContext();
@@ -48,41 +51,41 @@ public class PlayerServlet extends HttpServlet {
 			
 		} else if (buttonPressed.equals("prev")) {
 			
-			mng.prev();
+			out.println(mng.prev());
 			
-			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
-			rd.forward(request, response);
+//			ServletContext sc = getServletContext();
+//			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
+//			rd.forward(request, response);
 			
 		} else if (buttonPressed.equals("play")) {
 			
 			String i = request.getParameter("index");
 			if (i == null) {
-				mng.play(0);
+				out.println(mng.play(0));
 			} else {
-				mng.play(Integer.parseInt(i));
+				out.println(mng.play(Integer.parseInt(i)));
 			}
 			
 			
-			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
-			rd.forward(request, response);
+//			ServletContext sc = getServletContext();
+//			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
+//			rd.forward(request, response);
 			
 		} else if (buttonPressed.equals("next")) {
 			
-			mng.next();
+			out.println(mng.next());
 			
-			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
-			rd.forward(request, response);
+//			ServletContext sc = getServletContext();
+//			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
+//			rd.forward(request, response);
 			
 		} else if (buttonPressed.equals("stop")) {
 			
-			mng.stop();
+			out.println(mng.stop());
 			
-			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
-			rd.forward(request, response);
+//			ServletContext sc = getServletContext();
+//			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
+//			rd.forward(request, response);
 			
 		} else if (buttonPressed.equals("selectDir")) {
 			
@@ -94,6 +97,10 @@ public class PlayerServlet extends HttpServlet {
 			ServletContext sc = getServletContext();
 			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
 			rd.forward(request, response);
+			
+		} else if (buttonPressed.equals("refresh")) {
+			
+			out.println(mng.getCurrentlyPlaying());
 			
 		} else {
 			

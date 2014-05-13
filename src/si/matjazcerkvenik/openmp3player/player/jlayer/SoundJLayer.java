@@ -2,7 +2,6 @@ package si.matjazcerkvenik.openmp3player.player.jlayer;
 
 import java.net.URL;
 
-import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.IPlayerCallback;
 
 
