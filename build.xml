@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="OpenMp3Player" default="tar">
+	
+	<description>Ant buildfile</description>
+
+	<property name="project.version" value="1.0.0" />
+	<property name="src.dir" value="src" />
+	<property name="web.dir" value="WebContent" />
+	<property name="classes.dir" value="build/classes" />
+	<property name="lib.dir" value="${web.dir}/WEB-INF/lib" />
+	<property name="web.xml" value="${web.dir}/WEB-INF/web.xml" />
+	<property name="dist.dir" value="dist" />
+
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="init">
+		<echo file="version.txt">${project.version}</echo>
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${dist.dir}" />
+		<delete dir="${dist.dir}/${ant.project.name}-${project.version}" />
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}" />
+	</target>
+	
+	<target name="compile" depends="init" >
+		<javac destdir="${classes.dir}" debug="true" srcdir="${src.dir}">
+			<classpath refid="compile.classpath"/>
+		</javac>
+	</target>
+	
+	<target name="war" depends="compile">
+		<war destfile="${dist.dir}/${ant.project.name}-${project.version}/${ant.project.name}.war" webxml="${web.xml}">
+			<fileset dir="WebContent"/>
+			<lib dir="${lib.dir}"/>
+			<classes dir="${classes.dir}"/>
+			<include name="version.txt"/>
+		</war>
+	</target>
+	
+	<target name="tar" depends="war">
+		
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/src" />
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/WebContent" />
+		
+			<copy todir="${dist.dir}/${ant.project.name}-${project.version}/src">
+				<fileset dir="${src.dir}">
+					<include name="**/*" />
+				</fileset>
+			</copy>
+		
+		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/WebContent">
+						<fileset dir="${web.dir}">
+							<include name="**/*" />
+						</fileset>
+					</copy>
+			
+			<copy todir="${dist.dir}/${ant.project.name}-${project.version}">
+				<fileset dir=".">
+					<include name="build.xml" />
+				</fileset>
+			</copy>
+			
+			<tar destfile="${dist.dir}/${ant.project.name}-${project.version}.tar.gz" basedir="${dist.dir}" includes="${ant.project.name}-${project.version}/**" compression="gzip" />
+			
+			<echo message="== building tar file successful ==" />
+		</target>
+	
+</project>
