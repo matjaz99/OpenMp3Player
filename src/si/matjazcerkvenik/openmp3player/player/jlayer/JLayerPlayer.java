@@ -1,7 +1,5 @@
 package si.matjazcerkvenik.openmp3player.player.jlayer;
 
-import si.matjazcerkvenik.openmp3player.backend.Mng;
-import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.IPlayerCallback;
 import si.matjazcerkvenik.openmp3player.player.PlayerStatus;
@@ -9,12 +7,10 @@ import si.matjazcerkvenik.openmp3player.player.PlayerStatus;
 public class JLayerPlayer implements IPlayer, IPlayerCallback {
 	
 	private SoundJLayer player = null;
-	private Mng mng = null;
 	private PlayerStatus status = PlayerStatus.STOPPED;
 	
 
-	public JLayerPlayer(Mng mng) {
-		this.mng = mng;
+	public JLayerPlayer() {
 	}
 	
 	@Override
@@ -24,11 +20,11 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 	}
 
 	@Override
-	public void play(Mp3File file) {
+	public void play(String filepath) {
 		
 		
-		player = new SoundJLayer(file.getFile().getAbsolutePath(), this);
-		System.out.println("play: absolutePath: " + file.getFile().getAbsolutePath());
+		player = new SoundJLayer(filepath, this);
+//		System.out.println("play: absolutePath: " + filepath);
 		player.play();
 		status = PlayerStatus.PLAYING;
 		

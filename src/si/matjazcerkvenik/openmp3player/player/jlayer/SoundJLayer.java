@@ -2,7 +2,6 @@ package si.matjazcerkvenik.openmp3player.player.jlayer;
 
 import java.net.URL;
 
-import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.IPlayerCallback;
 
 
@@ -67,11 +66,11 @@ public class SoundJLayer extends Pausable.PlaybackListener implements Runnable {
 	// PlaybackListener members
 
 	public void playbackStarted(Pausable.PlaybackEvent playbackEvent) {
-		System.out.println("playbackStarted()");
+//		System.out.println("playbackStarted()");
 	}
 
 	public void playbackFinished(Pausable.PlaybackEvent playbackEvent) {
-		System.out.println("playbackEnded()");
+//		System.out.println("playbackEnded()");
 		callback.playEnded();
 	}
 

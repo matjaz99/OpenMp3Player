@@ -7,9 +7,8 @@ import java.util.List;
 
 public class FileSystemFileFinder implements IFileFinder {
 	
+	@Override
 	public List<Mp3File> getMp3Files(String directory) {
-		
-		
 		
 		File dir = new File(directory);
 		File[] files = dir.listFiles(new FileFilter() {
@@ -27,14 +26,12 @@ public class FileSystemFileFinder implements IFileFinder {
 		}
 		
 		for (int i = 0; i < files.length; i++) {
-			File file = files[i];
 			Mp3File t = new Mp3File();
 			t.setIndex(i);
-			t.setTitle(file.getName());
-			t.setFile(file);
+			t.setPath(files[i].getAbsolutePath());
 			list.add(t);
 		}
-		
+				
 		return list;
 		
 	}

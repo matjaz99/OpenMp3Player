@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import si.matjazcerkvenik.openmp3player.backend.Mng;
+import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlayerServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 7994198694638279881L;
 	private Mng mng = null;
+	private SimpleLogger logger = null;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -25,7 +27,7 @@ public class PlayerServlet extends HttpServlet {
 		if (mng == null) {
 			mng = new Mng();
 		}
-		System.out.println("INIT(): HOME_DIR=" + Mng.HOME_DIR);
+		logger = Mng.getLogger();
 	}
 	
 	@Override
@@ -40,7 +42,7 @@ public class PlayerServlet extends HttpServlet {
 		
 		String buttonPressed = request.getParameter("button");
 		if (buttonPressed != null) buttonPressed = buttonPressed.trim();
-		System.out.println("Button pressed: " + buttonPressed);
+		logger.info("PlayerServlet:doPost(): button pressed: " + buttonPressed);
 		
 		PrintWriter out = response.getWriter();
 		
@@ -54,11 +56,9 @@ public class PlayerServlet extends HttpServlet {
 			
 			out.print(mng.prev());
 			
-//			ServletContext sc = getServletContext();
-//			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
-//			rd.forward(request, response);
-			
 		} else if (buttonPressed.equals("play")) {
+			
+			mng.getPlistMng().resetActivePlaylist();
 			
 			String i = request.getParameter("index");
 			if (i == null) {
@@ -67,33 +67,21 @@ public class PlayerServlet extends HttpServlet {
 				out.print(mng.play(Integer.parseInt(i)));
 			}
 			
-			
-//			ServletContext sc = getServletContext();
-//			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
-//			rd.forward(request, response);
-			
 		} else if (buttonPressed.equals("next")) {
 			
 			out.print(mng.next());
 			
-//			ServletContext sc = getServletContext();
-//			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
-//			rd.forward(request, response);
-			
 		} else if (buttonPressed.equals("stop")) {
 			
+			mng.getPlistMng().resetActivePlaylist();
 			out.print(mng.stop());
-			
-//			ServletContext sc = getServletContext();
-//			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
-//			rd.forward(request, response);
 			
 		} else if (buttonPressed.equals("dropdownmenu")) {
 			
-			String seldir = request.getParameter("selDir");
-			System.out.println("SELECT_DIR: " + seldir);
-			mng.setActivePlaylist(seldir);
-			mng.loadMp3Files();
+			String sel = request.getParameter("selPlist");
+			logger.info("PlayerServlet:doPost(): selected: " + sel);
+			mng.getPlistMng().setShowPlaylist(sel);
+			mng.getPlistMng().loadMp3Files();
 			
 			ServletContext sc = getServletContext();
 			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
@@ -102,6 +90,17 @@ public class PlayerServlet extends HttpServlet {
 		} else if (buttonPressed.equals("refresh")) {
 			
 			out.print(mng.getCurrentlyPlaying());
+			
+		} else if (buttonPressed.equals("playlistEditor")) {
+			
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/playlistEditor");
+			rd.forward(request, response);
+			
+		} else if (buttonPressed.equals("queue")) {
+			
+			int i = Integer.parseInt(request.getParameter("index"));
+			mng.getPlistMng().addToQueue(i);
 			
 		} else {
 			

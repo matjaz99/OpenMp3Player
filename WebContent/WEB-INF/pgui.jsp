@@ -19,24 +19,30 @@ function onButton(button, index) {
   });  
 }
 function togglePlayButton(result) {
-	$("#currentlyPlaying").html("Currently playing: " + result);
+	if (result.length == 0) {
+		return;
+	}
 	if (result == 'null') {
 		$("#currentlyPlaying").html("Stopped");
 		$("#playBtn").html("Play");
 		$("#playBtn").attr("onClick", "onButton('play')");
 	} else {
-		$("#currentlyPlaying").html("Currently playing: " + result);
+		$("#currentlyPlaying").html("Playing: " + result);
 		$("#playBtn").html("Stop");
 		$("#playBtn").attr("onClick", "onButton('stop')");
 	}
 }
+function openPlaylistEditor() {
+	window.location.href = "playlistEditor";
+}
 $(document).ready(function() {
+	// waiting to select from dropdown menu
     $('#dropdown').change(function() {
     	var s = $("#dropdown option:selected").val();
     	$.ajax({  
     	    type: "POST",  
     	    url: "player",  
-    	    data: "button=dropdownmenu&selDir=" + s,  
+    	    data: "button=dropdownmenu&selPlist=" + s,  
     	    success: function(result){  
     	    	location.reload();
     	    }       
@@ -71,11 +77,16 @@ if (mng.isPlaying()) {
 
 <select id="dropdown" >
 	<%
-		List<Playlist> list = mng.getPlaylists();
+		String selected = "selected";
+		String qselected = "selected";
+		List<Playlist> list = mng.getPlistMng().getPlaylists();
 			for (int i = 0; i < list.size(); i++) {
 				String pName = list.get(i).getName();
-				String selected = "";
-				if (list.get(i).getName().equals(mng.getActivePlaylist().getName())) selected = "selected";
+				selected = "";
+				if (list.get(i).getName().equals(mng.getPlistMng().getShowPlaylist().getName())) {
+					selected = "selected";
+					qselected = "";
+				}
 	%>
 			
 	<option <%=selected%> value="<%=list.get(i).getName()%>" title="<%=list.get(i).getSource()%>">
@@ -83,12 +94,16 @@ if (mng.isPlaying()) {
 	</option>
 			
 			<%
-							}
+							} // end for
 						%>
+	<option <%=qselected%> value="Queue" title="queue">Queue</option>
 </select>
 
 
 <button onclick="onButton('refresh')">Refresh</button>
+
+
+<button onclick="openPlaylistEditor()">Editor</button>
 
 </div>
 
@@ -100,7 +115,7 @@ if (mng.isPlaying()) {
 <%
 String currPlay = "Stopped";
 if (!mng.getCurrentlyPlaying().equals("null")) {
-	currPlay = "Currently playing: " + mng.getCurrentlyPlaying();
+	currPlay = "Playing: " + mng.getCurrentlyPlaying();
 }
 %>
 <div id="currentlyPlaying"><%=currPlay%></div>

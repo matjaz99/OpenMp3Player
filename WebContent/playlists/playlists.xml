@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <playlists>
-	<list>
+	<plist>
 		<name>SALSA 3</name>
-		<file>/Users/matjaz/Desktop/SALSA 3</file>
-	</list>
-	<list>
+		<source>/Users/matjaz/Desktop/SALSA 3</source>
+	</plist>
+	<plist>
 		<name>Salsa1</name>
-		<file>salsa.xml</file>
-	</list>
-	<list>
+		<source>salsa.xml</source>
+	</plist>
+	<plist>
 		<name>Salsastica</name>
-		<file>/Users/matjaz/Music/Salsa</file>
-	</list>
-	<list>
+		<source>/Users/matjaz/Music/Salsa</source>
+	</plist>
+	<plist>
 		<name>Kizomba</name>
-		<file>/Users/matjaz/Music/Kizomba</file>
-	</list>
-	<list>
+		<source>/Users/matjaz/Music/Kizomba</source>
+	</plist>
+	<plist>
 		<name>Bachata</name>
-		<file>/Users/matjaz/Music/Bachata</file>
-	</list>
-	<list>
+		<source>/Users/matjaz/Music/Bachata</source>
+	</plist>
+	<plist>
 		<name>Ne obstaja</name>
-		<file>zzzz.xml</file>
-	</list>
+		<source>zzzz.xml</source>
+	</plist>
 </playlists>

@@ -1,9 +1,9 @@
 package si.matjazcerkvenik.openmp3player.backend;
 
-import java.util.List;
-
+import si.matjazcerkvenik.openmp3player.cli.CommandLine;
 import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
+import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class Mng {
 	
@@ -11,43 +11,84 @@ public class Mng {
 	// osascript -e "set Volume 1"
 	
 	private static IPlayer player = null;
-	private static List<Playlist> playlists = null;
-	private static Playlist activePlaylist = null;
+	private static PlistMng plistMng = null;
 	public static Mp3File currentlyPlaying = null;
 	private static Watchdog watchdog = null;
+	private static CommandLine cli = null;
 	
 	public static String HOME_DIR = null;
-	
 	public static String version = "0.0";
+	
+	private static SimpleLogger logger = null;
 	
 	public Mng() {
 		initialize();
 	}
-	
-	public void initialize() {
-		
-		if (playlists == null) {
-			player = new JLayerPlayer(this);
-			playlists = PLReader.getPlaylists();
-			activePlaylist = playlists.get(0);
+	public static int count = 0;
+	private void initialize() {
+		System.out.println("Mng initializing... " + count++);
+		if (plistMng == null) {
 			
-			loadMp3Files();
+			Utils.getProperties();
+			
+			initializeLogger();
+			
+			plistMng = new PlistMng();
+			plistMng.loadMp3Files();
+			
+			player = new JLayerPlayer();
 			
 			watchdog = new Watchdog(this);
 			watchdog.start();
 			
 			Utils.readVersion();
 			
-			System.out.println("Mng initialized");
+			cli = new CommandLine();
+			cli.start();
+			
+			logger.info("Mng initialized");
 		}
 		
 	}
 	
-	
-	public Playlist getActivePlaylist() {
-		return activePlaylist;
+	private void initializeLogger() {
+		logger = new SimpleLogger();
+		logger.setFilename(HOME_DIR + "log/" + Utils.LOGGER_FILENAME);
+		logger.setAppend(Utils.LOGGER_APPEND);
+		logger.setVerbose(true);
+		logger.info("");
+		logger.info("\t+---------------------------------+");
+		logger.info("\t|       Start OpenMp3Player       |");
+		logger.info("\t+---------------------------------+");
+		logger.info("");
+		logger.info("HOME_DIR=" + HOME_DIR);
 	}
 	
+	/**
+	 * Return playlist manager.
+	 * @return
+	 */
+	public PlistMng getPlistMng() {
+		return plistMng;
+	}
+	
+	/**
+	 * Return player object
+	 * @return player
+	 */
+	public static IPlayer getPlayer() {
+		return player;
+	}
+	
+	public static SimpleLogger getLogger() {
+		return logger;
+	}
+	
+	
+	/**
+	 * Return title of currently playing song.
+	 * @return title
+	 */
 	public String getCurrentlyPlaying() {
 		if (currentlyPlaying == null) {
 			return "null";
@@ -55,79 +96,55 @@ public class Mng {
 		return currentlyPlaying.getTitle();
 	}
 	
-	public void setActivePlaylist(String name) {
-		for (Playlist p : playlists) {
-			if (p.getName().equals(name)) {
-				activePlaylist = p;
-				System.out.println("setActivePlaylist: " + activePlaylist);
-				return;
-			}
-		}
-	}
 	
-	public List<Playlist> getPlaylists() {
-		return playlists;
-	}
-	
-	
-	public void loadMp3Files() {
-		
-		IFileFinder iff = null;
-		String src = activePlaylist.getSource();
-		System.out.println("loadMp3Files from playlist " + src);
-		if (activePlaylist.getSource().endsWith(".xml")) {
-			iff = new XmlPlaylistFileFinder();
-			src = HOME_DIR + "/playlists/" + src;
-		} else {
-			iff = new FileSystemFileFinder();
-		}
-		
-		activePlaylist.setMp3files(iff.getMp3Files(src));
-		System.out.println("found " + getNumberOfMp3s() + " mp3 files in playlist " + activePlaylist.getName());
-	}
-	
-	public int getNumberOfMp3s() {
-		return activePlaylist.getMp3Files().size();
-	}
-	
-	
-	
-	
-	public static IPlayer getPlayer() {
-		return player;
-	}
-
-	public String play(int index) {
+	/**
+	 * Start playing song with index i
+	 * @param i
+	 * @return title
+	 */
+	public String play(int i) {
 		
 		if (currentlyPlaying != null) {
 			stop();
 		}
 		
-		currentlyPlaying = activePlaylist.getMp3Files().get(index);
-		System.out.println("play: " + currentlyPlaying);
-		player.play(currentlyPlaying);
+		currentlyPlaying = plistMng.getActivePlaylist().getMp3Files().get(i);
+		logger.info("play: playlist: " + plistMng.getActivePlaylist().getName() 
+				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
+		player.play(currentlyPlaying.getPath());
 		
 		return currentlyPlaying.getTitle();
 		
 	}
 	
+	/**
+	 * Stop playing song
+	 * @return 'null'
+	 */
 	public String stop() {
 		if (currentlyPlaying == null) {
 			return "null";
 		}
-		System.out.println("stop: " + currentlyPlaying);
+		
+		logger.info("stop: playlist: " + plistMng.getActivePlaylist().getName() 
+				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.stop();
 		currentlyPlaying = null;
 		
 		return "null";
 	}
 	
+	/**
+	 * Play next song
+	 * @return title
+	 */
 	public String next() {
 		if (currentlyPlaying == null) {
 			return "null";
 		}
+		
 		if (currentlyPlaying.getIndex() 
-				== activePlaylist.getMp3Files().size() - 1) {
+				== plistMng.getActivePlaylist().getMp3Files().size() - 1) {
 			play(0);
 		} else {
 			play(currentlyPlaying.getIndex() + 1);
@@ -135,18 +152,27 @@ public class Mng {
 		return currentlyPlaying.getTitle();
 	}
 	
+	/**
+	 * Play previous song
+	 * @return title
+	 */
 	public String prev() {
 		if (currentlyPlaying == null) {
 			return "null";
 		}
+		
 		if (currentlyPlaying.getIndex() == 0) {
-			play(activePlaylist.getMp3Files().size() - 1);
+			play(plistMng.getActivePlaylist().getMp3Files().size() - 1);
 		} else {
 			play(currentlyPlaying.getIndex() - 1);
 		}
 		return currentlyPlaying.getTitle();
 	}
 	
+	/**
+	 * Return true if song is currently playing
+	 * @return true if playing
+	 */
 	public boolean isPlaying() {
 		return currentlyPlaying != null;
 	}

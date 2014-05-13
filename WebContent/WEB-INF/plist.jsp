@@ -7,7 +7,7 @@
 <div class="border">
 <table>
   <%
-  	List<Mp3File> files = mng.getActivePlaylist().getMp3Files();
+  	List<Mp3File> files = mng.getPlistMng().getShowPlaylist().getMp3Files();
       	if (files != null) {
       		String oddEven = "even";
       		for (int i = 0; i < files.size(); i++) {
@@ -22,18 +22,23 @@
 			
 			<td class="<%=oddEven%>">
 				<button onclick="onButton('play',<%=i%>)">&gt;</button>
+				<%
+					if (!mng.getPlistMng().getShowPlaylist().getSource().equals("queue")) { %>
+						<button onclick="onButton('queue',<%=i%>)">Q</button>
+				<%	} // end if
+				%>
 			</td>
 			<td class="<%=oddEven%>"><%=f.getTitle()%></td>
 		</tr>
 		<%
-				} // for
-			} // if
+				} // end for
+			} // end if
 			
 		%>
 </table>
 
 <hr>
-<div>Size: <%=mng.getNumberOfMp3s()%></div>
+<div>Size: <%=mng.getPlistMng().getShowPlaylist().getMp3Files().size()%></div>
 <hr>
 <div>Version: <%=Mng.version%></div>
 </div>

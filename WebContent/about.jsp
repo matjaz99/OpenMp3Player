@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>About</title>
 </head>
 <body>
@@ -62,6 +62,24 @@ Backup playlists before OpenMp3Player is updated to newer version.
 </div>
 <h4>History</h4>
 <div>
+
+<h3>1.3.0</h3>
+<p>march 2014</p>
+<ul>
+<li>SAX parser replaced with JAXB (requires Java 6)</li>
+<li>moved playlists from Mng to PlistMng</li>
+<li>two types of playlists - one for playing songs and one for browsing</li>
+<li>playlist editor</li>
+<li>CLI interface</li>
+<li>queue</li>
+<li>save queue (to playlist xml)</li>
+<li>empty queue</li>
+<li>delete playlist (xml file)</li>
+<li>added properties for configuration</li>
+<li>added logger</li>
+<li>minor bug fixes</li>
+</ul>
+
 <h3>1.2.0</h3>
 <p>january 2014</p>
 <ul>
@@ -72,6 +90,7 @@ Backup playlists before OpenMp3Player is updated to newer version.
 <li>corrected bug to play on Windows</li>
 <li>NPE was thrown in watchdog when shutting down Tomcat</li>
 </ul>
+
 <h3>1.1.1</h3>
 <p>january 2014</p>
 <ul>
@@ -80,6 +99,7 @@ Backup playlists before OpenMp3Player is updated to newer version.
 <li>refresh button to refresh currently playing song</li>
 <li>more styles</li>
 </ul>
+
 <h3>1.1.0</h3>
 <p>january 2014</p>
 <ul>
@@ -87,6 +107,7 @@ Backup playlists before OpenMp3Player is updated to newer version.
 reloading page</li>
 <li>added jquery</li>
 </ul>
+
 <h3>1.0.0</h3>
 <p>january 2014</p>
 <ul>
@@ -97,6 +118,7 @@ reloading page</li>
 <li>Each song in playlist has play button</li>
 <li>Playlists manually editable</li>
 </ul>
+
 </div>
 <h4>Plans for future</h4>
 <div>- control sound volume<br>
@@ -104,7 +126,8 @@ reloading page</li>
 - pause button<br>
 - ID3 Tag support<br>
 - warning if file does not exist<br>
-- queue - add any song to queue to be played next (virtual playlist)<br>
+- reload playlists without restarting tomcat<br>
+- remove xml file when playist is deleted<br>
 - migrate to Jetty<br>
 - SOAP interface<br>
 - REST interface<br>
