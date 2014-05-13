@@ -1,2 +1,2 @@
-OpenMp3Player
-=============
+OpenMp3Player v1.0.0
+====================
