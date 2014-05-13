@@ -69,17 +69,21 @@ public class PlaylistEditorServlet extends HttpServlet {
 			String pname = req.getParameter("name");
 			mng.getPlistMng().saveQueue(pname);
 			
-			if (mng.getPlistMng().getActivePlaylist().getName().equals("Queue")) {
-				mng.stop();
-			}
-			mng.getPlistMng().emptyQueue();
-			
 		} else if (buttonPressed.equals("emptyqueue")) {
 			
 			if (mng.getPlistMng().getActivePlaylist().getName().equals("Queue")) {
 				mng.stop();
 			}
 			mng.getPlistMng().emptyQueue();
+			
+		} else if (buttonPressed.equals("goto")) {
+			
+			String pname = req.getParameter("name");
+			mng.getPlistMng().setShowPlaylist(pname);
+			mng.getPlistMng().loadMp3Files();
+			if (mng.getPlistMng().getActivePlaylist().getName().equals(pname)) {
+				
+			}
 			
 		} else {
 			

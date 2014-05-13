@@ -43,8 +43,12 @@ public class Mng {
 			
 			Utils.readVersion();
 			
-			cli = new CommandLine();
-			cli.start();
+			if (Utils.TELNET_ENABLED) {
+				cli = new CommandLine();
+				cli.start();
+			} else {
+				logger.info("CLI disabled");
+			}
 			
 			logger.info("Mng initialized");
 		}

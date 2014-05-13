@@ -3,32 +3,46 @@
 <jsp:useBean id="mng" scope="application" class="si.matjazcerkvenik.openmp3player.backend.Mng"></jsp:useBean>
 
 <script type="text/javascript">
-function onButton(button, name) {  
+function onButton(button, name, descr) {  
 
   var x = "";
+  if (descr != null) {
+	  loadPopupBox(descr);
+  }
   if (button == "add") {
 	  x = "&name=" + $("#pName").val() + "&source=" + $("#pSource").val();
-  } else if (button == "remove") {
+  } else if (button == "remove" || button == "goto") {
 	  x = "&name=" + name;
   } else if (button == "savequeue") {
-	  x = "&name=" + prompt("Save playlist as");
+	  var n = prompt("Playlist name");
+	  if (n == null) {
+		return;
+	  }
+	  if (n.length == 0) {
+			alert("Missing name of playlist");
+			return;
+		  }
+	  x = "&name=" + n;
   }
   $.ajax({  
     type: "POST",  
     url: "playlistEditor",  
     data: "button=" + button + x,  
     success: function(result) {  
-    	location.reload();
+    	if (button == "goto") {
+    		  openPlayer();
+    	} else {
+    		  location.reload();
+    	}
     }                
   });  
 }
 
-function openPlayer() {
-	window.location.href = "/OpenMp3Player";
-}
+
 
 </script>
 
+<div>
 
 <div class="border">
 
@@ -40,20 +54,26 @@ function openPlayer() {
 
 <button onclick="openPlayer()">Back to player</button>
 
+<div class="small">
+Add new directory
+</div>
+
 <div>
-<form name="addForm" action="javascript:onButton('add')" method="post">
-Name: <input id="pName" type="text" name="name"/>
-Source: <input id="pSource" type="text" name="source"/>
+<form name="addForm" action="javascript:onButton('add', null, 'Playlist added')" method="post">
+Playlist name: <input id="pName" type="text" name="name"/>
+Directory: <input id="pSource" type="text" name="source"/>
 <input type="hidden" name="button" value="add"/> 
 <input type="submit" value="Add">
 </form>
+</div>
+
 </div>
 
 <hr>
 
 
 
-<div style="float: left;">
+<div class="border">
 
 <table>
 
@@ -69,19 +89,34 @@ for (int i = 0; i < list.size(); i++) {
     } else {
     	oddEven = "even";
     }
-	String srcType = "DIR: ";
+	String icon = "";
 	if (pSource.endsWith(".xml")) {
-		srcType = "XML: ";
+		// only name of file, without path and suffix
+		icon = "xml-doc";
+	} else {
+		icon = "folder";
 	}
 %>
 	
 	<tr>
 		<td class="<%=oddEven%>">
-			<div><%=srcType %><%=pName %></div>
-<%-- 			<div><%=pSource %></div> --%>
+			<img id="gotoBtn<%=i %>" src="img/<%=icon%>.png" onclick="onButton('goto', '<%=pName %>')" 
+						onmouseover="onMouse('#gotoBtn<%=i %>', 'img/<%=icon%>-shadow.png')" 
+						onmouseout="onMouse('#gotoBtn<%=i %>', 'img/<%=icon%>.png')" 
+						onmousedown="onMouse('#gotoBtn<%=i %>', 'img/<%=icon%>-pressed.png')" 
+						onmouseup="onMouse('#gotoBtn<%=i %>', 'img/<%=icon%>-shadow.png')">
 		</td>
 		<td class="<%=oddEven%>">
-			<button onclick="onButton('remove', '<%=pName %>')">Remove</button>
+<%-- 			<div><%=srcType %><%=pName %></div> --%>
+			<div><%=pName %></div>
+			<div class="small">Source: <%=pSource %></div>
+		</td>
+		<td class="<%=oddEven%>">
+			<img id="removeBtn<%=i %>" src="img/remove.png" onclick="onButton('remove', '<%=pName %>', 'Deleted')" 
+						onmouseover="onMouse('#removeBtn<%=i %>', 'img/remove-shadow.png')" 
+						onmouseout="onMouse('#removeBtn<%=i %>', 'img/remove.png')" 
+						onmousedown="onMouse('#removeBtn<%=i %>', 'img/remove-pressed.png')" 
+						onmouseup="onMouse('#removeBtn<%=i %>', 'img/remove-shadow.png')">
 		</td>
 	</tr>
 
@@ -102,11 +137,29 @@ String qSource = q.getSource();
 
 <tr>
 	<td class="<%=oddEven%>">
+		<img id="queueBtn" src="img/queue.png" onclick="onButton('goto', 'Queue')" 
+						onmouseover="onMouse('#queueBtn', 'img/queue-shadow.png')" 
+						onmouseout="onMouse('#queueBtn', 'img/queue.png')" 
+						onmousedown="onMouse('#queueBtn', 'img/queue-pressed.png')" 
+						onmouseup="onMouse('#queueBtn', 'img/queue-shadow.png')">
+	</td>
+	<td class="<%=oddEven%>">
 			<div><%=qName %></div>
+			<div class="small">Source: Virtual playlist</div>
 		</td>
 		<td class="<%=oddEven%>">
-			<button onclick="onButton('savequeue')">Save as...</button>
-			<button onclick="onButton('emptyqueue')">Empty</button>
+<!-- 			<button onclick="onButton('savequeue')">Save as...</button> -->
+			<img id="saveBtn" src="img/save.png" onclick="onButton('savequeue', null, 'Saved')" 
+						onmouseover="onMouse('#saveBtn', 'img/save-shadow.png')" 
+						onmouseout="onMouse('#saveBtn', 'img/save.png')" 
+						onmousedown="onMouse('#saveBtn', 'img/save-pressed.png')" 
+						onmouseup="onMouse('#saveBtn', 'img/save-shadow.png')">
+			<img id="emptyBtn" src="img/empty.png" onclick="onButton('emptyqueue', null, 'Empty')" 
+						onmouseover="onMouse('#emptyBtn', 'img/empty-shadow.png')" 
+						onmouseout="onMouse('#emptyBtn', 'img/empty.png')" 
+						onmousedown="onMouse('#emptyBtn', 'img/empty-pressed.png')" 
+						onmouseup="onMouse('#emptyBtn', 'img/empty-shadow.png')">
+<!-- 			<button onclick="onButton('emptyqueue')">Empty</button> -->
 		</td>
 </tr>
 
