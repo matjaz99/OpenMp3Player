@@ -10,15 +10,27 @@ body {
 	background-color: #badfff;
 }
 
+.border {
+	padding: 10px;
+	border: 1px solid #444444;
+	margin: 0px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
 td {
 	font-size: 38px;
 	color: black;
+	padding: 5px;
 }
 
-.title {
-	font-color: black;
+td.odd {
+	background-color: #A4C7FF;
 }
 
-.subtitle {
-	
+td.even {
+	background-color: #99dfff;
 }
+

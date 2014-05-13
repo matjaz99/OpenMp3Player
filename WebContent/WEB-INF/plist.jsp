@@ -3,31 +3,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page session="true" import="java.util.*,si.matjazcerkvenik.openmp3player.backend.Mng" %>
 <jsp:useBean id="mng" scope="application" class="si.matjazcerkvenik.openmp3player.backend.Mng"></jsp:useBean>
-<div>
-<div id="currentlyPlaying">Currently playing: <%=mng.getCurrentlyPlaying()%></div>
-</div>
-<table border="1" cellpadding="2">
-  <tr>
-    <th></th>
-    <th>TITLE</th>
 
-  </tr>
+<div class="border">
+<table>
   <%
   	List<Mp3File> files = mng.getActivePlaylist().getMp3Files();
       	if (files != null) {
+      		String oddEven = "even";
       		for (int i = 0; i < files.size(); i++) {
       			Mp3File f = files.get(i);
+      			if (i % 2 == 0) { 
+      				oddEven = "odd"; 
+      			} else {
+      				oddEven = "even";
+      			}
   %>
 		<tr>
 			
-			<td>
-				<form name="play" action="javascript:onButton('play',<%=i%>)" method="post">
-					<input type="hidden" name="index" value="<%=i%>"/> 
-					<input type="hidden" name="button" value="play"/>
-					<input type="submit" value="&gt;"/>
-				</form>
+			<td class="<%=oddEven%>">
+				<button onclick="onButton('play',<%=i%>)">&gt;</button>
 			</td>
-			<td><%=f.getTitle()%></td>
+			<td class="<%=oddEven%>"><%=f.getTitle()%></td>
 		</tr>
 		<%
 				} // for
@@ -35,4 +31,7 @@
 			
 		%>
 </table>
+
+<hr>
 <div>Size: <%=mng.getNumberOfMp3s()%></div>
+</div>

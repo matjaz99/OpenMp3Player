@@ -39,6 +39,7 @@ public class PlayerServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String buttonPressed = request.getParameter("button");
+		if (buttonPressed != null) buttonPressed = buttonPressed.trim();
 		System.out.println("Button pressed: " + buttonPressed);
 		
 		PrintWriter out = response.getWriter();
@@ -87,7 +88,7 @@ public class PlayerServlet extends HttpServlet {
 //			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
 //			rd.forward(request, response);
 			
-		} else if (buttonPressed.equals("selectDir")) {
+		} else if (buttonPressed.equals("dropdownmenu")) {
 			
 			String seldir = request.getParameter("selDir");
 			System.out.println("SELECT_DIR: " + seldir);

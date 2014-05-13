@@ -18,31 +18,39 @@ function onButton(button, index){
     }                
   });  
 }
+$(document).ready(function(){
+    $('#dropdown').change(function() {
+    	var s = $("#dropdown option:selected").val();
+    	$.ajax({  
+    	    type: "POST",  
+    	    url: "player",  
+    	    data: "button=dropdownmenu&selDir=" + s,  
+    	    success: function(result){  
+    	    	location.reload();
+    	    }       
+    	  });
+  });  
+});
 </script>
 
+
+<div class="border">
+
+<div>
+	<h2>MyMp3Player</h2>
+</div>
+
+<hr/>
+
 <div style="float: left;">
-<form name="prev" action="javascript:onButton('prev')" method="post" style="display:inline;">
-	<input type="hidden" name="prev" /> 
-	<input type="hidden" name="button" value="prev"/>
-	<input type="submit" value="Prev"/>
-</form>
-<form name="play" action="javascript:onButton('play')" method="post" style="display:inline;">
-	<input type="hidden" name="play" /> 
-	<input type="hidden" name="button" value="play"/>
-	<input type="submit" value="Play"/>
-</form>
-<form name="next" action="javascript:onButton('next')" method="post" style="display:inline;">
-	<input type="hidden" name="next" /> 
-	<input type="hidden" name="button" value="next"/>
-	<input type="submit" value="Next"/>
-</form>
-<form name="stop" action="javascript:onButton('stop')" method="post" style="display:inline;">
-	<input type="hidden" name="stop" /> 
-	<input type="hidden" name="button" value="stop"/>
-	<input type="submit" value="Stop"/>
-</form>
-<form name="selectDirForm" action="player" method="post" style="display:inline;">
-<select name="selDir">
+
+<button onclick="onButton('prev')">Prev</button>
+<button onclick="onButton('play')">Play</button>
+<button onclick="onButton('next')">Next</button>
+<button onclick="onButton('stop')">Stop</button>
+
+
+<select id="dropdown" >
 	<%
 		List<Playlist> list = mng.getPlaylists();
 			for (int i = 0; i < list.size(); i++) {
@@ -51,24 +59,26 @@ function onButton(button, index){
 				if (list.get(i).getName().equals(mng.getActivePlaylist().getName())) selected = "selected";
 	%>
 			
-			<option <%=selected%> value="<%=list.get(i).getName()%>" title="<%=list.get(i).getSource()%>">
-			<%=pName%>
-			</option>
+	<option <%=selected%> value="<%=list.get(i).getName()%>" title="<%=list.get(i).getSource()%>">
+	<%=pName%>
+	</option>
 			
 			<%
 							}
 						%>
 </select>
 
-<!-- 	<input type="hidden" name="dir" />  -->
-	<input type="hidden" name="button" value="selectDir"/>
-	<input type="submit" value="OK"/>
-</form>
 
-<form name="refreshForm" action="javascript:onButton('refresh')" method="post" style="display:inline;">
-	<input type="hidden" name="refresh" /> 
-	<input type="hidden" name="button" value="refresh"/>
-	<input type="submit" value="Refresh"/>
-</form>
+<button onclick="onButton('refresh')">Refresh</button>
+
 </div>
+
 <div style="clear: both;"></div>
+
+<hr>
+
+<div>
+<div id="currentlyPlaying">Currently playing: <%=mng.getCurrentlyPlaying()%></div>
+</div>
+
+</div>

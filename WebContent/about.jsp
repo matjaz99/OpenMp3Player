@@ -62,12 +62,23 @@ Backup playlists before OpenMp3Player is updated to newer version.
 </div>
 <h4>History</h4>
 <div>
+<h3>1.1.1</h3>
+<p>january 2014</p>
+<ul>
+<li>changed form-input-type buttons with button-element buttons</li>
+<li>dropdown menu automatic selection</li>
+<li>refresh button to refresh currently playing song</li>
+<li>more styles</li>
+</ul>
 <h3>1.1.0</h3>
+<p>january 2014</p>
 <ul>
 <li>Play, Stop, Next, Prev buttons enchanced with AJAX functionality to avoid 
-reloading page.</li>
+reloading page</li>
+<li>added jquery</li>
 </ul>
 <h3>1.0.0</h3>
+<p>january 2014</p>
 <ul>
 <li>Play, Stop, Next, Prev buttons</li>
 <li>Show currently playing song</li>
@@ -84,7 +95,6 @@ reloading page.</li>
 - ID3 Tag support<br>
 - warning if file does not exist<br>
 - queue - add any song to queue to be played next (virtual playlist)<br>
-- AJAX support to avoid reloading the whole page every time<br>
 - migrate to Jetty<br></div>
 </div>
 </body>

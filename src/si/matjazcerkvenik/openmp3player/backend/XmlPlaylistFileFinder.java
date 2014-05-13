@@ -34,7 +34,7 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 			e.printStackTrace();
 			return list;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FileNotFoundException: " + source);
 			return list;
 		} catch (IOException e) {
 			e.printStackTrace();

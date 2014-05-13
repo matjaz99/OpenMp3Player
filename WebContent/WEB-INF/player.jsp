@@ -11,15 +11,8 @@
 
 <div>
 
-<!-- <div style="float: left;"> -->
-<%-- <jsp:include page="header.jsp"></jsp:include> --%>
-<!-- </div> -->
-<!-- <div style="clear: both;"></div> -->
-
 <div>
 
-	<h2>OpenMp3Player</h2>
-	<hr/>
 	<jsp:include page="pgui.jsp"></jsp:include>
 	<hr/>
 	<jsp:include page="plist.jsp"></jsp:include>
