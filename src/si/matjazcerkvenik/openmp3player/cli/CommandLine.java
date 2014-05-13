@@ -113,6 +113,38 @@ public class CommandLine extends Thread {
 						
 						printHelp(out);
 
+					} else if (line.startsWith("vol")) {
+						
+						String[] args = line.split(" ");
+						if (args.length == 0) {
+							out.println("missing argument");
+							out.println("  <i>       volume level (number 0-10)");
+							out.println("  [+/-]     increase/decrease volume for 1");
+						} else {
+							
+							if (args[1].equals("+")) {
+								Utils.volumeUp();
+								out.println("Set volume: " + Utils.CURRENT_VOLUME_LEVEL);
+							} else if (args[1].equals("-")) {
+								Utils.volumeDown();
+								out.println("Set volume: " + mng.getCurrentlyPlaying());
+							} else {
+								try {
+									int i = Integer.parseInt(args[1]);
+									if (i < 0 || i > 10) {
+										out.println("value out of range [0-10]: '" + args[1] + "'");
+									} else {
+										Utils.setVolume(i);
+									}
+								} catch (NumberFormatException e) {
+									out.println("invalid argument: '" + args[1] + "'");
+								}
+							}
+							
+							
+							
+						}
+
 					} else if (line.startsWith("show")) {
 						
 						String[] args = line.split(" ");
@@ -120,12 +152,15 @@ public class CommandLine extends Thread {
 							out.println("missing argument");
 							out.println("  -p     playlist");
 							out.println("  -s     song");
+							out.println("  -v     volume level");
 						} else if (args.length > 1) {
 							
 							if (args[1].equals("-p")) {
 								out.println("Current playlist: " + mng.getPlistMng().getActivePlaylist());
 							} else if (args[1].equals("-s")) {
 								out.println("Currently playing: " + mng.getCurrentlyPlaying());
+							} else if (args[1].equals("-v")) {
+								out.println("Current volume level: " + Utils.CURRENT_VOLUME_LEVEL);
 							} else {
 								out.println("invalid argument: '" + args[1] + "'");
 							}
@@ -166,10 +201,17 @@ public class CommandLine extends Thread {
 	private void printHelp(PrintWriter out) {
 		out.println("Usage:");
 		out.println("  play      - start playing");
-		out.println("    -i <index>    - play i-th song");
+		out.println("    -n <i>      - play i-th song");
 		out.println("  stop      - stop playing");
 		out.println("  next      - play next");
 		out.println("  prev      - play previous");
+		out.println("  show      - show information about:");
+		out.println("    -p          - playlist");
+		out.println("    -s          - song");
+		out.println("    -v          - volume level");
+		out.println("  vol       - set volume:");
+		out.println("    <i>         - volume level (number in range 0 - 10)");
+		out.println("    [+/-]       - increase/decrease volume for 1");
 		out.println("  help      - you are looking it");
 		out.println("  version   - show version");
 	}

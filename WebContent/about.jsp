@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +6,7 @@
 <title>About</title>
 </head>
 <body>
+<section>
 <div class="small">
 <h2>About</h2>
 <div>OpenMp3Player is a web application for playing mp3 files.</div><br><br>
@@ -65,6 +64,18 @@ Backup playlists before OpenMp3Player is updated to newer version.
 <h2>History</h2>
 <div>
 
+<h3>1.4.0</h3>
+<p>april 2014</p>
+<ul>
+<li>volume up/down</li>
+<li>repeat song</li>
+<li>settings window</li>
+<li>migration towards HTML5</li>
+<li>CLI: added volume control, show information</li>
+<li>bug fixes</li>
+</ul>
+<br>
+
 <h3>1.3.1</h3>
 <p>march 2014</p>
 <ul>
@@ -72,7 +83,7 @@ Backup playlists before OpenMp3Player is updated to newer version.
 <li>buttons replaced by icons</li>
 <li>dropdown menu in player gui (containing playlist editor)</li>
 <li>alert (javascript) if playlist name is empty (when saving queue)</li>
-<li>added popup box on button clicks</li>
+<li>popup box on button clicks</li>
 <li>changed styling to black and white</li>
 <li>bug fixes</li>
 </ul>
@@ -143,14 +154,17 @@ reloading page</li>
 <h2>Plans for future</h2>
 <div>- control sound volume<br>
 - better playlist management<br>
+- repeat one song<br>
 - settings<br>
 - pause button<br>
 - ID3 Tag support<br>
 - warning if file does not exist<br>
 - migrate to Jetty<br>
+- migrate to JBOSS<br>
 - SOAP interface<br>
 - REST interface<br>
 - FTP download of files<br></div>
 </div>
+</section>
 </body>
 </html>

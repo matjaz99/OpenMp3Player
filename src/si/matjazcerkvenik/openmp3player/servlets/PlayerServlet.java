@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import si.matjazcerkvenik.openmp3player.backend.Mng;
+import si.matjazcerkvenik.openmp3player.backend.Utils;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlayerServlet extends HttpServlet {
@@ -101,6 +102,26 @@ public class PlayerServlet extends HttpServlet {
 			
 			int i = Integer.parseInt(request.getParameter("index"));
 			mng.getPlistMng().addToQueue(i);
+			
+		} else if (buttonPressed.equals("volumeUp")) {
+			
+			Utils.volumeUp();
+			out.print(Utils.CURRENT_VOLUME_LEVEL);
+			
+		} else if (buttonPressed.equals("volumeDown")) {
+			
+			Utils.volumeDown();
+			out.print(Utils.CURRENT_VOLUME_LEVEL);
+			
+		} else if (buttonPressed.equals("repeat")) {
+			
+			Mng.repeatSong = !Mng.repeatSong;
+			logger.info("PlayerServlet:doPost(): repeat: " + Mng.repeatSong);
+			if (Mng.repeatSong) {
+				out.print("repeatOn");
+			} else {
+				out.print("repeatOff");
+			}
 			
 		} else {
 			

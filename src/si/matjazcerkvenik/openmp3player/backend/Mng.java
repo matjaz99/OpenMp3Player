@@ -7,14 +7,13 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class Mng {
 	
-	// TODO change volume on os x
-	// osascript -e "set Volume 1"
-	
 	private static IPlayer player = null;
 	private static PlistMng plistMng = null;
 	public static Mp3File currentlyPlaying = null;
 	private static Watchdog watchdog = null;
 	private static CommandLine cli = null;
+	
+	public static boolean repeatSong = false;
 	
 	public static String HOME_DIR = null;
 	public static String version = "0.0";
@@ -26,10 +25,10 @@ public class Mng {
 	}
 	public static int count = 0;
 	private void initialize() {
-		System.out.println("Mng initializing... " + count++);
+//		System.out.println("Mng initializing... " + count++);
 		if (plistMng == null) {
 			
-			Utils.getProperties();
+			Utils.loadProperties();
 			
 			initializeLogger();
 			
@@ -42,6 +41,8 @@ public class Mng {
 			watchdog.start();
 			
 			Utils.readVersion();
+			Utils.changePermissions();
+			Utils.setVolume(Utils.CURRENT_VOLUME_LEVEL);
 			
 			if (Utils.TELNET_ENABLED) {
 				cli = new CommandLine();
@@ -58,6 +59,7 @@ public class Mng {
 	private void initializeLogger() {
 		logger = new SimpleLogger();
 		logger.setFilename(HOME_DIR + "log/" + Utils.LOGGER_FILENAME);
+		logger.setLogLevel(Utils.LOGGER_LEVEL);
 		logger.setAppend(Utils.LOGGER_APPEND);
 		logger.setVerbose(true);
 		logger.info("");
@@ -66,6 +68,7 @@ public class Mng {
 		logger.info("\t+---------------------------------+");
 		logger.info("");
 		logger.info("HOME_DIR=" + HOME_DIR);
+		logger.info("OS=" + System.getProperty("os.name"));
 	}
 	
 	/**
@@ -104,7 +107,7 @@ public class Mng {
 	/**
 	 * Start playing song with index i
 	 * @param i
-	 * @return title
+	 * @return title of the song
 	 */
 	public String play(int i) {
 		
@@ -180,6 +183,7 @@ public class Mng {
 	public boolean isPlaying() {
 		return currentlyPlaying != null;
 	}
+	
 	
 	
 }

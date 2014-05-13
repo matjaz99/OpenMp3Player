@@ -26,7 +26,7 @@ function onButton(button, index, descr) {
 </script>
 
 
-<div class="border">
+<section>
 
 <div>
 	<h2>OpenMp3Player</h2>
@@ -110,11 +110,37 @@ if (mng.isPlaying()) {
 <!-- ddPanel is below the guiPanel (and ddButton) -->
 <div id="ddPanel">
 <hr>
-<img id="editorBtn" src="img/editor.png" onclick="openPlaylistEditor()" 
-		onmouseover="onMouse('#editorBtn', 'img/editor-shadow.png')" 
-		onmouseout="onMouse('#editorBtn', 'img/editor.png')" 
-		onmousedown="onMouse('#editorBtn', 'img/editor-pressed.png')" 
-		onmouseup="onMouse('#editorBtn', 'img/editor-shadow.png')">
+<img id="editorBtn" src="img/playlists.png" onclick="openPlaylistEditor()" 
+		onmouseover="onMouse('#editorBtn', 'img/playlists-shadow.png')" 
+		onmouseout="onMouse('#editorBtn', 'img/playlists.png')" 
+		onmousedown="onMouse('#editorBtn', 'img/playlists-pressed.png')" 
+		onmouseup="onMouse('#editorBtn', 'img/playlists-shadow.png')">
+<img id="volumeDnBtn" src="img/volumeDn.png" onclick="volumeDown()"
+		onmouseover="onMouse('#volumeDnBtn', 'img/volumeDn-shadow.png')" 
+		onmouseout="onMouse('#volumeDnBtn', 'img/volumeDn.png')" 
+		onmousedown="onMouse('#volumeDnBtn', 'img/volumeDn-pressed.png')" 
+		onmouseup="onMouse('#volumeDnBtn', 'img/volumeDn-shadow.png')">
+<img id="volumeUpBtn" src="img/volumeUp.png" onclick="volumeUp()"
+		onmouseover="onMouse('#volumeUpBtn', 'img/volumeUp-shadow.png')" 
+		onmouseout="onMouse('#volumeUpBtn', 'img/volumeUp.png')" 
+		onmousedown="onMouse('#volumeUpBtn', 'img/volumeUp-pressed.png')" 
+		onmouseup="onMouse('#volumeUpBtn', 'img/volumeUp-shadow.png')">
+<%
+String rBtn = "repeatOff";
+if (Mng.repeatSong) {
+	rBtn = "repeatOn";
+}
+%>
+<img id="repeatBtn" src="img/<%= rBtn%>.png" onclick="repeat()" 
+		onmouseover="onMouse('#repeatBtn', 'img/<%= rBtn%>-shadow.png')" 
+		onmouseout="onMouse('#repeatBtn', 'img/<%= rBtn%>.png')" 
+		onmousedown="onMouse('#repeatBtn', 'img/<%= rBtn%>-pressed.png')" 
+		onmouseup="onMouse('#repeatBtn', 'img/<%= rBtn%>-shadow.png')">
+<img id="settingsBtn" src="img/settings.png" onclick="openSettings()"
+		onmouseover="onMouse('#settingsBtn', 'img/settings-shadow.png')" 
+		onmouseout="onMouse('#settingsBtn', 'img/settings.png')" 
+		onmousedown="onMouse('#settingsBtn', 'img/settings-pressed.png')" 
+		onmouseup="onMouse('#settingsBtn', 'img/settings-shadow.png')">
 <img id="helpBtn" src="img/help.png" onclick="openHelp()"
 		onmouseover="onMouse('#helpBtn', 'img/help-shadow.png')" 
 		onmouseout="onMouse('#helpBtn', 'img/help.png')" 
@@ -150,4 +176,4 @@ if (!mng.getCurrentlyPlaying().equals("null")) {
 
 
 
-</div>
+</section>

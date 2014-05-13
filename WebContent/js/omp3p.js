@@ -61,17 +61,91 @@ function openPlayer() {
 	window.location.href = "/OpenMp3Player";
 }
 
+function openSettings() {
+	window.location.href = "settings";
+}
+
 function openHelp() {
 	window.location.href = "/OpenMp3Player/about.jsp";
 }
 
+/**
+ * Replace the src attribute of img element with specified id.
+ * Used on icons on mouse over events. 
+ * @param id
+ * @param src
+ */
 function onMouse(id, src) {
 	$(id).attr("src", src);
 }
 
 
+function volumeUp() {
+	
+	$.ajax({  
+	    type: "POST",  
+	    url: "player",  
+	    data: "button=volumeUp",  
+	    success: function(result) {  
+	    	loadPopupBox("Volume " + result);
+	    }                
+	  }); 
+	
+}
+
+function volumeDown() {
+	
+	$.ajax({  
+	    type: "POST",  
+	    url: "player",  
+	    data: "button=volumeDown",  
+	    success: function(result) {  
+	    	loadPopupBox("Volume " + result);
+	    }                
+	  }); 
+	
+}
+
+/**
+ * Repeat song button. Also change icon on/off.
+ */
+function repeat() {
+	
+	$.ajax({  
+	    type: "POST",  
+	    url: "player",  
+	    data: "button=repeat",  
+	    success: function(result) {  
+	    	if (result == 'repeatOn') {
+				$("#repeatBtn").attr("src", "img/repeatOn.png");
+				$("#repeatBtn").attr("onClick", "repeat()");
+				$("#repeatBtn").attr("onmouseover", "onMouse('#repeatBtn', 'img/repeatOn-shadow.png')");
+				$("#repeatBtn").attr("onmouseout", "onMouse('#repeatBtn', 'img/repeatOn.png')");
+				$("#repeatBtn").attr("onmousedown", "onMouse('#repeatBtn', 'img/repeatOn-pressed.png')");
+				$("#repeatBtn").attr("onmouseup", "onMouse('#repeatBtn', 'img/repeatOn-shadow.png')");
+				loadPopupBox("Repeat ON");
+			} else {
+				$("#repeatBtn").attr("src", "img/repeatOff.png");
+				$("#repeatBtn").attr("onClick", "repeat()");
+				$("#repeatBtn").attr("onmouseover", "onMouse('#repeatBtn', 'img/repeatOff-shadow.png')");
+				$("#repeatBtn").attr("onmouseout", "onMouse('#repeatBtn', 'img/repeatOff.png')");
+				$("#repeatBtn").attr("onmousedown", "onMouse('#repeatBtn', 'img/repeatOff-pressed.png')");
+				$("#repeatBtn").attr("onmouseup", "onMouse('#repeatBtn', 'img/repeatOff-shadow.png')");
+				loadPopupBox("Repeat OFF");
+			}
+	    }                
+	  }); 
+}
+
+
+/**
+ * Show and hide popup box with selected message
+ * @param txt
+ */
 function loadPopupBox(txt) {
 	$("#popup_text").html(txt);
     $('#popup_box').fadeIn("slow");
+    $('#popup_box').delay(500);
     $('#popup_box').fadeOut("slow");
 }
+

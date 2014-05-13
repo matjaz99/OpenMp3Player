@@ -28,6 +28,16 @@
     <servlet-name>PlaylistEditorServlet</servlet-name>
     <url-pattern>/playlistEditor</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SettingsServlet</display-name>
+    <servlet-name>SettingsServlet</servlet-name>
+    <servlet-class>si.matjazcerkvenik.openmp3player.servlets.SettingsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SettingsServlet</servlet-name>
+    <url-pattern>/settings</url-pattern>
+  </servlet-mapping>
   <listener>
   	<listener-class>si.matjazcerkvenik.openmp3player.servlets.ShutdownListener</listener-class>
   </listener>

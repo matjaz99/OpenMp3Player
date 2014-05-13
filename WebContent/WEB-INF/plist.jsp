@@ -4,7 +4,7 @@
 <%@page session="true" import="java.util.*,si.matjazcerkvenik.openmp3player.backend.Mng" %>
 <jsp:useBean id="mng" scope="application" class="si.matjazcerkvenik.openmp3player.backend.Mng"></jsp:useBean>
 
-<div class="border">
+<section>
 <table>
   <%
   	List<Mp3File> files = mng.getPlistMng().getShowPlaylist().getMp3Files();
@@ -57,4 +57,4 @@
 <div>Size: <%=mng.getPlistMng().getShowPlaylist().getMp3Files().size()%></div>
 <hr>
 <div>Version: <%=Mng.version%></div>
-</div>
+</section>

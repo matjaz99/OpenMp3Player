@@ -21,7 +21,23 @@
 		<source>/Users/matjaz/Music/Bachata</source>
 	</plist>
 	<plist>
-		<name>Ne obstaja</name>
-		<source>zzzz.xml</source>
+		<name>Rock</name>
+		<source>/Users/matjaz/Music/music</source>
+	</plist>
+	<plist>
+        <name>Ray Baretto</name>
+        <source>Ray Baretto.xml</source>
+    </plist>
+    <plist>
+		<name>Balkan 1</name>
+		<source>/Users/matjaz/Music/Balkan</source>
+	</plist>
+	<plist>
+		<name>Balkan 2</name>
+		<source>/Users/matjaz/Music/BalkanMP3</source>
+	</plist>
+	<plist>
+		<name>SLO</name>
+		<source>/Users/matjaz/Music/Slovenska</source>
 	</plist>
 </playlists>

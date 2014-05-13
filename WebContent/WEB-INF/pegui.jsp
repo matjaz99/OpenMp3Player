@@ -44,7 +44,7 @@ function onButton(button, name, descr) {
 
 <div>
 
-<div class="border">
+<section>
 
 <div>
 	<h2>Playlist Editor</h2>
@@ -53,6 +53,7 @@ function onButton(button, name, descr) {
 <hr/>
 
 <button onclick="openPlayer()">Back to player</button>
+<hr/>
 
 <div class="small">
 Add new directory
@@ -67,13 +68,13 @@ Directory: <input id="pSource" type="text" name="source"/>
 </form>
 </div>
 
-</div>
+</section>
 
 <hr>
 
 
 
-<div class="border">
+<section>
 
 <table>
 
@@ -165,7 +166,7 @@ String qSource = q.getSource();
 
 </table>
 
-</div>
+</section>
 <div style="clear: both;"></div>
 
 
