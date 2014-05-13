@@ -34,4 +34,6 @@
 
 <hr>
 <div>Size: <%=mng.getNumberOfMp3s()%></div>
+<hr>
+<div>Version: <%=Mng.version%></div>
 </div>

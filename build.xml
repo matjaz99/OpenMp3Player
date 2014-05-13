@@ -3,7 +3,7 @@
 	
 	<description>Ant buildfile</description>
 
-	<property name="project.version" value="1.1.1" />
+	<property name="project.version" value="1.2.0" />
 	<property name="src.dir" value="src" />
 	<property name="web.dir" value="WebContent" />
 	<property name="classes.dir" value="build/classes" />
@@ -18,7 +18,7 @@
 	</path>
 	
 	<target name="init">
-		<echo file="version.txt">${project.version}</echo>
+		<echo file="${web.dir}/config/version.txt">${project.version}</echo>
 		<mkdir dir="${classes.dir}"/>
 		<mkdir dir="${dist.dir}" />
 		<delete dir="${dist.dir}/${ant.project.name}-${project.version}" />
@@ -36,7 +36,6 @@
 			<fileset dir="WebContent"/>
 			<lib dir="${lib.dir}"/>
 			<classes dir="${classes.dir}"/>
-			<include name="version.txt"/>
 		</war>
 	</target>
 	

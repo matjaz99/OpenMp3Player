@@ -21,7 +21,11 @@ public class Watchdog extends Thread {
 			
 //			System.out.println("Player status: " + mng.getPlayer().getStatus());
 			
-			if (mng.getPlayer().getStatus() == PlayerStatus.PLAY_ENDED) {
+			if (mng == null) {
+				return;
+			}
+			
+			if (Mng.getPlayer().getStatus() == PlayerStatus.PLAY_ENDED) {
 				mng.next();
 			}
 			

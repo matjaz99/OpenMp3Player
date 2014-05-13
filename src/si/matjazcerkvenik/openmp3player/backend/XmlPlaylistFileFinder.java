@@ -60,14 +60,5 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 	    return list;
 	}
 	
-	public static void main(String[] args) {
-		
-		XmlPlaylistFileFinder x = new XmlPlaylistFileFinder();
-		List<Mp3File> mp3Files = x.getMp3Files("D:\\My Dropbox\\MyWorkspace\\MyMp3PlayerTomcat\\WebContent\\salsa.xml");
-		for (int i = 0; i < mp3Files.size(); i++) {
-			System.out.println(mp3Files.get(i));
-		}
-		
-	}
 	
 }

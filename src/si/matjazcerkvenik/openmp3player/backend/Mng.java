@@ -18,6 +18,8 @@ public class Mng {
 	
 	public static String HOME_DIR = null;
 	
+	public static String version = "0.0";
+	
 	public Mng() {
 		initialize();
 	}
@@ -34,10 +36,13 @@ public class Mng {
 			watchdog = new Watchdog(this);
 			watchdog.start();
 			
+			Utils.readVersion();
+			
 			System.out.println("Mng initialized");
 		}
 		
 	}
+	
 	
 	public Playlist getActivePlaylist() {
 		return activePlaylist;
@@ -142,10 +147,9 @@ public class Mng {
 		return currentlyPlaying.getTitle();
 	}
 	
-//	@Override
-//	public void playEnded() {
-//		next();
-//		play(currentlyPlaying.getIndex() + 1);
-//	}
+	public boolean isPlaying() {
+		return currentlyPlaying != null;
+	}
+	
 	
 }

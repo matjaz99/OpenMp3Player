@@ -2,6 +2,7 @@ package si.matjazcerkvenik.openmp3player.player.jlayer;
 
 import java.net.URL;
 
+import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.IPlayerCallback;
 
 
@@ -50,10 +51,12 @@ public class SoundJLayer extends Pausable.PlaybackListener implements Runnable {
 
 	private void playerInitialize() {
 		try {
-//			String urlAsString = "file:///"
+//			String urlAsStringX = "file:///"
 //					+ new java.io.File(".").getCanonicalPath() + "/"
 //					+ this.filePath;
-			String urlAsString = "file://" + this.filePath;
+//			System.out.println("urlAsStringX: " + urlAsStringX);
+			String urlAsString = "file:///" + this.filePath;
+//			System.out.println("urlAsString: " + urlAsString);
 
 			this.player = new Pausable(new URL(urlAsString), this);
 		} catch (Exception ex) {

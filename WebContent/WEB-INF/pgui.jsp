@@ -3,7 +3,7 @@
 <jsp:useBean id="mng" scope="application" class="si.matjazcerkvenik.openmp3player.backend.Mng"></jsp:useBean>
 
 <script type="text/javascript">
-function onButton(button, index){  
+function onButton(button, index) {  
 
   var i = "";
   if (index != null) {
@@ -13,12 +13,24 @@ function onButton(button, index){
     type: "POST",  
     url: "player",  
     data: "button=" + button + i,  
-    success: function(result){  
-    	$("#currentlyPlaying").html("Currently playing: " + result);
+    success: function(result) {  
+    	togglePlayButton(result);
     }                
   });  
 }
-$(document).ready(function(){
+function togglePlayButton(result) {
+	$("#currentlyPlaying").html("Currently playing: " + result);
+	if (result == 'null') {
+		$("#currentlyPlaying").html("Stopped");
+		$("#playBtn").html("Play");
+		$("#playBtn").attr("onClick", "onButton('play')");
+	} else {
+		$("#currentlyPlaying").html("Currently playing: " + result);
+		$("#playBtn").html("Stop");
+		$("#playBtn").attr("onClick", "onButton('stop')");
+	}
+}
+$(document).ready(function() {
     $('#dropdown').change(function() {
     	var s = $("#dropdown option:selected").val();
     	$.ajax({  
@@ -37,7 +49,7 @@ $(document).ready(function(){
 <div class="border">
 
 <div>
-	<h2>MyMp3Player</h2>
+	<h2>OpenMp3Player</h2>
 </div>
 
 <hr/>
@@ -45,9 +57,16 @@ $(document).ready(function(){
 <div style="float: left;">
 
 <button onclick="onButton('prev')">Prev</button>
-<button onclick="onButton('play')">Play</button>
+<%
+String btn = "play";
+String btnVal = "Play";
+if (mng.isPlaying()) {
+	btn = "stop";
+	btnVal = "Stop";
+}
+%>
+<button id="playBtn" onclick="onButton('<%=btn%>')"><%=btnVal%></button>
 <button onclick="onButton('next')">Next</button>
-<button onclick="onButton('stop')">Stop</button>
 
 
 <select id="dropdown" >
@@ -78,7 +97,13 @@ $(document).ready(function(){
 <hr>
 
 <div>
-<div id="currentlyPlaying">Currently playing: <%=mng.getCurrentlyPlaying()%></div>
+<%
+String currPlay = "Stopped";
+if (!mng.getCurrentlyPlaying().equals("null")) {
+	currPlay = "Currently playing: " + mng.getCurrentlyPlaying();
+}
+%>
+<div id="currentlyPlaying"><%=currPlay%></div>
 </div>
 
 </div>

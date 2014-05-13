@@ -52,7 +52,7 @@ public class PlayerServlet extends HttpServlet {
 			
 		} else if (buttonPressed.equals("prev")) {
 			
-			out.println(mng.prev());
+			out.print(mng.prev());
 			
 //			ServletContext sc = getServletContext();
 //			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
@@ -62,9 +62,9 @@ public class PlayerServlet extends HttpServlet {
 			
 			String i = request.getParameter("index");
 			if (i == null) {
-				out.println(mng.play(0));
+				out.print(mng.play(0));
 			} else {
-				out.println(mng.play(Integer.parseInt(i)));
+				out.print(mng.play(Integer.parseInt(i)));
 			}
 			
 			
@@ -74,7 +74,7 @@ public class PlayerServlet extends HttpServlet {
 			
 		} else if (buttonPressed.equals("next")) {
 			
-			out.println(mng.next());
+			out.print(mng.next());
 			
 //			ServletContext sc = getServletContext();
 //			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
@@ -82,7 +82,7 @@ public class PlayerServlet extends HttpServlet {
 			
 		} else if (buttonPressed.equals("stop")) {
 			
-			out.println(mng.stop());
+			out.print(mng.stop());
 			
 //			ServletContext sc = getServletContext();
 //			RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/player.jsp");
@@ -101,7 +101,7 @@ public class PlayerServlet extends HttpServlet {
 			
 		} else if (buttonPressed.equals("refresh")) {
 			
-			out.println(mng.getCurrentlyPlaying());
+			out.print(mng.getCurrentlyPlaying());
 			
 		} else {
 			

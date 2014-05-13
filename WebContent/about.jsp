@@ -15,7 +15,7 @@
 music on my computer without getting out of the bed.</div>
 <h4>Design</h4>
 <div>The application will run on desktop machine, 
-because all my MP3 files are stored there; I just need some remote handler of 
+because my MP3 files are stored there; I just need some remote handler of 
 these files and smart phone is always at the reach of the hand. 
 I need graphical user interface to put buttons on 
 (play, stop...). I chose HTML, because it is 
@@ -62,6 +62,16 @@ Backup playlists before OpenMp3Player is updated to newer version.
 </div>
 <h4>History</h4>
 <div>
+<h3>1.2.0</h3>
+<p>january 2014</p>
+<ul>
+<li>Renamed to OpenMp3Player</li>
+<li>toggle Play/Stop button</li>
+<li>if player is not playing 'Stopped' is displayed</li>
+<li>added version</li>
+<li>corrected bug to play on Windows</li>
+<li>NPE was thrown in watchdog when shutting down Tomcat</li>
+</ul>
 <h3>1.1.1</h3>
 <p>january 2014</p>
 <ul>
@@ -95,7 +105,10 @@ reloading page</li>
 - ID3 Tag support<br>
 - warning if file does not exist<br>
 - queue - add any song to queue to be played next (virtual playlist)<br>
-- migrate to Jetty<br></div>
+- migrate to Jetty<br>
+- SOAP interface<br>
+- REST interface<br>
+- CLI interface (telnet)<br></div>
 </div>
 </body>
 </html>
