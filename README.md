@@ -1,13 +1,19 @@
 OpenMp3Player
 ===================
 
+Last stable release: 1.3.1
 OpenMp3Player is currently beta version: 1.4
 
-OpenMp3Player is a web application for playing mp3 files.
+
+What is it?
+-------------------
+OpenMp3Player is a web application for playing mp3 files. It runs on Apache Tomcat server.
 
 
 Deploy
 -------------------
+Before deploying make sure that Apache Tomcat server is running (run $TOMCAT_HOME/bin/startup.sh).
+
 Unzip and put OpenMp3Player.war into $TOMCAT_HOME/webapps directory.
 
 With web browser go to: <a href="http://hostname:8080/OpenMp3Player">
@@ -21,11 +27,11 @@ History
 1.4.0
 april 2014
 
-- volume up/down
+- volume up/down (Linux and OSX only)
 - repeat song
 - settings window
 - migration towards HTML5
-- CLI: added volume control, show information
+- CLI: added volume control, show information, repeat
 - bug fixes
 
 
@@ -78,15 +84,14 @@ january 2014
 - changed form-input-type buttons with button-element buttons
 - dropdown menu automatic selection
 - refresh button to refresh currently playing song
-- more styles
+- more styling
 
 
 
 1.1.0
 january 2014
 
-- Play, Stop, Next, Prev buttons enchanced with AJAX functionality to avoid 
-- reloading page
+- Play, Stop, Next, Prev buttons enchanced with AJAX functionality to avoid reloading page
 - added jquery
 
 

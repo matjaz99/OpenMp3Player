@@ -109,6 +109,20 @@ public class CommandLine extends Thread {
 						
 						out.println("Playing: " + mng.prev());
 
+					} else if (line.startsWith("repeat")) {
+						
+						String[] args = line.split(" ");
+						if (args.length > 1) {
+							
+							if (args[1].equals("on")) {
+								Mng.repeatSong = true;
+							} else if (args[1].equals("off")) {
+								Mng.repeatSong = false;
+							}
+						}
+						
+						out.println("Repeat is " + (Mng.repeatSong ? "ON" : "OFF"));
+
 					} else if (line.equalsIgnoreCase("help")) {
 						
 						printHelp(out);
@@ -200,20 +214,22 @@ public class CommandLine extends Thread {
 	
 	private void printHelp(PrintWriter out) {
 		out.println("Usage:");
-		out.println("  play      - start playing");
-		out.println("    -n <i>      - play i-th song");
-		out.println("  stop      - stop playing");
-		out.println("  next      - play next");
-		out.println("  prev      - play previous");
-		out.println("  show      - show information about:");
-		out.println("    -p          - playlist");
-		out.println("    -s          - song");
-		out.println("    -v          - volume level");
-		out.println("  vol       - set volume:");
-		out.println("    <i>         - volume level (number in range 0 - 10)");
-		out.println("    [+/-]       - increase/decrease volume for 1");
-		out.println("  help      - you are looking it");
-		out.println("  version   - show version");
+		out.println("  play        - start playing");
+		out.println("    -n <i>       - play i-th song");
+		out.println("  stop        - stop playing");
+		out.println("  next        - play next");
+		out.println("  prev        - play previous");
+		out.println("  repeat      - repeat song");
+		out.println("    [on/off]  - playlist");
+		out.println("  show        - show information about:");
+		out.println("    -p           - playlist");
+		out.println("    -s           - song");
+		out.println("    -v           - volume level");
+		out.println("  vol         - set volume:");
+		out.println("    <i>          - volume level (number in range 0 - 10)");
+		out.println("    [+/-]        - increase/decrease volume for 1");
+		out.println("  help        - you are looking it");
+		out.println("  version     - show version");
 	}
 
 }
