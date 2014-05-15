@@ -99,7 +99,7 @@ public class Utils {
 				CURRENT_VOLUME_LEVEL = parseInt(props.getProperty(PROPERTY_VOLUME_DEFAULT), 1);
 				System.out.println("==== VOL: " + CURRENT_VOLUME_LEVEL);
 				if (props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT) != null
-						|| props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT).length() != 0) {
+						&& props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT).length() > 0) {
 					VOLUME_CUSTOM_SCRIPT = props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT);
 				}
 				System.out.println("==== VOLUME_CUSTOM_SCRIPT: " + VOLUME_CUSTOM_SCRIPT);
