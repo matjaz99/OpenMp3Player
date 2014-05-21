@@ -25,13 +25,13 @@ History
 -------------------
 
 1.4.0
-april 2014
+may 2014
 
 - volume up/down (Linux and OSX only)
 - repeat song
 - settings window
 - migration towards HTML5
-- CLI: added volume control, show information, repeat
+- CLI: volume control, show information, repeat
 - bug fixes
 
 
