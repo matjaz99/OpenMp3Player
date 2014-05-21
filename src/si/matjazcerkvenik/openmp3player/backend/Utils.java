@@ -242,6 +242,10 @@ public class Utils {
 	 */
 	public static void changePermissions() {
 		
+		if (getOsType().equals("WINDOWS")) {
+			return;
+		}
+		
 		File dir = new File(Mng.HOME_DIR + "config");
 		File[] files = dir.listFiles(new FileFilter() {
 			

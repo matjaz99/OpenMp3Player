@@ -1,8 +1,7 @@
 OpenMp3Player
 ===================
 
-Last stable release: 1.3.1
-OpenMp3Player is currently beta version: 1.4
+Last stable release: 1.4.0
 
 
 What is it?
@@ -25,13 +24,13 @@ History
 -------------------
 
 1.4.0
-april 2014
+may 2014
 
 - volume up/down (Linux and OSX only)
 - repeat song
 - settings window
 - migration towards HTML5
-- CLI: added volume control, show information, repeat
+- CLI: volume control, show information, repeat
 - bug fixes
 
 
