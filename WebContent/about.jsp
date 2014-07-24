@@ -152,12 +152,12 @@ reloading page</li>
 
 </div>
 <h2>Plans for future</h2>
-<div>- control sound volume<br>
+<div>
 - better playlist management<br>
-- repeat one song<br>
-- settings<br>
 - pause button<br>
 - ID3 Tag support<br>
+- tags and labels<br>
+- sorting (by song name, artist, tag...)<br>
 - warning if file does not exist<br>
 - migrate to Jetty<br>
 - migrate to JBOSS<br>
