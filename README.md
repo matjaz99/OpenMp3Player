@@ -1,6 +1,8 @@
 OpenMp3Player
 ===================
 
+New version 2 is in development. It will bring many new features. JSF will be used. 
+
 Last stable release: 1.4.0
 
 
