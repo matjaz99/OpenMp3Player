@@ -159,6 +159,7 @@ reloading page</li>
 - tags and labels<br>
 - sorting (by song name, artist, tag...)<br>
 - warning if file does not exist<br>
+- upload file<br>
 - migrate to Jetty<br>
 - migrate to JBOSS<br>
 - SOAP interface<br>
