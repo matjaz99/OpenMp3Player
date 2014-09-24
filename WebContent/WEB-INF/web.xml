@@ -9,35 +9,44 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description></description>
-    <display-name>Player</display-name>
-    <servlet-name>Player</servlet-name>
-    <servlet-class>si.matjazcerkvenik.openmp3player.servlets.PlayerServlet</servlet-class>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Player</servlet-name>
-    <url-pattern>/player</url-pattern>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/*</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>PlaylistEditorServlet</display-name>
-    <servlet-name>PlaylistEditorServlet</servlet-name>
-    <servlet-class>si.matjazcerkvenik.openmp3player.servlets.PlaylistEditorServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PlaylistEditorServlet</servlet-name>
-    <url-pattern>/playlistEditor</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>SettingsServlet</display-name>
-    <servlet-name>SettingsServlet</servlet-name>
-    <servlet-class>si.matjazcerkvenik.openmp3player.servlets.SettingsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SettingsServlet</servlet-name>
-    <url-pattern>/settings</url-pattern>
-  </servlet-mapping>
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>Player</display-name> -->
+<!--     <servlet-name>Player</servlet-name> -->
+<!--     <servlet-class>si.matjazcerkvenik.openmp3player.servlets.PlayerServlet</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>Player</servlet-name> -->
+<!--     <url-pattern>/player</url-pattern> -->
+<!--   </servlet-mapping> -->
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>PlaylistEditorServlet</display-name> -->
+<!--     <servlet-name>PlaylistEditorServlet</servlet-name> -->
+<!--     <servlet-class>si.matjazcerkvenik.openmp3player.servlets.PlaylistEditorServlet</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>PlaylistEditorServlet</servlet-name> -->
+<!--     <url-pattern>/playlistEditor</url-pattern> -->
+<!--   </servlet-mapping> -->
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>SettingsServlet</display-name> -->
+<!--     <servlet-name>SettingsServlet</servlet-name> -->
+<!--     <servlet-class>si.matjazcerkvenik.openmp3player.servlets.SettingsServlet</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>SettingsServlet</servlet-name> -->
+<!--     <url-pattern>/settings</url-pattern> -->
+<!--   </servlet-mapping> -->
   <listener>
   	<listener-class>si.matjazcerkvenik.openmp3player.servlets.ShutdownListener</listener-class>
   </listener>
