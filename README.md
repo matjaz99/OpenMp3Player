@@ -1,7 +1,10 @@
 OpenMp3Player
 ===================
 
-New version 2 is in development. It will bring many new features. JSF will be used. 
+New version 2 is still in development phase. It will bring many new features, such as:
+- JSF 1.2 will be used (JSP based)
+- tags and labels
+- upload mp3
 
 Last stable release: 1.4.0
 
@@ -24,6 +27,14 @@ http://hostname:8080/OpenMp3Player</a>
 
 History
 -------------------
+
+2.0.0
+zzz 2014
+
+- use JSF instead of JSP technology and see if it still works
+
+
+
 
 1.4.0
 may 2014

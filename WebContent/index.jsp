@@ -1,1 +1,1 @@
-<jsp:forward page="/player"></jsp:forward>
+<jsp:forward page="/WEB-INF/player.jsp"></jsp:forward>
