@@ -1,64 +1,23 @@
 @CHARSET "UTF-8";
 
 * {
+	font: 38px Verdana, Arial, Helvetica, sans-serif;
+	color: white;
 	padding: 0px;
 	margin: 0px;
 }
 
-body {
-	font: 38px Verdana, Arial, Helvetica, sans-serif;
-	color: white;
+.background {
 	background-color: #222222;
 }
 
-h2 {
+
+.title {
 	color: white;
+	
 }
 
-section {
-	padding: 10px;
-	border: 1px solid #ffffff;
-	margin: 0px;
-}
 
-article {
-	padding: 10px;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-td {
-	font-size: 38px;
-	color: #333333;
-	padding: 5px;
-}
-
-/* td.odd { */
-/* 	background-color: #dddddd; */
-/* } */
-
-/* td.even { */
-/* 	background-color: #ffffff; */
-/* } */
-
-tbody tr:nth-child(odd) {
-   background-color: #dddddd;
-}
-
-tbody tr:nth-child(even) {
-   background-color: #ffffff;
-}
-
-.small {
-	font-size: 12px;
-}
-
-#ddPanel {
-/* 	padding:50px; */
-	display:none;
-}
 
 /* ko to zrihtas, daj se v moder stil!!!!!!! */
 #popup_box { 
