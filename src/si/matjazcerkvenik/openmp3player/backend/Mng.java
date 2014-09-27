@@ -5,6 +5,7 @@ import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
+@Deprecated
 public class Mng {
 	
 	private static IPlayer player = null;
@@ -28,17 +29,17 @@ public class Mng {
 //		System.out.println("Mng initializing... " + count++);
 		if (plistMng == null) {
 			
-			Utils.loadProperties();
+//			Utils.loadProperties();
 			
-			initializeLogger();
+//			initializeLogger();
 			
 			plistMng = new PlistMng();
 			plistMng.loadMp3Files();
 			
 			player = new JLayerPlayer();
 			
-			watchdog = new Watchdog(this);
-			watchdog.start();
+//			watchdog = new Watchdog(this);
+//			watchdog.start();
 			
 			Utils.readVersion();
 			Utils.changePermissions();
@@ -56,20 +57,20 @@ public class Mng {
 		
 	}
 	
-	private void initializeLogger() {
-		logger = new SimpleLogger();
-		logger.setFilename(HOME_DIR + "log/" + Utils.LOGGER_FILENAME);
-		logger.setLogLevel(Utils.LOGGER_LEVEL);
-		logger.setAppend(Utils.LOGGER_APPEND);
-		logger.setVerbose(true);
-		logger.info("");
-		logger.info("\t+---------------------------------+");
-		logger.info("\t|       Start OpenMp3Player       |");
-		logger.info("\t+---------------------------------+");
-		logger.info("");
-		logger.info("HOME_DIR=" + HOME_DIR);
-		logger.info("OS=" + System.getProperty("os.name"));
-	}
+//	private void initializeLogger() {
+//		logger = new SimpleLogger();
+//		logger.setFilename(HOME_DIR + "log/" + Utils.LOGGER_FILENAME);
+//		logger.setLogLevel(Utils.LOGGER_LEVEL);
+//		logger.setAppend(Utils.LOGGER_APPEND);
+//		logger.setVerbose(true);
+//		logger.info("");
+//		logger.info("\t+---------------------------------+");
+//		logger.info("\t|       Start OpenMp3Player       |");
+//		logger.info("\t+---------------------------------+");
+//		logger.info("");
+//		logger.info("HOME_DIR=" + HOME_DIR);
+//		logger.info("OS=" + System.getProperty("os.name"));
+//	}
 	
 	/**
 	 * Return playlist manager.

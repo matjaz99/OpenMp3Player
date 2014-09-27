@@ -24,7 +24,7 @@ public class PlistMng {
 	private String showPlaylist = null;
 	private Playlist queue = null;
 	
-	private SimpleLogger logger = Mng.getLogger();
+	private SimpleLogger logger = OContext.getLogger();
 	
 	public PlistMng() {
 		loadPlaylists();
@@ -243,7 +243,7 @@ public class PlistMng {
 
 		try {
 
-			File file = new File(Mng.HOME_DIR + "playlists/playlists.xml");
+			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -266,11 +266,11 @@ public class PlistMng {
 		Playlists playlists = null;
 		try {
 
-			File file = new File(Mng.HOME_DIR + "playlists/playlists.xml");
+			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
 			if (file.exists()) {
 				logger.debug("PlistMng:unmarshall(): playlists.xml exists");
 			} else {
-				logger.debug("PlistMng:unmarshall(): playlists.xml not found on path: " + Mng.HOME_DIR + "playlists/playlists.xml");
+				logger.debug("PlistMng:unmarshall(): playlists.xml not found on path: " + OContext.CFG_DIR + "playlists/playlists.xml");
 			}
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 

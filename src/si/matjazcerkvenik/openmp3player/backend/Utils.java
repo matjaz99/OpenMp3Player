@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import si.matjazcerkvenik.simplelogger.LEVEL;
 import si.matjazcerkvenik.simplelogger.PROPS;
+import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class Utils {
 	
@@ -38,6 +39,11 @@ public class Utils {
 	public static int TELNET_PORT = 4444;
 
 	public static int CURRENT_VOLUME_LEVEL = 2;
+	
+	public static void init() {
+		loadProperties();
+		readVersion();
+	}
 
 	/**
 	 * Read version.txt.
@@ -46,13 +52,13 @@ public class Utils {
 
 		try {
 
-			FileInputStream fis = new FileInputStream(Mng.HOME_DIR
+			FileInputStream fis = new FileInputStream(OContext.CFG_DIR
 					+ "config/version.txt");
 
 			DataInputStream dis = new DataInputStream(fis);
 			BufferedReader br = new BufferedReader(new InputStreamReader(dis));
 
-			Mng.version = br.readLine();
+			OContext.version = br.readLine();
 
 			dis.close();
 
@@ -84,7 +90,7 @@ public class Utils {
 	 * Read openmp3player.properties and load parameters.
 	 * @return properties
 	 */
-	public static Properties loadProperties() {
+	private static Properties loadProperties() {
 		
 		if (props == null) {
 			
@@ -92,7 +98,7 @@ public class Utils {
 			
 			try {
 
-				props.load(new FileInputStream(Mng.HOME_DIR
+				props.load(new FileInputStream(OContext.CFG_DIR
 						+ "config/openmp3player.properties"));
 
 				PLAYER_DELAY = parseInt(props.getProperty(PROPERTY_PLAYER_DELAY), 5);
@@ -121,6 +127,23 @@ public class Utils {
 
 		}
 		return props;
+	}
+	
+	private static void initializeLogger() {
+//		SimpleLogger logger = new SimpleLogger();
+//		logger.setFilename(OContext.CFG_DIR + "log/" + Utils.LOGGER_FILENAME);
+//		logger.setLogLevel(Utils.LOGGER_LEVEL);
+//		logger.setAppend(Utils.LOGGER_APPEND);
+//		logger.setVerbose(true);
+//		logger.info("");
+//		logger.info("\t+---------------------------------+");
+//		logger.info("\t|       Start OpenMp3Player       |");
+//		logger.info("\t+---------------------------------+");
+//		logger.info("");
+//		logger.info("CFG_DIR=" + OContext.CFG_DIR);
+//		logger.info("OS=" + System.getProperty("os.name"));
+		
+//		OContext.setLogger(logger);
 	}
 	
 	public static void writeProperties() {

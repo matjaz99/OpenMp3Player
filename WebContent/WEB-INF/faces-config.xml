@@ -10,4 +10,9 @@
 		</locale-config>
 		<message-bundle>si.matjazcerkvenik.openmp3player.backend.om3p</message-bundle>
 	</application>
+	<managed-bean>
+		<managed-bean-name>playerBean</managed-bean-name>
+		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlayerBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
 </faces-config>

@@ -9,13 +9,13 @@ import si.matjazcerkvenik.openmp3player.player.PlayerStatus;
  */
 public class Watchdog extends Thread {
 	
-	private Mng mng = null;
+	private OContext ctx = null;
 	
 	
 	
-	public Watchdog(Mng mng) {
+	public Watchdog(OContext ctx) {
 		setName("Watchdog");
-		this.mng = mng;
+		this.ctx = ctx;
 	}
 
 
@@ -25,16 +25,16 @@ public class Watchdog extends Thread {
 		
 		while (true) {
 						
-			if (mng == null) {
+			if (ctx == null) {
 				return;
 			}
 			
 			if (Mng.getPlayer().getStatus() == PlayerStatus.PLAY_ENDED) {
 				Mng.getLogger().trace("Watchdog:run(): repeat is: " + Mng.repeatSong);
 				if (Mng.repeatSong) {
-					mng.play(Mng.currentlyPlaying.getIndex());
+					ctx.play(Mng.currentlyPlaying.getIndex());
 				} else {
-					mng.next();
+					ctx.next();
 				}
 				
 			}
