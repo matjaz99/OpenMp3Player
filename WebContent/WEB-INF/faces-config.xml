@@ -15,4 +15,9 @@
 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlayerBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>plistMng</managed-bean-name>
+		<managed-bean-class>si.matjazcerkvenik.openmp3player.backend.PlistMng</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
 </faces-config>

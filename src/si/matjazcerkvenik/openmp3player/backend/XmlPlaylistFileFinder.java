@@ -26,7 +26,7 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 	
 	public void saveToXml(String source) {
 		
-		Mng mng = new Mng();
+		OContext mng = OContext.getInstance();
 
 		List<Playlist> plists = mng.getPlistMng().getPlaylists();
 
@@ -48,7 +48,7 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 
 		try {
 
-			File file = new File(Mng.HOME_DIR + "playlists/" + source);
+			File file = new File(OContext.CFG_DIR + "playlists/" + source);
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -72,9 +72,9 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 		Mp3Files mp3Files = null;
 		try {
 
-			File file = new File(Mng.HOME_DIR + "playlists/" + source);
+			File file = new File(OContext.CFG_DIR + "playlists/" + source);
 			if (!file.exists()) {
-				Mng.getLogger().warn("playlist not found: " + Mng.HOME_DIR + "playlists/" + source);
+				OContext.getInstance().getLogger().warn("playlist not found: " + OContext.CFG_DIR + "playlists/" + source);
 				return new Mp3Files();
 			}
 //			 File file = new File("WebContent/playlists/salsa.xml");

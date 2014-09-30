@@ -32,9 +32,9 @@ public class Watchdog extends Thread {
 			if (Mng.getPlayer().getStatus() == PlayerStatus.PLAY_ENDED) {
 				Mng.getLogger().trace("Watchdog:run(): repeat is: " + Mng.repeatSong);
 				if (Mng.repeatSong) {
-					ctx.play(Mng.currentlyPlaying.getIndex());
+//					ctx.play(Mng.currentlyPlaying.getIndex());
 				} else {
-					ctx.next();
+//					ctx.next();
 				}
 				
 			}

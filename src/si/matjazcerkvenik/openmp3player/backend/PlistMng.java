@@ -24,9 +24,12 @@ public class PlistMng {
 	private String showPlaylist = null;
 	private Playlist queue = null;
 	
-	private SimpleLogger logger = OContext.getLogger();
+	private SimpleLogger logger = null;
 	
 	public PlistMng() {
+		
+		logger = OContext.getInstance().getLogger();
+		
 		loadPlaylists();
 		activePlaylist = playlists.get(0).getName();
 		showPlaylist = activePlaylist;
@@ -44,6 +47,7 @@ public class PlistMng {
 
 		Playlists plists = unmarshall();
 		playlists = plists.getPlist();
+		setActivePlaylist(playlists.get(0).getName());
 
 	}
 	
@@ -328,7 +332,7 @@ public class PlistMng {
 				
 				if (plist.getSource().endsWith(".xml")) {
 					
-					File f = new File(Mng.HOME_DIR + "playlists/" + plist.getSource());
+					File f = new File(OContext.CFG_DIR + "playlists/" + plist.getSource());
 					logger.debug("PlistMng:deletePlistFile(): delete xml file: " + f.getAbsolutePath());
 					f.delete();
 					

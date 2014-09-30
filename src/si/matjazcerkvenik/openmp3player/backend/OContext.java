@@ -10,18 +10,18 @@ public class OContext {
 	
 	private static OContext ctx = null;
 	
-	private static IPlayer player = null;
-	private static PlistMng plistMng = null;
-	public static Mp3File currentlyPlaying = null;
-	private static Watchdog watchdog = null;
-	private static CommandLine cli = null;
+//	private IPlayer player = null;
+	private PlistMng plistMng = null;
+//	public Mp3File currentlyPlaying = null;
+	private Watchdog watchdog = null;
+	private CommandLine cli = null;
 	public static boolean repeatSong = false;
 	
-	public static String HOME_DIR = "~/OpenMp3Player/";
+//	public static String HOME_DIR = "~/OpenMp3Player/";
 	public static String CFG_DIR = "/Users/matjaz/OpenMp3Player/";
 	public static String version = "0.0";
 	
-	private static SimpleLogger logger = null;
+	private SimpleLogger logger = null;
 	
 	private OContext() {
 		initialize();
@@ -65,8 +65,8 @@ public class OContext {
 		logger.info("OS=" + System.getProperty("os.name"));
 		
 				
-		plistMng = new PlistMng();
-		plistMng.loadMp3Files();
+//		plistMng = new PlistMng();
+//		plistMng.loadMp3Files();
 //		
 //		player = new JLayerPlayer();
 		
@@ -102,108 +102,108 @@ public class OContext {
 	 * Return player object
 	 * @return player
 	 */
-	public static IPlayer getPlayer() {
-		return player;
-	}
+//	public IPlayer getPlayer() {
+//		return player;
+//	}
 	
-	public static SimpleLogger getLogger() {
+	public SimpleLogger getLogger() {
 		return logger;
 	}
 	
-	public static void setLogger(SimpleLogger logger) {
-		OContext.logger = logger;
-	}
+//	public static void setLogger(SimpleLogger logger) {
+//		OContext.logger = logger;
+//	}
 	
-	/**
-	 * Return title of currently playing song.
-	 * @return title
-	 */
-	public String getCurrentlyPlaying() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		return currentlyPlaying.getTitle();
-	}
-	
-	
-	/**
-	 * Start playing song with index i
-	 * @param i
-	 * @return title of the song
-	 */
-	public String play(int i) {
-		
-		if (currentlyPlaying != null) {
-			stop();
-		}
-		
-		currentlyPlaying = plistMng.getActivePlaylist().getMp3Files().get(i);
-		logger.info("play: playlist: " + plistMng.getActivePlaylist().getName() 
-				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
-		player.play(currentlyPlaying.getPath());
-		
-		return currentlyPlaying.getTitle();
-		
-	}
-	
-	/**
-	 * Stop playing song
-	 * @return 'null'
-	 */
-	public String stop() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		
-		logger.info("stop: playlist: " + plistMng.getActivePlaylist().getName() 
-				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
-		player.stop();
-		currentlyPlaying = null;
-		
-		return "null";
-	}
-	
-	/**
-	 * Play next song
-	 * @return title
-	 */
-	public String next() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		
-		if (currentlyPlaying.getIndex() 
-				== plistMng.getActivePlaylist().getMp3Files().size() - 1) {
-			play(0);
-		} else {
-			play(currentlyPlaying.getIndex() + 1);
-		}
-		return currentlyPlaying.getTitle();
-	}
-	
-	/**
-	 * Play previous song
-	 * @return title
-	 */
-	public String prev() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		
-		if (currentlyPlaying.getIndex() == 0) {
-			play(plistMng.getActivePlaylist().getMp3Files().size() - 1);
-		} else {
-			play(currentlyPlaying.getIndex() - 1);
-		}
-		return currentlyPlaying.getTitle();
-	}
-	
-	/**
-	 * Return true if song is currently playing
-	 * @return true if playing
-	 */
-	public boolean isPlaying() {
-		return currentlyPlaying != null;
-	}
+//	/**
+//	 * Return title of currently playing song.
+//	 * @return title
+//	 */
+//	public String getCurrentlyPlaying() {
+//		if (currentlyPlaying == null) {
+//			return "null";
+//		}
+//		return currentlyPlaying.getTitle();
+//	}
+//	
+//	
+//	/**
+//	 * Start playing song with index i
+//	 * @param i
+//	 * @return title of the song
+//	 */
+//	public String play(int i) {
+//		
+//		if (currentlyPlaying != null) {
+//			stop();
+//		}
+//		
+//		currentlyPlaying = plistMng.getActivePlaylist().getMp3Files().get(i);
+//		logger.info("play: playlist: " + plistMng.getActivePlaylist().getName() 
+//				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
+//		player.play(currentlyPlaying.getPath());
+//		
+//		return currentlyPlaying.getTitle();
+//		
+//	}
+//	
+//	/**
+//	 * Stop playing song
+//	 * @return 'null'
+//	 */
+//	public String stop() {
+//		if (currentlyPlaying == null) {
+//			return "null";
+//		}
+//		
+//		logger.info("stop: playlist: " + plistMng.getActivePlaylist().getName() 
+//				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
+//		player.stop();
+//		currentlyPlaying = null;
+//		
+//		return "null";
+//	}
+//	
+//	/**
+//	 * Play next song
+//	 * @return title
+//	 */
+//	public String next() {
+//		if (currentlyPlaying == null) {
+//			return "null";
+//		}
+//		
+//		if (currentlyPlaying.getIndex() 
+//				== plistMng.getActivePlaylist().getMp3Files().size() - 1) {
+//			play(0);
+//		} else {
+//			play(currentlyPlaying.getIndex() + 1);
+//		}
+//		return currentlyPlaying.getTitle();
+//	}
+//	
+//	/**
+//	 * Play previous song
+//	 * @return title
+//	 */
+//	public String prev() {
+//		if (currentlyPlaying == null) {
+//			return "null";
+//		}
+//		
+//		if (currentlyPlaying.getIndex() == 0) {
+//			play(plistMng.getActivePlaylist().getMp3Files().size() - 1);
+//		} else {
+//			play(currentlyPlaying.getIndex() - 1);
+//		}
+//		return currentlyPlaying.getTitle();
+//	}
+//	
+//	/**
+//	 * Return true if song is currently playing
+//	 * @return true if playing
+//	 */
+//	public boolean isPlaying() {
+//		return currentlyPlaying != null;
+//	}
 	
 }
