@@ -9,22 +9,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="files")
 public class Mp3Files {
 	
-	private List<Mp3File> file = new ArrayList<Mp3File>();
+	private List<Mp3File> files = new ArrayList<Mp3File>();
 
-	public List<Mp3File> getFile() {
-		return file;
+	public List<Mp3File> getFiles() {
+		return files;
 	}
 
-	@XmlElement
-	public void setFile(List<Mp3File> file) {
-		this.file = file;
+	@XmlElement(name="file")
+	public void setFiles(List<Mp3File> files) {
+		this.files = files;
 	}
+	
+	
 	
 	@Override
 	public String toString() {
 		String s = "";
-		for (int i = 0; i < file.size(); i++) {
-			System.out.println("File: " + file.get(i));
+		for (int i = 0; i < files.size(); i++) {
+			System.out.println("File: " + files.get(i));
 		}
 		return s;
 	}

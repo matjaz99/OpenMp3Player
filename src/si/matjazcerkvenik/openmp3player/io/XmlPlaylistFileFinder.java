@@ -11,15 +11,40 @@ import javax.xml.bind.Unmarshaller;
 import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.Mp3Files;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.backend.Playlist;
+import si.matjazcerkvenik.openmp3player.backend.Playlists;
+import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class XmlPlaylistFileFinder implements IFileFinder {
+	
+	private SimpleLogger logger = null;
+	
+	public XmlPlaylistFileFinder() {
+		logger = OContext.getInstance().getLogger();
+	}
+	
+	@Override
+	public Playlist getPlaylist(String source) {
+		
+		List<Mp3File> files = unmarshall(source).getFiles();
+		for (int i = 0; i < files.size(); i++) {
+			files.get(i).setIndex(i);
+		}
+		
+		Playlist playlist = new Playlist();
+		playlist.setMp3files(files);
+		
+		return playlist;
+	}
+	
+	
 	
 	@Override
 	public List<Mp3File> getMp3Files(String source) {
 		
 		XmlPlaylistFileFinder x = new XmlPlaylistFileFinder();
 		
-		List<Mp3File> list = x.unmarshall(source).getFile();
+		List<Mp3File> list = x.unmarshall(source).getFiles();
 		
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setIndex(i);
@@ -79,21 +104,25 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 
 			File file = new File(OContext.CFG_DIR + "playlists/" + source);
 			if (!file.exists()) {
-				OContext.getInstance().getLogger().warn("playlist not found: " + OContext.CFG_DIR + "playlists/" + source);
+				logger.warn("playlist not found: " + OContext.CFG_DIR + "playlists/" + source);
 				return new Mp3Files();
 			}
-//			 File file = new File("WebContent/playlists/salsa.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
-
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			mp3Files = (Mp3Files) jaxbUnmarshaller.unmarshal(file);
-//			System.out.println(mp3Files);
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 		return mp3Files;
 	}
+
+	@Override
+	public Playlists getPlaylists() {
+		return null;
+	}
+
+	
 	
 	
 	

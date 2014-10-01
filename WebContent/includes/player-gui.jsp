@@ -5,7 +5,7 @@
 <f:loadBundle basename="si.matjazcerkvenik.openmp3player.backend.om3p"
 	var="bundle" />
 
-<h:panelGrid columns="3">
+<h:panelGrid columns="4">
 
 	<h:form>
 		<h:commandLink id="rewBtn" action="#">
@@ -25,6 +25,13 @@
 			<h:graphicImage url="img/fast_forward.png" styleClass="icon"
 				alt="Next" />
 		</h:commandLink>
+	</h:form>
+	
+	<h:form>
+		<h:selectOneMenu value="salsa.xml" onchange="submit()" 
+			valueChangeListener="#{playerBean.playlistChanged}">
+			<f:selectItems value="#{playerBean.playlists}"/>
+		</h:selectOneMenu>
 	</h:form>
 
 </h:panelGrid>

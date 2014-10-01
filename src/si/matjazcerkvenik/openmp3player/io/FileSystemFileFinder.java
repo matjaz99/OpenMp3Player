@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import si.matjazcerkvenik.openmp3player.backend.Mp3File;
+import si.matjazcerkvenik.openmp3player.backend.Playlist;
+import si.matjazcerkvenik.openmp3player.backend.Playlists;
 
 public class FileSystemFileFinder implements IFileFinder {
 	
@@ -36,6 +38,18 @@ public class FileSystemFileFinder implements IFileFinder {
 				
 		return list;
 		
+	}
+
+	@Override
+	public Playlists getPlaylists() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Playlist getPlaylist(String source) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
