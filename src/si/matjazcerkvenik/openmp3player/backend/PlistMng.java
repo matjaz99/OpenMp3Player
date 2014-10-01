@@ -9,6 +9,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import si.matjazcerkvenik.openmp3player.io.FileSystemFileFinder;
+import si.matjazcerkvenik.openmp3player.io.IFileFinder;
+import si.matjazcerkvenik.openmp3player.io.XmlPlaylistFileFinder;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 /**

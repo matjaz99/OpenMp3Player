@@ -7,18 +7,23 @@ import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.PlistMng;
 import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
+import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlayerBean {
 	
 	private IPlayer player = null;
 	private Mp3File currentlyPlaying = null;
 	
+	private SimpleLogger logger = null;
+	
 	public PlayerBean() {
 		player = new JLayerPlayer();
+		
+		logger = OContext.getInstance().getLogger();
 	}
 	
 	private PlistMng getPlistMng() {
-		return (PlistMng) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("plistMng");
+		return (PlistMng) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("playlistBean");
 	}
 	
 	/**
@@ -47,10 +52,8 @@ public class PlayerBean {
 			stop();
 		}
 		
-		
-		
 		currentlyPlaying = getPlistMng().getActivePlaylist().getMp3Files().get(i);
-		OContext.getInstance().getLogger().info("play: playlist: " + OContext.getInstance().getPlistMng().getActivePlaylist().getName() 
+		logger.info("play: playlist: " + getPlistMng().getActivePlaylist().getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.play(currentlyPlaying.getPath());
 		
@@ -67,7 +70,7 @@ public class PlayerBean {
 			return "null";
 		}
 		
-		OContext.getInstance().getLogger().info("stop: playlist: " + getPlistMng().getActivePlaylist().getName() 
+		logger.info("stop: playlist: " + getPlistMng().getActivePlaylist().getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.stop();
 		currentlyPlaying = null;

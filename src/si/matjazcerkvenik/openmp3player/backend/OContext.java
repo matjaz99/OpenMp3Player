@@ -11,7 +11,7 @@ public class OContext {
 	private static OContext ctx = null;
 	
 //	private IPlayer player = null;
-	private PlistMng plistMng = null;
+//	private PlistMng plistMng = null;
 //	public Mp3File currentlyPlaying = null;
 	private Watchdog watchdog = null;
 	private CommandLine cli = null;
@@ -94,9 +94,9 @@ public class OContext {
 	 * Return playlist manager.
 	 * @return
 	 */
-	public PlistMng getPlistMng() {
-		return plistMng;
-	}
+//	public PlistMng getPlistMng() {
+//		return plistMng;
+//	}
 	
 	/**
 	 * Return player object

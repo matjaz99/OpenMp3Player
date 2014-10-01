@@ -1,6 +1,8 @@
-package si.matjazcerkvenik.openmp3player.backend;
+package si.matjazcerkvenik.openmp3player.io;
 
 import java.util.List;
+
+import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 
 public interface IFileFinder {
 	

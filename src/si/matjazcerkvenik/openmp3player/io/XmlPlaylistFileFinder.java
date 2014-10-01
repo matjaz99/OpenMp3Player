@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.backend;
+package si.matjazcerkvenik.openmp3player.io;
 
 import java.io.File;
 import java.util.List;
@@ -7,6 +7,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
+import si.matjazcerkvenik.openmp3player.backend.Mp3File;
+import si.matjazcerkvenik.openmp3player.backend.Mp3Files;
+import si.matjazcerkvenik.openmp3player.backend.OContext;
 
 public class XmlPlaylistFileFinder implements IFileFinder {
 	
@@ -26,21 +30,22 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 	
 	public void saveToXml(String source) {
 		
-		OContext mng = OContext.getInstance();
-
-		List<Playlist> plists = mng.getPlistMng().getPlaylists();
-
-		Playlist p = null;
-		for (int i = 0; i < plists.size(); i++) {
-			if (plists.get(i).getSource().equals(source)) {
-				p = plists.get(i);
-			}
-		}
-		
-		Mp3Files m = new Mp3Files();
-		m.setFile(p.getMp3Files());
-		
-		marshall(m, p.getSource());
+		// temporarily commented
+//		OContext mng = OContext.getInstance();
+//
+//		List<Playlist> plists = mng.getPlistMng().getPlaylists();
+//
+//		Playlist p = null;
+//		for (int i = 0; i < plists.size(); i++) {
+//			if (plists.get(i).getSource().equals(source)) {
+//				p = plists.get(i);
+//			}
+//		}
+//		
+//		Mp3Files m = new Mp3Files();
+//		m.setFile(p.getMp3Files());
+//		
+//		marshall(m, p.getSource());
 		
 	}
 	

@@ -1,9 +1,11 @@
-package si.matjazcerkvenik.openmp3player.backend;
+package si.matjazcerkvenik.openmp3player.io;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
+
+import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 
 public class FileSystemFileFinder implements IFileFinder {
 	

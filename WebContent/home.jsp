@@ -26,7 +26,11 @@
 			
 			<hr/>
 			
-			<h:outputLabel value="Version:"></h:outputLabel>
+			<h:outputLabel value="Size: #{playlistBean.playlistSize}"></h:outputLabel>
+			
+			<hr/>
+			
+			<h:outputLabel value="Version: "></h:outputLabel>
 			
 			<hr/>
 			

@@ -7,7 +7,7 @@
 
 <h:panelGrid columns="1" >
 	
-	<h:dataTable value="#{plistMng.activePlaylist.mp3Files}" var="mp3File">
+	<h:dataTable value="#{playlistBean.mp3List}" var="mp3File">
 		
 		<h:column>
 			
