@@ -1,26 +1,23 @@
 package si.matjazcerkvenik.openmp3player.web;
 
-import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Playlists;
-import si.matjazcerkvenik.openmp3player.backend.PlistMng;
+import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlayerBean {
 	
-	private Playlists playlists = null;
+	private String selectedPlaylist = null;
+	
 	private IPlayer player = null;
 	private Mp3File currentlyPlaying = null;
 	
@@ -28,51 +25,39 @@ public class PlayerBean {
 	
 	public PlayerBean() {
 		player = new JLayerPlayer();
-		
 		logger = OContext.getInstance().getLogger();
 	}
 	
-	private PlistMng getPlistMng() {
-		return (PlistMng) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("playlistBean");
+	private PlaylistBean getPlaylistBean() {
+		return (PlaylistBean) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("playlistBean");
 	}
 	
+	/**
+	 * Get playlists for dropdown menu
+	 * @return map
+	 */
 	public Map<String, String> getPlaylists() {
 		
-		loadPlaylists();
+		PlaylistFactory f = new PlaylistFactory();
+		Playlists playlists = f.getPlaylists();
 		
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		
 		for (int i = 0; i < playlists.getPlist().size(); i++) {
 			String s = playlists.getPlist().get(i).getName();
-			map.put(s, s);
+			String ss = playlists.getPlist().get(i).getSource();
+			map.put(s, ss);
 		}
 		
 		return map;
 	}
 	
 	public void playlistChanged(ValueChangeEvent e) {
-		// TODO from dropdown menu
+		selectedPlaylist = e.getNewValue().toString();
+		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
+		getPlaylistBean().setActivePlaylist(selectedPlaylist);
 	}
-	
-	public void loadPlaylists() {
-		try {
 
-			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
-			if (file.exists()) {
-				logger.debug("PlistMng:unmarshall(): playlists.xml exists");
-			} else {
-				logger.debug("PlistMng:unmarshall(): playlists.xml not found on path: " + OContext.CFG_DIR + "playlists/playlists.xml");
-			}
-			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
-
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			playlists = (Playlists) jaxbUnmarshaller.unmarshal(file);
-			logger.info(playlists.toString());
-
-		} catch (JAXBException e) {
-			logger.error("JAXBException", e);
-		}
-	}
 	
 	/**
 	 * Return title of currently playing song.
@@ -100,8 +85,8 @@ public class PlayerBean {
 			stop();
 		}
 		
-		currentlyPlaying = getPlistMng().getActivePlaylist().getMp3Files().get(i);
-		logger.info("play: playlist: " + getPlistMng().getActivePlaylist().getName() 
+		currentlyPlaying = getPlaylistBean().getActivePlaylist().getMp3Files().get(i);
+		logger.info("play: playlist: " + getPlaylistBean().getActivePlaylist().getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.play(currentlyPlaying.getPath());
 		
@@ -118,7 +103,7 @@ public class PlayerBean {
 			return "null";
 		}
 		
-		logger.info("stop: playlist: " + getPlistMng().getActivePlaylist().getName() 
+		logger.info("stop: playlist: " + getPlaylistBean().getActivePlaylist().getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.stop();
 		currentlyPlaying = null;
@@ -136,7 +121,7 @@ public class PlayerBean {
 		}
 		
 		if (currentlyPlaying.getIndex() 
-				== getPlistMng().getActivePlaylist().getMp3Files().size() - 1) {
+				== getPlaylistBean().getActivePlaylist().getMp3Files().size() - 1) {
 			play(0);
 		} else {
 			play(currentlyPlaying.getIndex() + 1);
@@ -154,7 +139,7 @@ public class PlayerBean {
 		}
 		
 		if (currentlyPlaying.getIndex() == 0) {
-			play(getPlistMng().getActivePlaylist().getMp3Files().size() - 1);
+			play(getPlaylistBean().getActivePlaylist().getMp3Files().size() - 1);
 		} else {
 			play(currentlyPlaying.getIndex() - 1);
 		}

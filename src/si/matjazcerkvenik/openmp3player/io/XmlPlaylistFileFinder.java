@@ -15,7 +15,7 @@ import si.matjazcerkvenik.openmp3player.backend.Playlist;
 import si.matjazcerkvenik.openmp3player.backend.Playlists;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
-public class XmlPlaylistFileFinder implements IFileFinder {
+public class XmlPlaylistFileFinder {
 	
 	private SimpleLogger logger = null;
 	
@@ -23,35 +23,35 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 		logger = OContext.getInstance().getLogger();
 	}
 	
-	@Override
-	public Playlist getPlaylist(String source) {
-		
-		List<Mp3File> files = unmarshall(source).getFiles();
-		for (int i = 0; i < files.size(); i++) {
-			files.get(i).setIndex(i);
-		}
-		
-		Playlist playlist = new Playlist();
-		playlist.setMp3files(files);
-		
-		return playlist;
-	}
+//	@Override
+//	public Playlist getPlaylist(String source) {
+//		
+//		List<Mp3File> files = unmarshall(source).getFiles();
+//		for (int i = 0; i < files.size(); i++) {
+//			files.get(i).setIndex(i);
+//		}
+//		
+//		Playlist playlist = new Playlist();
+//		playlist.setMp3files(files);
+//		
+//		return playlist;
+//	}
 	
 	
 	
-	@Override
-	public List<Mp3File> getMp3Files(String source) {
-		
-		XmlPlaylistFileFinder x = new XmlPlaylistFileFinder();
-		
-		List<Mp3File> list = x.unmarshall(source).getFiles();
-		
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setIndex(i);
-		}
-		
-		return list;
-	}
+//	@Override
+//	public List<Mp3File> getMp3Files(String source) {
+//		
+//		XmlPlaylistFileFinder x = new XmlPlaylistFileFinder();
+//		
+//		List<Mp3File> list = x.unmarshall(source).getFiles();
+//		
+//		for (int i = 0; i < list.size(); i++) {
+//			list.get(i).setIndex(i);
+//		}
+//		
+//		return list;
+//	}
 	
 	public void saveToXml(String source) {
 		
@@ -93,34 +93,34 @@ public class XmlPlaylistFileFinder implements IFileFinder {
 
 	}
 
-	/**
-	 * Read &lt;source&gt;.xml 
-	 * @param source
-	 * @return mp3Files
-	 */
-	private Mp3Files unmarshall(String source) {
-		Mp3Files mp3Files = null;
-		try {
+//	/**
+//	 * Read &lt;source&gt;.xml 
+//	 * @param source
+//	 * @return mp3Files
+//	 */
+//	private Mp3Files unmarshall(String source) {
+//		Mp3Files mp3Files = null;
+//		try {
+//
+//			File file = new File(OContext.CFG_DIR + "playlists/" + source);
+//			if (!file.exists()) {
+//				logger.warn("playlist not found: " + OContext.CFG_DIR + "playlists/" + source);
+//				return new Mp3Files();
+//			}
+//			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
+//			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+//			mp3Files = (Mp3Files) jaxbUnmarshaller.unmarshal(file);
+//
+//		} catch (JAXBException e) {
+//			e.printStackTrace();
+//		}
+//		return mp3Files;
+//	}
 
-			File file = new File(OContext.CFG_DIR + "playlists/" + source);
-			if (!file.exists()) {
-				logger.warn("playlist not found: " + OContext.CFG_DIR + "playlists/" + source);
-				return new Mp3Files();
-			}
-			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			mp3Files = (Mp3Files) jaxbUnmarshaller.unmarshal(file);
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-		return mp3Files;
-	}
-
-	@Override
-	public Playlists getPlaylists() {
-		return null;
-	}
+//	@Override
+//	public Playlists getPlaylists() {
+//		return null;
+//	}
 
 	
 	

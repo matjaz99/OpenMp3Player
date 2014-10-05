@@ -8,7 +8,7 @@
 <h:panelGrid columns="4">
 
 	<h:form>
-		<h:commandLink id="rewBtn" action="#">
+		<h:commandLink id="rewBtn" action="#{playerBean.prev}">
 			<h:graphicImage url="img/rewind.png" styleClass="icon"
 				alt="#{bundle.buttonLabelPrevious}" />
 		</h:commandLink>
@@ -21,7 +21,7 @@
 	</h:form>
 
 	<h:form>
-		<h:commandLink id="fwdBtn" action="#">
+		<h:commandLink id="fwdBtn" action="#{playerBean.next}">
 			<h:graphicImage url="img/fast_forward.png" styleClass="icon"
 				alt="Next" />
 		</h:commandLink>

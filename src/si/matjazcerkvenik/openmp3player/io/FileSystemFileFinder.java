@@ -9,9 +9,8 @@ import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.Playlist;
 import si.matjazcerkvenik.openmp3player.backend.Playlists;
 
-public class FileSystemFileFinder implements IFileFinder {
+public class FileSystemFileFinder {
 	
-	@Override
 	public List<Mp3File> getMp3Files(String directory) {
 		
 		File dir = new File(directory);
@@ -40,13 +39,11 @@ public class FileSystemFileFinder implements IFileFinder {
 		
 	}
 
-	@Override
 	public Playlists getPlaylists() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Playlist getPlaylist(String source) {
 		// TODO Auto-generated method stub
 		return null;

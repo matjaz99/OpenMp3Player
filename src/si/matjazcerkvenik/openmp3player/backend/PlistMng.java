@@ -9,8 +9,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import si.matjazcerkvenik.openmp3player.io.FileSystemFileFinder;
-import si.matjazcerkvenik.openmp3player.io.IFileFinder;
 import si.matjazcerkvenik.openmp3player.io.XmlPlaylistFileFinder;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -297,28 +295,28 @@ public class PlistMng {
 	 */
 	public void loadMp3Files() {
 		
-		IFileFinder iff = null;
-		Playlist plist = getShowPlaylist();
-		String src = plist.getSource();
-		
-		logger.info("PlistMng:loadMp3Files(): loading from source: " + src);
-		
-		if (src.equals("queue")) {
-			logger.info("PlistMng:loadMp3Files(): found " + queue.getMp3Files().size() + " mp3 files in playlist " 
-					+ plist.getName());
-			return;
-		}
-		
-		if (src.endsWith(".xml")) {
-			iff = new XmlPlaylistFileFinder();
-		} else {
-			iff = new FileSystemFileFinder();
-		}
-		
-		plist.setMp3files(iff.getMp3Files(src));
-		int size = plist.getMp3Files().size();
-		logger.info("PlistMng:loadMp3Files(): found " + size + " mp3 files in playlist " 
-				+ plist.getName());
+//		IFileFinder iff = null;
+//		Playlist plist = getShowPlaylist();
+//		String src = plist.getSource();
+//		
+//		logger.info("PlistMng:loadMp3Files(): loading from source: " + src);
+//		
+//		if (src.equals("queue")) {
+//			logger.info("PlistMng:loadMp3Files(): found " + queue.getMp3Files().size() + " mp3 files in playlist " 
+//					+ plist.getName());
+//			return;
+//		}
+//		
+//		if (src.endsWith(".xml")) {
+//			iff = new XmlPlaylistFileFinder();
+//		} else {
+//			iff = new FileSystemFileFinder();
+//		}
+//		
+//		plist.setMp3files(iff.getMp3Files(src));
+//		int size = plist.getMp3Files().size();
+//		logger.info("PlistMng:loadMp3Files(): found " + size + " mp3 files in playlist " 
+//				+ plist.getName());
 	}
 	
 	
