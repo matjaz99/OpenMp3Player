@@ -5,21 +5,20 @@ import java.util.List;
 import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Playlist;
-import si.matjazcerkvenik.openmp3player.io.IFileFinder;
-import si.matjazcerkvenik.openmp3player.io.XmlPlaylistFileFinder;
+import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlaylistBean {
 	
-	private IFileFinder parser = null;
+	private PlaylistFactory pFactory = null;
 	private Playlist playlist = null;
 	
 	private SimpleLogger logger = null;
 	
 	public PlaylistBean() {
 		logger = OContext.getInstance().getLogger();
-		parser = new XmlPlaylistFileFinder();
-		playlist = parser.getPlaylist("salsa.xml");
+		pFactory = new PlaylistFactory();
+		playlist = pFactory.getPlaylist("salsa.xml");
 	}
 	
 	public List<Mp3File> getMp3List() {
@@ -28,6 +27,15 @@ public class PlaylistBean {
 	
 	public int getPlaylistSize() {
 		return playlist.getMp3Files().size();
+	}
+	
+	public void setActivePlaylist(String name) {
+		playlist = pFactory.getPlaylist(name);
+	}
+	
+	public Playlist getActivePlaylist() {
+		logger.debug("PlaylistBean:getActivePlaylist(): " + playlist.getName());
+		return playlist;
 	}
 	
 }

@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/omp3p.js"></script>
 <link rel="stylesheet" type="text/css" href="css/mstyles.css"/>
 <title>OpenMp3Player</title>
 </head>
@@ -22,6 +24,17 @@
 			
 			<hr/>
 			
+			<h:panelGrid columns="2">
+				<h:form>
+					<h:commandLink action="#">
+						<h:graphicImage url="img/refresh.png" styleClass="icon" />
+					</h:commandLink>
+				</h:form>
+				<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}"></h:outputLabel>
+			</h:panelGrid>
+			
+			<hr/>
+			
 			<%@ include file="/includes/playlist.jsp" %>
 			
 			<hr/>
@@ -30,9 +43,10 @@
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: "></h:outputLabel>
+			<h:outputLabel value="Version: #{playerBean.version}"></h:outputLabel>
 			
 			<hr/>
+			
 			
 		</h:panelGrid>
 	

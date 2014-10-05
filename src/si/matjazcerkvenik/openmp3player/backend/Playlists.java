@@ -33,6 +33,9 @@ public class Playlists {
 	@Override
 	public String toString() {
 		String s = "Playlists:";
+		if (plist == null) {
+			return s += " [empty]";
+		}
 		for (int i = 0; i < plist.size(); i++) {
 			s += plist.get(i).getName() + ", ";
 		}
