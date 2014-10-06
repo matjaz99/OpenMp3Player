@@ -66,6 +66,7 @@ public class PlayerBean {
 		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
 		getPlaylistBean().setActivePlaylist(selectedPlaylist);
 	}
+
 	
 	/**
 	 * Get default value for playlists dropdown menu.
@@ -74,6 +75,7 @@ public class PlayerBean {
 //	public String getInitialPlaylistSource() {
 //		return getPlaylistBean().getActivePlaylist().getSource();
 //	}
+
 
 	
 	/**
@@ -103,7 +105,8 @@ public class PlayerBean {
 		}
 		
 		currentlyPlaying = getPlaylistBean().getActivePlaylist().getMp3Files().get(i);
-		logger.info("PlayerBean:play(): playlist: " + getPlaylistBean().getActivePlaylist().getName() 
+		logger.info("PlayerBean:play(): playlist: " + getPlaylistBean().getActivePlaylist().getName());
+		logger.info("play: playlist: " + getPlaylistBean().getActivePlaylist().getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.play(currentlyPlaying.getPath());
 		
@@ -120,7 +123,8 @@ public class PlayerBean {
 			return "null";
 		}
 		
-		logger.info("PlayerBean:stop(): playlist: " + getPlaylistBean().getActivePlaylist().getName() 
+		logger.info("PlayerBean:stop(): playlist: " + getPlaylistBean().getActivePlaylist().getName());
+		logger.info("stop: playlist: " + getPlaylistBean().getActivePlaylist().getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.stop();
 		currentlyPlaying = null;
