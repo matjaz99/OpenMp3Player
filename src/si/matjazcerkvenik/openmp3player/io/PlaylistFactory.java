@@ -66,6 +66,14 @@ public class PlaylistFactory {
 	 */
 	public Playlist getPlaylist(String source) {
 		
+		String name = "";
+		Playlists p = getPlaylists();
+		for (int i = 0; i < p.getPlist().size(); i++) {
+			if (p.getPlist().get(i).getSource().equals(source)) {
+				name = p.getPlist().get(i).getName();
+			}
+		}
+		
 		List<Mp3File> files = null;
 		
 		if (source.endsWith(".xml")) {
@@ -82,6 +90,8 @@ public class PlaylistFactory {
 		
 		Playlist playlist = new Playlist();
 		playlist.setMp3files(files);
+		playlist.setName(name);
+		playlist.setSource(source);
 		
 		return playlist;
 	}

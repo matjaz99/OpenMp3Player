@@ -6,36 +6,35 @@ import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Playlist;
 import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
+import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlaylistBean {
 	
-	private PlaylistFactory pFactory = null;
-	private Playlist playlist = null;
+//	private PlaylistFactory pFactory = null;
+//	private Playlist playlist = null;
 	
-	private SimpleLogger logger = null;
 	
 	public PlaylistBean() {
-		logger = OContext.getInstance().getLogger();
-		pFactory = new PlaylistFactory();
-		playlist = pFactory.getPlaylist("salsa.xml");
+//		pFactory = new PlaylistFactory();
+//		playlist = pFactory.getPlaylist("salsa.xml");
 	}
 	
 	public List<Mp3File> getMp3List() {
-		return playlist.getMp3Files();
+		return Mp3Player.getInstance().getPlaylist().getMp3Files();
 	}
 	
 	public int getPlaylistSize() {
-		return playlist.getMp3Files().size();
+//		return playlist.getMp3Files().size();
+		return Mp3Player.getInstance().getPlaylist().getMp3Files().size();
 	}
 	
-	public void setActivePlaylist(String name) {
-		playlist = pFactory.getPlaylist(name);
-	}
+//	public void setActivePlaylist(String name) {
+//		playlist = pFactory.getPlaylist(name);
+//	}
 	
 	public Playlist getActivePlaylist() {
-		logger.debug("PlaylistBean:getActivePlaylist(): " + playlist.getName());
-		return playlist;
+		return Mp3Player.getInstance().getPlaylist();
 	}
 	
 }

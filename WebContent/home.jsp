@@ -22,10 +22,6 @@
 			
 			<%@ include file="/includes/player-gui.jsp" %>
 			
-			<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}"></h:outputLabel>
-			
-			<hr/>
-			
 			<hr/>
 			
 			<h:panelGrid columns="2">

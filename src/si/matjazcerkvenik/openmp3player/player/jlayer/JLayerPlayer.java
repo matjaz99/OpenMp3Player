@@ -1,5 +1,6 @@
 package si.matjazcerkvenik.openmp3player.player.jlayer;
 
+import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.IPlayerCallback;
 import si.matjazcerkvenik.openmp3player.player.PlayerStatus;
@@ -12,16 +13,10 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 
 	public JLayerPlayer() {
 	}
-	
-	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void play(String filepath) {
-		
 		
 		player = new SoundJLayer(filepath, this);
 //		System.out.println("play: absolutePath: " + filepath);
@@ -42,6 +37,11 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 		status = PlayerStatus.STOPPED;
 	}
 	
+	@Override
+	public void resume() {
+		// no implementation
+	}
+	
 	
 	@Override
 	public PlayerStatus getStatus() {
@@ -50,8 +50,8 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 
 	@Override
 	public void playEnded() {
-//		mng.next();
 		status = PlayerStatus.PLAY_ENDED;
+		OContext.getInstance().getLogger().info(status.toString());
 	}
 	
 	

@@ -13,7 +13,7 @@
 	<managed-bean>
 		<managed-bean-name>playerBean</managed-bean-name>
 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlayerBean</managed-bean-class>
-		<managed-bean-scope>application</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>playlistBean</managed-bean-name>

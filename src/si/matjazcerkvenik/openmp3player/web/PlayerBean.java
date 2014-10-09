@@ -3,29 +3,27 @@ package si.matjazcerkvenik.openmp3player.web;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.faces.component.html.HtmlCommandLink;
+import javax.faces.component.html.HtmlGraphicImage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
-import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Playlists;
-import si.matjazcerkvenik.openmp3player.backend.Utils;
 import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
-import si.matjazcerkvenik.openmp3player.player.IPlayer;
-import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
+import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlayerBean {
 	
 	private String selectedPlaylist = null;
 	
-	private IPlayer player = null;
-	private Mp3File currentlyPlaying = null;
+	private HtmlCommandLink playButton = null;
+	private HtmlGraphicImage playButtonImg = null;
 	
 	private SimpleLogger logger = null;
 	
 	public PlayerBean() {
-		player = new JLayerPlayer();
 		logger = OContext.getInstance().getLogger();
 	}
 	
@@ -39,8 +37,7 @@ public class PlayerBean {
 	 */
 	public Map<String, String> getPlaylists() {
 		
-		PlaylistFactory f = new PlaylistFactory();
-		Playlists playlists = f.getPlaylists();
+		Playlists playlists = Mp3Player.getInstance().getPlaylists();
 		
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		
@@ -64,7 +61,7 @@ public class PlayerBean {
 	public void playlistChanged(ValueChangeEvent e) {
 		selectedPlaylist = e.getNewValue().toString();
 		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
-		getPlaylistBean().setActivePlaylist(selectedPlaylist);
+		Mp3Player.getInstance().setPlaylist(selectedPlaylist);
 	}
 
 	
@@ -75,6 +72,8 @@ public class PlayerBean {
 //	public String getInitialPlaylistSource() {
 //		return getPlaylistBean().getActivePlaylist().getSource();
 //	}
+	
+	
 
 
 	
@@ -83,88 +82,84 @@ public class PlayerBean {
 	 * @return title
 	 */
 	public String getCurrentlyPlaying() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		return currentlyPlaying.getTitle();
+		return Mp3Player.getInstance().getCurrentlyPlaying();
 	}
 	
-	public String play() {
-		return play(0);
-	}
+	
+	
+//	public HtmlGraphicImage getPlayButtonImg() {
+//		
+//		if (playButtonImg == null) {
+//			playButtonImg = new HtmlGraphicImage();
+//		}
+//		
+//		if (isPlaying()) {
+//			playButtonImg.setUrl("img/stop.png");
+//		} else {
+//			playButtonImg.setUrl("img/play.png");
+//		}
+//		
+//		return playButtonImg;
+//	}
+
+//	public void setPlayButtonImg(HtmlGraphicImage playButtonImg) {
+//		this.playButtonImg = playButtonImg;
+//	}
+//
+//	public HtmlCommandLink getPlayButton() {
+//		if (isPlaying()) {
+//			
+//			HtmlGraphicImage image = (HtmlGraphicImage) playButton.getChildren().get(0);
+//			image.setUrl("img/stop.png");
+//			
+//		} else {
+//			
+//			HtmlGraphicImage image = (HtmlGraphicImage) playButton.getChildren().get(0);
+//			image.setUrl("img/play.png");
+//			
+//		}
+//		return playButton;
+//	}
+//
+//	public void setPlayButton(HtmlCommandLink playButton) {
+//		this.playButton = playButton;
+//	}
+	
+	
+	
+	
 	
 	/**
-	 * Start playing song with index i
-	 * @param i
+	 * Start playing
 	 * @return title of the song
 	 */
-	public String play(int i) {
-		
-		if (currentlyPlaying != null) {
-			stop();
-		}
-		
-		currentlyPlaying = getPlaylistBean().getActivePlaylist().getMp3Files().get(i);
-		logger.info("PlayerBean:play(): playlist: " + getPlaylistBean().getActivePlaylist().getName());
-		logger.info("play: playlist: " + getPlaylistBean().getActivePlaylist().getName() 
-				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
-		player.play(currentlyPlaying.getPath());
-		
-		return currentlyPlaying.getTitle();
-		
+	public String play() {
+		return Mp3Player.getInstance().play(0);
 	}
 	
 	/**
-	 * Stop playing song
+	 * Stop playing
 	 * @return 'null'
 	 */
 	public String stop() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		
-		logger.info("PlayerBean:stop(): playlist: " + getPlaylistBean().getActivePlaylist().getName());
-		logger.info("stop: playlist: " + getPlaylistBean().getActivePlaylist().getName() 
-				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
-		player.stop();
-		currentlyPlaying = null;
-		
+		Mp3Player.getInstance().stop();
 		return "null";
 	}
 	
 	/**
-	 * Play next song
+	 * Play next
 	 * @return title
 	 */
 	public String next() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		
-		if (currentlyPlaying.getIndex() 
-				== getPlaylistBean().getActivePlaylist().getMp3Files().size() - 1) {
-			play(0);
-		} else {
-			play(currentlyPlaying.getIndex() + 1);
-		}
-		return currentlyPlaying.getTitle();
+		return Mp3Player.getInstance().next();
 	}
 	
 	/**
-	 * Play previous song
+	 * Play previous
 	 * @return title
 	 */
 	public String prev() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		
-		if (currentlyPlaying.getIndex() == 0) {
-			play(getPlaylistBean().getActivePlaylist().getMp3Files().size() - 1);
-		} else {
-			play(currentlyPlaying.getIndex() - 1);
-		}
-		return currentlyPlaying.getTitle();
+		return Mp3Player.getInstance().prev();
 	}
 	
 	/**
@@ -172,7 +167,7 @@ public class PlayerBean {
 	 * @return true if playing
 	 */
 	public boolean isPlaying() {
-		return currentlyPlaying != null;
+		return Mp3Player.getInstance().isPlaying();
 	}
 	
 	
