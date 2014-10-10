@@ -1,7 +1,7 @@
-package si.matjazcerkvenik.openmp3player.backend;
+package si.matjazcerkvenik.openmp3player.player;
 
-import si.matjazcerkvenik.openmp3player.player.Mp3Player;
-import si.matjazcerkvenik.openmp3player.player.PlayerStatus;
+import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.backend.Utils;
 
 /**
  * Watch when song will play-out and start playing next. 

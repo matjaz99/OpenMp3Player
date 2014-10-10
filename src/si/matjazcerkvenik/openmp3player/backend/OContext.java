@@ -4,6 +4,7 @@ import javax.faces.context.FacesContext;
 
 import si.matjazcerkvenik.openmp3player.cli.CommandLine;
 import si.matjazcerkvenik.openmp3player.player.IPlayer;
+import si.matjazcerkvenik.openmp3player.player.Watchdog;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class OContext {

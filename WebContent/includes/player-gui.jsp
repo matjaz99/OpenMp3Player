@@ -10,20 +10,31 @@
 	<h:form>
 		<h:commandLink id="rewBtn" action="#{playerBean.prev}">
 			<h:graphicImage url="img/rewind.png" styleClass="icon"
-				alt="#{bundle.buttonLabelPrevious}" />
+				alt="#{bundle.buttonLabelPrevious}" 
+				onmouseover="onMouse('#rewBtn', 'img/rewind-shadow.png')" 
+				onmouseout="onMouse('#rewBtn', 'img/rewind.png')" 
+				onmousedown="onMouse('#rewBtn', 'img/rewind-pressed.png')" 
+				onmouseup="onMouse('#rewBtn', 'img/rewind-shadow.png')"/>
 		</h:commandLink>
 	</h:form>
 
 	<h:form>
-		<h:commandLink id="playBtn" action="#{playerBean.play}">
-			<h:graphicImage url="img/play.png" styleClass="icon" alt="Play" />
+		<h:commandLink id="playBtn" binding="#{playerBean.playButtonCommand}" action="#{playerBean.play}">
+			<h:graphicImage url="img/play.png" styleClass="icon" alt="Play" 
+				onmouseover="onMouse('#playBtn', 'img/#{playerBean.playIcon}-shadow.png')" 
+				onmouseout="onMouse('#playBtn', 'img/#{playerBean.playIcon}.png')" 
+				onmousedown="onMouse('#playBtn', 'img/#{playerBean.playIcon}-pressed.png')" 
+				onmouseup="onMouse('#playBtn', 'img/#{playerBean.playIcon}-shadow.png')"/>
 		</h:commandLink>
 	</h:form>
 
 	<h:form>
 		<h:commandLink id="fwdBtn" action="#{playerBean.next}">
-			<h:graphicImage url="img/fast_forward.png" styleClass="icon"
-				alt="Next" />
+			<h:graphicImage url="img/fast_forward.png" styleClass="icon" alt="Next" 
+				onmouseover="onMouse('#fwdBtn', 'img/fast_forward-shadow.png')" 
+				onmouseout="onMouse('#fwdBtn', 'img/fast_forward.png')" 
+				onmousedown="onMouse('#fwdBtn', 'img/fast_forward-pressed.png')" 
+				onmouseup="onMouse('#fwdBtn', 'img/fast_forward-shadow.png')"/>
 		</h:commandLink>
 	</h:form>
 	
@@ -79,7 +90,7 @@
 	</h:form>
 	
 	<h:form>
-		<h:commandLink action="#">
+		<h:commandLink action="about">
 			<h:graphicImage url="img/help.png" styleClass="icon" />
 		</h:commandLink>
 	</h:form>

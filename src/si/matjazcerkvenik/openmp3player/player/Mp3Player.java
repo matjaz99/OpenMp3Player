@@ -28,7 +28,7 @@ public class Mp3Player {
 		
 		PlaylistFactory pFactory = new PlaylistFactory();
 		playlists = pFactory.getPlaylists();
-		playlist = pFactory.getPlaylist("salsa.xml");
+		playlist = pFactory.getPlaylist(playlists.getPlist().get(0).getSource());
 		
 	}
 	

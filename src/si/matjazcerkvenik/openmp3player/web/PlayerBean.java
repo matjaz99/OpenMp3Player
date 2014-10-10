@@ -1,8 +1,11 @@
 package si.matjazcerkvenik.openmp3player.web;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.faces.component.UICommand;
+import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.component.html.HtmlGraphicImage;
 import javax.faces.context.FacesContext;
@@ -20,6 +23,7 @@ public class PlayerBean {
 	
 	private HtmlCommandLink playButton = null;
 	private HtmlGraphicImage playButtonImg = null;
+	private UICommand playButtonCommand = null;
 	
 	private SimpleLogger logger = null;
 	
@@ -125,6 +129,38 @@ public class PlayerBean {
 //		this.playButton = playButton;
 //	}
 	
+
+	public UICommand getPlayButtonCommand() {
+		logger.info("getPlayButtonCommand");
+		return playButtonCommand;
+	}
+
+	public void setPlayButtonCommand(UICommand command) {
+		logger.info("setPlayButtonCommand");
+		
+		this.playButtonCommand = command;
+		
+		if (playButtonCommand.getChildren() == null || playButtonCommand.getChildren().size() == 0) {
+			return;
+		}
+		UIComponent img = playButtonCommand.getChildren().get(0);
+		HtmlGraphicImage i = (HtmlGraphicImage) img;
+		if (Mp3Player.getInstance().isPlaying()) {
+			i.setUrl("img/stop.png");
+		} else {
+			i.setUrl("img/play.png");
+		}
+		
+		
+	}
+	
+	
+	public String getPlayIcon() {
+		if (Mp3Player.getInstance().isPlaying()) {
+			return "play";
+		}
+		return "stop";
+	}
 	
 	
 	
@@ -137,6 +173,7 @@ public class PlayerBean {
 		return Mp3Player.getInstance().play(0);
 	}
 	
+
 	/**
 	 * Stop playing
 	 * @return 'null'
