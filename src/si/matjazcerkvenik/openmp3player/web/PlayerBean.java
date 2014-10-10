@@ -170,7 +170,10 @@ public class PlayerBean {
 		return Mp3Player.getInstance().isPlaying();
 	}
 	
-	
+	/**
+	 * Get version of OpenMp3Player
+	 * @return version
+	 */
 	public String getVersion() {
 		return OContext.version;
 	}

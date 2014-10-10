@@ -1,5 +1,6 @@
 package si.matjazcerkvenik.openmp3player.backend;
 
+import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.PlayerStatus;
 
 /**
@@ -29,12 +30,13 @@ public class Watchdog extends Thread {
 				return;
 			}
 			
-			if (Mng.getPlayer().getStatus() == PlayerStatus.PLAY_ENDED) {
-				Mng.getLogger().trace("Watchdog:run(): repeat is: " + Mng.repeatSong);
-				if (Mng.repeatSong) {
+			if (Mp3Player.getInstance().getPlayerStatus() == PlayerStatus.PLAY_ENDED) {
+				OContext.getInstance().getLogger().trace("Watchdog:run(): repeat is: " + Mp3Player.getInstance().isRepeatOn());
+				if (Mp3Player.getInstance().isRepeatOn()) {
+					// TODO fix this
 //					ctx.play(Mng.currentlyPlaying.getIndex());
 				} else {
-//					ctx.next();
+					Mp3Player.getInstance().next();
 				}
 				
 			}

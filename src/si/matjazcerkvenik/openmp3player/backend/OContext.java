@@ -61,8 +61,8 @@ public class OContext {
 		logger.info("OS=" + System.getProperty("os.name"));
 		
 		
-//		watchdog = new Watchdog(this);
-//		watchdog.start();
+		watchdog = new Watchdog(this);
+		watchdog.start();
 		
 //		
 //		Utils.changePermissions();

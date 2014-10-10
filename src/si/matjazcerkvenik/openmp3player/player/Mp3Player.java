@@ -15,6 +15,7 @@ public class Mp3Player {
 	
 	private IPlayer player = null;
 	private Mp3File currentlyPlaying = null;
+	private boolean repeatOn = false;
 	
 	private Playlists playlists = null;
 	private Playlist playlist = null;
@@ -136,6 +137,10 @@ public class Mp3Player {
 		return currentlyPlaying != null;
 	}
 	
+	public PlayerStatus getPlayerStatus() {
+		return player.getStatus();
+	}
+	
 	/**
 	 * Return active playlist
 	 * @return size
@@ -156,6 +161,14 @@ public class Mp3Player {
 
 	public void setPlaylists(Playlists playlists) {
 		this.playlists = playlists;
+	}
+
+	public boolean isRepeatOn() {
+		return repeatOn;
+	}
+
+	public void setRepeatOn(boolean repeatOn) {
+		this.repeatOn = repeatOn;
 	}
 	
 	
