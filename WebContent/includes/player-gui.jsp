@@ -5,7 +5,7 @@
 <f:loadBundle basename="si.matjazcerkvenik.openmp3player.backend.om3p"
 	var="bundle" />
 
-<h:panelGrid columns="5">
+<h:panelGrid columns="6">
 
 	<h:form>
 		<h:commandLink id="rewBtn" action="#{playerBean.prev}">
@@ -19,12 +19,22 @@
 	</h:form>
 
 	<h:form>
-		<h:commandLink id="playBtn" binding="#{playerBean.playButtonCommand}" action="#{playerBean.play}">
+		<h:commandLink id="playBtn" binding="#{playerBean.playButtonCommand}" action="#{playerBean.play}" rendered="#{!playerBean.playing}">
 			<h:graphicImage url="img/play.png" styleClass="icon" alt="Play" 
-				onmouseover="onMouse('#playBtn', 'img/#{playerBean.playIcon}-shadow.png')" 
-				onmouseout="onMouse('#playBtn', 'img/#{playerBean.playIcon}.png')" 
-				onmousedown="onMouse('#playBtn', 'img/#{playerBean.playIcon}-pressed.png')" 
-				onmouseup="onMouse('#playBtn', 'img/#{playerBean.playIcon}-shadow.png')"/>
+				onmouseover="onMouse('#playBtn', 'img/play-shadow.png')" 
+				onmouseout="onMouse('#playBtn', 'img/play.png')" 
+				onmousedown="onMouse('#playBtn', 'img/play-pressed.png')" 
+				onmouseup="onMouse('#playBtn', 'img/play-shadow.png')"/>
+		</h:commandLink>
+	</h:form>
+	
+	<h:form>
+		<h:commandLink id="stopBtn" action="#{playerBean.stop}" rendered="#{playerBean.playing}">
+			<h:graphicImage url="img/stop.png" styleClass="icon" alt="Stop" 
+				onmouseover="onMouse('#stopBtn', 'img/stop-shadow.png')" 
+				onmouseout="onMouse('#stopBtn', 'img/stop.png')" 
+				onmousedown="onMouse('#stopBtn', 'img/stop-pressed.png')" 
+				onmouseup="onMouse('#stopBtn', 'img/stop-shadow.png')"/>
 		</h:commandLink>
 	</h:form>
 
@@ -39,7 +49,7 @@
 	</h:form>
 	
 	<h:form>
-		<h:selectOneMenu onchange="submit()" 
+		<h:selectOneMenu onchange="submit()" value="#{playerBean.selectedPlaylist}"
 			valueChangeListener="#{playerBean.playlistChanged}">
 			<f:selectItems value="#{playerBean.playlists}"/>
 		</h:selectOneMenu>

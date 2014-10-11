@@ -67,8 +67,8 @@ public class Mp3Player {
 		}
 		
 		currentlyPlaying = playlist.getMp3Files().get(i);
-		logger.info("PlayerBean:play(): playlist: " + playlist.getName());
-		logger.info("play: playlist: " + playlist.getName() 
+		logger.info("Mp3Player:play(): playlist: " + playlist.getName());
+		logger.info("Mp3Player:play: playlist: " + playlist.getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.play(currentlyPlaying.getPath());
 		
@@ -85,8 +85,8 @@ public class Mp3Player {
 			return "null";
 		}
 		
-		logger.info("PlayerBean:stop(): playlist: " + playlist.getName());
-		logger.info("stop: playlist: " + playlist.getName() 
+		logger.info("Mp3Player:stop(): playlist: " + playlist.getName());
+		logger.info("Mp3Player:stop: playlist: " + playlist.getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.stop();
 		currentlyPlaying = null;
@@ -146,7 +146,7 @@ public class Mp3Player {
 	 * @return size
 	 */
 	public Playlist getPlaylist() {
-		logger.debug("PlaylistBean:getActivePlaylist(): " + playlist.getName());
+		logger.debug("Mp3Player:getActivePlaylist(): " + playlist.getName());
 		return playlist;
 	}
 	

@@ -1,5 +1,6 @@
 package si.matjazcerkvenik.openmp3player.web;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.component.html.HtmlGraphicImage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Playlists;
@@ -39,23 +41,43 @@ public class PlayerBean {
 	 * Get playlists for dropdown menu
 	 * @return map
 	 */
-	public Map<String, String> getPlaylists() {
+//	public Map<String, String> getPlaylists() {
+//		
+//		Playlists playlists = Mp3Player.getInstance().getPlaylists();
+//		
+//		Map<String, String> map = new LinkedHashMap<String, String>();
+//		
+//		if (playlists.getPlist() == null) {
+//			return map;
+//		}
+//		
+//		for (int i = 0; i < playlists.getPlist().size(); i++) {
+//			String s = playlists.getPlist().get(i).getName();
+//			String ss = playlists.getPlist().get(i).getSource();
+//			map.put(s, ss);
+//		}
+//		
+//		return map;
+//	}
+	
+	public List<SelectItem> getPlaylists() {
 		
 		Playlists playlists = Mp3Player.getInstance().getPlaylists();
 		
-		Map<String, String> map = new LinkedHashMap<String, String>();
+		List<SelectItem> list = new ArrayList<SelectItem>();
 		
 		if (playlists.getPlist() == null) {
-			return map;
+			return list;
 		}
 		
 		for (int i = 0; i < playlists.getPlist().size(); i++) {
 			String s = playlists.getPlist().get(i).getName();
 			String ss = playlists.getPlist().get(i).getSource();
-			map.put(s, ss);
+			list.add(new SelectItem(ss, s));
 		}
 		
-		return map;
+		return list;
+		
 	}
 	
 	/**
@@ -70,17 +92,23 @@ public class PlayerBean {
 
 	
 	/**
-	 * Get default value for playlists dropdown menu.
-	 * @return
+	 * Get current playlist source.
+	 * @return playlist
 	 */
-//	public String getInitialPlaylistSource() {
-//		return getPlaylistBean().getActivePlaylist().getSource();
-//	}
+	public String getSelectedPlaylist() {
+		if (selectedPlaylist == null) {
+			selectedPlaylist = Mp3Player.getInstance().getPlaylist().getSource();
+		}
+		return selectedPlaylist;
+	}
+	
+	public void setSelectedPlaylist(String selectedPlaylist) {
+		this.selectedPlaylist = selectedPlaylist;
+	}
+	
 	
 	
 
-
-	
 	/**
 	 * Return title of currently playing song.
 	 * @return title
