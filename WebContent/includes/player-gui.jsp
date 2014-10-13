@@ -8,8 +8,8 @@
 <h:panelGrid columns="6">
 
 	<h:form>
-		<h:commandLink id="rewBtn" action="#{playerBean.prev}">
-			<h:graphicImage url="img/rewind.png" styleClass="icon"
+		<h:commandLink action="#{playerBean.prev}">
+			<h:graphicImage id="rewBtn" url="img/rewind.png" styleClass="icon"
 				alt="#{bundle.buttonLabelPrevious}" 
 				onmouseover="onMouse('#rewBtn', 'img/rewind-shadow.png')" 
 				onmouseout="onMouse('#rewBtn', 'img/rewind.png')" 
@@ -18,9 +18,9 @@
 		</h:commandLink>
 	</h:form>
 
-	<h:form>
-		<h:commandLink id="playBtn" binding="#{playerBean.playButtonCommand}" action="#{playerBean.play}" rendered="#{!playerBean.playing}">
-			<h:graphicImage url="img/play.png" styleClass="icon" alt="Play" 
+	<h:form rendered="#{!playerBean.playing}">
+		<h:commandLink action="#{playerBean.play}">
+			<h:graphicImage id="playBtn" url="img/play.png" styleClass="icon" alt="Play" 
 				onmouseover="onMouse('#playBtn', 'img/play-shadow.png')" 
 				onmouseout="onMouse('#playBtn', 'img/play.png')" 
 				onmousedown="onMouse('#playBtn', 'img/play-pressed.png')" 
@@ -28,9 +28,9 @@
 		</h:commandLink>
 	</h:form>
 	
-	<h:form>
-		<h:commandLink id="stopBtn" action="#{playerBean.stop}" rendered="#{playerBean.playing}">
-			<h:graphicImage url="img/stop.png" styleClass="icon" alt="Stop" 
+	<h:form rendered="#{playerBean.playing}">
+		<h:commandLink action="#{playerBean.stop}">
+			<h:graphicImage id="stopBtn" url="img/stop.png" styleClass="icon" alt="Stop" 
 				onmouseover="onMouse('#stopBtn', 'img/stop-shadow.png')" 
 				onmouseout="onMouse('#stopBtn', 'img/stop.png')" 
 				onmousedown="onMouse('#stopBtn', 'img/stop-pressed.png')" 
@@ -39,8 +39,8 @@
 	</h:form>
 
 	<h:form>
-		<h:commandLink id="fwdBtn" action="#{playerBean.next}">
-			<h:graphicImage url="img/fast_forward.png" styleClass="icon" alt="Next" 
+		<h:commandLink action="#{playerBean.next}">
+			<h:graphicImage id="fwdBtn" url="img/fast_forward.png" styleClass="icon" alt="Next" 
 				onmouseover="onMouse('#fwdBtn', 'img/fast_forward-shadow.png')" 
 				onmouseout="onMouse('#fwdBtn', 'img/fast_forward.png')" 
 				onmousedown="onMouse('#fwdBtn', 'img/fast_forward-pressed.png')" 
@@ -67,7 +67,7 @@
 
 
 <!-- ddPanel is below the guiPanel (and ddButton) -->
-<h:panelGrid id="ddPanel" columns="6">
+<h:panelGrid id="ddPanel" columns="7">
 
 	<h:form>
 		<h:commandLink action="#">
@@ -77,31 +77,61 @@
 	
 	<h:form>
 		<h:commandLink action="#">
-			<h:graphicImage url="img/volumeDn.png" styleClass="icon" />
+			<h:graphicImage id="volumeDnBtn" url="img/volumeDn.png" styleClass="icon"
+				onmouseover="onMouse('#volumeDnBtn', 'img/volumeDn-shadow.png')" 
+				onmouseout="onMouse('#volumeDnBtn', 'img/volumeDn.png')" 
+				onmousedown="onMouse('#volumeDnBtn', 'img/volumeDn-pressed.png')" 
+				onmouseup="onMouse('#volumeDnBtn', 'img/volumeDn-shadow.png')" />
 		</h:commandLink>
 	</h:form>
 	
 	<h:form>
 		<h:commandLink action="#">
-			<h:graphicImage url="img/volumeUp.png" styleClass="icon" />
+			<h:graphicImage id="volumeUpBtn" url="img/volumeUp.png" styleClass="icon"
+				onmouseover="onMouse('#volumeUpBtn', 'img/volumeUp-shadow.png')" 
+				onmouseout="onMouse('#volumeUpBtn', 'img/volumeUp.png')" 
+				onmousedown="onMouse('#volumeUpBtn', 'img/volumeUp-pressed.png')" 
+				onmouseup="onMouse('#volumeUpBtn', 'img/volumeUp-shadow.png')" />
+		</h:commandLink>
+	</h:form>
+	
+	<h:form rendered="#{playerBean.repeatOn}">
+		<h:commandLink action="#{playerBean.turnRepeatOff}">
+			<h:graphicImage id="repeatBtnOn" url="img/repeatOn.png" styleClass="icon"
+				onmouseover="onMouse('#repeatBtnOn', 'img/repeatOn-shadow.png')" 
+				onmouseout="onMouse('#repeatBtnOn', 'img/repeatOn.png')" 
+				onmousedown="onMouse('#repeatBtnOn', 'img/repeatOn-pressed.png')" 
+				onmouseup="onMouse('#repeatBtnOn', 'img/repeatOn-shadow.png')" />
+		</h:commandLink>
+	</h:form>
+	
+	<h:form rendered="#{!playerBean.repeatOn}">
+		<h:commandLink action="#{playerBean.turnRepeatOn}">
+			<h:graphicImage id="repeatBtnOff" url="img/repeatOff.png" styleClass="icon"
+				onmouseover="onMouse('#repeatBtnOff', 'img/repeatOff-shadow.png')" 
+				onmouseout="onMouse('#repeatBtnOff', 'img/repeatOff.png')" 
+				onmousedown="onMouse('#repeatBtnOff', 'img/repeatOff-pressed.png')" 
+				onmouseup="onMouse('#repeatBtnOff', 'img/repeatOff-shadow.png')" />
 		</h:commandLink>
 	</h:form>
 	
 	<h:form>
 		<h:commandLink action="#">
-			<h:graphicImage url="img/repeatOff.png" styleClass="icon" />
-		</h:commandLink>
-	</h:form>
-	
-	<h:form>
-		<h:commandLink action="#">
-			<h:graphicImage url="img/settings.png" styleClass="icon" />
+			<h:graphicImage id="settingsBtn" url="img/settings.png" styleClass="icon"
+				onmouseover="onMouse('#settingsBtn', 'img/settings-shadow.png')" 
+				onmouseout="onMouse('#settingsBtn', 'img/settings.png')" 
+				onmousedown="onMouse('#settingsBtn', 'img/settings-pressed.png')" 
+				onmouseup="onMouse('#settingsBtn', 'img/settings-shadow.png')" />
 		</h:commandLink>
 	</h:form>
 	
 	<h:form>
 		<h:commandLink action="about">
-			<h:graphicImage url="img/help.png" styleClass="icon" />
+			<h:graphicImage id="helpBtn" url="img/help.png" styleClass="icon"
+				onmouseover="onMouse('#helpBtn', 'img/help-shadow.png')" 
+				onmouseout="onMouse('#helpBtn', 'img/help.png')" 
+				onmousedown="onMouse('#helpBtn', 'img/help-pressed.png')" 
+				onmouseup="onMouse('#helpBtn', 'img/help-shadow.png')" />
 		</h:commandLink>
 	</h:form>
 	

@@ -33,8 +33,8 @@ public class Watchdog extends Thread {
 			if (Mp3Player.getInstance().getPlayerStatus() == PlayerStatus.PLAY_ENDED) {
 				OContext.getInstance().getLogger().trace("Watchdog:run(): repeat is: " + Mp3Player.getInstance().isRepeatOn());
 				if (Mp3Player.getInstance().isRepeatOn()) {
-					// TODO fix this
-//					ctx.play(Mng.currentlyPlaying.getIndex());
+					int i = Mp3Player.getInstance().getCurrentlyPlaying().getIndex();
+					Mp3Player.getInstance().play(i);
 				} else {
 					Mp3Player.getInstance().next();
 				}

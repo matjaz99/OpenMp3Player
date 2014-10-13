@@ -1,31 +1,21 @@
 package si.matjazcerkvenik.openmp3player.web;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.component.html.HtmlCommandLink;
-import javax.faces.component.html.HtmlGraphicImage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
+import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Playlists;
-import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlayerBean {
 	
 	private String selectedPlaylist = null;
-	
-	private HtmlCommandLink playButton = null;
-	private HtmlGraphicImage playButtonImg = null;
-	private UICommand playButtonCommand = null;
 	
 	private SimpleLogger logger = null;
 	
@@ -114,85 +104,26 @@ public class PlayerBean {
 	 * @return title
 	 */
 	public String getCurrentlyPlaying() {
-		return Mp3Player.getInstance().getCurrentlyPlaying();
+		Mp3File m = Mp3Player.getInstance().getCurrentlyPlaying();
+		if (m == null) {
+			return "null";
+		}
+		return Mp3Player.getInstance().getCurrentlyPlaying().getTitle();
 	}
 	
 	
 	
-//	public HtmlGraphicImage getPlayButtonImg() {
-//		
-//		if (playButtonImg == null) {
-//			playButtonImg = new HtmlGraphicImage();
-//		}
-//		
-//		if (isPlaying()) {
-//			playButtonImg.setUrl("img/stop.png");
-//		} else {
-//			playButtonImg.setUrl("img/play.png");
-//		}
-//		
-//		return playButtonImg;
-//	}
-
-//	public void setPlayButtonImg(HtmlGraphicImage playButtonImg) {
-//		this.playButtonImg = playButtonImg;
-//	}
-//
-//	public HtmlCommandLink getPlayButton() {
-//		if (isPlaying()) {
-//			
-//			HtmlGraphicImage image = (HtmlGraphicImage) playButton.getChildren().get(0);
-//			image.setUrl("img/stop.png");
-//			
-//		} else {
-//			
-//			HtmlGraphicImage image = (HtmlGraphicImage) playButton.getChildren().get(0);
-//			image.setUrl("img/play.png");
-//			
-//		}
-//		return playButton;
-//	}
-//
-//	public void setPlayButton(HtmlCommandLink playButton) {
-//		this.playButton = playButton;
-//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
-	public UICommand getPlayButtonCommand() {
-		logger.info("getPlayButtonCommand");
-		return playButtonCommand;
-	}
-
-	public void setPlayButtonCommand(UICommand command) {
-		logger.info("setPlayButtonCommand");
-		
-		this.playButtonCommand = command;
-		
-		if (playButtonCommand.getChildren() == null || playButtonCommand.getChildren().size() == 0) {
-			return;
-		}
-		UIComponent img = playButtonCommand.getChildren().get(0);
-		HtmlGraphicImage i = (HtmlGraphicImage) img;
-		if (Mp3Player.getInstance().isPlaying()) {
-			i.setUrl("img/stop.png");
-		} else {
-			i.setUrl("img/play.png");
-		}
-		
-		
-	}
-	
-	
-	public String getPlayIcon() {
-		if (Mp3Player.getInstance().isPlaying()) {
-			return "play";
-		}
-		return "stop";
-	}
-	
-	
-	
-	
 	/**
 	 * Start playing
 	 * @return title of the song
@@ -234,6 +165,30 @@ public class PlayerBean {
 	public boolean isPlaying() {
 		return Mp3Player.getInstance().isPlaying();
 	}
+	
+	public boolean isRepeatOn() {
+		logger.info("isRepeatOn(): " + Mp3Player.getInstance().isRepeatOn());
+		return Mp3Player.getInstance().isRepeatOn();
+	}
+	
+	public void turnRepeatOn() {
+		Mp3Player.getInstance().setRepeatOn(true);
+		logger.info("turnRepeatOn(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
+	}
+	
+	public void turnRepeatOff() {
+		Mp3Player.getInstance().setRepeatOn(false);
+		logger.info("turnRepeatOff(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * Get version of OpenMp3Player

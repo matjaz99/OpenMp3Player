@@ -44,11 +44,8 @@ public class Mp3Player {
 	 * Return title of currently playing song.
 	 * @return title
 	 */
-	public String getCurrentlyPlaying() {
-		if (currentlyPlaying == null) {
-			return "null";
-		}
-		return currentlyPlaying.getTitle();
+	public Mp3File getCurrentlyPlaying() {
+		return currentlyPlaying;
 	}
 
 	
@@ -67,7 +64,6 @@ public class Mp3Player {
 		}
 		
 		currentlyPlaying = playlist.getMp3Files().get(i);
-		logger.info("Mp3Player:play(): playlist: " + playlist.getName());
 		logger.info("Mp3Player:play: playlist: " + playlist.getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.play(currentlyPlaying.getPath());
@@ -85,7 +81,6 @@ public class Mp3Player {
 			return "null";
 		}
 		
-		logger.info("Mp3Player:stop(): playlist: " + playlist.getName());
 		logger.info("Mp3Player:stop: playlist: " + playlist.getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.stop();
