@@ -17,6 +17,7 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
  * @author matjaz
  *
  */
+@Deprecated
 public class PlistMng {
 	
 	private List<Playlist> playlists = null;
@@ -28,9 +29,9 @@ public class PlistMng {
 	
 	public PlistMng() {
 		
-		logger = OContext.getInstance().getLogger();
+//		logger = OContext.getInstance().getLogger();
 		
-		loadPlaylists();
+//		loadPlaylists();
 		activePlaylist = playlists.get(0).getName();
 		showPlaylist = activePlaylist;
 		
@@ -43,22 +44,22 @@ public class PlistMng {
 	/**
 	 * Load all playlists from playlists.xml.
 	 */
-	public void loadPlaylists() {
-
-		Playlists plists = unmarshall();
-		playlists = plists.getPlist();
-		setActivePlaylist(playlists.get(0).getName());
-
-	}
+//	public void loadPlaylists() {
+//
+//		Playlists plists = unmarshall();
+//		playlists = plists.getPlist();
+//		setActivePlaylist(playlists.get(0).getName());
+//
+//	}
 	
 	
 	/**
 	 * Return list of all loaded playlists
 	 * @return
 	 */
-	public List<Playlist> getPlaylists() {
-		return playlists;
-	}
+//	public List<Playlist> getPlaylists() {
+//		return playlists;
+//	}
 
 //	public void setPlaylists(List<Playlist> playlists) {
 //		this.playlists = playlists;

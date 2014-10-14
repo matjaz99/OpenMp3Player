@@ -3,7 +3,6 @@ package si.matjazcerkvenik.openmp3player.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -23,9 +22,9 @@ public class PlayerBean {
 		logger = OContext.getInstance().getLogger();
 	}
 	
-	private PlaylistBean getPlaylistBean() {
-		return (PlaylistBean) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("playlistBean");
-	}
+//	private PlaylistBean getPlaylistBean() {
+//		return (PlaylistBean) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("playlistBean");
+//	}
 	
 	/**
 	 * Get playlists for dropdown menu

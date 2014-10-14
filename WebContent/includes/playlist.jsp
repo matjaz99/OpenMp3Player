@@ -7,13 +7,17 @@
 
 <h:panelGrid columns="1" >
 	
-	<h:dataTable value="#{playlistBean.mp3List}" var="mp3File">
+	<h:dataTable value="#{playlistBean.mp3List}" binding="#{playlistBean.dataTable}" var="mp3File">
 		
 		<h:column>
 			
-			<h:form>
-				<h:commandLink id="playBtn" action="#{playerBean.play}">
-					<h:graphicImage url="img/play.png" styleClass="icon" alt="Play" />
+			<h:form prependId="false">
+				<h:commandLink action="#{playlistBean.play}">
+					<h:graphicImage id="playBtn" url="img/play.png" styleClass="icon" alt="Play"
+						onmouseover="onMouse('#playBtn#{mp3File.index}', 'img/play-shadow.png')" 
+						onmouseout="onMouse('#playBtn#{mp3File.index}', 'img/play.png')" 
+						onmousedown="onMouse('#playBtn#{mp3File.index}', 'img/play-pressed.png')" 
+						onmouseup="onMouse('#playBtn#{mp3File.index}', 'img/play-shadow.png')" />
 				</h:commandLink>
 			</h:form>
 			
@@ -27,9 +31,13 @@
 		
 		<h:column>
 			
-			<h:form>
-				<h:commandLink id="queueBtn" action="#{playerBean.play}">
-					<h:graphicImage url="img/toqueue.png" styleClass="icon" alt="Put to queue" />
+			<h:form prependId="false">
+				<h:commandLink action="#{playlistBean.putToQueue}">
+					<h:graphicImage id="queueBtn" url="img/toqueue.png" styleClass="icon" alt="Put to queue"
+						onmouseover="onMouse('#queueBtn#{mp3File.index}', 'img/toqueue-shadow.png')" 
+						onmouseout="onMouse('#queueBtn#{mp3File.index}', 'img/toqueue.png')" 
+						onmousedown="onMouse('#queueBtn#{mp3File.index}', 'img/toqueue-pressed.png')" 
+						onmouseup="onMouse('#queueBtn#{mp3File.index}', 'img/toqueue-shadow.png')" />
 				</h:commandLink>
 			</h:form>
 			
