@@ -16,7 +16,12 @@
 		
 		<h:panelGrid columns="1" styleClass="background">
 			
-			<h:outputLabel value="OpenMp3Player" styleClass="title"></h:outputLabel>
+			<h:form>
+			<h:commandLink action="/">
+				<h:outputLabel value="OpenMp3Player" styleClass="title"></h:outputLabel>
+			</h:commandLink>
+			</h:form>
+			
 			
 			<hr/>
 			

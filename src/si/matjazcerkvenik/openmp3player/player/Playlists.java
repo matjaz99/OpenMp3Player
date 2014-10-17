@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.backend;
+package si.matjazcerkvenik.openmp3player.player;
 
 import java.util.ArrayList;
 import java.util.List;

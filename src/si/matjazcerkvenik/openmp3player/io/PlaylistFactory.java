@@ -10,11 +10,11 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import si.matjazcerkvenik.openmp3player.backend.Mp3File;
-import si.matjazcerkvenik.openmp3player.backend.Mp3Files;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.Playlist;
-import si.matjazcerkvenik.openmp3player.backend.Playlists;
+import si.matjazcerkvenik.openmp3player.player.Mp3File;
+import si.matjazcerkvenik.openmp3player.player.Mp3Files;
+import si.matjazcerkvenik.openmp3player.player.Playlist;
+import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlaylistFactory {

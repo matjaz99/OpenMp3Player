@@ -9,6 +9,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import si.matjazcerkvenik.openmp3player.player.Mp3File;
+import si.matjazcerkvenik.openmp3player.player.Playlist;
+import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 /**
@@ -186,15 +189,15 @@ public class PlistMng {
 	 */
 	public void addToQueue(int i) {
 		Mp3File mp3 = getShowPlaylist().getMp3Files().get(i);
-		try {
-			
-			Mp3File clone = (Mp3File) mp3.clone();
-			clone.setIndex(queue.getMp3Files().size());
-			queue.addMp3File(clone);
-			
-		} catch (CloneNotSupportedException e) {
-			logger.error("PlistMng:addToQueue(): CloneNotSupportedException", e);
-		}
+//		try {
+//			
+//			Mp3File clone = (Mp3File) mp3.clone();
+//			clone.setIndex(queue.getMp3Files().size());
+//			queue.addMp3File(clone);
+//			
+//		} catch (CloneNotSupportedException e) {
+//			logger.error("PlistMng:addToQueue(): CloneNotSupportedException", e);
+//		}
 		
 		logger.info("PlistMng:addToQueue(): added " + mp3.getFile());
 	}
@@ -203,15 +206,15 @@ public class PlistMng {
 		Playlist p = new Playlist();
 		p.setName(name);
 		p.setSource(name + ".xml");
-		for (int i = 0; i < queue.getMp3Files().size(); i++) {
-			try {
-				Mp3File mp3 = (Mp3File) queue.getMp3Files().get(i).clone();
-				mp3.setIndex(i);
-				p.addMp3File(mp3);
-			} catch (CloneNotSupportedException e) {
-				logger.error("PlistMng:saveQueue(): CloneNotSupportedException", e);
-			}
-		}
+//		for (int i = 0; i < queue.getMp3Files().size(); i++) {
+//			try {
+//				Mp3File mp3 = (Mp3File) queue.getMp3Files().get(i).clone();
+//				mp3.setIndex(i);
+//				p.addMp3File(mp3);
+//			} catch (CloneNotSupportedException e) {
+//				logger.error("PlistMng:saveQueue(): CloneNotSupportedException", e);
+//			}
+//		}
 		playlists.add(p);
 		
 		marshall();

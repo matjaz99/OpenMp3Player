@@ -6,10 +6,10 @@ import java.util.List;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
-import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.Playlists;
+import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
+import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlayerBean {
@@ -65,6 +65,8 @@ public class PlayerBean {
 			list.add(new SelectItem(ss, s));
 		}
 		
+//		list.add(new SelectItem("queue", "Queue"));
+		
 		return list;
 		
 	}
@@ -76,7 +78,7 @@ public class PlayerBean {
 	public void playlistChanged(ValueChangeEvent e) {
 		selectedPlaylist = e.getNewValue().toString();
 		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
-		Mp3Player.getInstance().setPlaylist(selectedPlaylist);
+		Mp3Player.getInstance().setActivePlaylist(selectedPlaylist);
 	}
 
 	
@@ -86,7 +88,7 @@ public class PlayerBean {
 	 */
 	public String getSelectedPlaylist() {
 		if (selectedPlaylist == null) {
-			selectedPlaylist = Mp3Player.getInstance().getPlaylist().getSource();
+			selectedPlaylist = Mp3Player.getInstance().getActivePlaylist().getSource();
 		}
 		return selectedPlaylist;
 	}
@@ -166,18 +168,18 @@ public class PlayerBean {
 	}
 	
 	public boolean isRepeatOn() {
-		logger.info("isRepeatOn(): " + Mp3Player.getInstance().isRepeatOn());
+		logger.info("PlayerBean:isRepeatOn(): " + Mp3Player.getInstance().isRepeatOn());
 		return Mp3Player.getInstance().isRepeatOn();
 	}
 	
 	public void turnRepeatOn() {
 		Mp3Player.getInstance().setRepeatOn(true);
-		logger.info("turnRepeatOn(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
+		logger.debug("PlayerBean:turnRepeatOn(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
 	}
 	
 	public void turnRepeatOff() {
 		Mp3Player.getInstance().setRepeatOn(false);
-		logger.info("turnRepeatOff(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
+		logger.debug("PlayerBean:turnRepeatOff(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
 	}
 	
 	

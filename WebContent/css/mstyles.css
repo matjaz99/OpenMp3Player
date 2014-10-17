@@ -14,7 +14,12 @@
 
 .title {
 	color: white;
-	
+	font-size: 32px;
+	font-weight: bold;
+}
+
+a, a:hover, a:visited, a:link {
+	text-decoration: none;
 }
 
 

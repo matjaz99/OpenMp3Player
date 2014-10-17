@@ -1,9 +1,6 @@
 package si.matjazcerkvenik.openmp3player.player;
 
-import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.Playlist;
-import si.matjazcerkvenik.openmp3player.backend.Playlists;
 import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
@@ -18,7 +15,8 @@ public class Mp3Player {
 	private boolean repeatOn = false;
 	
 	private Playlists playlists = null;
-	private Playlist playlist = null;
+	private Playlist activePlaylist = null;
+	private Playlist queue = null;
 	
 	private Mp3Player() {
 		
@@ -28,7 +26,13 @@ public class Mp3Player {
 		
 		PlaylistFactory pFactory = new PlaylistFactory();
 		playlists = pFactory.getPlaylists();
-		playlist = pFactory.getPlaylist(playlists.getPlist().get(0).getSource());
+		activePlaylist = pFactory.getPlaylist(playlists.getPlist().get(0).getSource());
+		
+		queue = new Playlist();
+		queue.setName("Queue");
+		queue.setSource("queue");
+		
+		playlists.add(queue);
 		
 	}
 	
@@ -63,8 +67,8 @@ public class Mp3Player {
 			stop();
 		}
 		
-		currentlyPlaying = playlist.getMp3Files().get(i);
-		logger.info("Mp3Player:play(): playlist: " + playlist.getName() 
+		currentlyPlaying = activePlaylist.getMp3Files().get(i);
+		logger.info("Mp3Player:play(): playlist: " + activePlaylist.getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.play(currentlyPlaying.getPath());
 		
@@ -81,7 +85,7 @@ public class Mp3Player {
 			return "null";
 		}
 		
-		logger.info("Mp3Player:stop(): playlist: " + playlist.getName() 
+		logger.info("Mp3Player:stop(): playlist: " + activePlaylist.getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.stop();
 		currentlyPlaying = null;
@@ -99,7 +103,7 @@ public class Mp3Player {
 		}
 		
 		if (currentlyPlaying.getIndex() 
-				== playlist.getMp3Files().size() - 1) {
+				== activePlaylist.getMp3Files().size() - 1) {
 			play(0);
 		} else {
 			play(currentlyPlaying.getIndex() + 1);
@@ -117,7 +121,7 @@ public class Mp3Player {
 		}
 		
 		if (currentlyPlaying.getIndex() == 0) {
-			play(playlist.getMp3Files().size() - 1);
+			play(activePlaylist.getMp3Files().size() - 1);
 		} else {
 			play(currentlyPlaying.getIndex() - 1);
 		}
@@ -140,15 +144,29 @@ public class Mp3Player {
 	 * Return active playlist
 	 * @return size
 	 */
-	public Playlist getPlaylist() {
-		logger.debug("Mp3Player:getActivePlaylist(): " + playlist.getName());
-		return playlist;
+	public Playlist getActivePlaylist() {
+		logger.debug("Mp3Player:getActivePlaylist(): " + activePlaylist.getName());
+		return activePlaylist;
 	}
 	
-	public void setPlaylist(String name) {
-		PlaylistFactory pf = new PlaylistFactory();
-		playlist = pf.getPlaylist(name);
+	public void setActivePlaylist(String name) {
+		
+		if (name.equals("queue")) {
+			activePlaylist = queue;
+		} else {
+			PlaylistFactory pf = new PlaylistFactory();
+			activePlaylist = pf.getPlaylist(name);
+		}
+		
 	}
+
+//	public Playlist getQueue() {
+//		return queue;
+//	}
+//
+//	public void setQueue(Playlist queue) {
+//		this.queue = queue;
+//	}
 
 	public Playlists getPlaylists() {
 		return playlists;
@@ -166,6 +184,19 @@ public class Mp3Player {
 		this.repeatOn = repeatOn;
 	}
 	
+	public void putToQueue(Mp3File mp3) {
+		
+		try {
+			
+			Mp3File clone = (Mp3File) mp3.clone();
+			clone.setIndex(queue.getMp3Files().size());
+			queue.addMp3File(clone);
+			
+		} catch (CloneNotSupportedException e) {
+			logger.error("PlistMng:addToQueue(): CloneNotSupportedException", e);
+		}
+		
+	}
 	
 	
 }

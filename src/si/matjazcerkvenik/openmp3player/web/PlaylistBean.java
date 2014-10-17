@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.faces.component.html.HtmlDataTable;
 
-import si.matjazcerkvenik.openmp3player.backend.Mp3File;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -22,11 +22,11 @@ public class PlaylistBean {
 	}
 	
 	public List<Mp3File> getMp3List() {
-		return Mp3Player.getInstance().getPlaylist().getMp3Files();
+		return Mp3Player.getInstance().getActivePlaylist().getMp3Files();
 	}
 	
 	public int getPlaylistSize() {
-		return Mp3Player.getInstance().getPlaylist().getMp3Files().size();
+		return Mp3Player.getInstance().getActivePlaylist().getMp3Files().size();
 	}
 	
 	public void play() {
@@ -38,7 +38,7 @@ public class PlaylistBean {
 	public void putToQueue() {
 		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		logger.debug("PlaylistBean:putToQueue(): " + mp3.getIndex());
-		// TODO
+		Mp3Player.getInstance().putToQueue(mp3);
 	}
 
 	public HtmlDataTable getDataTable() {

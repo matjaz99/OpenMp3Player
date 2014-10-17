@@ -1,4 +1,4 @@
-<%@page import="si.matjazcerkvenik.openmp3player.backend.Playlist"%>
+<%@page import="si.matjazcerkvenik.openmp3player.player.Playlist"%>
 <%@page session="true" import="java.util.*,si.matjazcerkvenik.openmp3player.backend.Mng" %>
 <jsp:useBean id="mng" scope="application" class="si.matjazcerkvenik.openmp3player.backend.Mng"></jsp:useBean>
 

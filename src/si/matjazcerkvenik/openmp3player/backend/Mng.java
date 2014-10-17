@@ -2,6 +2,7 @@ package si.matjazcerkvenik.openmp3player.backend;
 
 import si.matjazcerkvenik.openmp3player.cli.CommandLine;
 import si.matjazcerkvenik.openmp3player.player.IPlayer;
+import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Watchdog;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
