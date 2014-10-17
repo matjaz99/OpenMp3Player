@@ -37,7 +37,7 @@ public class PlaylistBean {
 	
 	public void putToQueue() {
 		Mp3File mp3 = (Mp3File) dataTable.getRowData();
-		logger.debug("PlaylistBean:putToQueue(): " + mp3.getIndex());
+		logger.info("PlaylistBean:putToQueue(): " + mp3.getIndex());
 		Mp3Player.getInstance().putToQueue(mp3);
 	}
 

@@ -7,13 +7,19 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.Utils;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.openmp3player.player.SoundControl;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
+/**
+ * This class handles all user interactions with player, including play/stop/next/prev buttons,
+ * currently selected playlist, volume up/down buttons, repeat button...
+ * 
+ * @author matjaz
+ *
+ */
 public class PlayerBean {
 	
 	private String selectedPlaylist = null;
@@ -24,33 +30,12 @@ public class PlayerBean {
 		logger = OContext.getInstance().getLogger();
 	}
 	
-//	private PlaylistBean getPlaylistBean() {
-//		return (PlaylistBean) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("playlistBean");
-//	}
+	
 	
 	/**
 	 * Get playlists for dropdown menu
-	 * @return map
+	 * @return list
 	 */
-//	public Map<String, String> getPlaylists() {
-//		
-//		Playlists playlists = Mp3Player.getInstance().getPlaylists();
-//		
-//		Map<String, String> map = new LinkedHashMap<String, String>();
-//		
-//		if (playlists.getPlist() == null) {
-//			return map;
-//		}
-//		
-//		for (int i = 0; i < playlists.getPlist().size(); i++) {
-//			String s = playlists.getPlist().get(i).getName();
-//			String ss = playlists.getPlist().get(i).getSource();
-//			map.put(s, ss);
-//		}
-//		
-//		return map;
-//	}
-	
 	public List<SelectItem> getPlaylists() {
 		
 		Playlists playlists = Mp3Player.getInstance().getPlaylists();
@@ -67,11 +52,11 @@ public class PlayerBean {
 			list.add(new SelectItem(ss, s));
 		}
 		
-//		list.add(new SelectItem("queue", "Queue"));
-		
 		return list;
 		
 	}
+	
+	
 	
 	/**
 	 * This method is fired when another playlist is selected from dropdown menu.
@@ -82,7 +67,8 @@ public class PlayerBean {
 		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
 		Mp3Player.getInstance().setActivePlaylist(selectedPlaylist);
 	}
-
+	
+	
 	
 	/**
 	 * Get current playlist source.
@@ -95,6 +81,8 @@ public class PlayerBean {
 		return selectedPlaylist;
 	}
 	
+	
+	
 	public void setSelectedPlaylist(String selectedPlaylist) {
 		this.selectedPlaylist = selectedPlaylist;
 	}
@@ -103,8 +91,8 @@ public class PlayerBean {
 	
 
 	/**
-	 * Return title of currently playing song.
-	 * @return title
+	 * Return title of currently playing song. If no song is playing "null" is returned.
+	 * @return title or "null"
 	 */
 	public String getCurrentlyPlaying() {
 		Mp3File m = Mp3Player.getInstance().getCurrentlyPlaying();
@@ -114,10 +102,20 @@ public class PlayerBean {
 		return Mp3Player.getInstance().getCurrentlyPlaying().getTitle();
 	}
 	
+	
+	
+	/**
+	 * Increase sound volume by 1.
+	 */
 	public void volumeUp() {
 		SoundControl.volumeUp();
 	}
 	
+	
+	
+	/**
+	 * Decrease sound volume by 1.
+	 */
 	public void volumeDown() {
 		SoundControl.volumeDown();
 	}
@@ -136,22 +134,25 @@ public class PlayerBean {
 	
 
 	/**
-	 * Start playing
+	 * Start playing (first song in the playlist)
 	 * @return title of the song
 	 */
 	public String play() {
 		return Mp3Player.getInstance().play(0);
 	}
 	
+	
 
 	/**
 	 * Stop playing
-	 * @return 'null'
+	 * @return "null"
 	 */
 	public String stop() {
 		Mp3Player.getInstance().stop();
 		return "null";
 	}
+	
+	
 	
 	/**
 	 * Play next
@@ -161,6 +162,8 @@ public class PlayerBean {
 		return Mp3Player.getInstance().next();
 	}
 	
+	
+	
 	/**
 	 * Play previous
 	 * @return title
@@ -168,6 +171,8 @@ public class PlayerBean {
 	public String prev() {
 		return Mp3Player.getInstance().prev();
 	}
+	
+	
 	
 	/**
 	 * Return true if song is currently playing
@@ -177,20 +182,39 @@ public class PlayerBean {
 		return Mp3Player.getInstance().isPlaying();
 	}
 	
+	
+	
+	/**
+	 * Return true if repeat button is turned on.
+	 * @return true if on
+	 */
 	public boolean isRepeatOn() {
+		// TODO why is this method called so many times???
 		logger.info("PlayerBean:isRepeatOn(): " + Mp3Player.getInstance().isRepeatOn());
 		return Mp3Player.getInstance().isRepeatOn();
 	}
 	
+	
+	
+	/**
+	 * Turn repeat button on.
+	 */
 	public void turnRepeatOn() {
 		Mp3Player.getInstance().setRepeatOn(true);
 		logger.debug("PlayerBean:turnRepeatOn(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
 	}
 	
+	
+	
+	/**
+	 * Turn repeat button off.
+	 */
 	public void turnRepeatOff() {
 		Mp3Player.getInstance().setRepeatOn(false);
 		logger.debug("PlayerBean:turnRepeatOff(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
 	}
+	
+	
 	
 	
 	

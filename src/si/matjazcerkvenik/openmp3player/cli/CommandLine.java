@@ -8,8 +8,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-import si.matjazcerkvenik.openmp3player.backend.Mng;
+import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Utils;
+import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.SoundControl;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -20,11 +21,9 @@ public class CommandLine extends Thread {
 	private boolean running = true;
 	private static final String prompt = "> ";
 	private SimpleLogger logger = null;
-	private Mng mng = null;
 
 	public CommandLine() {
-		mng = new Mng();
-		logger = Mng.getLogger();
+		logger = OContext.getInstance().getLogger();
 		setName("CommandLine");
 	}
 
@@ -51,7 +50,7 @@ public class CommandLine extends Thread {
 				Scanner in = new Scanner(inps);
 				PrintWriter out = new PrintWriter(outs, true);
 
-				out.println("*** OpenMp3Player " + Mng.version + " ***");
+				out.println("*** OpenMp3Player " + OContext.version + " ***");
 				out.print(prompt);
 				out.flush();
 
@@ -67,13 +66,13 @@ public class CommandLine extends Thread {
 
 					} else if (line.equalsIgnoreCase("version")) {
 
-						out.println(Mng.version);
+						out.println(OContext.version);
 
 					} else if (line.startsWith("play")) {
 						
 						String[] args = line.split(" ");
 						if (args.length == 0) {
-							out.println("Playing: " + mng.play(0));
+							out.println("Playing: " + Mp3Player.getInstance().play(0));
 						} else if (args.length > 1) {
 							
 							for (int i = 1; i < args.length; i++) {
@@ -85,30 +84,30 @@ public class CommandLine extends Thread {
 									} catch (NumberFormatException e) {
 										out.println("Object not integer: " + args[i+1].trim());
 									}
-									out.println("Playing: " + mng.play(indx));
+									out.println("Playing: " + Mp3Player.getInstance().play(indx));
 									
 								}
 								
 							}
 							
 						} else {
-							out.println("Playing: " + mng.play(0));
+							out.println("Playing: " + Mp3Player.getInstance().play(0));
 						}
 						
 						
 
 					} else if (line.equalsIgnoreCase("stop")) {
 						
-						mng.stop();
+						Mp3Player.getInstance().stop();
 						out.println("Stopped");
 
 					} else if (line.equalsIgnoreCase("next")) {
 						
-						out.println("Playing: " + mng.next());
+						out.println("Playing: " + Mp3Player.getInstance().next());
 
 					} else if (line.equalsIgnoreCase("prev")) {
 						
-						out.println("Playing: " + mng.prev());
+						out.println("Playing: " + Mp3Player.getInstance().prev());
 
 					} else if (line.startsWith("repeat")) {
 						
@@ -116,13 +115,13 @@ public class CommandLine extends Thread {
 						if (args.length > 1) {
 							
 							if (args[1].equals("on")) {
-								Mng.repeatSong = true;
+								Mp3Player.getInstance().setRepeatOn(true);
 							} else if (args[1].equals("off")) {
-								Mng.repeatSong = false;
+								Mp3Player.getInstance().setRepeatOn(false);
 							}
 						}
 						
-						out.println("Repeat is " + (Mng.repeatSong ? "ON" : "OFF"));
+						out.println("Repeat is " + (Mp3Player.getInstance().isRepeatOn() ? "ON" : "OFF"));
 
 					} else if (line.equalsIgnoreCase("help")) {
 						
@@ -142,7 +141,7 @@ public class CommandLine extends Thread {
 								out.println("Set volume: " + SoundControl.CURRENT_VOLUME_LEVEL);
 							} else if (args[1].equals("-")) {
 								SoundControl.volumeDown();
-								out.println("Set volume: " + mng.getCurrentlyPlaying());
+								out.println("Set volume: " + SoundControl.CURRENT_VOLUME_LEVEL);
 							} else {
 								try {
 									int i = Integer.parseInt(args[1]);
@@ -171,9 +170,9 @@ public class CommandLine extends Thread {
 						} else if (args.length > 1) {
 							
 							if (args[1].equals("-p")) {
-								out.println("Current playlist: " + mng.getPlistMng().getActivePlaylist());
+								out.println("Current playlist: " + Mp3Player.getInstance().getActivePlaylist());
 							} else if (args[1].equals("-s")) {
-								out.println("Currently playing: " + mng.getCurrentlyPlaying());
+								out.println("Currently playing: " + Mp3Player.getInstance().getCurrentlyPlaying());
 							} else if (args[1].equals("-v")) {
 								out.println("Current volume level: " + SoundControl.CURRENT_VOLUME_LEVEL);
 							} else {
