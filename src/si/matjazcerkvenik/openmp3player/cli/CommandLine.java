@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import si.matjazcerkvenik.openmp3player.backend.Mng;
 import si.matjazcerkvenik.openmp3player.backend.Utils;
+import si.matjazcerkvenik.openmp3player.player.SoundControl;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class CommandLine extends Thread {
@@ -137,10 +138,10 @@ public class CommandLine extends Thread {
 						} else {
 							
 							if (args[1].equals("+")) {
-								Utils.volumeUp();
-								out.println("Set volume: " + Utils.CURRENT_VOLUME_LEVEL);
+								SoundControl.volumeUp();
+								out.println("Set volume: " + SoundControl.CURRENT_VOLUME_LEVEL);
 							} else if (args[1].equals("-")) {
-								Utils.volumeDown();
+								SoundControl.volumeDown();
 								out.println("Set volume: " + mng.getCurrentlyPlaying());
 							} else {
 								try {
@@ -148,7 +149,7 @@ public class CommandLine extends Thread {
 									if (i < 0 || i > 10) {
 										out.println("value out of range [0-10]: '" + args[1] + "'");
 									} else {
-										Utils.setVolume(i);
+										SoundControl.setVolume(i);
 									}
 								} catch (NumberFormatException e) {
 									out.println("invalid argument: '" + args[1] + "'");
@@ -174,7 +175,7 @@ public class CommandLine extends Thread {
 							} else if (args[1].equals("-s")) {
 								out.println("Currently playing: " + mng.getCurrentlyPlaying());
 							} else if (args[1].equals("-v")) {
-								out.println("Current volume level: " + Utils.CURRENT_VOLUME_LEVEL);
+								out.println("Current volume level: " + SoundControl.CURRENT_VOLUME_LEVEL);
 							} else {
 								out.println("invalid argument: '" + args[1] + "'");
 							}

@@ -45,7 +45,7 @@ public class Mng {
 			
 			Utils.readVersion();
 			Utils.changePermissions();
-			Utils.setVolume(Utils.CURRENT_VOLUME_LEVEL);
+//			Utils.setVolume(Utils.CURRENT_VOLUME_LEVEL);
 			
 			if (Utils.TELNET_ENABLED) {
 				cli = new CommandLine();

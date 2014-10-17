@@ -7,9 +7,11 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.backend.Utils;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
+import si.matjazcerkvenik.openmp3player.player.SoundControl;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlayerBean {
@@ -110,6 +112,14 @@ public class PlayerBean {
 			return "null";
 		}
 		return Mp3Player.getInstance().getCurrentlyPlaying().getTitle();
+	}
+	
+	public void volumeUp() {
+		SoundControl.volumeUp();
+	}
+	
+	public void volumeDown() {
+		SoundControl.volumeDown();
 	}
 	
 	

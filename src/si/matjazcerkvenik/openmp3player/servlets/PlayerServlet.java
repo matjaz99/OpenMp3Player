@@ -103,16 +103,6 @@ public class PlayerServlet extends HttpServlet {
 			int i = Integer.parseInt(request.getParameter("index"));
 			mng.getPlistMng().addToQueue(i);
 			
-		} else if (buttonPressed.equals("volumeUp")) {
-			
-			Utils.volumeUp();
-			out.print(Utils.CURRENT_VOLUME_LEVEL);
-			
-		} else if (buttonPressed.equals("volumeDown")) {
-			
-			Utils.volumeDown();
-			out.print(Utils.CURRENT_VOLUME_LEVEL);
-			
 		} else if (buttonPressed.equals("repeat")) {
 			
 			Mng.repeatSong = !Mng.repeatSong;

@@ -12,9 +12,9 @@ import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.util.Properties;
 
+import si.matjazcerkvenik.openmp3player.player.SoundControl;
 import si.matjazcerkvenik.simplelogger.LEVEL;
 import si.matjazcerkvenik.simplelogger.PROPS;
-import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class Utils {
 	
@@ -38,7 +38,7 @@ public class Utils {
 	public static boolean TELNET_ENABLED = true;
 	public static int TELNET_PORT = 4444;
 
-	public static int CURRENT_VOLUME_LEVEL = 2;
+	
 	
 	public static void init() {
 		loadProperties();
@@ -102,8 +102,8 @@ public class Utils {
 						+ "config/openmp3player.properties"));
 
 				PLAYER_DELAY = parseInt(props.getProperty(PROPERTY_PLAYER_DELAY), 5);
-				CURRENT_VOLUME_LEVEL = parseInt(props.getProperty(PROPERTY_VOLUME_DEFAULT), 1);
-				System.out.println("==== VOL: " + CURRENT_VOLUME_LEVEL);
+				SoundControl.CURRENT_VOLUME_LEVEL = parseInt(props.getProperty(PROPERTY_VOLUME_DEFAULT), 1);
+				System.out.println("==== VOL: " + SoundControl.CURRENT_VOLUME_LEVEL);
 				if (props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT) != null
 						&& props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT).length() > 0) {
 					VOLUME_CUSTOM_SCRIPT = props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT);
@@ -150,7 +150,7 @@ public class Utils {
 		try {
 		    props.store(new FileOutputStream("src/my/project/properties/test.properties"), null);
 		} catch (IOException e) {
-			Mng.getLogger().error("Utils:writeProperties(): error writing properties", e);
+			OContext.getInstance().getLogger().error("Utils:writeProperties(): error writing properties", e);
 		}
 	}
 	
@@ -204,61 +204,7 @@ public class Utils {
 		
 	}
 	
-	/**
-	 * Increase volume level
-	 */
-	public static void volumeUp() {
-		
-		// to change volume on os x:
-		// osascript -e "set Volume 1"
-		
-		// on linux:
-		// amixer set Master 10%
-		
-		if (CURRENT_VOLUME_LEVEL >= 10) {
-			return;
-		}
-		CURRENT_VOLUME_LEVEL++;
-		Mng.getLogger().info("Utils:volumeUp(): " + CURRENT_VOLUME_LEVEL);	
-		
-		setVolume(CURRENT_VOLUME_LEVEL);
-		
-	}
 	
-	/**
-	 * Decrease volume level
-	 */
-	public static void volumeDown() {
-		
-		if (CURRENT_VOLUME_LEVEL <= 0) {
-			return;
-		}
-		CURRENT_VOLUME_LEVEL--;
-		Mng.getLogger().info("Utils:volumeDown(): " + CURRENT_VOLUME_LEVEL);	
-		
-		setVolume(CURRENT_VOLUME_LEVEL);
-		
-	}
-	
-	/**
-	 * Set volume level in range from 0 to 10.
-	 * @param level
-	 */
-	public static void setVolume(int level) {
-		Mng.getLogger().info("Utils:setVolume(): " + level);	
-		String[] vol = { "" + level };
-		if (VOLUME_CUSTOM_SCRIPT != null) {
-			runScript(VOLUME_CUSTOM_SCRIPT, vol);
-		} else if (getOsType().equalsIgnoreCase("OSX")) {
-			runScript("setVolumeOSX.sh", vol);
-		} else if (getOsType().equalsIgnoreCase("LINUX")) {
-			runScript("setVolumeLinux.sh", vol);
-		} else if (getOsType().equalsIgnoreCase("WINDOWS")) {
-			runScript("setVolume.bat", vol);
-		}
-		
-		
-	}
 	
 	/**
 	 * Change permissions of .sh scripts in config directory to a+x.
@@ -269,7 +215,7 @@ public class Utils {
 			return;
 		}
 		
-		File dir = new File(Mng.HOME_DIR + "config");
+		File dir = new File(OContext.CFG_DIR + "config");
 		File[] files = dir.listFiles(new FileFilter() {
 			
 			@Override
@@ -279,7 +225,7 @@ public class Utils {
 		});
 		
 		for (int i = 0; i < files.length; i++) {
-			Mng.getLogger().info("Utils:changePermissions(): " + files[i].getAbsolutePath());	
+			OContext.getInstance().getLogger().info("Utils:changePermissions(): " + files[i].getAbsolutePath());	
 			String[] cmd = {"chmod", "a+x", files[i].getAbsolutePath()};
 			runConsoleCommand(cmd);
 		}
@@ -289,7 +235,7 @@ public class Utils {
 	public static void runScript(String script, String[] args) {
 		
 		String[] command = new String[args.length + 1];
-		command[0] = Mng.HOME_DIR + "config/" + script;
+		command[0] = OContext.CFG_DIR + "config/" + script;
 		
 		for (int i = 0; i < args.length; i++) {
 			command[i+1] = args[i];
@@ -305,7 +251,7 @@ public class Utils {
 		for (int i = 0; i < command.length; i++) {
 			cmdStr += command[i] + " ";
 		}
-		Mng.getLogger().info("Utils:runConsoleCommand(): " + cmdStr.trim());
+		OContext.getInstance().getLogger().info("Utils:runConsoleCommand(): " + cmdStr.trim());
 
 	    Runtime rt = Runtime.getRuntime();
 	    try {
@@ -316,10 +262,10 @@ public class Utils {
 	      BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 	      BufferedReader errbr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 	      while ((s = br.readLine()) != null) {
-	    	  Mng.getLogger().info("Utils:runConsoleCommand(): response : " + s);
+	    	  OContext.getInstance().getLogger().info("Utils:runConsoleCommand(): response : " + s);
 	      }
 	      while ((s = errbr.readLine()) != null) {
-	    	  Mng.getLogger().warn("Utils:runConsoleCommand(): errResponse : " + s);
+	    	  OContext.getInstance().getLogger().warn("Utils:runConsoleCommand(): errResponse : " + s);
 	      }
 
 	      // wait for ending command
@@ -344,7 +290,7 @@ public class Utils {
 		try {
 			return Inet4Address.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			Mng.getLogger().error("Utils:getLocalIp(): ", e);
+			OContext.getInstance().getLogger().error("Utils:getLocalIp(): ", e);
 		}
 		return "unknown host";
 	}

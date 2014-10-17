@@ -80,7 +80,7 @@
 	</h:form>
 	
 	<h:form prependId="false">
-		<h:commandLink action="#">
+		<h:commandLink action="#{playerBean.volumeDown}">
 			<h:graphicImage id="volumeDnBtn" url="img/volumeDn.png" styleClass="icon"
 				onmouseover="onMouse('#volumeDnBtn', 'img/volumeDn-shadow.png')" 
 				onmouseout="onMouse('#volumeDnBtn', 'img/volumeDn.png')" 
@@ -90,7 +90,7 @@
 	</h:form>
 	
 	<h:form prependId="false">
-		<h:commandLink action="#">
+		<h:commandLink action="#{playerBean.volumeUp}">
 			<h:graphicImage id="volumeUpBtn" url="img/volumeUp.png" styleClass="icon"
 				onmouseover="onMouse('#volumeUpBtn', 'img/volumeUp-shadow.png')" 
 				onmouseout="onMouse('#volumeUpBtn', 'img/volumeUp.png')" 
