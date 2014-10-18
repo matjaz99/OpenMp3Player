@@ -17,6 +17,10 @@
 			
 			<h:outputText value="About OpenMp3Player" styleClass="title" />
 			
+			<h:form>
+				<h:commandLink value="Back" action="home" />
+			</h:form>
+			
 			<hr/>
 			
 			<h:outputText value="Version: #{playerBean.version}"></h:outputText>

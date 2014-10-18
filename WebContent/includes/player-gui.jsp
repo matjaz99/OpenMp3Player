@@ -70,7 +70,7 @@
 <h:panelGrid id="ddPanel" columns="7">
 
 	<h:form prependId="false">
-		<h:commandLink action="#">
+		<h:commandLink action="playlists">
 			<h:graphicImage id="showPlaylistsBtn" url="img/playlists.png" styleClass="icon"
 				onmouseover="onMouse('#showPlaylistsBtn', 'img/playlists-shadow.png')" 
 				onmouseout="onMouse('#showPlaylistsBtn', 'img/playlists.png')" 

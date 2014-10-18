@@ -12,6 +12,11 @@
   <managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlaylistBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>playlistsBean</managed-bean-name>
+  <managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlaylistsBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>/*</from-view-id>
   <navigation-case>
@@ -22,16 +27,27 @@
    <from-outcome>settings</from-outcome>
    <to-view-id>/settings.jsp</to-view-id>
   </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/about.jsp</from-view-id>
   <navigation-case>
-   <from-outcome>gui</from-outcome>
-   <to-view-id>/includes/player-gui.jsp</to-view-id>
+   <from-outcome>playlists</from-outcome>
+   <to-view-id>/playlists.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/settings.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>home</from-outcome>
+   <to-view-id>/home.jsp</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/about.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>home</from-outcome>
+   <to-view-id>/home.jsp</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/playlists.jsp</from-view-id>
   <navigation-case>
    <from-outcome>home</from-outcome>
    <to-view-id>/home.jsp</to-view-id>
