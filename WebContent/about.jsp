@@ -9,6 +9,13 @@
 <title>About</title>
 </head>
 <body>
+
+	<f:view>
+		
+		<h:outputText value="About" />
+		
+	
+
 <div class="small">
 <h2>About</h2>
 <div>OpenMp3Player is a web application for playing mp3 files.</div><br><br>
@@ -168,5 +175,8 @@ reloading page</li>
 - REST interface<br>
 - FTP download of files<br></div>
 </div>
+
+	</f:view>
+	
 </body>
 </html>

@@ -13,10 +13,14 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
-  <from-view-id>/includes/player-gui.jsp</from-view-id>
+  <from-view-id>/*</from-view-id>
   <navigation-case>
    <from-outcome>about</from-outcome>
    <to-view-id>/about.jsp</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>settings</from-outcome>
+   <to-view-id>/settings.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
@@ -24,6 +28,13 @@
   <navigation-case>
    <from-outcome>gui</from-outcome>
    <to-view-id>/includes/player-gui.jsp</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/settings.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>home</from-outcome>
+   <to-view-id>/home.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application>

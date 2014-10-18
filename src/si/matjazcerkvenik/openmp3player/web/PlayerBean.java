@@ -7,6 +7,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.backend.Utils;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
@@ -231,6 +232,22 @@ public class PlayerBean {
 	 */
 	public String getVersion() {
 		return OContext.version;
+	}
+	
+	public String getLocalIp() {
+		return Utils.getLocalIp();
+	}
+	
+	public String getCurrentSoundLevel() {
+		return "" + SoundControl.CURRENT_VOLUME_LEVEL;
+	}
+	
+	public String getTelnetEnabled() {
+		return "" + Utils.TELNET_ENABLED;
+	}
+	
+	public String getTelnetPort() {
+		return "" + Utils.TELNET_PORT;
 	}
 	
 }

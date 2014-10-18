@@ -120,7 +120,7 @@
 	</h:form>
 	
 	<h:form prependId="false">
-		<h:commandLink action="#">
+		<h:commandLink action="settings">
 			<h:graphicImage id="settingsBtn" url="img/settings.png" styleClass="icon"
 				onmouseover="onMouse('#settingsBtn', 'img/settings-shadow.png')" 
 				onmouseout="onMouse('#settingsBtn', 'img/settings.png')" 
