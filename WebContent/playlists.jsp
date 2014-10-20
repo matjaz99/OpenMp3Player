@@ -28,7 +28,7 @@
 				
 				<h:column>
 					<h:form prependId="false">
-						<h:commandLink action="#">
+						<h:commandLink action="#{playlistsBean.showPlaylist}">
 							<h:graphicImage id="playBtn" url="img/folder.png" styleClass="icon" alt="Goto"
 								onmouseover="onMouse('#playBtn', 'img/folder-shadow.png')" 
 								onmouseout="onMouse('#playBtn', 'img/folder.png')" 
@@ -45,8 +45,8 @@
 				
 				<h:column>
 					<h:form prependId="false">
-						<h:commandLink action="#">
-							<h:graphicImage id="queueBtn" url="img/remove.png" styleClass="icon" alt="Put to queue"
+						<h:commandLink action="#{playlistsBean.deletePlaylist}">
+							<h:graphicImage id="queueBtn" url="img/remove.png" styleClass="icon" alt="Remove"
 								onmouseover="onMouse('#queueBtn', 'img/remove-shadow.png')" 
 								onmouseout="onMouse('#queueBtn', 'img/remove.png')" 
 								onmousedown="onMouse('#queueBtn', 'img/remove-pressed.png')" 

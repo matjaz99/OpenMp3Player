@@ -150,7 +150,7 @@ public class Mp3Player {
 	}
 	
 	public void setActivePlaylist(String name) {
-		
+		logger.debug("Mp3Player:setActivePlaylist(): " + name);
 		if (name.equals("queue")) {
 			activePlaylist = queue;
 		} else {

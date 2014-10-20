@@ -31,4 +31,22 @@ public class PlaylistsBean {
 		this.dataTable = dataTable;
 	}
 	
+	public String showPlaylist() {
+		
+		Playlist p = (Playlist) dataTable.getRowData();
+		logger.info("PlaylistsBean:showPlaylist(): " + p.getSource());
+		Mp3Player.getInstance().setActivePlaylist(p.getSource());
+		return "home";
+		
+	}
+	
+	public String deletePlaylist() {
+		
+		Playlist p = (Playlist) dataTable.getRowData();
+		logger.info("PlaylistsBean:deletePlaylist(): " + p.getName());
+		// TODO
+		return "home";
+		
+	}
+	
 }
