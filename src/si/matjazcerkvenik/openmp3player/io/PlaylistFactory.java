@@ -22,9 +22,21 @@ public class PlaylistFactory {
 	
 	private SimpleLogger logger = null;
 	
+	private static PlaylistFactory factory = null;
 	
-	public PlaylistFactory() {
+	
+	private PlaylistFactory() {
 		logger = OContext.getInstance().getLogger();
+	}
+	
+	public static PlaylistFactory getInstance() {
+		
+		if (factory == null) {
+			factory = new PlaylistFactory();
+		}
+		
+		return factory;
+		
 	}
 	
 	/**
