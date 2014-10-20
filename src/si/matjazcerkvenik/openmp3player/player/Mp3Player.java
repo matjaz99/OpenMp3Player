@@ -28,11 +28,11 @@ public class Mp3Player {
 		playlists = pFactory.getPlaylists();
 		activePlaylist = pFactory.getPlaylist(playlists.getPlist().get(0).getSource());
 		
-		queue = new Playlist();
-		queue.setName("Queue");
-		queue.setSource("queue");
-		
-		playlists.add(queue);
+//		queue = new Playlist();
+//		queue.setName("Queue");
+//		queue.setSource("queue");
+//		playlists.add(queue);
+		addPlaylist("Queue", "queue");
 		
 	}
 	
@@ -128,6 +128,10 @@ public class Mp3Player {
 		return currentlyPlaying.getTitle();
 	}
 	
+	
+	
+	
+	
 	/**
 	 * Return true if song is currently playing
 	 * @return true if playing
@@ -193,10 +197,38 @@ public class Mp3Player {
 			queue.addMp3File(clone);
 			
 		} catch (CloneNotSupportedException e) {
-			logger.error("PlistMng:addToQueue(): CloneNotSupportedException", e);
+			logger.error("Mp3Player:putToQueue(): CloneNotSupportedException", e);
 		}
 		
 	}
 	
+	/**
+	 * Create new playlist with given name and source and save to playlists.xml
+	 * @param name
+	 * @param source
+	 */
+	public void addPlaylist(String name, String source) {
+		
+		Playlist p = new Playlist();
+		p.setName(name);
+		p.setSource(source);
+		
+		playlists.add(p);
+		
+		PlaylistFactory f = new PlaylistFactory();
+		f.savePlaylists();
+		
+	}
+	
+	public void deletePlaylist(Playlist p) {
+		
+		PlaylistFactory f = new PlaylistFactory();
+		f.removePlaylist(p.getName());
+		
+		playlists.getPlist().remove(p);
+		
+		f.savePlaylists();
+		
+	}
 	
 }

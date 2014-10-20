@@ -44,7 +44,7 @@ public class PlaylistsBean {
 		
 		Playlist p = (Playlist) dataTable.getRowData();
 		logger.info("PlaylistsBean:deletePlaylist(): " + p.getName());
-		// TODO
+		Mp3Player.getInstance().deletePlaylist(p);
 		return "home";
 		
 	}

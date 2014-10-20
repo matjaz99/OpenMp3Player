@@ -13,6 +13,7 @@ import javax.xml.bind.Unmarshaller;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Files;
+import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
@@ -21,16 +22,20 @@ public class PlaylistFactory {
 	
 	private SimpleLogger logger = null;
 	
+	
 	public PlaylistFactory() {
 		logger = OContext.getInstance().getLogger();
 	}
 	
 	/**
-	 * Read playlists.xml and return list of playlists. If playlists.xml does not exist, 
-	 * create new one.
+	 * Read playlists.xml. If playlists.xml does not exist, create new one.
 	 * @return playlists
 	 */
 	public Playlists getPlaylists() {
+		
+//		if (Mp3Player.getInstance().getPlaylists() != null) {
+//			return Mp3Player.getInstance().getPlaylists();
+//		}
 		
 		Playlists playlists = null;
 		
@@ -38,7 +43,7 @@ public class PlaylistFactory {
 
 			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
 			if (!file.exists()) {
-				logger.warn("PlaylistFactory:unmarshall(): playlists.xml not found; creating new");
+				logger.warn("PlaylistFactory:getPlaylists(): playlists.xml not found; creating new");
 				playlists = new Playlists();
 				JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -46,7 +51,7 @@ public class PlaylistFactory {
 				jaxbMarshaller.marshal(playlists, file);
 				
 			}
-			logger.info("PlaylistFactory:unmarshall(): playlists.xml");
+			logger.info("PlaylistFactory:getPlaylists(): playlists.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			playlists = (Playlists) jaxbUnmarshaller.unmarshal(file);
@@ -59,10 +64,35 @@ public class PlaylistFactory {
 		return playlists;
 	}
 	
+	public void savePlaylists() {
+		try {
+
+			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			// FIXME remove queue before saving
+			 jaxbMarshaller.marshal(Mp3Player.getInstance().getPlaylists(), file);
+//			jaxbMarshaller.marshal(p, System.out);
+
+		} catch (JAXBException e) {
+			logger.error("JAXBException", e);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
-	 * 
+	 * Get single playlist
 	 * @param source
-	 * @return
+	 * @return playlist
 	 */
 	public Playlist getPlaylist(String source) {
 		
@@ -77,9 +107,9 @@ public class PlaylistFactory {
 		List<Mp3File> files = null;
 		
 		if (source.endsWith(".xml")) {
-			files = unmarshall(source).getFiles();
+			files = loadFromXml(source).getFiles();
 		} else {
-			files = loadMp3FilesFromDirectory(source);
+			files = loadFromDirectory(source);
 		}
 		
 		logger.info("PlaylistFactory:getPlaylist(): loaded " + files.size() + " mp3s from playlist " + source);
@@ -98,6 +128,42 @@ public class PlaylistFactory {
 	
 	
 	
+	public void removePlaylist(String name) {
+		
+		// delete xml file
+		for (Playlist plist : Mp3Player.getInstance().getPlaylists().getPlist()) {
+			
+			if (plist.getName().equals(name)) {
+				
+				if (plist.getSource().endsWith(".xml")) {
+					
+					File f = new File(OContext.CFG_DIR + "playlists/" + plist.getSource());
+					logger.debug("PlaylistFactory:deletePlaylist(): delete: " + f.getAbsolutePath());
+					f.delete();
+					
+				}
+				
+			}
+			
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -106,7 +172,7 @@ public class PlaylistFactory {
 	 * @param source
 	 * @return mp3Files
 	 */
-	private Mp3Files unmarshall(String source) {
+	private Mp3Files loadFromXml(String source) {
 		Mp3Files mp3Files = null;
 		try {
 
@@ -131,7 +197,7 @@ public class PlaylistFactory {
 	 * @param m
 	 * @param source
 	 */
-	private static void marshall(Mp3Files m, String source) {
+	private void savePlaylistToXml(Mp3Files m, String source) {
 // TODO not used yet!!
 		try {
 
@@ -177,7 +243,7 @@ public class PlaylistFactory {
 	 * @param directory
 	 * @return
 	 */
-	private List<Mp3File> loadMp3FilesFromDirectory(String directory) {
+	private List<Mp3File> loadFromDirectory(String directory) {
 		
 		File dir = new File(directory);
 		File[] files = dir.listFiles(new FileFilter() {

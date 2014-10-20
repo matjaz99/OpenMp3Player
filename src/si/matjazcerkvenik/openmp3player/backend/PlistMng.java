@@ -37,10 +37,10 @@ public class PlistMng {
 //		loadPlaylists();
 		activePlaylist = playlists.get(0).getName();
 		showPlaylist = activePlaylist;
-		
-		queue = new Playlist();
-		queue.setName("Queue");
-		queue.setSource("queue");
+//		
+//		queue = new Playlist();
+//		queue.setName("Queue");
+//		queue.setSource("queue");
 	}
 
 	
@@ -136,22 +136,22 @@ public class PlistMng {
 	}
 	
 	
-	/**
-	 * Create new playlist with given name and source and save to playlists.xml
-	 * @param name
-	 * @param source
-	 */
-	public void addPlaylist(String name, String source) {
-		
-		Playlist p = new Playlist();
-		p.setName(name);
-		p.setSource(source);
-		
-		playlists.add(p);
-		
-		marshall();
-		
-	}
+//	/**
+//	 * Create new playlist with given name and source and save to playlists.xml
+//	 * @param name
+//	 * @param source
+//	 */
+//	public void addPlaylist(String name, String source) {
+//		
+//		Playlist p = new Playlist();
+//		p.setName(name);
+//		p.setSource(source);
+//		
+//		playlists.add(p);
+//		
+//		marshall();
+//		
+//	}
 	
 	
 	/**
@@ -160,7 +160,7 @@ public class PlistMng {
 	 */
 	public void removePlaylist(String name) {
 		
-		deletePlistFile(name);
+//		deletePlistFile(name);
 		
 		
 		List<Playlist> list = new ArrayList<Playlist>();
@@ -179,16 +179,16 @@ public class PlistMng {
 			setShowPlaylist(playlists.get(0).getName());
 		}
 		
-		marshall();
+//		marshall();
 		
 	}
 	
-	/**
-	 * Add current song to queue
-	 * @param i
-	 */
-	public void addToQueue(int i) {
-		Mp3File mp3 = getShowPlaylist().getMp3Files().get(i);
+//	/**
+//	 * Add current song to queue
+//	 * @param i
+//	 */
+//	public void addToQueue(int i) {
+//		Mp3File mp3 = getShowPlaylist().getMp3Files().get(i);
 //		try {
 //			
 //			Mp3File clone = (Mp3File) mp3.clone();
@@ -198,9 +198,9 @@ public class PlistMng {
 //		} catch (CloneNotSupportedException e) {
 //			logger.error("PlistMng:addToQueue(): CloneNotSupportedException", e);
 //		}
-		
-		logger.info("PlistMng:addToQueue(): added " + mp3.getFile());
-	}
+//		
+//		logger.info("PlistMng:addToQueue(): added " + mp3.getFile());
+//	}
 	
 	public void saveQueue(String name) {
 		Playlist p = new Playlist();
@@ -244,109 +244,29 @@ public class PlistMng {
 	 */
 	public void marshall() {
 
-		Playlists p = new Playlists();
-		for (int i = 0; i < playlists.size(); i++) {
-			p.add(playlists.get(i));
-		}
-
-		try {
-
-			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-			 jaxbMarshaller.marshal(p, file);
-//			jaxbMarshaller.marshal(p, System.out);
-
-		} catch (JAXBException e) {
-			logger.error("JAXBException", e);
-		}
-
-	}
-
-	/**
-	 * Read playlists.xml
-	 * @return playlists
-	 */
-	public Playlists unmarshall() {
-		Playlists playlists = null;
-		try {
-
-			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
-			if (file.exists()) {
-				logger.debug("PlistMng:unmarshall(): playlists.xml exists");
-			} else {
-				logger.debug("PlistMng:unmarshall(): playlists.xml not found on path: " + OContext.CFG_DIR + "playlists/playlists.xml");
-			}
-			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
-
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			playlists = (Playlists) jaxbUnmarshaller.unmarshal(file);
-			logger.info(playlists.toString());
-
-		} catch (JAXBException e) {
-			logger.error("JAXBException", e);
-		}
-		return playlists;
-	}
-	
-	
-	/**
-	 * Load mp3 files according to the playlist (from directory or from xml).
-	 */
-	public void loadMp3Files() {
-		
-//		IFileFinder iff = null;
-//		Playlist plist = getShowPlaylist();
-//		String src = plist.getSource();
-//		
-//		logger.info("PlistMng:loadMp3Files(): loading from source: " + src);
-//		
-//		if (src.equals("queue")) {
-//			logger.info("PlistMng:loadMp3Files(): found " + queue.getMp3Files().size() + " mp3 files in playlist " 
-//					+ plist.getName());
-//			return;
+//		Playlists p = new Playlists();
+//		for (int i = 0; i < playlists.size(); i++) {
+//			p.add(playlists.get(i));
 //		}
-//		
-//		if (src.endsWith(".xml")) {
-//			iff = new XmlPlaylistFileFinder();
-//		} else {
-//			iff = new FileSystemFileFinder();
+//
+//		try {
+//
+//			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
+//			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
+//			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//
+//			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//
+//			 jaxbMarshaller.marshal(p, file);
+////			jaxbMarshaller.marshal(p, System.out);
+//
+//		} catch (JAXBException e) {
+//			logger.error("JAXBException", e);
 //		}
-//		
-//		plist.setMp3files(iff.getMp3Files(src));
-//		int size = plist.getMp3Files().size();
-//		logger.info("PlistMng:loadMp3Files(): found " + size + " mp3 files in playlist " 
-//				+ plist.getName());
+
 	}
 	
-	
-	/**
-	 * Delete playlist xml file from the system (if playlist type is xml). If playlist is directory, 
-	 * directory will not be removed.
-	 * @param name
-	 */
-	public void deletePlistFile(String name) {
-		
-		for (Playlist plist : playlists) {
-			
-			if (plist.getName().equals(name)) {
-				
-				if (plist.getSource().endsWith(".xml")) {
-					
-					File f = new File(OContext.CFG_DIR + "playlists/" + plist.getSource());
-					logger.debug("PlistMng:deletePlistFile(): delete xml file: " + f.getAbsolutePath());
-					f.delete();
-					
-				}
-				
-			}
-			
-		}
-		
-	}
+
 	
 
 }
