@@ -31,6 +31,10 @@ public class PlaylistsBean {
 		this.dataTable = dataTable;
 	}
 	
+	/**
+	 * Action: go to playlist when goto button is pressed
+	 * @return home page
+	 */
 	public String showPlaylist() {
 		
 		Playlist p = (Playlist) dataTable.getRowData();
@@ -40,12 +44,18 @@ public class PlaylistsBean {
 		
 	}
 	
+	
+	
+	/**
+	 * Action: delete playlist when delete button is pressed
+	 * @return home page
+	 */
 	public String deletePlaylist() {
 		
 		Playlist p = (Playlist) dataTable.getRowData();
 		logger.info("PlaylistsBean:deletePlaylist(): " + p.getName());
 		Mp3Player.getInstance().deletePlaylist(p);
-		return "home";
+		return "playlists";
 		
 	}
 	

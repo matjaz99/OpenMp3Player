@@ -45,10 +45,6 @@ public class PlaylistFactory {
 	 */
 	public Playlists getPlaylists() {
 		
-//		if (Mp3Player.getInstance().getPlaylists() != null) {
-//			return Mp3Player.getInstance().getPlaylists();
-//		}
-		
 		Playlists playlists = null;
 		
 		try {
@@ -76,7 +72,11 @@ public class PlaylistFactory {
 		return playlists;
 	}
 	
+	/**
+	 * Save playlists.xml
+	 */
 	public void savePlaylists() {
+		logger.info("PlaylistFactory:savePlaylists(): saving...");
 		try {
 
 			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
@@ -84,9 +84,22 @@ public class PlaylistFactory {
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			// FIXME remove queue before saving
-			 jaxbMarshaller.marshal(Mp3Player.getInstance().getPlaylists(), file);
+			
+			// temporarily remove queue before saving
+			Playlists plists = Mp3Player.getInstance().getPlaylists();
+			Playlist queueTemp = null;
+			for (int i = 0; i < plists.getPlist().size(); i++) {
+				if (plists.getPlist().get(i).getSource().equals("queue")) {
+					queueTemp = plists.getPlist().remove(i);
+				}
+			}
+			
+			 jaxbMarshaller.marshal(plists, file);
 //			jaxbMarshaller.marshal(p, System.out);
+			 
+			// put queue back to list
+			plists.add(queueTemp);
+			
 
 		} catch (JAXBException e) {
 			logger.error("JAXBException", e);
@@ -209,8 +222,7 @@ public class PlaylistFactory {
 	 * @param m
 	 * @param source
 	 */
-	private void savePlaylistToXml(Mp3Files m, String source) {
-// TODO not used yet!!
+	public void savePlaylist(Mp3Files m, String source) {
 		try {
 
 			File file = new File(OContext.CFG_DIR + "playlists/" + source);

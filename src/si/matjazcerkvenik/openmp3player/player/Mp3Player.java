@@ -201,7 +201,7 @@ public class Mp3Player {
 	}
 	
 	/**
-	 * Create new playlist with given name and source and save to playlists.xml
+	 * Create new playlist with given name and source file and save to playlists.xml
 	 * @param name
 	 * @param source
 	 */
@@ -213,10 +213,21 @@ public class Mp3Player {
 		
 		playlists.add(p);
 		
+		logger.info("Mp3Player:addPlaylist(): name: " + name + " source: " + source);
+		
+		if (source.equals("queue")) {
+			return;
+		}
+		
 		PlaylistFactory.getInstance().savePlaylists();
+		p.setMp3files(PlaylistFactory.getInstance().getPlaylist(source).getMp3Files());
 		
 	}
 	
+	/**
+	 * Delete playlist with given name and source file and save to playlists.xml
+	 * @param p
+	 */
 	public void deletePlaylist(Playlist p) {
 		
 		PlaylistFactory.getInstance().removePlaylist(p.getName());

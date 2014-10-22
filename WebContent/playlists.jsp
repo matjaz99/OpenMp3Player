@@ -21,6 +21,9 @@
 			<h:form>
 				<h:commandLink value="Back" action="home" />
 			</h:form>
+			<h:form>
+				<h:commandLink value="Add new" action="addPlaylist" />
+			</h:form>
 			
 			<hr/>
 			
