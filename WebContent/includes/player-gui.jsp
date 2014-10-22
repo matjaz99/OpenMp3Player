@@ -67,7 +67,7 @@
 
 
 <!-- ddPanel is below the guiPanel (and ddButton) -->
-<h:panelGrid id="ddPanel" columns="7">
+<h:panelGrid id="ddPanel" columns="8">
 
 	<h:form prependId="false">
 		<h:commandLink action="playlists">
@@ -116,6 +116,27 @@
 				onmouseout="onMouse('#repeatBtnOff', 'img/repeatOff.png')" 
 				onmousedown="onMouse('#repeatBtnOff', 'img/repeatOff-pressed.png')" 
 				onmouseup="onMouse('#repeatBtnOff', 'img/repeatOff-shadow.png')" />
+		</h:commandLink>
+	</h:form>
+	
+	<h:form prependId="false">
+		<h:commandLink action="#{playerBean.gotoQueue}">
+			<h:graphicImage id="queueBtn0" url="img/toqueue.png" styleClass="icon"
+				onmouseover="onMouse('#queueBtn0', 'img/toqueue-shadow.png')" 
+				onmouseout="onMouse('#queueBtn0', 'img/toqueue.png')" 
+				onmousedown="onMouse('#queueBtn0', 'img/toqueue-pressed.png')" 
+				onmouseup="onMouse('#queueBtn0', 'img/toqueue-shadow.png')" />
+		</h:commandLink>
+	</h:form>
+	
+	<h:form prependId="false">
+		<h:inputText value="#{playerBean.newQueueName}" />
+		<h:commandLink action="#{playerBean.saveQueue}">
+			<h:graphicImage id="saveBtn" url="img/save.png" styleClass="icon"
+				onmouseover="onMouse('#saveBtn', 'img/save-shadow.png')" 
+				onmouseout="onMouse('#saveBtn', 'img/save.png')" 
+				onmousedown="onMouse('#saveBtn', 'img/save-pressed.png')" 
+				onmouseup="onMouse('#saveBtn', 'img/save-shadow.png')" />
 		</h:commandLink>
 	</h:form>
 	

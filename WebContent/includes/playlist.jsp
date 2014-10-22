@@ -33,11 +33,11 @@
 			
 			<h:form prependId="false">
 				<h:commandLink action="#{playlistBean.putToQueue}">
-					<h:graphicImage id="queueBtn" url="img/toqueue.png" styleClass="icon" alt="Put to queue"
-						onmouseover="onMouse('#queueBtn#{mp3File.index}', 'img/toqueue-shadow.png')" 
-						onmouseout="onMouse('#queueBtn#{mp3File.index}', 'img/toqueue.png')" 
-						onmousedown="onMouse('#queueBtn#{mp3File.index}', 'img/toqueue-pressed.png')" 
-						onmouseup="onMouse('#queueBtn#{mp3File.index}', 'img/toqueue-shadow.png')" />
+					<h:graphicImage id="qBtn" url="img/toqueue.png" styleClass="icon" alt="Put to queue"
+						onmouseover="onMouse('#qBtn#{mp3File.index}', 'img/toqueue-shadow.png')" 
+						onmouseout="onMouse('#qBtn#{mp3File.index}', 'img/toqueue.png')" 
+						onmousedown="onMouse('#qBtn#{mp3File.index}', 'img/toqueue-pressed.png')" 
+						onmouseup="onMouse('#qBtn#{mp3File.index}', 'img/toqueue-shadow.png')" />
 				</h:commandLink>
 			</h:form>
 			

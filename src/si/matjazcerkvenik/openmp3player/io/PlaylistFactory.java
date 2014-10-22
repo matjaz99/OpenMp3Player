@@ -222,14 +222,17 @@ public class PlaylistFactory {
 	 * @param m
 	 * @param source
 	 */
-	public void savePlaylist(Mp3Files m, String source) {
+	public void savePlaylist(Playlist p) {
 		try {
 
-			File file = new File(OContext.CFG_DIR + "playlists/" + source);
+			File file = new File(OContext.CFG_DIR + "playlists/" + p.getSource());
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			
+			Mp3Files m = new Mp3Files();
+			m.setFiles(p.getMp3Files());
 
 			jaxbMarshaller.marshal(m, file);
 //			jaxbMarshaller.marshal(m, System.out);

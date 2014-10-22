@@ -40,23 +40,6 @@
    <from-outcome>addPlaylist</from-outcome>
    <to-view-id>/addPlaylist.jsp</to-view-id>
   </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/settings.jsp</from-view-id>
-  <navigation-case>
-   <from-outcome>home</from-outcome>
-   <to-view-id>/home.jsp</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/about.jsp</from-view-id>
-  <navigation-case>
-   <from-outcome>home</from-outcome>
-   <to-view-id>/home.jsp</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/playlists.jsp</from-view-id>
   <navigation-case>
    <from-outcome>home</from-outcome>
    <to-view-id>/home.jsp</to-view-id>

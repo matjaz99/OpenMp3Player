@@ -163,15 +163,15 @@ public class PlistMng {
 //		deletePlistFile(name);
 		
 		
-		List<Playlist> list = new ArrayList<Playlist>();
-		
-		for (int i = 0; i < playlists.size(); i++) {
-			if (!playlists.get(i).getName().equals(name)) {
-				list.add(playlists.get(i));
-			}
-		}
-		
-		playlists = list;
+//		List<Playlist> list = new ArrayList<Playlist>();
+//		
+//		for (int i = 0; i < playlists.size(); i++) {
+//			if (!playlists.get(i).getName().equals(name)) {
+//				list.add(playlists.get(i));
+//			}
+//		}
+//		
+//		playlists = list;
 		
 		// if deleted playlist was actove, set another playlist as active
 		if (activePlaylist.equals(name) || showPlaylist.equals(name)) {
@@ -223,20 +223,13 @@ public class PlistMng {
 //		x.saveToXml(p.getSource());
 	}
 	
-	/**
-	 * Remove all songs from queue.
-	 */
-	public void emptyQueue() {
-		queue.getMp3Files().clear();
-	}
+//	/**
+//	 * Remove all songs from queue.
+//	 */
+//	public void emptyQueue() {
+//		queue.getMp3Files().clear();
+//	}
 	
-	/**
-	 * Return queue playlist
-	 * @return queue
-	 */
-	public Playlist getQueue() {
-		return queue;
-	}
 	
 
 	/**

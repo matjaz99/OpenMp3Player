@@ -42,18 +42,27 @@
 				</h:column>
 				
 				<h:column>
-					<h:outputText value="#{plist.name}" />
+					<h:outputText value="#{plist.name} - " />
 					<h:outputText value="#{plist.source}" />
 				</h:column>
 				
 				<h:column>
-					<h:form prependId="false">
+					<h:form prependId="false" rendered="#{!plist.queue}">
 						<h:commandLink action="#{playlistsBean.deletePlaylist}">
 							<h:graphicImage id="queueBtn" url="img/remove.png" styleClass="icon" alt="Remove"
 								onmouseover="onMouse('#queueBtn', 'img/remove-shadow.png')" 
 								onmouseout="onMouse('#queueBtn', 'img/remove.png')" 
 								onmousedown="onMouse('#queueBtn', 'img/remove-pressed.png')" 
 								onmouseup="onMouse('#queueBtn', 'img/remove-shadow.png')" />
+						</h:commandLink>
+					</h:form>
+					<h:form prependId="false" rendered="#{plist.queue}">
+						<h:commandLink action="#{playlistsBean.deletePlaylist}">
+							<h:graphicImage id="emptyBtn" url="img/empty.png" styleClass="icon" alt="Empty"
+								onmouseover="onMouse('#emptyBtn', 'img/empty-shadow.png')" 
+								onmouseout="onMouse('#emptyBtn', 'img/empty.png')" 
+								onmousedown="onMouse('#emptyBtn', 'img/empty-pressed.png')" 
+								onmouseup="onMouse('#emptyBtn', 'img/empty-shadow.png')" />
 						</h:commandLink>
 					</h:form>
 				</h:column>

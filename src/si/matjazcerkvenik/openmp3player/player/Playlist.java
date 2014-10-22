@@ -51,6 +51,13 @@ public class Playlist {
 		mp3files.add(mp3);
 	}
 	
+	public boolean isQueue() {
+		if (source.equals("queue")) {
+			return true;
+		}
+		return false;
+	}
+	
 //	public boolean isEditable() {
 //		if (source.endsWith(".xml")) {
 //			return true;

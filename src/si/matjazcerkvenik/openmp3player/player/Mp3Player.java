@@ -1,5 +1,7 @@
 package si.matjazcerkvenik.openmp3player.player;
 
+import java.util.ArrayList;
+
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
@@ -210,12 +212,14 @@ public class Mp3Player {
 		Playlist p = new Playlist();
 		p.setName(name);
 		p.setSource(source);
+		p.setMp3files(new ArrayList<Mp3File>());
 		
 		playlists.add(p);
 		
 		logger.info("Mp3Player:addPlaylist(): name: " + name + " source: " + source);
 		
 		if (source.equals("queue")) {
+			queue = p;
 			return;
 		}
 		
@@ -225,7 +229,7 @@ public class Mp3Player {
 	}
 	
 	/**
-	 * Delete playlist with given name and source file and save to playlists.xml
+	 * Delete playlist with given name and source file and save playlists.xml
 	 * @param p
 	 */
 	public void deletePlaylist(Playlist p) {
@@ -236,6 +240,39 @@ public class Mp3Player {
 		
 		PlaylistFactory.getInstance().savePlaylists();
 		
+	}
+	
+	public void saveQueue(String name) {
+		
+		if (name == null || name.trim().length() == 0) {
+			return;
+		}
+		
+		Playlist p = new Playlist();
+		p.setName(name);
+		p.setSource(name + ".xml");
+		
+		for (int i = 0; i < queue.getMp3Files().size(); i++) {
+			try {
+				Mp3File mp3 = (Mp3File) queue.getMp3Files().get(i).clone();
+				mp3.setIndex(i);
+				p.addMp3File(mp3);
+			} catch (CloneNotSupportedException e) {
+				logger.error("Mp3Player:saveQueue(): CloneNotSupportedException", e);
+			}
+		}
+		
+		playlists.add(p);
+		
+		PlaylistFactory.getInstance().savePlaylist(p);
+		PlaylistFactory.getInstance().savePlaylists();
+	}
+	
+	/**
+	 * Remove all songs from queue.
+	 */
+	public void emptyQueue() {
+		queue.getMp3Files().clear();
 	}
 	
 }

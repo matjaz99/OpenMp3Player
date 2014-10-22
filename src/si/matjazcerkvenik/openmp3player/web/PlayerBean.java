@@ -24,6 +24,7 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
 public class PlayerBean {
 	
 	private String selectedPlaylist = null;
+	private String newQueueName = null;
 	
 	private SimpleLogger logger = null;
 	
@@ -69,6 +70,16 @@ public class PlayerBean {
 		Mp3Player.getInstance().setActivePlaylist(selectedPlaylist);
 	}
 	
+	public String gotoQueue() {
+		Mp3Player.getInstance().setActivePlaylist("queue");
+		return "home";
+	}
+	
+	public String saveQueue() {
+		Mp3Player.getInstance().saveQueue(newQueueName);
+		return "home";
+	}
+	
 	
 	
 	/**
@@ -90,6 +101,18 @@ public class PlayerBean {
 	
 	
 	
+
+	public String getNewQueueName() {
+		return newQueueName;
+	}
+
+
+
+	public void setNewQueueName(String newQueueName) {
+		this.newQueueName = newQueueName;
+	}
+
+
 
 	/**
 	 * Return title of currently playing song. If no song is playing "null" is returned.
