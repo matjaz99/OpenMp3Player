@@ -144,7 +144,10 @@ public class PlaylistFactory {
 		}
 		
 		Playlist playlist = new Playlist();
-		playlist.setMp3files(files);
+		Mp3Files mp3files = new Mp3Files();
+		mp3files.setFiles(files);
+//		playlist.setMp3files(files);
+		playlist.setMp3files(mp3files);
 		playlist.setName(name);
 		playlist.setSource(source);
 		
@@ -223,6 +226,7 @@ public class PlaylistFactory {
 	 * @param source
 	 */
 	public void savePlaylist(Playlist p) {
+		logger.info("PlaylistFactory:savePlaylist(): saving...");
 		try {
 
 			File file = new File(OContext.CFG_DIR + "playlists/" + p.getSource());
@@ -231,8 +235,8 @@ public class PlaylistFactory {
 
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			
-			Mp3Files m = new Mp3Files();
-			m.setFiles(p.getMp3Files());
+			Mp3Files m = p.getMp3files();
+//			m.setFiles(p.getMp3Files());
 
 			jaxbMarshaller.marshal(m, file);
 //			jaxbMarshaller.marshal(m, System.out);

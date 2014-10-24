@@ -22,11 +22,11 @@ public class PlaylistBean {
 	}
 	
 	public List<Mp3File> getMp3List() {
-		return Mp3Player.getInstance().getActivePlaylist().getMp3Files();
+		return Mp3Player.getInstance().getActivePlaylist().getMp3files().getFiles();
 	}
 	
 	public int getPlaylistSize() {
-		return Mp3Player.getInstance().getActivePlaylist().getMp3Files().size();
+		return Mp3Player.getInstance().getActivePlaylist().getMp3files().getFiles().size();
 	}
 	
 	public void play() {

@@ -68,7 +68,7 @@ public class Mp3Player {
 			stop();
 		}
 		
-		currentlyPlaying = activePlaylist.getMp3Files().get(i);
+		currentlyPlaying = activePlaylist.getMp3files().getFiles().get(i);
 		logger.info("Mp3Player:play(): playlist: " + activePlaylist.getName() 
 				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
 		player.play(currentlyPlaying.getPath());
@@ -104,7 +104,7 @@ public class Mp3Player {
 		}
 		
 		if (currentlyPlaying.getIndex() 
-				== activePlaylist.getMp3Files().size() - 1) {
+				== activePlaylist.getMp3files().getFiles().size() - 1) {
 			play(0);
 		} else {
 			play(currentlyPlaying.getIndex() + 1);
@@ -122,7 +122,7 @@ public class Mp3Player {
 		}
 		
 		if (currentlyPlaying.getIndex() == 0) {
-			play(activePlaylist.getMp3Files().size() - 1);
+			play(activePlaylist.getMp3files().getFiles().size() - 1);
 		} else {
 			play(currentlyPlaying.getIndex() - 1);
 		}
@@ -193,7 +193,7 @@ public class Mp3Player {
 		try {
 			
 			Mp3File clone = (Mp3File) mp3.clone();
-			clone.setIndex(queue.getMp3Files().size());
+			clone.setIndex(queue.getMp3files().getFiles().size());
 			queue.addMp3File(clone);
 			
 		} catch (CloneNotSupportedException e) {
@@ -212,7 +212,7 @@ public class Mp3Player {
 		Playlist p = new Playlist();
 		p.setName(name);
 		p.setSource(source);
-		p.setMp3files(new ArrayList<Mp3File>());
+//		p.setMp3files(new Mp3Files());
 		
 		playlists.add(p);
 		
@@ -224,7 +224,7 @@ public class Mp3Player {
 		}
 		
 		PlaylistFactory.getInstance().savePlaylists();
-		p.setMp3files(PlaylistFactory.getInstance().getPlaylist(source).getMp3Files());
+		p.setMp3files(PlaylistFactory.getInstance().getPlaylist(source).getMp3files());
 		
 	}
 	
@@ -252,9 +252,9 @@ public class Mp3Player {
 		p.setName(name);
 		p.setSource(name + ".xml");
 		
-		for (int i = 0; i < queue.getMp3Files().size(); i++) {
+		for (int i = 0; i < queue.getMp3files().getFiles().size(); i++) {
 			try {
-				Mp3File mp3 = (Mp3File) queue.getMp3Files().get(i).clone();
+				Mp3File mp3 = (Mp3File) queue.getMp3files().getFiles().get(i).clone();
 				mp3.setIndex(i);
 				p.addMp3File(mp3);
 			} catch (CloneNotSupportedException e) {
@@ -272,7 +272,7 @@ public class Mp3Player {
 	 * Remove all songs from queue.
 	 */
 	public void emptyQueue() {
-		queue.getMp3Files().clear();
+		queue.getMp3files().getFiles().clear();
 	}
 	
 }

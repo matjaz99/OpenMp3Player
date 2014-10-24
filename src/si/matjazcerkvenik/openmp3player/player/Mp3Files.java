@@ -10,6 +10,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Mp3Files {
 	
 	private List<Mp3File> files = new ArrayList<Mp3File>();
+	
+	public void add(Mp3File m) {
+		files.add(m);
+	}
+	
 
 	public List<Mp3File> getFiles() {
 		return files;

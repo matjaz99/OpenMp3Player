@@ -31,42 +31,17 @@ public class PlistMng {
 	private SimpleLogger logger = null;
 	
 	public PlistMng() {
-		
-//		logger = OContext.getInstance().getLogger();
-		
-//		loadPlaylists();
+
 		activePlaylist = playlists.get(0).getName();
 		showPlaylist = activePlaylist;
-//		
-//		queue = new Playlist();
-//		queue.setName("Queue");
-//		queue.setSource("queue");
+
 	}
 
 	
-	/**
-	 * Load all playlists from playlists.xml.
-	 */
-//	public void loadPlaylists() {
-//
-//		Playlists plists = unmarshall();
-//		playlists = plists.getPlist();
-//		setActivePlaylist(playlists.get(0).getName());
-//
-//	}
-	
-	
-	/**
-	 * Return list of all loaded playlists
-	 * @return
-	 */
-//	public List<Playlist> getPlaylists() {
-//		return playlists;
-//	}
 
-//	public void setPlaylists(List<Playlist> playlists) {
-//		this.playlists = playlists;
-//	}
+	
+	
+
 
 	/**
 	 * Return active playlist.
@@ -135,23 +110,7 @@ public class PlistMng {
 		logger.debug("PlistMng:resetActivePlaylist(): active: " + activePlaylist);
 	}
 	
-	
-//	/**
-//	 * Create new playlist with given name and source and save to playlists.xml
-//	 * @param name
-//	 * @param source
-//	 */
-//	public void addPlaylist(String name, String source) {
-//		
-//		Playlist p = new Playlist();
-//		p.setName(name);
-//		p.setSource(source);
-//		
-//		playlists.add(p);
-//		
-//		marshall();
-//		
-//	}
+
 	
 	
 	/**
@@ -182,82 +141,7 @@ public class PlistMng {
 //		marshall();
 		
 	}
-	
-//	/**
-//	 * Add current song to queue
-//	 * @param i
-//	 */
-//	public void addToQueue(int i) {
-//		Mp3File mp3 = getShowPlaylist().getMp3Files().get(i);
-//		try {
-//			
-//			Mp3File clone = (Mp3File) mp3.clone();
-//			clone.setIndex(queue.getMp3Files().size());
-//			queue.addMp3File(clone);
-//			
-//		} catch (CloneNotSupportedException e) {
-//			logger.error("PlistMng:addToQueue(): CloneNotSupportedException", e);
-//		}
-//		
-//		logger.info("PlistMng:addToQueue(): added " + mp3.getFile());
-//	}
-	
-	public void saveQueue(String name) {
-		Playlist p = new Playlist();
-		p.setName(name);
-		p.setSource(name + ".xml");
-//		for (int i = 0; i < queue.getMp3Files().size(); i++) {
-//			try {
-//				Mp3File mp3 = (Mp3File) queue.getMp3Files().get(i).clone();
-//				mp3.setIndex(i);
-//				p.addMp3File(mp3);
-//			} catch (CloneNotSupportedException e) {
-//				logger.error("PlistMng:saveQueue(): CloneNotSupportedException", e);
-//			}
-//		}
-		playlists.add(p);
-		
-		marshall();
-		
-//		XmlPlaylistFileFinder x = new XmlPlaylistFileFinder();
-//		x.saveToXml(p.getSource());
-	}
-	
-//	/**
-//	 * Remove all songs from queue.
-//	 */
-//	public void emptyQueue() {
-//		queue.getMp3Files().clear();
-//	}
-	
-	
 
-	/**
-	 * Save to playlists.xml
-	 */
-	public void marshall() {
-
-//		Playlists p = new Playlists();
-//		for (int i = 0; i < playlists.size(); i++) {
-//			p.add(playlists.get(i));
-//		}
-//
-//		try {
-//
-//			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
-//			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
-//			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-//
-//			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//
-//			 jaxbMarshaller.marshal(p, file);
-////			jaxbMarshaller.marshal(p, System.out);
-//
-//		} catch (JAXBException e) {
-//			logger.error("JAXBException", e);
-//		}
-
-	}
 	
 
 	

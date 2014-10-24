@@ -3,9 +3,12 @@ package si.matjazcerkvenik.openmp3player.player;
 import java.io.File;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
+//@XmlType(propOrder = { "path", "artist", "title", "album"})
 public class Mp3File implements Cloneable {
-
+	
 	private int index = 0;
 	private File file = null;
 	private String path = null;
@@ -13,7 +16,7 @@ public class Mp3File implements Cloneable {
 	private String artist = "null";
 	private String album = "null";
 
-	public int getIndex() {
+	@XmlTransient public int getIndex() {
 		return index;
 	}
 
@@ -25,7 +28,7 @@ public class Mp3File implements Cloneable {
 	 * Get absolute path of this file
 	 * @return pathname
 	 */
-	public String getFile() {
+	@XmlTransient public String getFile() {
 		return file.getAbsolutePath();
 	}
 
