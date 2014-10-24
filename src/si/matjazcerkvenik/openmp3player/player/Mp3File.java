@@ -4,7 +4,6 @@ import java.io.File;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 
 //@XmlType(propOrder = { "path", "artist", "title", "album"})
 public class Mp3File implements Cloneable {

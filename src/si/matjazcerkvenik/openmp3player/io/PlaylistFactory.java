@@ -49,7 +49,7 @@ public class PlaylistFactory {
 		
 		try {
 
-			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
+			File file = new File(OContext.HOME_DIR + "playlists/playlists.xml");
 			if (!file.exists()) {
 				logger.warn("PlaylistFactory:getPlaylists(): playlists.xml not found; creating new");
 				playlists = new Playlists();
@@ -79,7 +79,7 @@ public class PlaylistFactory {
 		logger.info("PlaylistFactory:savePlaylists(): saving...");
 		try {
 
-			File file = new File(OContext.CFG_DIR + "playlists/playlists.xml");
+			File file = new File(OContext.HOME_DIR + "playlists/playlists.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -165,7 +165,7 @@ public class PlaylistFactory {
 				
 				if (plist.getSource().endsWith(".xml")) {
 					
-					File f = new File(OContext.CFG_DIR + "playlists/" + plist.getSource());
+					File f = new File(OContext.HOME_DIR + "playlists/" + plist.getSource());
 					logger.debug("PlaylistFactory:deletePlaylist(): delete: " + f.getAbsolutePath());
 					f.delete();
 					
@@ -204,12 +204,12 @@ public class PlaylistFactory {
 		Mp3Files mp3Files = null;
 		try {
 
-			File file = new File(OContext.CFG_DIR + "playlists/" + source);
+			File file = new File(OContext.HOME_DIR + "playlists/" + source);
 			if (!file.exists()) {
-				logger.warn("PlaylistFactory:unmarshall(): playlist not found: " + OContext.CFG_DIR + "playlists/" + source);
+				logger.warn("PlaylistFactory:unmarshall(): playlist not found: " + OContext.HOME_DIR + "playlists/" + source);
 				return new Mp3Files();
 			}
-			logger.debug("PlaylistFactory:unmarshall(): playlist found: " + OContext.CFG_DIR + "playlists/" + source);
+			logger.debug("PlaylistFactory:unmarshall(): playlist found: " + OContext.HOME_DIR + "playlists/" + source);
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			mp3Files = (Mp3Files) jaxbUnmarshaller.unmarshal(file);
@@ -229,14 +229,13 @@ public class PlaylistFactory {
 		logger.info("PlaylistFactory:savePlaylist(): saving...");
 		try {
 
-			File file = new File(OContext.CFG_DIR + "playlists/" + p.getSource());
+			File file = new File(OContext.HOME_DIR + "playlists/" + p.getSource());
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			
 			Mp3Files m = p.getMp3files();
-//			m.setFiles(p.getMp3Files());
 
 			jaxbMarshaller.marshal(m, file);
 //			jaxbMarshaller.marshal(m, System.out);
@@ -247,25 +246,6 @@ public class PlaylistFactory {
 
 	}
 	
-//	public void saveToXml(String source) {
-//		// TODO not used yet!!	
-//		OContext mng = OContext.getInstance();
-//
-//		List<Playlist> plists = mng.getPlistMng().getPlaylists();
-//
-//		Playlist p = null;
-//		for (int i = 0; i < plists.size(); i++) {
-//			if (plists.get(i).getSource().equals(source)) {
-//				p = plists.get(i);
-//			}
-//		}
-//		
-//		Mp3Files m = new Mp3Files();
-//		m.setFile(p.getMp3Files());
-//		
-//		marshall(m, p.getSource());
-//		
-//	}
 	
 	
 	

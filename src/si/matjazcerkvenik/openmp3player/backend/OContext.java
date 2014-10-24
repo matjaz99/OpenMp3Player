@@ -3,7 +3,6 @@ package si.matjazcerkvenik.openmp3player.backend;
 import javax.faces.context.FacesContext;
 
 import si.matjazcerkvenik.openmp3player.cli.CommandLine;
-import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.Watchdog;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -15,7 +14,7 @@ public class OContext {
 	private CommandLine cli = null;
 	public static boolean repeatSong = false;
 	
-	public static String CFG_DIR = "/Users/matjaz/OpenMp3Player/";
+	public static String HOME_DIR = "/Users/matjaz/OpenMp3Player/";
 	public static String version = "0.0";
 	
 	private SimpleLogger logger = null;
@@ -41,14 +40,10 @@ public class OContext {
 	 */
 	private void initialize() {
 		
-//		System.out.println("Request Context Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
-//		System.out.println("Request Path Info: " + FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo());
-//		System.out.println("Request Sevlet Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestServletPath());
-		
 		Utils.init();
 		
 		logger = new SimpleLogger();
-		logger.setFilename(OContext.CFG_DIR + "log/" + Utils.LOGGER_FILENAME);
+		logger.setFilename(OContext.HOME_DIR + "log/" + Utils.LOGGER_FILENAME);
 		logger.setLogLevel(Utils.LOGGER_LEVEL);
 		logger.setAppend(Utils.LOGGER_APPEND);
 		logger.setVerbose(true);
@@ -57,24 +52,26 @@ public class OContext {
 		logger.info("\t|       Start OpenMp3Player       |");
 		logger.info("\t+---------------------------------+");
 		logger.info("");
-		logger.info("CFG_DIR=" + OContext.CFG_DIR);
+		logger.info("CFG_DIR=" + OContext.HOME_DIR);
 		logger.info("Version=" + version);
-		logger.info("OS=" + System.getProperty("os.name"));
+		logger.info("OS=" + Utils.getOsType());
+//		logger.debug("Request Context Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
+//		logger.debug("Request Path Info: " + FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo());
+//		logger.debug("Request Sevlet Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestServletPath());
 		
 		
-		watchdog = new Watchdog(this);
+		watchdog = new Watchdog();
 		watchdog.start();
 		
-//		
 //		Utils.changePermissions();
 //		Utils.setVolume(Utils.CURRENT_VOLUME_LEVEL);
 		
-//		if (Utils.TELNET_ENABLED) {
-//			cli = new CommandLine();
-//			cli.start();
-//		} else {
-//			logger.info("CLI disabled");
-//		}
+		if (Utils.TELNET_ENABLED) {
+			cli = new CommandLine();
+			cli.start();
+		} else {
+			logger.info("CLI disabled");
+		}
 		
 		logger.info("OContext initialized");
 		

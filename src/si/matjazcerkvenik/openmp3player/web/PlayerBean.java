@@ -214,7 +214,7 @@ public class PlayerBean {
 	 */
 	public boolean isRepeatOn() {
 		// TODO why is this method called so many times???
-		logger.info("PlayerBean:isRepeatOn(): " + Mp3Player.getInstance().isRepeatOn());
+//		logger.info("PlayerBean:isRepeatOn(): " + Mp3Player.getInstance().isRepeatOn());
 		return Mp3Player.getInstance().isRepeatOn();
 	}
 	
