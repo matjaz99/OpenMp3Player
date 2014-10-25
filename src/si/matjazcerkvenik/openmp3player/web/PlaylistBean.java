@@ -22,16 +22,17 @@ public class PlaylistBean {
 	}
 	
 	public List<Mp3File> getMp3List() {
-		return Mp3Player.getInstance().getActivePlaylist().getMp3files().getFiles();
+		return Mp3Player.getInstance().getPassivePlaylist().getMp3files().getFiles();
 	}
 	
 	public int getPlaylistSize() {
-		return Mp3Player.getInstance().getActivePlaylist().getMp3files().getFiles().size();
+		return Mp3Player.getInstance().getPassivePlaylist().getMp3files().getFiles().size();
 	}
 	
 	public void play() {
 		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		logger.debug("PlaylistBean:play(): " + mp3.getIndex());
+		Mp3Player.getInstance().setPassiveToActive();
 		Mp3Player.getInstance().play(mp3.getIndex());
 	}
 	

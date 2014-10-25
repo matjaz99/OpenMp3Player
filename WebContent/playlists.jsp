@@ -31,7 +31,7 @@
 				
 				<h:column>
 					<h:form prependId="false">
-						<h:commandLink action="#{playlistsBean.showPlaylist}">
+						<h:commandLink action="#{playlistsBean.gotoPlaylist}">
 							<h:graphicImage id="playBtn" url="img/folder.png" styleClass="icon" alt="Goto"
 								onmouseover="onMouse('#playBtn', 'img/folder-shadow.png')" 
 								onmouseout="onMouse('#playBtn', 'img/folder.png')" 

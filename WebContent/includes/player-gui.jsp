@@ -55,7 +55,7 @@
 		</h:selectOneMenu>
 	</h:form>
 		
-	<h:panelGrid id="ddButton">
+	<h:panelGrid id="ddButton" rendered="false">
 		<h:graphicImage id="ddPanelBtn" url="img/showMenu.png" styleClass="icon"
 			onmouseover="onMouse('#ddPanelBtn', 'img/showMenu-shadow.png')" 
 			onmouseout="onMouse('#ddPanelBtn', 'img/showMenu.png')" 

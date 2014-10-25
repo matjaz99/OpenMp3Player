@@ -35,11 +35,11 @@ public class PlaylistsBean {
 	 * Action: go to playlist when goto button is pressed
 	 * @return home page
 	 */
-	public String showPlaylist() {
+	public String gotoPlaylist() {
 		
 		Playlist p = (Playlist) dataTable.getRowData();
-		logger.info("PlaylistsBean:showPlaylist(): " + p.getName());
-		Mp3Player.getInstance().setActivePlaylist(p.getName());
+		logger.info("PlaylistsBean:gotoPlaylist(): " + p.getName());
+		Mp3Player.getInstance().setPassivePlaylist(p.getName());
 		return "home";
 		
 	}

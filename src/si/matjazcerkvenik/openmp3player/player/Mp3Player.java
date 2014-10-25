@@ -1,7 +1,5 @@
 package si.matjazcerkvenik.openmp3player.player;
 
-import java.util.ArrayList;
-
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
@@ -18,6 +16,7 @@ public class Mp3Player {
 	
 	private Playlists playlists = null;
 	private Playlist activePlaylist = null;
+	private Playlist passivePlaylist = null;
 	private Playlist queue = null;
 	
 	private Mp3Player() {
@@ -28,6 +27,7 @@ public class Mp3Player {
 		
 		playlists = PlaylistFactory.getInstance().getPlaylists();
 		activePlaylist = PlaylistFactory.getInstance().getPlaylist(playlists.getPlist().get(0).getName());
+		passivePlaylist = activePlaylist;
 		
 //		queue = new Playlist();
 //		queue.setName("Queue");
@@ -52,7 +52,7 @@ public class Mp3Player {
 	public Mp3File getCurrentlyPlaying() {
 		return currentlyPlaying;
 	}
-
+	
 	
 	
 	
@@ -70,7 +70,7 @@ public class Mp3Player {
 		
 		currentlyPlaying = activePlaylist.getMp3files().getFiles().get(i);
 		logger.info("Mp3Player:play(): playlist: " + activePlaylist.getName() 
-				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
+				+ ", MP3: " + currentlyPlaying.toString());
 		player.play(currentlyPlaying.getPath());
 		
 		return currentlyPlaying.getTitle();
@@ -87,7 +87,7 @@ public class Mp3Player {
 		}
 		
 		logger.info("Mp3Player:stop(): playlist: " + activePlaylist.getName() 
-				+ ", MP3: [" + currentlyPlaying.getIndex() + "] " + currentlyPlaying.getFile());
+				+ ", MP3: [" + currentlyPlaying.toString());
 		player.stop();
 		currentlyPlaying = null;
 		
@@ -162,6 +162,31 @@ public class Mp3Player {
 			activePlaylist = PlaylistFactory.getInstance().getPlaylist(name);
 		}
 		
+	}
+	
+	/**
+	 * Return passive playlist
+	 * @return size
+	 */
+	public Playlist getPassivePlaylist() {
+		logger.debug("Mp3Player:getPassivePlaylist(): " + passivePlaylist.getName());
+		return passivePlaylist;
+	}
+	
+	public void setPassivePlaylist(String name) {
+		logger.debug("Mp3Player:setPassivePlaylist(): " + name);
+		if (name.equals("Queue")) {
+			passivePlaylist = queue;
+		} else {
+			passivePlaylist = PlaylistFactory.getInstance().getPlaylist(name);
+		}
+		
+	}
+	
+	public void setPassiveToActive() {
+		logger.debug("Mp3Player:setPassiveToActive(): passive: " + passivePlaylist.getName()
+				+ " to active: " + activePlaylist.getName());
+		activePlaylist = passivePlaylist;
 	}
 
 //	public Playlist getQueue() {

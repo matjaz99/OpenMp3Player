@@ -67,11 +67,11 @@ public class PlayerBean {
 	public void playlistChanged(ValueChangeEvent e) {
 		selectedPlaylist = e.getNewValue().toString();
 		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
-		Mp3Player.getInstance().setActivePlaylist(selectedPlaylist);
+		Mp3Player.getInstance().setPassivePlaylist(selectedPlaylist);
 	}
 	
 	public String gotoQueue() {
-		Mp3Player.getInstance().setActivePlaylist("Queue");
+		Mp3Player.getInstance().setPassivePlaylist("Queue");
 		return "home";
 	}
 	
@@ -88,7 +88,7 @@ public class PlayerBean {
 	 */
 	public String getSelectedPlaylist() {
 		if (selectedPlaylist == null) {
-			selectedPlaylist = Mp3Player.getInstance().getActivePlaylist().getName();
+			selectedPlaylist = Mp3Player.getInstance().getPassivePlaylist().getName();
 		}
 		return selectedPlaylist;
 	}
@@ -162,6 +162,7 @@ public class PlayerBean {
 	 * @return title of the song
 	 */
 	public String play() {
+		Mp3Player.getInstance().setPassiveToActive();
 		return Mp3Player.getInstance().play(0);
 	}
 	

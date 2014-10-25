@@ -93,8 +93,7 @@ public class Mp3File implements Cloneable {
 
 	@Override
 	public String toString() {
-		return "[" + index + "] Path: " + path + ", Title: " + title
-				+ ", Artist: " + artist + ", Album: " + album;
+		return "[" + index + "] Path: " + path;
 	}
 	
 	@Override
