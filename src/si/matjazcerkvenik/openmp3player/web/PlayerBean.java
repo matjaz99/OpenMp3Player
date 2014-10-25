@@ -50,8 +50,8 @@ public class PlayerBean {
 		
 		for (int i = 0; i < playlists.getPlist().size(); i++) {
 			String s = playlists.getPlist().get(i).getName();
-			String ss = playlists.getPlist().get(i).getSource();
-			list.add(new SelectItem(ss, s));
+//			String ss = playlists.getPlist().get(i).getSource();
+			list.add(new SelectItem(s, s));
 		}
 		
 		return list;
@@ -71,7 +71,7 @@ public class PlayerBean {
 	}
 	
 	public String gotoQueue() {
-		Mp3Player.getInstance().setActivePlaylist("queue");
+		Mp3Player.getInstance().setActivePlaylist("Queue");
 		return "home";
 	}
 	
@@ -88,7 +88,7 @@ public class PlayerBean {
 	 */
 	public String getSelectedPlaylist() {
 		if (selectedPlaylist == null) {
-			selectedPlaylist = Mp3Player.getInstance().getActivePlaylist().getSource();
+			selectedPlaylist = Mp3Player.getInstance().getActivePlaylist().getName();
 		}
 		return selectedPlaylist;
 	}

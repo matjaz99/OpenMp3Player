@@ -63,7 +63,7 @@ public class PlaylistFactory {
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			playlists = (Playlists) jaxbUnmarshaller.unmarshal(file);
-			logger.debug(playlists.toString());
+			logger.debug("PlaylistFactory:getPlaylists(): " + playlists.toString());
 
 		} catch (JAXBException e) {
 			logger.error("JAXBException", e);
@@ -115,41 +115,44 @@ public class PlaylistFactory {
 	
 	
 	/**
-	 * Get single playlist
-	 * @param source
+	 * Get playlist containing mp3 files
+	 * @param name
 	 * @return playlist
 	 */
-	public Playlist getPlaylist(String source) {
+	public Playlist getPlaylist(String name) {
 		
-		String name = "";
+		// search for playlist
 		Playlists p = getPlaylists();
+		Playlist playlist = null;
 		for (int i = 0; i < p.getPlist().size(); i++) {
-			if (p.getPlist().get(i).getSource().equals(source)) {
-				name = p.getPlist().get(i).getName();
+			if (p.getPlist().get(i).getName().equals(name)) {
+				playlist = p.getPlist().get(i);
 			}
 		}
 		
+		// load mp3 files
 		List<Mp3File> files = null;
 		
-		if (source.endsWith(".xml")) {
-			files = loadFromXml(source).getFiles();
+		if (playlist.getSource().endsWith(".xml")) {
+			files = loadFromXml(playlist.getSource()).getFiles();
 		} else {
-			files = loadFromDirectory(source);
+			files = loadFromDirectory(playlist.getSource());
 		}
 		
-		logger.info("PlaylistFactory:getPlaylist(): loaded " + files.size() + " mp3s from playlist " + source);
+		logger.info("PlaylistFactory:getPlaylist(): loaded " + files.size() + " mp3s from playlist " + name);
 		
+		// set indexes
 		for (int i = 0; i < files.size(); i++) {
 			files.get(i).setIndex(i);
 		}
 		
-		Playlist playlist = new Playlist();
+//		Playlist playlist = new Playlist();
 		Mp3Files mp3files = new Mp3Files();
 		mp3files.setFiles(files);
 //		playlist.setMp3files(files);
 		playlist.setMp3files(mp3files);
-		playlist.setName(name);
-		playlist.setSource(source);
+//		playlist.setName(name);
+//		playlist.setSource(source);
 		
 		return playlist;
 	}

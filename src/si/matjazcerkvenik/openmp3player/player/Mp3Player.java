@@ -27,7 +27,7 @@ public class Mp3Player {
 		player = new JLayerPlayer();
 		
 		playlists = PlaylistFactory.getInstance().getPlaylists();
-		activePlaylist = PlaylistFactory.getInstance().getPlaylist(playlists.getPlist().get(0).getSource());
+		activePlaylist = PlaylistFactory.getInstance().getPlaylist(playlists.getPlist().get(0).getName());
 		
 //		queue = new Playlist();
 //		queue.setName("Queue");
@@ -156,7 +156,7 @@ public class Mp3Player {
 	
 	public void setActivePlaylist(String name) {
 		logger.debug("Mp3Player:setActivePlaylist(): " + name);
-		if (name.equals("queue")) {
+		if (name.equals("Queue")) {
 			activePlaylist = queue;
 		} else {
 			activePlaylist = PlaylistFactory.getInstance().getPlaylist(name);
@@ -224,7 +224,7 @@ public class Mp3Player {
 		}
 		
 		PlaylistFactory.getInstance().savePlaylists();
-		p.setMp3files(PlaylistFactory.getInstance().getPlaylist(source).getMp3files());
+		p.setMp3files(PlaylistFactory.getInstance().getPlaylist(name).getMp3files());
 		
 	}
 	

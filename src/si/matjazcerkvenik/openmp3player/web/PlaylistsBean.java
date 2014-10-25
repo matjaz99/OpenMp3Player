@@ -38,8 +38,8 @@ public class PlaylistsBean {
 	public String showPlaylist() {
 		
 		Playlist p = (Playlist) dataTable.getRowData();
-		logger.info("PlaylistsBean:showPlaylist(): " + p.getSource());
-		Mp3Player.getInstance().setActivePlaylist(p.getSource());
+		logger.info("PlaylistsBean:showPlaylist(): " + p.getName());
+		Mp3Player.getInstance().setActivePlaylist(p.getName());
 		return "home";
 		
 	}
