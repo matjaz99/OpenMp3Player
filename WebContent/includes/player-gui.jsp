@@ -129,16 +129,7 @@
 		</h:commandLink>
 	</h:form>
 	
-	<h:form prependId="false">
-		<h:inputText value="#{playerBean.newQueueName}" />
-		<h:commandLink action="#{playerBean.saveQueue}">
-			<h:graphicImage id="saveBtn" url="img/save.png" styleClass="icon"
-				onmouseover="onMouse('#saveBtn', 'img/save-shadow.png')" 
-				onmouseout="onMouse('#saveBtn', 'img/save.png')" 
-				onmousedown="onMouse('#saveBtn', 'img/save-pressed.png')" 
-				onmouseup="onMouse('#saveBtn', 'img/save-shadow.png')" />
-		</h:commandLink>
-	</h:form>
+	
 	
 	<h:form prependId="false">
 		<h:commandLink action="settings">

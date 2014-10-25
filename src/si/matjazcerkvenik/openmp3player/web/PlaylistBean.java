@@ -29,6 +29,13 @@ public class PlaylistBean {
 		return Mp3Player.getInstance().getPassivePlaylist().getMp3files().getFiles().size();
 	}
 	
+	public boolean isQueue() {
+		if (Mp3Player.getInstance().getPassivePlaylist().getName().equals("Queue")) {
+			return true;
+		}
+		return false;
+	}
+	
 	public void play() {
 		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		logger.debug("PlaylistBean:play(): " + mp3.getIndex());

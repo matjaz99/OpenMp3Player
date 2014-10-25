@@ -72,7 +72,7 @@ public class PlayerBean {
 	
 	public String gotoQueue() {
 		Mp3Player.getInstance().setPassivePlaylist("Queue");
-		return "home";
+		return "queue";
 	}
 	
 	public String saveQueue() {

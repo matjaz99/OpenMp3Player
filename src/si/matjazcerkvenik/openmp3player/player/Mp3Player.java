@@ -184,9 +184,8 @@ public class Mp3Player {
 	}
 	
 	public void setPassiveToActive() {
-		logger.debug("Mp3Player:setPassiveToActive(): passive: " + passivePlaylist.getName()
-				+ " to active: " + activePlaylist.getName());
 		activePlaylist = passivePlaylist;
+		logger.debug("Mp3Player:setPassiveToActive(): active: " + activePlaylist.getName());
 	}
 
 //	public Playlist getQueue() {
@@ -237,7 +236,6 @@ public class Mp3Player {
 		Playlist p = new Playlist();
 		p.setName(name);
 		p.setSource(source);
-//		p.setMp3files(new Mp3Files());
 		
 		playlists.add(p);
 		
