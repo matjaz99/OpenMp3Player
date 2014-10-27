@@ -298,4 +298,10 @@ public class Mp3Player {
 		queue.getMp3files().getFiles().clear();
 	}
 	
+	
+	
+	public Mp3File getMp3(int i) {
+		return passivePlaylist.getMp3files().getFiles().get(i);
+	}
+	
 }

@@ -22,6 +22,11 @@
   <managed-bean-class>si.matjazcerkvenik.openmp3player.web.AddPlaylistBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>songBean</managed-bean-name>
+  <managed-bean-class>si.matjazcerkvenik.openmp3player.web.SongBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>/*</from-view-id>
   <navigation-case>
@@ -47,6 +52,10 @@
   <navigation-case>
    <from-outcome>queue</from-outcome>
    <to-view-id>/queue.jsp</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>song</from-outcome>
+   <to-view-id>/song.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
  <validator>
