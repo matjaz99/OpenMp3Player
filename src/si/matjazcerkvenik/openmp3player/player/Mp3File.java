@@ -9,39 +9,53 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Mp3File implements Cloneable {
 	
 	private int index = 0;
-	private File file = null;
+//	private File file = null;
+	private String hash = null;
 	private String path = null;
 	private String title = "null";
 	private String artist = "null";
 	private String album = "null";
+	private String genre = null;
+	private String year = null;
+	private int size = 0;
 
-	@XmlTransient public int getIndex() {
+	@XmlTransient
+	public int getIndex() {
 		return index;
 	}
 
 	public void setIndex(int index) {
 		this.index = index;
 	}
+	
+	
 
 	/**
 	 * Get absolute path of this file
 	 * @return pathname
 	 */
-	@XmlTransient public String getFile() {
-		return file.getAbsolutePath();
+//	@XmlTransient public String getFile() {
+//		return file.getAbsolutePath();
+//	}
+//
+//	public void setFile(String filepath) {
+//		this.file = new File(filepath);
+//	}
+//
+//	public boolean fileExists() {
+//		return file.exists();
+//	}
+
+	public String getHash() {
+		return hash;
 	}
 
-	public void setFile(String filepath) {
-		this.file = new File(filepath);
-	}
-
-	public boolean fileExists() {
-		return file.exists();
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
 
 	/**
-	 * Get song title.<br>
-	 * Remark: currently title returns name of file!
+	 * Get song title
 	 * @return title
 	 */
 	public String getTitle() {
@@ -87,8 +101,33 @@ public class Mp3File implements Cloneable {
 	@XmlElement
 	public void setPath(String path) {
 		this.path = path;
-		file = new File(path);
+		File file = new File(path);
 		this.title = file.getName();
+	}
+	
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	@Override

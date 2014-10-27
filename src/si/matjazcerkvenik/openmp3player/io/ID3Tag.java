@@ -32,6 +32,9 @@ public class ID3Tag {
 				mp3.setTitle(tag.getSongTitle());
 				mp3.setArtist(tag.getLeadArtist());
 				mp3.setAlbum(tag.getAlbumTitle());
+				mp3.setGenre(tag.getSongGenre());
+				mp3.setYear(tag.getYearReleased());
+				mp3.setSize(tag.getSize());
 				return mp3;
 			}
 			
@@ -47,6 +50,9 @@ public class ID3Tag {
 				mp3.setTitle(tag2.getSongTitle());
 				mp3.setArtist(tag2.getLeadArtist());
 				mp3.setAlbum(tag2.getAlbumTitle());
+				mp3.setGenre(tag2.getSongGenre());
+				mp3.setYear(tag2.getYearReleased());
+				mp3.setSize(tag2.getSize());
 				return mp3;
 			}
 			

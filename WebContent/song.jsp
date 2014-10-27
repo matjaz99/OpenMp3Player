@@ -34,6 +34,15 @@
 				
 				<h:outputLabel value="Album:"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.album}"></h:outputLabel>
+				
+				<h:outputLabel value="Genre:"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.genre}"></h:outputLabel>
+				
+				<h:outputLabel value="Year:"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.year}"></h:outputLabel>
+				
+				<h:outputLabel value="Size:"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.size}"></h:outputLabel>
 			</h:panelGrid>
 			
 			<hr/>
