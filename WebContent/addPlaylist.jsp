@@ -27,13 +27,16 @@
 				<h:form>
 					<h:panelGrid columns="2">
 						<h:outputLabel value="Name: "></h:outputLabel>
-						<h:inputText value="#{addPlaylistBean.name}" />
+						<h:inputText value="#{addPlaylistBean.name}">
+							<f:validator validatorId="playlistValidator"/>
+						</h:inputText>
 						<h:outputLabel value="Directory: "></h:outputLabel>
 						<h:inputText value="#{addPlaylistBean.source}" />
 						<h:commandButton action="#{addPlaylistBean.addPlaylist}" value="Add"></h:commandButton>
 					</h:panelGrid>
+					
 				</h:form>
-			
+			<h:messages layout="table" showDetail="true" showSummary="true"></h:messages>
 			<hr/>
 			
 			<h:outputLabel value="Version: #{playerBean.version}"></h:outputLabel>

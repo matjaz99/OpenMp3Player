@@ -49,6 +49,10 @@
    <to-view-id>/queue.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
+ <validator>
+  <validator-id>playlistValidator</validator-id>
+  <validator-class>si.matjazcerkvenik.openmp3player.io.PlaylistValidator</validator-class>
+ </validator>
  <application>
   <locale-config>
    <default-locale>en_US</default-locale>

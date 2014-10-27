@@ -87,7 +87,7 @@ public class Mp3Player {
 		}
 		
 		logger.info("Mp3Player:stop(): playlist: " + activePlaylist.getName() 
-				+ ", MP3: [" + currentlyPlaying.toString());
+				+ ", MP3: " + currentlyPlaying.toString());
 		player.stop();
 		currentlyPlaying = null;
 		
