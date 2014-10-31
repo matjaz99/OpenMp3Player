@@ -26,7 +26,7 @@
 		<h:column>
 			
 			<h:form>
-				<h:commandLink action="song">
+				<h:commandLink action="#{playlistBean.showSongDetails}">
 					<f:param name="id" value="#{mp3File.index}"></f:param>
 					<h:outputText value="#{mp3File.title}" />
 				</h:commandLink>

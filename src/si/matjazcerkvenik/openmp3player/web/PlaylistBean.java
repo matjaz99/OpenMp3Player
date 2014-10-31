@@ -3,6 +3,7 @@ package si.matjazcerkvenik.openmp3player.web;
 import java.util.List;
 
 import javax.faces.component.html.HtmlDataTable;
+import javax.faces.context.FacesContext;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
@@ -55,6 +56,12 @@ public class PlaylistBean {
 
 	public void setDataTable(HtmlDataTable dataTable) {
 		this.dataTable = dataTable;
+	}
+	
+	public String showSongDetails() {
+		Mp3File mp3 = (Mp3File) dataTable.getRowData();
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", mp3);
+		return "song";
 	}
 	
 	

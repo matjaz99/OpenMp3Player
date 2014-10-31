@@ -47,7 +47,23 @@
 			
 			<hr/>
 			
+			<h:outputLink value="#{songBean.tagsAsString}"/>
 			
+			<hr/>
+			
+			<h:form>
+				<h:outputText value="Add tag: " />
+				<h:selectOneMenu onchange="submit()" value="#{songBean.selectedTag}"
+					valueChangeListener="#{songBean.tagSelected}">
+					<f:selectItems value="#{songBean.tags}"/>
+				</h:selectOneMenu>
+			</h:form>
+			
+			<hr/>
+			
+			<h:form>
+				<h:commandLink value="New tag" action="addTag" />
+			</h:form>
 			
 			<hr/>
 			

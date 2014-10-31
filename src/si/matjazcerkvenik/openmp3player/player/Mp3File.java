@@ -18,6 +18,8 @@ public class Mp3File implements Cloneable {
 	private String genre = null;
 	private String year = null;
 	private int size = 0;
+	private String backgroundColor = null;
+	private Tags tags = null;
 
 	@XmlTransient
 	public int getIndex() {
@@ -128,6 +130,29 @@ public class Mp3File implements Cloneable {
 
 	public void setSize(int size) {
 		this.size = size;
+	}
+
+	public String getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+
+	public Tags getTags() {
+		return tags;
+	}
+
+	public void setTags(Tags tags) {
+		this.tags = tags;
+	}
+	
+	public void addTag(Tag t) {
+		if (tags == null) {
+			tags = new Tags();
+		}
+		tags.addTag(t);
 	}
 
 	@Override

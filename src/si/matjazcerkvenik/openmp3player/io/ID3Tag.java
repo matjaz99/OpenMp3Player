@@ -29,7 +29,9 @@ public class ID3Tag {
 			AbstractID3v1 tag = mp3file.getID3v1Tag();
 			if (tag != null) {
 				OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): parsing ID3v1");
-				mp3.setTitle(tag.getSongTitle());
+				if (tag.getSongTitle().trim().length() > 0) {
+					mp3.setTitle(tag.getSongTitle());
+				}
 				mp3.setArtist(tag.getLeadArtist());
 				mp3.setAlbum(tag.getAlbumTitle());
 				mp3.setGenre(tag.getSongGenre());
@@ -47,7 +49,9 @@ public class ID3Tag {
 			AbstractID3v2 tag2 = mp3file.getID3v2Tag();
 			if (tag2 != null) {
 				OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): parsing ID3v2");
-				mp3.setTitle(tag2.getSongTitle());
+				if (tag2.getSongTitle().trim().length() > 0) {
+					mp3.setTitle(tag2.getSongTitle());
+				}
 				mp3.setArtist(tag2.getLeadArtist());
 				mp3.setAlbum(tag2.getAlbumTitle());
 				mp3.setGenre(tag2.getSongGenre());
