@@ -23,7 +23,7 @@
 			
 			<hr/>
 			
-			<h:outputText value="Version: #{playerBean.version}"></h:outputText>
+			<h:outputText value="Version: #{settingsBean.version}"></h:outputText>
 			
 			<hr/>
 			

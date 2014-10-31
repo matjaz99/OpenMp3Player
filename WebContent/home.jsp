@@ -48,7 +48,7 @@
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: #{playerBean.version}"></h:outputLabel>
+			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
 			
 			<hr/>
 			

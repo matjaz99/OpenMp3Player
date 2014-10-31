@@ -122,10 +122,10 @@
 	<h:form prependId="false">
 		<h:commandLink action="#{playerBean.gotoQueue}">
 			<h:graphicImage id="queueBtn0" url="img/queue.png" styleClass="icon"
-				onmouseover="onMouse('#queueBtn0', 'img/toqueue-shadow.png')" 
-				onmouseout="onMouse('#queueBtn0', 'img/toqueue.png')" 
-				onmousedown="onMouse('#queueBtn0', 'img/toqueue-pressed.png')" 
-				onmouseup="onMouse('#queueBtn0', 'img/toqueue-shadow.png')" />
+				onmouseover="onMouse('#queueBtn0', 'img/queue-shadow.png')" 
+				onmouseout="onMouse('#queueBtn0', 'img/queue.png')" 
+				onmousedown="onMouse('#queueBtn0', 'img/queue-pressed.png')" 
+				onmouseup="onMouse('#queueBtn0', 'img/queue-shadow.png')" />
 		</h:commandLink>
 	</h:form>
 	

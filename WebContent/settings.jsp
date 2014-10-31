@@ -26,23 +26,23 @@
 			<hr/>
 			
 			<h:outputText value="Connect to OpenMp3Player from remote device:" />
-			<h:outputLink value="http://#{playerBean.localIp}:8080/OpenMp3Player/" >
-				<h:outputText value="http://#{playerBean.localIp}:8080/OpenMp3Player/" />
+			<h:outputLink value="http://#{settingsBean.localIp}:8080/OpenMp3Player/" >
+				<h:outputText value="http://#{settingsBean.localIp}:8080/OpenMp3Player/" />
 			</h:outputLink>
 			
 			<hr/>
 			
-			<h:outputText value="Volume level: #{playerBean.currentSoundLevel}" />
+			<h:outputText value="Volume level: #{settingsBean.currentSoundLevel}" />
 			
 			<hr/>
 			
-			<h:outputText value="CLI: #{playerBean.telnetEnabled}" />
-			<h:outputText value="$ telnet #{playerBean.localIp} #{playerBean.telnetPort}" />
+			<h:outputText value="CLI: #{settingsBean.telnetEnabled}" />
+			<h:outputText value="$ telnet #{settingsBean.localIp} #{settingsBean.telnetPort}" />
 			<h:outputText value="> help" />
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: #{playerBean.version}"></h:outputLabel>
+			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
 			
 			<hr/>
 			
