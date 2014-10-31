@@ -32,6 +32,11 @@
   <managed-bean-class>si.matjazcerkvenik.openmp3player.web.AddTagBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>queueBean</managed-bean-name>
+  <managed-bean-class>si.matjazcerkvenik.openmp3player.web.QueueBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>/*</from-view-id>
   <navigation-case>

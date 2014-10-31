@@ -32,11 +32,25 @@
 			<h:form prependId="false" rendered="#{playlistBean.queue}">
 				<h:panelGrid columns="3">
 					<h:outputLabel value="Name: "></h:outputLabel>
-					<h:inputText value="#{playerBean.newQueueName}" />
-					<h:commandButton action="#{playerBean.saveQueue}" value="Save"></h:commandButton>
+					<h:inputText value="#{queueBean.newQueueName}" />
+					<h:commandButton action="#{queueBean.saveQueue}" value="Save"></h:commandButton>
 				</h:panelGrid>
 				<hr/>
 			</h:form>
+			
+			
+			<h:form rendered="#{playlistBean.queue}">
+				<h:commandLink action="#{queueBean.emptyQueue}">
+					<h:outputLabel value="Empty queue"></h:outputLabel>
+					<h:graphicImage id="emptyBtn" url="img/empty.png" styleClass="icon" alt="Empty"
+						onmouseover="onMouse('#emptyBtn', 'img/empty-shadow.png')" 
+						onmouseout="onMouse('#emptyBtn', 'img/empty.png')" 
+						onmousedown="onMouse('#emptyBtn', 'img/empty-pressed.png')" 
+						onmouseup="onMouse('#emptyBtn', 'img/empty-shadow.png')" />
+				</h:commandLink>
+				<hr/>
+			</h:form>
+			
 			
 			
 			

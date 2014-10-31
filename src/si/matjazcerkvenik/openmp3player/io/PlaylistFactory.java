@@ -93,19 +93,8 @@ public class PlaylistFactory {
 
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			
-			// temporarily remove queue before saving
-			Playlist queueTemp = null;
-			for (int i = 0; i < playlists.getPlist().size(); i++) {
-				if (playlists.getPlist().get(i).getSource().equals("queue")) {
-					queueTemp = playlists.getPlist().remove(i);
-				}
-			}
-			
 			 jaxbMarshaller.marshal(playlists, file);
 //			jaxbMarshaller.marshal(p, System.out);
-			 
-			// put queue back to list
-			playlists.add(queueTemp);
 			
 
 		} catch (JAXBException e) {
@@ -165,8 +154,9 @@ public class PlaylistFactory {
 	 * @param p
 	 */
 	public void addPlaylist(Playlist p) {
-		// TODO write to disc
 		playlists.add(p);
+		savePlaylists();
+		savePlaylist(p);
 	}
 	
 	
@@ -180,20 +170,17 @@ public class PlaylistFactory {
 		for (Playlist plist : playlists.getPlist()) {
 			
 			if (plist.getName().equals(p.getName())) {
-				
 				if (plist.getSource().endsWith(".xml")) {
-					
 					File f = new File(OContext.HOME_DIR + "playlists/" + plist.getSource());
 					logger.debug("PlaylistFactory:deletePlaylist(): delete: " + f.getAbsolutePath());
 					f.delete();
-					
 				}
-				
 			}
 			
 		}
 		
 		playlists.getPlist().remove(p);
+		savePlaylists();
 		
 	}
 	

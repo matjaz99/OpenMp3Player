@@ -25,7 +25,7 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
 public class PlayerBean {
 	
 	private String selectedPlaylist = null;
-	private String newQueueName = null;
+	
 	
 	private SimpleLogger logger = null;
 	
@@ -51,7 +51,6 @@ public class PlayerBean {
 		
 		for (int i = 0; i < playlists.getPlist().size(); i++) {
 			String s = playlists.getPlist().get(i).getName();
-//			String ss = playlists.getPlist().get(i).getSource();
 			list.add(new SelectItem(s, s));
 		}
 		
@@ -76,11 +75,6 @@ public class PlayerBean {
 		return "queue";
 	}
 	
-	public String saveQueue() {
-		Mp3Player.getInstance().saveQueue(newQueueName);
-		return "home";
-	}
-	
 	
 	
 	/**
@@ -103,15 +97,7 @@ public class PlayerBean {
 	
 	
 
-	public String getNewQueueName() {
-		return newQueueName;
-	}
-
-
-
-	public void setNewQueueName(String newQueueName) {
-		this.newQueueName = newQueueName;
-	}
+	
 
 
 

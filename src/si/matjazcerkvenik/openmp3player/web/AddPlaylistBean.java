@@ -1,7 +1,8 @@
 package si.matjazcerkvenik.openmp3player.web;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.player.Mp3Player;
+import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
+import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class AddPlaylistBean {
@@ -45,7 +46,10 @@ public class AddPlaylistBean {
 	public String addPlaylist() {
 		
 		logger.info("AddPlaylistBean:addPlaylist(): " + source);
-		Mp3Player.getInstance().addPlaylist(name, source);
+		Playlist p = new Playlist();
+		p.setName(name);
+		p.setSource(source);
+		PlaylistFactory.getInstance().addPlaylist(p);
 		return "playlists";
 		
 	}

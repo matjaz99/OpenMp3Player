@@ -29,11 +29,11 @@ public class Mp3Player {
 		activePlaylist = PlaylistFactory.getInstance().getPlaylist(p.getPlist().get(0).getName());
 		passivePlaylist = activePlaylist;
 		
-//		queue = new Playlist();
-//		queue.setName("Queue");
-//		queue.setSource("queue");
+		queue = new Playlist();
+		queue.setName("Queue");
+		queue.setSource("queue");
 //		playlists.add(queue);
-		addPlaylist("Queue", "queue");
+//		addPlaylist("Queue", "queue");
 		
 	}
 	
@@ -187,22 +187,7 @@ public class Mp3Player {
 		activePlaylist = passivePlaylist;
 		logger.debug("Mp3Player:setPassiveToActive(): active: " + activePlaylist.getName());
 	}
-
-//	public Playlist getQueue() {
-//		return queue;
-//	}
-//
-//	public void setQueue(Playlist queue) {
-//		this.queue = queue;
-//	}
-
-//	public Playlists getPlaylists() {
-//		return playlists;
-//	}
-//
-//	public void setPlaylists(Playlists playlists) {
-//		this.playlists = playlists;
-//	}
+	
 
 	public boolean isRepeatOn() {
 		return repeatOn;
@@ -231,36 +216,22 @@ public class Mp3Player {
 	 * @param name
 	 * @param source
 	 */
-	public void addPlaylist(String name, String source) {
-		
-		Playlist p = new Playlist();
-		p.setName(name);
-		p.setSource(source);
-		
-		PlaylistFactory.getInstance().addPlaylist(p);
-		
-		logger.info("Mp3Player:addPlaylist(): name: " + name + " source: " + source);
-		
-		if (source.equals("queue")) {
-			queue = p;
-			return;
-		}
-		
-		PlaylistFactory.getInstance().savePlaylists();
-		p.setMp3files(PlaylistFactory.getInstance().getPlaylist(name).getMp3files());
-		
-	}
+//	public void addPlaylist(String name, String source) {
+//		
+//		Playlist p = new Playlist();
+//		p.setName(name);
+//		p.setSource(source);
+//		
+//		PlaylistFactory.getInstance().addPlaylist(p);
+//		
+//		logger.info("Mp3Player:addPlaylist(): name: " + name + " source: " + source);
+//		
+//		PlaylistFactory.getInstance().savePlaylists();
+//		p.setMp3files(PlaylistFactory.getInstance().getPlaylist(name).getMp3files());
+//		
+//	}
 	
-	/**
-	 * Delete playlist with given name and source file and save playlists.xml
-	 * @param p
-	 */
-	public void deletePlaylist(Playlist p) {
-		
-		PlaylistFactory.getInstance().removePlaylist(p);
-		PlaylistFactory.getInstance().savePlaylists();
-		
-	}
+	
 	
 	public void saveQueue(String name) {
 		
@@ -283,8 +254,8 @@ public class Mp3Player {
 		}
 		
 		PlaylistFactory.getInstance().addPlaylist(p);
-		PlaylistFactory.getInstance().savePlaylist(p);
-		PlaylistFactory.getInstance().savePlaylists();
+//		PlaylistFactory.getInstance().savePlaylist(p);
+//		PlaylistFactory.getInstance().savePlaylists();
 	}
 	
 	/**

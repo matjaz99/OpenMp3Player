@@ -56,11 +56,7 @@ public class PlaylistsBean {
 		Playlist p = (Playlist) dataTable.getRowData();
 		logger.info("PlaylistsBean:deletePlaylist(): " + p.getName());
 		
-		if (p.getName().equals("Queue")) {
-			Mp3Player.getInstance().emptyQueue();
-		} else {
-			Mp3Player.getInstance().deletePlaylist(p);
-		}
+		PlaylistFactory.getInstance().removePlaylist(p);
 		
 		return "playlists";
 		
