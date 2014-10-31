@@ -8,6 +8,7 @@ import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Utils;
+import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
@@ -40,7 +41,7 @@ public class PlayerBean {
 	 */
 	public List<SelectItem> getPlaylists() {
 		
-		Playlists playlists = Mp3Player.getInstance().getPlaylists();
+		Playlists playlists = PlaylistFactory.getInstance().getPlaylists();
 		
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		

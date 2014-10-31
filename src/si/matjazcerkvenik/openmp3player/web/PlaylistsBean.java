@@ -5,6 +5,7 @@ import java.util.List;
 import javax.faces.component.html.HtmlDataTable;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
@@ -20,7 +21,7 @@ public class PlaylistsBean {
 	}
 	
 	public List<Playlist> getPlaylistsList() {
-		return Mp3Player.getInstance().getPlaylists().getPlist();
+		return PlaylistFactory.getInstance().getPlaylists().getPlist();
 	}
 	
 	public HtmlDataTable getDataTable() {

@@ -14,7 +14,7 @@ public class Mp3Player {
 	private Mp3File currentlyPlaying = null;
 	private boolean repeatOn = false;
 	
-	private Playlists playlists = null;
+	
 	private Playlist activePlaylist = null;
 	private Playlist passivePlaylist = null;
 	private Playlist queue = null;
@@ -25,8 +25,8 @@ public class Mp3Player {
 		
 		player = new JLayerPlayer();
 		
-		playlists = PlaylistFactory.getInstance().getPlaylists();
-		activePlaylist = PlaylistFactory.getInstance().getPlaylist(playlists.getPlist().get(0).getName());
+		Playlists p = PlaylistFactory.getInstance().getPlaylists();
+		activePlaylist = PlaylistFactory.getInstance().getPlaylist(p.getPlist().get(0).getName());
 		passivePlaylist = activePlaylist;
 		
 //		queue = new Playlist();
@@ -196,13 +196,13 @@ public class Mp3Player {
 //		this.queue = queue;
 //	}
 
-	public Playlists getPlaylists() {
-		return playlists;
-	}
-
-	public void setPlaylists(Playlists playlists) {
-		this.playlists = playlists;
-	}
+//	public Playlists getPlaylists() {
+//		return playlists;
+//	}
+//
+//	public void setPlaylists(Playlists playlists) {
+//		this.playlists = playlists;
+//	}
 
 	public boolean isRepeatOn() {
 		return repeatOn;
@@ -237,7 +237,7 @@ public class Mp3Player {
 		p.setName(name);
 		p.setSource(source);
 		
-		playlists.add(p);
+		PlaylistFactory.getInstance().addPlaylist(p);
 		
 		logger.info("Mp3Player:addPlaylist(): name: " + name + " source: " + source);
 		
@@ -257,10 +257,7 @@ public class Mp3Player {
 	 */
 	public void deletePlaylist(Playlist p) {
 		
-		PlaylistFactory.getInstance().removePlaylist(p.getName());
-		
-		playlists.getPlist().remove(p);
-		
+		PlaylistFactory.getInstance().removePlaylist(p);
 		PlaylistFactory.getInstance().savePlaylists();
 		
 	}
@@ -285,8 +282,7 @@ public class Mp3Player {
 			}
 		}
 		
-		playlists.add(p);
-		
+		PlaylistFactory.getInstance().addPlaylist(p);
 		PlaylistFactory.getInstance().savePlaylist(p);
 		PlaylistFactory.getInstance().savePlaylists();
 	}

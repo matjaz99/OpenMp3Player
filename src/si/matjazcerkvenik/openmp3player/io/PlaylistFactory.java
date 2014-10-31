@@ -13,7 +13,6 @@ import javax.xml.bind.Unmarshaller;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Files;
-import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
@@ -24,20 +23,27 @@ public class PlaylistFactory {
 	
 	private static PlaylistFactory factory = null;
 	
+	private Playlists playlists = null;
+	
 	
 	private PlaylistFactory() {
 		logger = OContext.getInstance().getLogger();
 	}
 	
+	
+	/**
+	 * Return instance of <code>PlaylistFactory</code> (singleton)
+	 * @return factory
+	 */
 	public static PlaylistFactory getInstance() {
 		
 		if (factory == null) {
 			factory = new PlaylistFactory();
 		}
-		
 		return factory;
 		
 	}
+	
 	
 	/**
 	 * Read playlists.xml. If playlists.xml does not exist, create new one.
@@ -45,7 +51,9 @@ public class PlaylistFactory {
 	 */
 	public Playlists getPlaylists() {
 		
-		Playlists playlists = null;
+		if (playlists != null) {
+			return playlists;
+		}
 		
 		try {
 
@@ -86,19 +94,18 @@ public class PlaylistFactory {
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			
 			// temporarily remove queue before saving
-			Playlists plists = Mp3Player.getInstance().getPlaylists();
 			Playlist queueTemp = null;
-			for (int i = 0; i < plists.getPlist().size(); i++) {
-				if (plists.getPlist().get(i).getSource().equals("queue")) {
-					queueTemp = plists.getPlist().remove(i);
+			for (int i = 0; i < playlists.getPlist().size(); i++) {
+				if (playlists.getPlist().get(i).getSource().equals("queue")) {
+					queueTemp = playlists.getPlist().remove(i);
 				}
 			}
 			
-			 jaxbMarshaller.marshal(plists, file);
+			 jaxbMarshaller.marshal(playlists, file);
 //			jaxbMarshaller.marshal(p, System.out);
 			 
 			// put queue back to list
-			plists.add(queueTemp);
+			playlists.add(queueTemp);
 			
 
 		} catch (JAXBException e) {
@@ -122,17 +129,16 @@ public class PlaylistFactory {
 	public Playlist getPlaylist(String name) {
 		
 		// search for playlist
-		Playlists p = getPlaylists();
 		Playlist playlist = null;
-		for (int i = 0; i < p.getPlist().size(); i++) {
-			if (p.getPlist().get(i).getName().equals(name)) {
-				playlist = p.getPlist().get(i);
+		for (int i = 0; i < playlists.getPlist().size(); i++) {
+			if (playlists.getPlist().get(i).getName().equals(name)) {
+				playlist = playlists.getPlist().get(i);
 			}
 		}
 		
 		// load mp3 files
 		List<Mp3File> files = null;
-		
+		// FIXME always load from file, check hash, load id3...
 		if (playlist.getSource().endsWith(".xml")) {
 			files = loadFromXml(playlist.getSource()).getFiles();
 		} else {
@@ -146,25 +152,34 @@ public class PlaylistFactory {
 			files.get(i).setIndex(i);
 		}
 		
-//		Playlist playlist = new Playlist();
 		Mp3Files mp3files = new Mp3Files();
 		mp3files.setFiles(files);
-//		playlist.setMp3files(files);
 		playlist.setMp3files(mp3files);
-//		playlist.setName(name);
-//		playlist.setSource(source);
 		
 		return playlist;
 	}
 	
 	
+	/**
+	 * Add new playlist
+	 * @param p
+	 */
+	public void addPlaylist(Playlist p) {
+		// TODO write to disc
+		playlists.add(p);
+	}
 	
-	public void removePlaylist(String name) {
+	
+	/**
+	 * Remove playlist
+	 * @param p
+	 */
+	public void removePlaylist(Playlist p) {
 		
 		// delete xml file
-		for (Playlist plist : Mp3Player.getInstance().getPlaylists().getPlist()) {
+		for (Playlist plist : playlists.getPlist()) {
 			
-			if (plist.getName().equals(name)) {
+			if (plist.getName().equals(p.getName())) {
 				
 				if (plist.getSource().endsWith(".xml")) {
 					
@@ -178,7 +193,7 @@ public class PlaylistFactory {
 			
 		}
 		
-		
+		playlists.getPlist().remove(p);
 		
 	}
 	
