@@ -2,6 +2,7 @@ package si.matjazcerkvenik.openmp3player.web;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
+import si.matjazcerkvenik.openmp3player.player.Mp3Files;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -38,17 +39,19 @@ public class AddPlaylistBean {
 
 
 
-	/**
-	 * Action: go to playlist when goto button is pressed
-	 * 
-	 * @return home page
-	 */
+	
 	public String addPlaylist() {
 		
 		logger.info("AddPlaylistBean:addPlaylist(): " + source);
 		Playlist p = new Playlist();
 		p.setName(name);
-		p.setSource(source);
+		p.setOrigin(source);
+		p.setSource(name + ".xml");
+		
+		Mp3Files m = new Mp3Files();
+		m.setFiles(PlaylistFactory.getInstance().loadFromDirectory(source));
+		p.setMp3files(m);
+		
 		PlaylistFactory.getInstance().addPlaylist(p);
 		return "playlists";
 		

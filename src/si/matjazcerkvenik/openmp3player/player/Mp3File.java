@@ -5,11 +5,9 @@ import java.io.File;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-//@XmlType(propOrder = { "path", "artist", "title", "album"})
 public class Mp3File implements Cloneable {
 	
 	private int index = 0;
-//	private File file = null;
 	private String hash = null;
 	private String path = null;
 	private String title = "null";
@@ -29,24 +27,6 @@ public class Mp3File implements Cloneable {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	
-	
-
-	/**
-	 * Get absolute path of this file
-	 * @return pathname
-	 */
-//	@XmlTransient public String getFile() {
-//		return file.getAbsolutePath();
-//	}
-//
-//	public void setFile(String filepath) {
-//		this.file = new File(filepath);
-//	}
-//
-//	public boolean fileExists() {
-//		return file.exists();
-//	}
 
 	public String getHash() {
 		return hash;

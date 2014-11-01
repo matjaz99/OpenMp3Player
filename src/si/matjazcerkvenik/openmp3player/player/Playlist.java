@@ -7,6 +7,7 @@ public class Playlist {
 
 	private String name;
 	private String source;
+	private String origin;
 	private Mp3Files mp3files = new Mp3Files();
 
 	public String getSource() {
@@ -27,6 +28,15 @@ public class Playlist {
 		this.name = name;
 	}
 	
+	public String getOrigin() {
+		return origin;
+	}
+
+	@XmlElement
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+
 	/**
 	 * Add mp3 to playlist
 	 */

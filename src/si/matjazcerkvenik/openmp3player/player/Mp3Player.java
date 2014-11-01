@@ -32,8 +32,6 @@ public class Mp3Player {
 		queue = new Playlist();
 		queue.setName("Queue");
 		queue.setSource("queue");
-//		playlists.add(queue);
-//		addPlaylist("Queue", "queue");
 		
 	}
 	
@@ -58,7 +56,7 @@ public class Mp3Player {
 	
 	
 	/**
-	 * Start playing song with index i
+	 * Start playing song with index i in active playlist
 	 * @param i
 	 * @return title of the song
 	 */
@@ -211,26 +209,6 @@ public class Mp3Player {
 		
 	}
 	
-	/**
-	 * Create new playlist with given name and source file and save to playlists.xml
-	 * @param name
-	 * @param source
-	 */
-//	public void addPlaylist(String name, String source) {
-//		
-//		Playlist p = new Playlist();
-//		p.setName(name);
-//		p.setSource(source);
-//		
-//		PlaylistFactory.getInstance().addPlaylist(p);
-//		
-//		logger.info("Mp3Player:addPlaylist(): name: " + name + " source: " + source);
-//		
-//		PlaylistFactory.getInstance().savePlaylists();
-//		p.setMp3files(PlaylistFactory.getInstance().getPlaylist(name).getMp3files());
-//		
-//	}
-	
 	
 	
 	public void saveQueue(String name) {
@@ -254,8 +232,6 @@ public class Mp3Player {
 		}
 		
 		PlaylistFactory.getInstance().addPlaylist(p);
-//		PlaylistFactory.getInstance().savePlaylist(p);
-//		PlaylistFactory.getInstance().savePlaylists();
 	}
 	
 	/**
@@ -267,6 +243,11 @@ public class Mp3Player {
 	
 	
 	
+	/**
+	 * Get i-th mp3file from the passive playlist
+	 * @param i
+	 * @return mp3File
+	 */
 	public Mp3File getMp3(int i) {
 		return passivePlaylist.getMp3files().getFiles().get(i);
 	}

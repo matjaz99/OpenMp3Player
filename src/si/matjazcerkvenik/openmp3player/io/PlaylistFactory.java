@@ -83,7 +83,7 @@ public class PlaylistFactory {
 	/**
 	 * Save playlists.xml
 	 */
-	public void savePlaylists() {
+	private void savePlaylists() {
 		logger.info("PlaylistFactory:savePlaylists(): saving...");
 		try {
 
@@ -196,10 +196,6 @@ public class PlaylistFactory {
 	
 	
 	
-	
-	
-	
-	
 	/**
 	 * Read &lt;source&gt;.xml 
 	 * @param source
@@ -230,7 +226,7 @@ public class PlaylistFactory {
 	 * @param m
 	 * @param source
 	 */
-	public void savePlaylist(Playlist p) {
+	private void savePlaylist(Playlist p) {
 		logger.info("PlaylistFactory:savePlaylist(): saving...");
 		try {
 
@@ -259,7 +255,7 @@ public class PlaylistFactory {
 	 * @param directory
 	 * @return
 	 */
-	private List<Mp3File> loadFromDirectory(String directory) {
+	public List<Mp3File> loadFromDirectory(String directory) {
 		
 		File dir = new File(directory);
 		File[] files = dir.listFiles(new FileFilter() {
@@ -277,10 +273,12 @@ public class PlaylistFactory {
 		}
 		
 		for (int i = 0; i < files.length; i++) {
-			Mp3File t = new Mp3File();
-			t.setIndex(i);
-			t.setPath(files[i].getAbsolutePath());
-			list.add(t);
+			Mp3File mp3 = new Mp3File();
+			mp3.setIndex(i);
+			mp3.setPath(files[i].getAbsolutePath());
+			mp3.setHash(Digester.getSha1(files[i].getAbsolutePath()));
+			mp3 = ID3Tag.getMetadata(mp3);
+			list.add(mp3);
 		}
 				
 		return list;

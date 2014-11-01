@@ -26,43 +26,37 @@ public class SongBean {
 	private String selectedTag = null;
 	
 	public SongBean() {
-		
 		logger = OContext.getInstance().getLogger();
-		
-//		Map<String, String> requestParameterMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//		String s = (String) requestParameterMap.get("id");
-		
-//		Map<String, Object> requestParameterMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-//		Mp3File m = (Mp3File) requestParameterMap.get("id");
-//		
-//		int id = m.getIndex(); //Integer.parseInt(s);
-//		
-//		logger.info("SongBean: id=" + id);
-//		
-//		mp3File = Mp3Player.getInstance().getMp3(id);
-//		
-//		mp3File = ID3Tag.getMetadata(mp3File);
 	}
 	
 
+	/**
+	 * Get selected mp3file
+	 * @return mp3File
+	 */
 	public Mp3File getMp3File() {
+		
 		Map<String, Object> requestParameterMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Mp3File m = (Mp3File) requestParameterMap.get("id");
 		
-		int id = m.getIndex(); //Integer.parseInt(s);
-		
+		int id = m.getIndex();
 		logger.info("SongBean:getMp3File: id=" + id);
 		
 		mp3File = Mp3Player.getInstance().getMp3(id);
+//		mp3File = ID3Tag.getMetadata(mp3File);
 		
-		mp3File = ID3Tag.getMetadata(mp3File);
 		return mp3File;
+		
 	}
 
 	public void setMp3File(Mp3File mp3File) {
 		this.mp3File = mp3File;
 	}
 	
+	/**
+	 * Get tags for dropdown menu
+	 * @return list
+	 */
 	public List<SelectItem> getTags() {
 		
 		Tags tags = TagFactory.getInstance().getTags();
@@ -81,6 +75,7 @@ public class SongBean {
 		return list;
 		
 	}
+	
 	
 	public void tagSelected(ValueChangeEvent e) {
 		

@@ -30,12 +30,12 @@ public class ID3Tag {
 			if (tag != null) {
 				OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): parsing ID3v1");
 				if (tag.getSongTitle().trim().length() > 0) {
-					mp3.setTitle(tag.getSongTitle());
+					mp3.setTitle(validate(tag.getSongTitle()));
 				}
-				mp3.setArtist(tag.getLeadArtist());
-				mp3.setAlbum(tag.getAlbumTitle());
-				mp3.setGenre(tag.getSongGenre());
-				mp3.setYear(tag.getYearReleased());
+				mp3.setArtist(validate(tag.getLeadArtist()));
+				mp3.setAlbum(validate(tag.getAlbumTitle()));
+				mp3.setGenre(validate(tag.getSongGenre()));
+				mp3.setYear(validate(tag.getYearReleased()));
 				mp3.setSize(tag.getSize());
 				return mp3;
 			}
@@ -50,12 +50,12 @@ public class ID3Tag {
 			if (tag2 != null) {
 				OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): parsing ID3v2");
 				if (tag2.getSongTitle().trim().length() > 0) {
-					mp3.setTitle(tag2.getSongTitle());
+					mp3.setTitle(validate(tag2.getSongTitle()));
 				}
-				mp3.setArtist(tag2.getLeadArtist());
-				mp3.setAlbum(tag2.getAlbumTitle());
-				mp3.setGenre(tag2.getSongGenre());
-				mp3.setYear(tag2.getYearReleased());
+				mp3.setArtist(validate(tag2.getLeadArtist()));
+				mp3.setAlbum(validate(tag2.getAlbumTitle()));
+				mp3.setGenre(validate(tag2.getSongGenre()));
+				mp3.setYear(validate(tag2.getYearReleased()));
 				mp3.setSize(tag2.getSize());
 				return mp3;
 			}
@@ -70,6 +70,27 @@ public class ID3Tag {
 		}
 		
 		return mp3;
+	}
+	
+	public static String validate(String s) {
+		s = s.replaceAll("\\x00", "");
+		s = s.replaceAll("\\x01", "");
+		s = s.replaceAll("\\x02", "");
+		s = s.replaceAll("\\x03", "");
+		s = s.replaceAll("\\x04", "");
+		s = s.replaceAll("\\x05", "");
+		s = s.replaceAll("\\x06", "");
+		s = s.replaceAll("\\x07", "");
+		s = s.replaceAll("\\x08", "");
+		s = s.replaceAll("\\x09", "");
+		s = s.replaceAll("\\x0a", "");
+		s = s.replaceAll("\\x0b", "");
+		s = s.replaceAll("\\x0c", "");
+		s = s.replaceAll("\\x0d", "");
+		s = s.replaceAll("\\x0e", "");
+		s = s.replaceAll("\\x0f", "");
+		return s;
+		
 	}
 	
 }
