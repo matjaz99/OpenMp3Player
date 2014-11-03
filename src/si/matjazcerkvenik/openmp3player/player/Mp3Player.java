@@ -252,4 +252,17 @@ public class Mp3Player {
 		return passivePlaylist.getMp3files().getFiles().get(i);
 	}
 	
+	public void removeMp3FromPassiveList(Mp3File m) {
+		passivePlaylist.getMp3files().getFiles().remove(m);
+		// set new indexes
+		for (int i = 0; i < passivePlaylist.getMp3files().getFiles().size(); i++) {
+			passivePlaylist.getMp3files().getFiles().get(i).setIndex(i);
+		}
+		// save playlist (if not queue)
+		if (!passivePlaylist.getName().equals("Queue")) {
+			PlaylistFactory.getInstance().savePassivePlaylist();
+		}
+		
+	}
+	
 }

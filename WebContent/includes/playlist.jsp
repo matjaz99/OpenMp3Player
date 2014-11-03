@@ -31,13 +31,13 @@
 					<h:outputText value="#{mp3File.title}" />
 				</h:commandLink>
 			</h:form>
-			
+			<h:outputText value="#{mp3File.artist}" styleClass="smalltext" />
 			
 		</h:column>
 		
 		<h:column>
 			
-			<h:form prependId="false">
+			<h:form prependId="false" rendered="#{!playlistBean.queue}">
 				<h:commandLink action="#{playlistBean.putToQueue}">
 					<h:graphicImage id="qBtn" url="img/toqueue.png" styleClass="icon" alt="Put to queue"
 						onmouseover="onMouse('#qBtn#{mp3File.index}', 'img/toqueue-shadow.png')" 
@@ -47,6 +47,18 @@
 				</h:commandLink>
 			</h:form>
 			
+		</h:column>
+		
+		<h:column>
+			<h:form prependId="false">
+				<h:commandLink action="#{playlistBean.removeMp3FromTheList}">
+					<h:graphicImage id="queueBtn" url="img/remove.png" styleClass="icon" alt="Remove"
+						onmouseover="onMouse('#queueBtn', 'img/remove-shadow.png')" 
+						onmouseout="onMouse('#queueBtn', 'img/remove.png')" 
+						onmousedown="onMouse('#queueBtn', 'img/remove-pressed.png')" 
+						onmouseup="onMouse('#queueBtn', 'img/remove-shadow.png')" />
+				</h:commandLink>
+			</h:form>
 		</h:column>
 		
 	</h:dataTable>

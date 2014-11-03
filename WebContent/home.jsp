@@ -35,7 +35,7 @@
 						<h:graphicImage url="img/refresh.png" styleClass="icon" />
 					</h:commandLink>
 				</h:form>
-				<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}"></h:outputLabel>
+				<h:outputLabel value="Playing: #{playerBean.currentlyPlaying} (#{playlistBean.activePlaylistName})"></h:outputLabel>
 			</h:panelGrid>
 			
 			<hr/>

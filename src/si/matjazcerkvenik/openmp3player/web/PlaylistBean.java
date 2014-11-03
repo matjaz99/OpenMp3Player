@@ -37,6 +37,10 @@ public class PlaylistBean {
 		return false;
 	}
 	
+	public String getActivePlaylistName() {
+		return Mp3Player.getInstance().getActivePlaylist().getName();
+	}
+	
 	public void play() {
 		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		logger.debug("PlaylistBean:play(): " + mp3.getIndex());
@@ -62,6 +66,12 @@ public class PlaylistBean {
 		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", mp3);
 		return "song";
+	}
+	
+	public void removeMp3FromTheList() {
+		Mp3File mp3 = (Mp3File) dataTable.getRowData();
+		logger.info("PlaylistBean:removeMp3FromTheList(): " + mp3.getIndex());
+		Mp3Player.getInstance().removeMp3FromPassiveList(mp3);
 	}
 	
 	

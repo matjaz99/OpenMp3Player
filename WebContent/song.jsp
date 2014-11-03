@@ -43,11 +43,14 @@
 				
 				<h:outputLabel value="Size:"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.size}"></h:outputLabel>
+				
+				<h:outputLabel value="Path:"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.path}"></h:outputLabel>
 			</h:panelGrid>
 			
 			<hr/>
 			
-			<h:outputLink value="#{songBean.tagsAsString}"/>
+			<h:outputText value="#{songBean.tagsAsString}"/>
 			
 			<hr/>
 			

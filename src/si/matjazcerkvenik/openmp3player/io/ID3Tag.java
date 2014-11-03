@@ -19,16 +19,9 @@ public class ID3Tag {
 			File sourceFile = new File(mp3.getPath());
 			MP3File mp3file = new MP3File(sourceFile);
 			
-			OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): " + mp3.getPath());
-
-//		ID3v1 tag = mp3file.getID3v1Tag();
-//		System.out.println(tag.getAlbum());
-//		System.out.println(tag.getArtist());
-//		System.out.println(tag.getTitle());
-			
 			AbstractID3v1 tag = mp3file.getID3v1Tag();
 			if (tag != null) {
-				OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): parsing ID3v1");
+				OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): parsing ID3v1: " + mp3.getPath());
 				if (tag.getSongTitle().trim().length() > 0) {
 					mp3.setTitle(validate(tag.getSongTitle()));
 				}
@@ -40,15 +33,9 @@ public class ID3Tag {
 				return mp3;
 			}
 			
-			
-//		AbstractID3 tag22 = mp3file.getID3v2Tag();
-//		System.out.println(tag22.getAlbumTitle());
-//		System.out.println(tag22.getSongTitle());
-//		System.out.println(tag22.getAuthorComposer());
-			
 			AbstractID3v2 tag2 = mp3file.getID3v2Tag();
 			if (tag2 != null) {
-				OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): parsing ID3v2");
+				OContext.getInstance().getLogger().info("ID3Tag:getMetadata(): parsing ID3v2: " + mp3.getPath());
 				if (tag2.getSongTitle().trim().length() > 0) {
 					mp3.setTitle(validate(tag2.getSongTitle()));
 				}

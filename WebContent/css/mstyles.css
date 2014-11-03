@@ -18,6 +18,10 @@
 	font-weight: bold;
 }
 
+.smalltext {
+	font-size: 12px;
+}
+
 a, a:hover, a:visited, a:link {
 	text-decoration: none;
 }

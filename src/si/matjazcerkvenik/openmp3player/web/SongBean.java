@@ -9,7 +9,9 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.io.Digester;
 import si.matjazcerkvenik.openmp3player.io.ID3Tag;
+import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.io.TagFactory;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
@@ -31,7 +33,7 @@ public class SongBean {
 	
 
 	/**
-	 * Get selected mp3file
+	 * Get selected mp3file from the session
 	 * @return mp3File
 	 */
 	public Mp3File getMp3File() {
@@ -43,8 +45,12 @@ public class SongBean {
 		logger.info("SongBean:getMp3File: id=" + id);
 		
 		mp3File = Mp3Player.getInstance().getMp3(id);
-//		mp3File = ID3Tag.getMetadata(mp3File);
-		
+		String hash = Digester.getSha1(mp3File.getPath());
+		if (!mp3File.getHash().equals(hash)) {
+			mp3File.setHash(hash);
+			mp3File = ID3Tag.getMetadata(mp3File);
+			PlaylistFactory.getInstance().savePassivePlaylist();
+		}
 		return mp3File;
 		
 	}
@@ -84,6 +90,7 @@ public class SongBean {
 		Tag t = TagFactory.getInstance().getTag(selectedTag);
 		mp3File = getMp3File();
 		mp3File.addTag(t);
+		PlaylistFactory.getInstance().savePassivePlaylist();
 		
 	}
 	
@@ -102,13 +109,14 @@ public class SongBean {
 
 
 	public String getTagsAsString() {
+		mp3File = getMp3File();
 		String s = "";
 		if (mp3File.getTags() == null) {
 			return s;
 		}
 		for (int i = 0; i < mp3File.getTags().getTags().size(); i++) {
 			s += mp3File.getTags().getTags().get(i);
-			if (i < mp3File.getTags().getTags().size()) {
+			if (i < mp3File.getTags().getTags().size() - 1) {
 				s += ", ";
 			}
 		}
