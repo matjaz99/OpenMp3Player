@@ -44,7 +44,7 @@ public class AddTagBean {
 	}
 	
 	public List<Tag> getAllTags() {
-		return TagFactory.getInstance().getTags().getTags();
+		return TagFactory.getInstance().getTags().getTagList();
 	}
 	
 	

@@ -69,12 +69,12 @@ public class SongBean {
 		
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		
-		if (tags.getTags() == null) {
+		if (tags.getTagList() == null) {
 			return list;
 		}
 		
-		for (int i = 0; i < tags.getTags().size(); i++) {
-			String name = tags.getTags().get(i).getName();
+		for (int i = 0; i < tags.getTagList().size(); i++) {
+			String name = tags.getTagList().get(i).getName();
 			list.add(new SelectItem(name, name));
 		}
 		
@@ -114,9 +114,9 @@ public class SongBean {
 		if (mp3File.getTags() == null) {
 			return s;
 		}
-		for (int i = 0; i < mp3File.getTags().getTags().size(); i++) {
-			s += mp3File.getTags().getTags().get(i);
-			if (i < mp3File.getTags().getTags().size() - 1) {
+		for (int i = 0; i < mp3File.getTags().getTagList().size(); i++) {
+			s += mp3File.getTags().getTagList().get(i);
+			if (i < mp3File.getTags().getTagList().size() - 1) {
 				s += ", ";
 			}
 		}

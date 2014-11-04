@@ -86,7 +86,7 @@ public class TagFactory {
 	
 	public Tag getTag(String name) {
 		
-		for (Tag t : tags.getTags()) {
+		for (Tag t : tags.getTagList()) {
 			if (t.getName().equals(name)) {
 				return t;
 			}

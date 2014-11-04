@@ -10,6 +10,10 @@ public class Playlist {
 	private String origin;
 	private Mp3Files mp3files = new Mp3Files();
 
+	/**
+	 * Get name of xml file
+	 * @return source
+	 */
 	public String getSource() {
 		return source;
 	}
@@ -19,6 +23,10 @@ public class Playlist {
 		this.source = source;
 	}
 
+	/**
+	 * Get name of playlist
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
@@ -41,9 +49,6 @@ public class Playlist {
 	 * Add mp3 to playlist
 	 */
 	public void addMp3File(Mp3File mp3) {
-		if (mp3files == null) {
-			mp3files = new Mp3Files();
-		}
 		mp3files.add(mp3);
 	}
 	
@@ -56,6 +61,10 @@ public class Playlist {
 		this.mp3files = mp3files;
 	}
 
+	/**
+	 * Return true if this playlist is queue
+	 * @return true/false
+	 */
 	public boolean isQueue() {
 		if (source.equals("queue")) {
 			return true;

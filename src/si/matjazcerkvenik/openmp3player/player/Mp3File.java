@@ -17,7 +17,7 @@ public class Mp3File implements Cloneable {
 	private String year = "null";
 	private int size = 0;
 	private String backgroundColor = null;
-	private Tags tags = null;
+	private Tags tags = new Tags();
 
 	@XmlTransient
 	public int getIndex() {
@@ -28,10 +28,19 @@ public class Mp3File implements Cloneable {
 		this.index = index;
 	}
 
+	/**
+	 * Get SHA1 or MD5 hash
+	 * @return hash
+	 */
 	public String getHash() {
 		return hash;
 	}
 
+	/**
+	 * Set SHA1 or MD5 hash
+	 * @param hash
+	 */
+	@XmlElement
 	public void setHash(String hash) {
 		this.hash = hash;
 	}
@@ -48,6 +57,7 @@ public class Mp3File implements Cloneable {
 	 * Set song title
 	 * @param title
 	 */
+	@XmlElement
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -60,6 +70,7 @@ public class Mp3File implements Cloneable {
 		return artist;
 	}
 
+	@XmlElement
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
@@ -68,6 +79,7 @@ public class Mp3File implements Cloneable {
 		return album;
 	}
 
+	@XmlElement
 	public void setAlbum(String album) {
 		this.album = album;
 	}
@@ -92,6 +104,7 @@ public class Mp3File implements Cloneable {
 		return genre;
 	}
 
+	@XmlElement
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
@@ -100,6 +113,7 @@ public class Mp3File implements Cloneable {
 		return year;
 	}
 
+	@XmlElement
 	public void setYear(String year) {
 		this.year = year;
 	}
@@ -108,6 +122,7 @@ public class Mp3File implements Cloneable {
 		return size;
 	}
 
+	@XmlElement
 	public void setSize(int size) {
 		this.size = size;
 	}
@@ -116,6 +131,7 @@ public class Mp3File implements Cloneable {
 		return backgroundColor;
 	}
 
+	@XmlElement
 	public void setBackgroundColor(String backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
@@ -124,14 +140,12 @@ public class Mp3File implements Cloneable {
 		return tags;
 	}
 
+	@XmlElement
 	public void setTags(Tags tags) {
 		this.tags = tags;
 	}
 	
 	public void addTag(Tag t) {
-		if (tags == null) {
-			tags = new Tags();
-		}
 		tags.addTag(t);
 	}
 

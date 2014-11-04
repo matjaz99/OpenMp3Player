@@ -17,9 +17,7 @@ public class PlaylistBean {
 	private HtmlDataTable dataTable = null;
 	
 	public PlaylistBean() {
-		
 		logger = OContext.getInstance().getLogger();
-		
 	}
 	
 	public List<Mp3File> getMp3List() {
@@ -31,10 +29,7 @@ public class PlaylistBean {
 	}
 	
 	public boolean isQueue() {
-		if (Mp3Player.getInstance().getPassivePlaylist().getName().equals("Queue")) {
-			return true;
-		}
-		return false;
+		return Mp3Player.getInstance().getPassivePlaylist().isQueue();
 	}
 	
 	public String getActivePlaylistName() {
