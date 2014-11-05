@@ -7,7 +7,8 @@
 
 <h:panelGrid columns="1" >
 	
-	<h:dataTable value="#{playlistBean.mp3List}" binding="#{playlistBean.dataTable}" var="mp3File">
+	<h:dataTable value="#{playlistBean.mp3List}" binding="#{playlistBean.dataTable}" var="mp3File"
+		rowClasses="table-odd-row,table-even-row" cellpadding="0" cellspacing="0">
 		
 		<h:column>
 			
@@ -26,10 +27,12 @@
 		<h:column>
 			
 			<h:form>
+			
 				<h:commandLink action="#{playlistBean.showSongDetails}">
 					<f:param name="id" value="#{mp3File.index}"></f:param>
-					<h:outputText value="#{mp3File.title}" />
+					<h:outputText value="#{mp3File.title}" styleClass="blackText" />
 				</h:commandLink>
+			
 			</h:form>
 			<h:outputText value="#{mp3File.artist}" styleClass="smalltext" />
 			
