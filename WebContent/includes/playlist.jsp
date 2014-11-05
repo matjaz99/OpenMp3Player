@@ -5,10 +5,10 @@
 <f:loadBundle basename="si.matjazcerkvenik.openmp3player.backend.om3p" var="bundle"/>
 
 
-<h:panelGrid columns="1" >
+<h:panelGrid columns="1" width="100%" >
 	
 	<h:dataTable value="#{playlistBean.mp3List}" binding="#{playlistBean.dataTable}" var="mp3File"
-		rowClasses="table-odd-row,table-even-row" cellpadding="0" cellspacing="0">
+		rowClasses="table-odd-row,table-even-row" cellpadding="0" cellspacing="0" width="100%" >
 		
 		<h:column>
 			
@@ -26,10 +26,11 @@
 		
 		<h:column>
 			
+			<h:outputText value="#{mp3File.tags.tagList}" styleClass="smalltext" />
 			<h:form>
 			
 				<h:commandLink action="#{playlistBean.showSongDetails}">
-					<f:param name="id" value="#{mp3File.index}"></f:param>
+					
 					<h:outputText value="#{mp3File.title}" styleClass="blackText" />
 				</h:commandLink>
 			
@@ -37,6 +38,7 @@
 			<h:outputText value="#{mp3File.artist}" styleClass="smalltext" />
 			
 		</h:column>
+		
 		
 		<h:column>
 			
