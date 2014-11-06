@@ -40,6 +40,10 @@
 	color: #323;
 }
 
+.error {
+	color: red;
+}
+
 a, a:hover, a:visited, a:link {
 	text-decoration: none;
 }

@@ -32,9 +32,12 @@
 			<h:form prependId="false" rendered="#{playlistBean.queue}">
 				<h:panelGrid columns="3">
 					<h:outputLabel value="Name: "></h:outputLabel>
-					<h:inputText value="#{queueBean.newQueueName}" />
+					<h:inputText value="#{queueBean.newQueueName}">
+						<f:validator validatorId="playlistValidator"/>
+					</h:inputText>
 					<h:commandButton action="#{queueBean.saveQueue}" value="Save"></h:commandButton>
 				</h:panelGrid>
+				<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
 				<hr/>
 			</h:form>
 			

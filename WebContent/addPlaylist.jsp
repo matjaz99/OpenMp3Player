@@ -36,7 +36,7 @@
 					</h:panelGrid>
 					
 				</h:form>
-			<h:messages layout="table" showDetail="true" showSummary="true"></h:messages>
+			<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
 			<hr/>
 			
 			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
