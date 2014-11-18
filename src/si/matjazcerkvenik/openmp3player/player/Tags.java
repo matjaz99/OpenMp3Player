@@ -24,5 +24,17 @@ public class Tags {
 		this.tagList = tags;
 	}
 	
+	@Override
+	public String toString() {
+		String s = "";
+		for (int i = 0; i < tagList.size(); i++) {
+			s += tagList.get(i);
+			if (i < tagList.size() - 1) {
+				s += ", ";
+			}
+		}
+		return s;
+	}
+	
 	
 }
