@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="o" uri="/WEB-INF/tld/omp3p-tags.tld"%>
 
 <f:loadBundle basename="si.matjazcerkvenik.openmp3player.backend.om3p" var="bundle"/>
 
@@ -26,7 +28,8 @@
 		
 		<h:column>
 			
-			<h:outputText value="#{mp3File.tags.tagList}" styleClass="smalltext" />
+			<o:tagItem value="#{mp3File.tags}"/>
+			
 			<h:form>
 			
 				<h:commandLink action="#{playlistBean.showSongDetails}">

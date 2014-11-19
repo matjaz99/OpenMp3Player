@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1" xmlns="http://java.sun.com/xml/ns/javaee">
+	<display-name>SongTags</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>tag</short-name>
+	<tag>
+		<description>Song tag</description>
+		<name>tagItem</name>
+		<tag-class>si.matjazcerkvenik.openmp3player.web.TagTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<deferred-value><type>java.lang.Object</type></deferred-value>
+		</attribute>
+	</tag>
+</taglib>

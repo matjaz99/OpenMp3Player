@@ -2,6 +2,10 @@
 <faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <component>
+  <component-type>omp3p.tagComponent</component-type>
+  <component-class>si.matjazcerkvenik.openmp3player.web.TagComponent</component-class>
+ </component>
  <managed-bean>
   <managed-bean-name>playerBean</managed-bean-name>
   <managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlayerBean</managed-bean-class>
@@ -77,6 +81,13 @@
    <to-view-id>/addTag.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
+ <render-kit>
+  <renderer>
+   <component-family>omp3p.tag</component-family>
+   <renderer-type>omp3p.tagRenderer</renderer-type>
+   <renderer-class>si.matjazcerkvenik.openmp3player.web.TagRenderer</renderer-class>
+  </renderer>
+ </render-kit>
  <validator>
   <validator-id>playlistValidator</validator-id>
   <validator-class>si.matjazcerkvenik.openmp3player.io.PlaylistValidator</validator-class>
