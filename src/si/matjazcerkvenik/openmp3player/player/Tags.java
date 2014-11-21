@@ -24,6 +24,12 @@ public class Tags {
 		this.tagList = tags;
 	}
 	
+	public void removeTag(Tag t) {
+				
+		tagList.remove(t);
+		
+	}
+	
 	@Override
 	public String toString() {
 		String s = "";

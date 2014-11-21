@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -26,6 +27,8 @@ public class SongBean {
 	private Mp3File mp3File = null;
 	
 	private String selectedTag = null;
+	
+	private HtmlDataTable tagDataTable = null;
 	
 	public SongBean() {
 		logger = OContext.getInstance().getLogger();
@@ -63,7 +66,7 @@ public class SongBean {
 	 * Get tags for dropdown menu
 	 * @return list
 	 */
-	public List<SelectItem> getTags() {
+	public List<SelectItem> getTagItems() {
 		
 		Tags tags = TagFactory.getInstance().getTags();
 		
@@ -121,6 +124,27 @@ public class SongBean {
 			}
 		}
 		return s;
+	}
+
+
+	public HtmlDataTable getTagDataTable() {
+		return tagDataTable;
+	}
+
+
+	public void setTagDataTable(HtmlDataTable tagDataTable) {
+		this.tagDataTable = tagDataTable;
+	}
+	
+	public List<Tag> getTagList() {
+		return getMp3File().getTags().getTagList();
+	}
+	
+	public void removeTag() {
+		Tag t = (Tag) tagDataTable.getRowData();
+		Mp3File m = getMp3File();
+		m.getTags().removeTag(t);
+		PlaylistFactory.getInstance().savePassivePlaylist();
 	}
 	
 }

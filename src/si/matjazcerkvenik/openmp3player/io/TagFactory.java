@@ -84,6 +84,11 @@ public class TagFactory {
 		}
 	}
 	
+	/**
+	 * Return tag according to given name
+	 * @param name
+	 * @return tag
+	 */
 	public Tag getTag(String name) {
 		
 		for (Tag t : tags.getTagList()) {

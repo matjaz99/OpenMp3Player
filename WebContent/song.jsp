@@ -50,7 +50,32 @@
 			
 			<hr/>
 			
-			<h:outputText value="#{songBean.tagsAsString}"/>
+			<h:dataTable value="#{songBean.tagList}" binding="#{songBean.tagDataTable}" var="tag" 
+				cellpadding="0" cellspacing="0" width="100%" >
+				
+				<h:column>
+					
+					<h:outputText value="#{tag.name}" />
+					
+				</h:column>
+				
+				<h:column>
+					
+					<h:form>
+						<h:commandLink action="#{songBean.removeTag}">
+							<h:graphicImage id="queueBtn" url="img/remove.png" styleClass="icon" alt="Remove"
+								onmouseover="onMouse('#queueBtn', 'img/remove-shadow.png')" 
+								onmouseout="onMouse('#queueBtn', 'img/remove.png')" 
+								onmousedown="onMouse('#queueBtn', 'img/remove-pressed.png')" 
+								onmouseup="onMouse('#queueBtn', 'img/remove-shadow.png')" />
+						</h:commandLink>
+					</h:form>
+					
+				</h:column>
+				
+			</h:dataTable>
+			
+<%-- 			<h:outputText value="#{songBean.tagsAsString}"/> --%>
 			
 			<hr/>
 			
@@ -58,7 +83,7 @@
 				<h:outputText value="Add tag: " />
 				<h:selectOneMenu onchange="submit()" value="#{songBean.selectedTag}"
 					valueChangeListener="#{songBean.tagSelected}">
-					<f:selectItems value="#{songBean.tags}"/>
+					<f:selectItems value="#{songBean.tagItems}"/>
 				</h:selectOneMenu>
 			</h:form>
 			
