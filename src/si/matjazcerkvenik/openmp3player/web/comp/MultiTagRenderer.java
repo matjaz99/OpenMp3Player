@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.web;
+package si.matjazcerkvenik.openmp3player.web.comp;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.faces.render.Renderer;
 
 import si.matjazcerkvenik.openmp3player.player.Tags;
 
-public class TagRenderer extends Renderer {
+public class MultiTagRenderer extends Renderer {
 	
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component)
@@ -22,7 +22,6 @@ public class TagRenderer extends Renderer {
 		Tags tags = (Tags) component.getAttributes().get("value");
 		
 		rw.startElement("div", component);
-//		rw.writeAttribute("style", "float: right; display: inline;", null);
 		rw.writeAttribute("style", "float: right;", null);
 		
 		for (int i = 0; i < tags.getTagList().size(); i++) {

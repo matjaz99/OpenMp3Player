@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="o" uri="/WEB-INF/tld/omp3p-tags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,7 +56,7 @@
 				
 				<h:column>
 					
-					<h:outputText value="#{tag.name}" />
+					<o:tag value="#{tag}"/>
 					
 				</h:column>
 				
@@ -63,11 +64,7 @@
 					
 					<h:form>
 						<h:commandLink action="#{songBean.removeTag}">
-							<h:graphicImage id="queueBtn" url="img/remove.png" styleClass="icon" alt="Remove"
-								onmouseover="onMouse('#queueBtn', 'img/remove-shadow.png')" 
-								onmouseout="onMouse('#queueBtn', 'img/remove.png')" 
-								onmousedown="onMouse('#queueBtn', 'img/remove-pressed.png')" 
-								onmouseup="onMouse('#queueBtn', 'img/remove-shadow.png')" />
+							<h:graphicImage id="removeBtn" url="img/remove-small.png" styleClass="icon" alt="Remove" />
 						</h:commandLink>
 					</h:form>
 					

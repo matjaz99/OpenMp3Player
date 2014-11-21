@@ -28,7 +28,7 @@
 		
 		<h:column>
 			
-			<o:tagItem value="#{mp3File.tags}"/>
+			<o:tags value="#{mp3File.tags}"/>
 			
 			<h:form>
 			

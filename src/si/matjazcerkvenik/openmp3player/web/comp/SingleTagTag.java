@@ -1,10 +1,10 @@
-package si.matjazcerkvenik.openmp3player.web;
+package si.matjazcerkvenik.openmp3player.web.comp;
 
 import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
 import javax.faces.webapp.UIComponentELTag;
 
-public class TagTag extends UIComponentELTag {
+public class SingleTagTag extends UIComponentELTag {
 	
 	private ValueExpression value = null;
 	
@@ -15,12 +15,12 @@ public class TagTag extends UIComponentELTag {
 
 	@Override
 	public String getComponentType() {
-		return "omp3p.tagComponent";
+		return "omp3p.singleTagComponent";
 	}
 	
 	@Override
 	public String getRendererType() {
-		return "omp3p.tagRenderer";
+		return null;
 	}
 	
 	@Override

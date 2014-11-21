@@ -36,7 +36,7 @@
 }
 
 .smalltext {
-	font-size: 12px;
+	font-size: 14px;
 	color: #323;
 }
 
@@ -54,7 +54,7 @@ a, a:hover, a:visited, a:link {
 	border-bottom-right-radius: 4px 4px;
 	border-top-left-radius: 4px 4px;
 	border-top-right-radius: 4px 4px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 3px;
 	margin-right: 5px;
 	margin-top: 5px;

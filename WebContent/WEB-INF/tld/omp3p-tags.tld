@@ -6,13 +6,24 @@
 	<tlib-version>1.0</tlib-version>
 	<short-name>tag</short-name>
 	<tag>
-		<description>Song tag</description>
-		<name>tagItem</name>
-		<tag-class>si.matjazcerkvenik.openmp3player.web.TagTag</tag-class>
+		<description>All song tags</description>
+		<name>tags</name>
+		<tag-class>si.matjazcerkvenik.openmp3player.web.comp.MultiTagTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>value</name>
-			<required>false</required>
+			<required>true</required>
+			<deferred-value><type>java.lang.Object</type></deferred-value>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Single tag</description>
+		<name>tag</name>
+		<tag-class>si.matjazcerkvenik.openmp3player.web.comp.SingleTagTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
 			<deferred-value><type>java.lang.Object</type></deferred-value>
 		</attribute>
 	</tag>

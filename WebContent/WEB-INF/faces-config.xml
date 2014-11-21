@@ -3,8 +3,12 @@
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
  <component>
-  <component-type>omp3p.tagComponent</component-type>
-  <component-class>si.matjazcerkvenik.openmp3player.web.TagComponent</component-class>
+  <component-type>omp3p.multiTagComponent</component-type>
+  <component-class>si.matjazcerkvenik.openmp3player.web.comp.MultiTagComponent</component-class>
+ </component>
+ <component>
+  <component-type>omp3p.singleTagComponent</component-type>
+  <component-class>si.matjazcerkvenik.openmp3player.web.comp.SingleTagComponent</component-class>
  </component>
  <managed-bean>
   <managed-bean-name>playerBean</managed-bean-name>
@@ -83,9 +87,9 @@
  </navigation-rule>
  <render-kit>
   <renderer>
-   <component-family>omp3p.tag</component-family>
-   <renderer-type>omp3p.tagRenderer</renderer-type>
-   <renderer-class>si.matjazcerkvenik.openmp3player.web.TagRenderer</renderer-class>
+   <component-family>omp3p.multiTag</component-family>
+   <renderer-type>omp3p.multiTagRenderer</renderer-type>
+   <renderer-class>si.matjazcerkvenik.openmp3player.web.comp.MultiTagRenderer</renderer-class>
   </renderer>
  </render-kit>
  <validator>
