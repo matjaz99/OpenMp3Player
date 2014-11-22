@@ -14,9 +14,18 @@
 	
 	<f:view>
 		
-		<h:panelGrid columns="1" styleClass="background">
+		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<h:outputLabel value="Playlists" styleClass="title"></h:outputLabel>
+			
+			<f:facet name="header">
+				<h:form>
+					<h:commandLink action="/">
+						<h:outputLabel value="Playlists" styleClass="title"></h:outputLabel>
+					</h:commandLink>
+				</h:form>
+			</f:facet>
+			
+			<hr/>
 			
 			<h:form>
 				<h:commandLink value="Back" action="home" />
@@ -27,7 +36,7 @@
 			
 			<hr/>
 			
-			<h:dataTable value="#{playlistsBean.playlistsList}" binding="#{playlistsBean.dataTable}" var="plist">
+			<h:dataTable value="#{playlistsBean.playlistsList}" binding="#{playlistsBean.dataTable}" var="plist" width="100%">
 				
 				<h:column>
 					<h:form prependId="false">

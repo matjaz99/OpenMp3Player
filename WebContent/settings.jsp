@@ -15,9 +15,17 @@
 	<f:view>
 		
 		
-		<h:panelGrid columns="1" styleClass="background">
+		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<h:outputText value="OpenMp3Player Settings" styleClass="title" />
+			<f:facet name="header">
+				<h:form>
+					<h:commandLink action="/">
+						<h:outputText value="OpenMp3Player Settings" styleClass="title" />
+					</h:commandLink>
+				</h:form>
+			</f:facet>
+			
+			<hr/>
 			
 			<h:form>
 				<h:commandLink value="Back" action="home" />

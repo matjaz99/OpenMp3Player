@@ -14,14 +14,15 @@
 	
 	<f:view>
 		
-		<h:panelGrid columns="1" styleClass="background">
+		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<h:form>
-			<h:commandLink action="/">
-				<h:outputLabel value="Queue" styleClass="title"></h:outputLabel>
-			</h:commandLink>
-			</h:form>
-			
+			<f:facet name="header">
+				<h:form>
+					<h:commandLink action="/">
+						<h:outputLabel value="Queue" styleClass="title"></h:outputLabel>
+					</h:commandLink>
+				</h:form>
+			</f:facet>
 			
 			<hr/>
 			

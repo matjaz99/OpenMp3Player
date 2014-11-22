@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="o" uri="/WEB-INF/tld/omp3p-tags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,9 +15,17 @@
 	
 	<f:view>
 		
-		<h:panelGrid columns="1" styleClass="background">
+		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<h:outputLabel value="Add new tag" styleClass="title"></h:outputLabel>
+			<f:facet name="header">
+				<h:form>
+					<h:commandLink action="/">
+						<h:outputLabel value="Add new tag" styleClass="title"></h:outputLabel>
+					</h:commandLink>
+				</h:form>
+			</f:facet>
+			
+			<hr/>
 			
 			<h:form>
 				<h:commandLink value="Back" action="song" />
@@ -44,10 +53,7 @@
 			<h:dataTable value="#{addTagBean.allTags}" var="tag">
 				
 				<h:column>
-					<h:outputText value="#{tag.name}" />
-				</h:column>
-				<h:column>
-					<h:outputText value="#{tag.color}" />
+					<o:tag value="#{tag}"/>
 				</h:column>
 				
 			</h:dataTable>
