@@ -1,5 +1,6 @@
 package si.matjazcerkvenik.openmp3player.io;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -46,6 +47,10 @@ public class Digester {
 	
 	public static String getSha1(String file) {
 		
+		if (!fileExists(file)) {
+			return "-1";
+		}
+		
 		FileInputStream fis;
 		StringBuffer sb;
 		
@@ -86,6 +91,11 @@ public class Digester {
 	    
 	    return "0";
 		
+	}
+	
+	private static boolean fileExists(String file) {
+		File f = new File(file);
+		return f.exists();
 	}
 	
 }

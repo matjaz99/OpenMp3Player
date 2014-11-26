@@ -17,6 +17,11 @@ public class ID3Tag {
 		
 		try {
 			File sourceFile = new File(mp3.getPath());
+			
+			if (!sourceFile.exists()) {
+				return mp3;
+			}
+			
 			MP3File mp3file = new MP3File(sourceFile);
 			
 			AbstractID3v1 tag = mp3file.getID3v1Tag();

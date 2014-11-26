@@ -2,6 +2,7 @@ package si.matjazcerkvenik.openmp3player.player.jlayer;
 
 import java.net.URL;
 
+import javazoom.jl.decoder.JavaLayerException;
 import si.matjazcerkvenik.openmp3player.player.IPlayerCallback;
 
 
@@ -79,8 +80,12 @@ public class SoundJLayer extends Pausable.PlaybackListener implements Runnable {
 	public void run() {
 		try {
 			this.player.resume();
-		} catch (javazoom.jl.decoder.JavaLayerException ex) {
+		} catch (JavaLayerException ex) {
 			ex.printStackTrace();
+			callback.playEnded();
+		} catch (Exception e) {
+			e.printStackTrace();
+			callback.playEnded();
 		}
 
 	}
