@@ -30,22 +30,22 @@
 				<h:outputLabel value="Title:"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.title}"></h:outputLabel>
 				
-				<h:outputLabel value="Artist:"></h:outputLabel>
+				<h:outputLabel value="Artist:" styleClass="smalltext-white"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.artist}"></h:outputLabel>
 				
-				<h:outputLabel value="Album:"></h:outputLabel>
+				<h:outputLabel value="Album:" styleClass="smalltext-white"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.album}"></h:outputLabel>
 				
-				<h:outputLabel value="Genre:"></h:outputLabel>
+				<h:outputLabel value="Genre:" styleClass="smalltext-white"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.genre}"></h:outputLabel>
 				
-				<h:outputLabel value="Year:"></h:outputLabel>
+				<h:outputLabel value="Year:" styleClass="smalltext-white"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.year}"></h:outputLabel>
 				
-				<h:outputLabel value="Size:"></h:outputLabel>
+				<h:outputLabel value="Size:" styleClass="smalltext-white"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.size}"></h:outputLabel>
 				
-				<h:outputLabel value="Path:"></h:outputLabel>
+				<h:outputLabel value="Path:" styleClass="smalltext-white"></h:outputLabel>
 				<h:outputLabel value="#{songBean.mp3File.path}"></h:outputLabel>
 			</h:panelGrid>
 			

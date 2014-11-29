@@ -26,7 +26,7 @@ public class SongBean {
 	
 	private Mp3File mp3File = null;
 	
-	private String selectedTag = null;
+	private String selectedTag = "- Select tag -";
 	
 	private HtmlDataTable tagDataTable = null;
 	
@@ -71,6 +71,7 @@ public class SongBean {
 		Tags tags = TagFactory.getInstance().getTags();
 		
 		List<SelectItem> list = new ArrayList<SelectItem>();
+		list.add(new SelectItem("- Select tag -", "- Select tag -"));
 		
 		if (tags.getTagList() == null) {
 			return list;
@@ -85,22 +86,30 @@ public class SongBean {
 		
 	}
 	
-	
+	/**
+	 * Event: new tag selected in dropdown menu
+	 * @param e
+	 */
 	public void tagSelected(ValueChangeEvent e) {
 		
 		selectedTag = e.getNewValue().toString();
 		logger.info("SongBean:tagSelected(): event - selected tag: " + selectedTag);
+		if (selectedTag.equals("- Select tag -")) {
+			return;
+		}
 		Tag t = TagFactory.getInstance().getTag(selectedTag);
 		mp3File = getMp3File();
 		mp3File.addTag(t);
 		PlaylistFactory.getInstance().savePassivePlaylist();
 		
+		selectedTag = "- Select tag -";
+				
 	}
 	
 	
 	public String getSelectedTag() {
 		if (selectedTag == null) {
-			selectedTag = "";
+			selectedTag = "- Select tag -";
 		}
 		return selectedTag;
 	}

@@ -40,6 +40,11 @@
 	color: #323;
 }
 
+.smalltext-white {
+	font-size: 14px;
+	color: white;
+}
+
 .error {
 	color: red;
 }

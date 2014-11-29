@@ -167,7 +167,7 @@ public class Mp3Player {
 	 * @return size
 	 */
 	public Playlist getPassivePlaylist() {
-		logger.debug("Mp3Player:getPassivePlaylist(): " + passivePlaylist.getName());
+		logger.trace("Mp3Player:getPassivePlaylist(): " + passivePlaylist.getName());
 		return passivePlaylist;
 	}
 	

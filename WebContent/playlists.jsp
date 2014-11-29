@@ -31,7 +31,7 @@
 				<h:commandLink value="Back" action="home" />
 			</h:form>
 			<h:form>
-				<h:commandLink value="Add new" action="addPlaylist" />
+				<h:commandLink value="Add mp3s from directory" action="addPlaylist" />
 			</h:form>
 			
 			<hr/>
