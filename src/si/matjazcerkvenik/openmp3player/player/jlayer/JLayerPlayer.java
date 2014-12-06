@@ -19,7 +19,6 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 	public void play(String filepath) {
 		
 		player = new SoundJLayer(filepath, this);
-//		System.out.println("play: absolutePath: " + filepath);
 		player.play();
 		status = PlayerStatus.PLAYING;
 		
@@ -27,8 +26,7 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 	
 	@Override
 	public void pause() {
-		player.pauseToggle();
-		status = PlayerStatus.STOPPED;
+		// no implementation
 	}
 
 	@Override
