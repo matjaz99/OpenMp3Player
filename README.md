@@ -4,7 +4,6 @@ OpenMp3Player
 New version 2 is still in development phase. It will bring many new features, such as:
 - JSF 1.2 will be used (JSP based)
 - tags and labels
-- upload mp3
 
 Last stable release: 1.4.0
 
@@ -23,6 +22,11 @@ Unzip and put OpenMp3Player.war into $TOMCAT_HOME/webapps directory.
 With web browser go to: <a href="http://hostname:8080/OpenMp3Player">
 http://hostname:8080/OpenMp3Player</a>
 
+
+For developers
+-------------------
+Developed on tomcat 7. To start add VM arg to tomcat:
+-Domp3p.home="/path/to/OpenMp3Player"
 
 
 History

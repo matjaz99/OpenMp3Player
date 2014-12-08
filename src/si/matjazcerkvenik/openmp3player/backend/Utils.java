@@ -52,8 +52,7 @@ public class Utils {
 
 		try {
 
-			FileInputStream fis = new FileInputStream(OContext.HOME_DIR
-					+ "config/version.txt");
+			FileInputStream fis = new FileInputStream(OContext.CFG_DIR + "/version.txt");
 
 			DataInputStream dis = new DataInputStream(fis);
 			BufferedReader br = new BufferedReader(new InputStreamReader(dis));
@@ -98,8 +97,7 @@ public class Utils {
 			
 			try {
 
-				props.load(new FileInputStream(OContext.HOME_DIR
-						+ "config/openmp3player.properties"));
+				props.load(new FileInputStream(OContext.CFG_DIR + "/openmp3player.properties"));
 
 				PLAYER_DELAY = parseInt(props.getProperty(PROPERTY_PLAYER_DELAY), 5);
 				SoundControl.CURRENT_VOLUME_LEVEL = parseInt(props.getProperty(PROPERTY_VOLUME_DEFAULT), 1);
@@ -199,7 +197,7 @@ public class Utils {
 			return;
 		}
 		
-		File dir = new File(OContext.HOME_DIR + "config");
+		File dir = new File(OContext.CFG_DIR);
 		File[] files = dir.listFiles(new FileFilter() {
 			
 			@Override
@@ -219,7 +217,7 @@ public class Utils {
 	public static void runScript(String script, String[] args) {
 		
 		String[] command = new String[args.length + 1];
-		command[0] = OContext.HOME_DIR + "config/" + script;
+		command[0] = OContext.CFG_DIR + "/" + script;
 		
 		for (int i = 0; i < args.length; i++) {
 			command[i+1] = args[i];
