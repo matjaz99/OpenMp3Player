@@ -58,7 +58,7 @@ public class PlaylistFactory {
 		
 		try {
 
-			File file = new File(OContext.HOME_DIR + "playlists/playlists.xml");
+			File file = new File(OContext.PLAYLISTS_DIR + "/playlists.xml");
 			if (!file.exists()) {
 				logger.warn("PlaylistFactory:getPlaylists(): playlists.xml not found; creating new");
 				playlists = new Playlists();
@@ -88,7 +88,7 @@ public class PlaylistFactory {
 		logger.info("PlaylistFactory:savePlaylists(): saving...");
 		try {
 
-			File file = new File(OContext.HOME_DIR + "playlists/playlists.xml");
+			File file = new File(OContext.PLAYLISTS_DIR + "/playlists.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -172,7 +172,7 @@ public class PlaylistFactory {
 			
 			if (plist.getName().equals(p.getName())) {
 				if (plist.getSource().endsWith(".xml")) {
-					File f = new File(OContext.HOME_DIR + "playlists/" + plist.getSource());
+					File f = new File(OContext.PLAYLISTS_DIR + "/" + plist.getSource());
 					logger.debug("PlaylistFactory:deletePlaylist(): delete: " + f.getAbsolutePath());
 					f.delete();
 				}
@@ -206,12 +206,12 @@ public class PlaylistFactory {
 		Mp3Files mp3Files = null;
 		try {
 
-			File file = new File(OContext.HOME_DIR + "playlists/" + source);
+			File file = new File(OContext.PLAYLISTS_DIR + "/" + source);
 			if (!file.exists()) {
-				logger.warn("PlaylistFactory:unmarshall(): playlist not found: " + OContext.HOME_DIR + "playlists/" + source);
+				logger.warn("PlaylistFactory:unmarshall(): playlist not found: " + OContext.PLAYLISTS_DIR + "/" + source);
 				return new Mp3Files();
 			}
-			logger.debug("PlaylistFactory:unmarshall(): playlist found: " + OContext.HOME_DIR + "playlists/" + source);
+			logger.debug("PlaylistFactory:unmarshall(): playlist found: " + OContext.PLAYLISTS_DIR + "/" + source);
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			mp3Files = (Mp3Files) jaxbUnmarshaller.unmarshal(file);
@@ -231,7 +231,7 @@ public class PlaylistFactory {
 		logger.info("PlaylistFactory:savePlaylist(): saving...");
 		try {
 
-			File file = new File(OContext.HOME_DIR + "playlists/" + p.getSource());
+			File file = new File(OContext.PLAYLISTS_DIR + "/" + p.getSource());
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 

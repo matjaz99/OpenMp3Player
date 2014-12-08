@@ -14,7 +14,10 @@ public class OContext {
 	private CommandLine cli = null;
 	public static boolean repeatSong = false;
 	
-	public static String HOME_DIR = "/Users/matjaz/OpenMp3Player/";
+	public static String HOME_DIR = null;
+	public static String CFG_DIR = null;
+	public static String LOG_DIR = null;
+	public static String PLAYLISTS_DIR = null;
 	public static String version = "0.0";
 	
 	private SimpleLogger logger = null;
@@ -36,14 +39,27 @@ public class OContext {
 	
 	/**
 	 * Initialize application - load properties, init logger, read playlists, 
-	 * set volume, start CLI server...
+	 * set volume, start CLI server...<br>
+	 * Set VM arg: -Domp3p.home="/Users/matjaz/Documents/git/OpenMp3Player"
 	 */
 	private void initialize() {
+		
+		HOME_DIR = System.getProperty("omp3p.home");
+		if (HOME_DIR == null || HOME_DIR.length() == 0) {
+			String[] temp = System.getProperty("catalina.home").split("/server/");
+			HOME_DIR = temp[0];
+		}
+		if (HOME_DIR.endsWith("/")) {
+			HOME_DIR = HOME_DIR.substring(0, HOME_DIR.length()-1);
+		}
+		CFG_DIR = HOME_DIR + "/config";
+		LOG_DIR = HOME_DIR + "/log";
+		PLAYLISTS_DIR = HOME_DIR + "/playlists";
 		
 		Utils.init();
 		
 		logger = new SimpleLogger();
-		logger.setFilename(OContext.HOME_DIR + "log/" + Utils.LOGGER_FILENAME);
+		logger.setFilename(LOG_DIR + "/" + Utils.LOGGER_FILENAME);
 		logger.setLogLevel(Utils.LOGGER_LEVEL);
 		logger.setAppend(Utils.LOGGER_APPEND);
 		logger.setVerbose(true);
@@ -52,7 +68,7 @@ public class OContext {
 		logger.info("\t|       Start OpenMp3Player       |");
 		logger.info("\t+---------------------------------+");
 		logger.info("");
-		logger.info("CFG_DIR=" + OContext.HOME_DIR);
+		logger.info("HOME_DIR=" + HOME_DIR);
 		logger.info("Version=" + version);
 		logger.info("OS=" + Utils.getOsType());
 //		logger.debug("Request Context Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());

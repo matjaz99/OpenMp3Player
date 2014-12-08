@@ -42,7 +42,7 @@ public class TagFactory {
 
 		try {
 
-			File file = new File(OContext.HOME_DIR + "config/tags.xml");
+			File file = new File(OContext.CFG_DIR + "/tags.xml");
 			if (!file.exists()) {
 				logger.warn("TagFactory:getTags(): tags.xml not found; creating new");
 				tags = new Tags();
@@ -73,7 +73,7 @@ public class TagFactory {
 		logger.info("TagFactory:saveTags(): saving...");
 		try {
 
-			File file = new File(OContext.HOME_DIR + "config/tags.xml");
+			File file = new File(OContext.CFG_DIR + "/tags.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
