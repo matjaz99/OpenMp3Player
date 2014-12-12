@@ -72,6 +72,9 @@ public class PlaylistFactory {
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			playlists = (Playlists) jaxbUnmarshaller.unmarshal(file);
+			if (playlists.getPlist() == null) {
+				playlists.setPlist(new ArrayList<Playlist>());
+			}
 			logger.debug("PlaylistFactory:getPlaylists(): " + playlists.toString());
 
 		} catch (JAXBException e) {
