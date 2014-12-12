@@ -28,6 +28,9 @@ For developers
 Developed on tomcat 7. To start add VM arg to tomcat:
 -Domp3p.home="/path/to/OpenMp3Player"
 
+Change file permissions to 755 for all *.sh files in OpenMp3Player directory (recursively):
+$ find OpenMp3Player-2.0.0-beta.10.tomcat -name \*.sh -exec chmod 755 {} +
+
 
 History
 -------------------
