@@ -3,7 +3,7 @@
 	
 	<description>Ant buildfile</description>
 
-	<property name="project.version" value="2.0.0-beta.08" />
+	<property name="project.version" value="2.0.0-beta.10.tomcat" />
 	<property name="src.dir" value="src" />
 	<property name="web.dir" value="WebContent" />
 	<property name="classes.dir" value="build/classes" />
@@ -17,12 +17,59 @@
 		</fileset>
 	</path>
 	
-	<target name="init">
-		<echo file="${web.dir}/config/version.txt">${project.version}</echo>
+	<target name="clean">
+	    <delete dir="${dist.dir}/${ant.project.name}-${project.version}" />
+	</target>
+	
+	<target name="init" depends="clean">
+		<echo file="config/version.txt">${project.version}</echo>
 		<mkdir dir="${classes.dir}"/>
 		<mkdir dir="${dist.dir}" />
-		<delete dir="${dist.dir}/${ant.project.name}-${project.version}" />
 		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}" />
+		
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/src" />
+		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/src">
+			<fileset dir="${src.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/WebContent" />
+		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/WebContent">
+			<fileset dir="${web.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/server" />
+		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/server">
+			<fileset dir="server">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+<!-- 		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/server/apache-tomcat-7.0.57/webapps"> -->
+<!-- 			<fileset dir="${dist.dir}/${ant.project.name}-${project.version}"> -->
+<!-- 				<include name="${ant.project.name}.war" /> -->
+<!-- 			</fileset> -->
+<!-- 		</copy> -->
+		
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/config" />
+		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/config">
+			<fileset dir="config">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/playlists" />
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/log" />
+			
+		<copy todir="${dist.dir}/${ant.project.name}-${project.version}">
+			<fileset dir=".">
+				<include name="build2.xml" />
+				<include name="start.sh" />
+				<include name="stop.sh" />
+			</fileset>
+		</copy>
 	</target>
 	
 	<target name="compile" depends="init" >
@@ -32,7 +79,7 @@
 	</target>
 	
 	<target name="war" depends="compile">
-		<war destfile="${dist.dir}/${ant.project.name}-${project.version}/${ant.project.name}.war" webxml="${web.xml}">
+		<war destfile="${dist.dir}/${ant.project.name}-${project.version}/server/apache-tomcat-7.0.57/webapps/${ant.project.name}.war" webxml="${web.xml}">
 			<fileset dir="WebContent"/>
 			<lib dir="${lib.dir}"/>
 			<classes dir="${classes.dir}"/>
@@ -41,30 +88,13 @@
 	
 	<target name="tar" depends="war">
 		
-		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/src" />
-		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/WebContent" />
-		
-			<copy todir="${dist.dir}/${ant.project.name}-${project.version}/src">
-				<fileset dir="${src.dir}">
-					<include name="**/*" />
-				</fileset>
-			</copy>
-		
-		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/WebContent">
-						<fileset dir="${web.dir}">
-							<include name="**/*" />
-						</fileset>
-					</copy>
+		<chmod file="${dist.dir}/${ant.project.name}-${project.version}/start.sh" perm="ugo+rx"/>
+		<chmod file="${dist.dir}/${ant.project.name}-${project.version}/stop.sh" perm="ugo+rx"/>
+		<chmod dir="${dist.dir}/${ant.project.name}-${project.version}/server/apache-tomcat-7.0.57/bin" perm="ugo+rx" includes="**/*.sh"/>
 			
-			<copy todir="${dist.dir}/${ant.project.name}-${project.version}">
-				<fileset dir=".">
-					<include name="build.xml" />
-				</fileset>
-			</copy>
+		<tar destfile="${dist.dir}/${ant.project.name}-${project.version}.tar.gz" basedir="${dist.dir}" includes="${ant.project.name}-${project.version}/**" compression="gzip" />
 			
-			<tar destfile="${dist.dir}/${ant.project.name}-${project.version}.tar.gz" basedir="${dist.dir}" includes="${ant.project.name}-${project.version}/**" compression="gzip" />
-			
-			<echo message="== building tar file successful ==" />
-		</target>
+		<echo message="== building tar file successful ==" />
+	</target>
 	
 </project>
