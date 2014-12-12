@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<files>
+    <file>
+        <album></album>
+        <artist>Grupo Arcano</artist>
+        <genre>Salsa</genre>
+        <hash>c9d557c15324d3fc17b94bd5a71133b6d0cd5a9e</hash>
+        <path>/Users/matjaz/Music/Salsa/Grupo Arcano - La Rutina Del Mujeriego.mp3</path>
+        <size>204</size>
+        <tags/>
+        <title>La Rutina Del Mujeriego</title>
+        <year></year>
+    </file>
+    <file>
+        <album></album>
+        <artist>Joe Cuba Sextet</artist>
+        <genre>Salsa</genre>
+        <hash>940150a8f736ed59bec4b19ef9fe54f610244b41</hash>
+        <path>/Users/matjaz/Music/Salsa/Joe Cuba Sextet  - Lucumi.mp3</path>
+        <size>190</size>
+        <tags/>
+        <title>Lucumi</title>
+        <year></year>
+    </file>
+    <file>
+        <album></album>
+        <artist>La Excelencia</artist>
+        <genre>Salsa</genre>
+        <hash>08c278891fb74ed8fa50ba464f2706846381b8ce</hash>
+        <path>/Users/matjaz/Music/Salsa/La Excelencia - Deja de criticar.mp3</path>
+        <size>479</size>
+        <tags>
+            <tag>
+                <color>red</color>
+                <name>Salsa Dura</name>
+            </tag>
+        </tags>
+        <title>Deja de criticar</title>
+        <year></year>
+    </file>
+    <file>
+        <album></album>
+        <artist>Salsa Celtica</artist>
+        <genre>Salsa</genre>
+        <hash>4c35af4bcd53fbd1ecc96d7ff336c53762d5691e</hash>
+        <path>/Users/matjaz/Music/Salsa/salsa celtica - maestro.mp3</path>
+        <size>189</size>
+        <tags/>
+        <title>Maestro</title>
+        <year></year>
+    </file>
+</files>
