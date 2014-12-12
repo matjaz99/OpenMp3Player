@@ -26,7 +26,11 @@ public class Mp3Player {
 		player = new JLayerPlayer();
 		
 		Playlists p = PlaylistFactory.getInstance().getPlaylists();
-		activePlaylist = PlaylistFactory.getInstance().getPlaylist(p.getPlist().get(0).getName());
+		if (p.getPlist().size() > 0) {
+			activePlaylist = PlaylistFactory.getInstance().getPlaylist(p.getPlist().get(0).getName());
+		} else {
+			activePlaylist = new Playlist();
+		}
 		passivePlaylist = activePlaylist;
 		
 		queue = new Playlist();
@@ -66,9 +70,14 @@ public class Mp3Player {
 			stop();
 		}
 		
+		if (activePlaylist.getMp3files().getFiles().isEmpty()) {
+			return "null";
+		}
+		
 		currentlyPlaying = activePlaylist.getMp3files().getFiles().get(i);
-		logger.info("Mp3Player:play(): playlist: " + activePlaylist.getName() 
-				+ ", MP3: " + currentlyPlaying.toString());
+		logger.info("Mp3Player:play(): playlist: "
+				+ activePlaylist.getName() + ", MP3: "
+				+ currentlyPlaying.toString());
 		player.play(currentlyPlaying.getPath());
 		
 		return currentlyPlaying.getTitle();
