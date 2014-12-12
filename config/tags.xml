@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tags>
+    <tag>
+        <color>#123456</color>
+        <name>Bachata</name>
+    </tag>
+    <tag>
+        <color>#0000FF</color>
+        <name>Rock</name>
+    </tag>
+    <tag>
+        <color>orange</color>
+        <name>Salsa</name>
+    </tag>
+    <tag>
+        <color>red</color>
+        <name>Salsa Dura</name>
+    </tag>
+    <tag>
+        <color>#00AA00</color>
+        <name>Fast Salsa</name>
+    </tag>
+    <tag>
+        <color>#00FFFF</color>
+        <name>Cha Cha Cha</name>
+    </tag>
+    <tag>
+        <color>cyan</color>
+        <name>Kizomba</name>
+    </tag>
+    <tag>
+        <color>#CC0099</color>
+        <name>Good for dancing</name>
+    </tag>
+    <tag>
+        <color>#00CCFF</color>
+        <name>My favorite band</name>
+    </tag>
+    <tag>
+        <color>green</color>
+        <name>Boogaloo</name>
+    </tag>
+</tags>
