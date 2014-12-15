@@ -21,6 +21,7 @@ public class OContext {
 	public static String version = "0.0";
 	
 	private SimpleLogger logger = null;
+	private static boolean isInitialized = false;
 	
 	private OContext() {
 		initialize();
@@ -31,9 +32,13 @@ public class OContext {
 	 * @return ctx
 	 */
 	public static OContext getInstance() {
-		if (ctx == null) {
-			ctx = new OContext();
-		}
+//		while (!isInitialized) {
+//			isInitialized = true;
+			if (ctx == null) {
+				ctx = new OContext();
+			}
+//		}
+		
 		return ctx;
 	}
 	
@@ -69,12 +74,19 @@ public class OContext {
 		logger.info("\t+---------------------------------+");
 		logger.info("");
 		logger.info("HOME_DIR=" + HOME_DIR);
-		logger.info("Version=" + version);
+		logger.info("LOGGER_FILE=" + LOG_DIR + "/" + Utils.LOGGER_FILENAME);
+		logger.info("LOGGER_VERBOSE=" + Utils.LOGGER_VERBOSE);
+		logger.info("VERSION=" + version);
 		logger.info("OS=" + Utils.getOsType());
+		logger.info("VOLUME_CUSTOM_SCRIPT=" + Utils.VOLUME_CUSTOM_SCRIPT);
 //		logger.debug("Request Context Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
 //		logger.debug("Request Path Info: " + FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo());
 //		logger.debug("Request Sevlet Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestServletPath());
 		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
 		
 		watchdog = new Watchdog();
 		watchdog.start();
@@ -83,10 +95,11 @@ public class OContext {
 //		Utils.setVolume(Utils.CURRENT_VOLUME_LEVEL);
 		
 		if (Utils.TELNET_ENABLED) {
+			logger.info("TELNET=enabled on port " + Utils.TELNET_PORT);
 			cli = new CommandLine();
 			cli.start();
 		} else {
-			logger.info("CLI disabled");
+			logger.info("TELNET=disabled");
 		}
 		
 		logger.info("OContext initialized");

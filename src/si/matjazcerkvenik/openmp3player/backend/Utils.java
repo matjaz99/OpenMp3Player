@@ -101,12 +101,10 @@ public class Utils {
 
 				PLAYER_DELAY = parseInt(props.getProperty(PROPERTY_PLAYER_DELAY), 5);
 				SoundControl.CURRENT_VOLUME_LEVEL = parseInt(props.getProperty(PROPERTY_VOLUME_DEFAULT), 1);
-				System.out.println("==== VOL: " + SoundControl.CURRENT_VOLUME_LEVEL);
 				if (props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT) != null
 						&& props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT).length() > 0) {
 					VOLUME_CUSTOM_SCRIPT = props.getProperty(PROPERTY_VOLUME_CUSTOM_SCRIPT);
 				}
-				System.out.println("==== VOLUME_CUSTOM_SCRIPT: " + VOLUME_CUSTOM_SCRIPT);
 				LOGGER_FILENAME = props.getProperty(PROPS.FILENAME, "openmp3player.log");
 				LOGGER_LEVEL = getLogLevel(props.getProperty(PROPS.LEVEL, "INFO"));
 				LOGGER_APPEND = parseBool(props.getProperty(PROPS.APPEND), true);
