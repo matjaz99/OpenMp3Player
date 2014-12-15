@@ -32,12 +32,11 @@ public class OContext {
 	 * @return ctx
 	 */
 	public static OContext getInstance() {
-//		while (!isInitialized) {
-//			isInitialized = true;
+		while (!isInitialized) {
 			if (ctx == null) {
 				ctx = new OContext();
 			}
-//		}
+		}
 		
 		return ctx;
 	}
@@ -83,11 +82,6 @@ public class OContext {
 //		logger.debug("Request Path Info: " + FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo());
 //		logger.debug("Request Sevlet Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestServletPath());
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-		}
-		
 		watchdog = new Watchdog();
 		watchdog.start();
 		
@@ -103,6 +97,7 @@ public class OContext {
 		}
 		
 		logger.info("OContext initialized");
+		isInitialized = true;
 		
 	}
 	
