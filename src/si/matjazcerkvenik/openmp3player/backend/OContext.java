@@ -32,7 +32,8 @@ public class OContext {
 	 * @return ctx
 	 */
 	public static OContext getInstance() {
-		while (!isInitialized) {
+		if (!isInitialized) {
+			isInitialized = true;
 			if (ctx == null) {
 				ctx = new OContext();
 			}
@@ -48,14 +49,7 @@ public class OContext {
 	 */
 	private void initialize() {
 		
-		HOME_DIR = System.getProperty("omp3p.home");
-		if (HOME_DIR == null || HOME_DIR.length() == 0) {
-			String[] temp = System.getProperty("catalina.home").split("/server/");
-			HOME_DIR = temp[0];
-		}
-		if (HOME_DIR.endsWith("/")) {
-			HOME_DIR = HOME_DIR.substring(0, HOME_DIR.length()-1);
-		}
+		HOME_DIR = getHomeDir();
 		CFG_DIR = HOME_DIR + "/config";
 		LOG_DIR = HOME_DIR + "/log";
 		PLAYLISTS_DIR = HOME_DIR + "/playlists";
@@ -97,12 +91,43 @@ public class OContext {
 		}
 		
 		logger.info("OContext initialized");
-		isInitialized = true;
 		
 	}
 	
 	public SimpleLogger getLogger() {
 		return logger;
+	}
+	
+	private static String getHomeDir() {
+		String homeDir = System.getProperty("omp3p.home");
+		System.out.println("===homeDir: " + homeDir);
+		String catalinaHome = System.getProperty("catalina.home");
+		System.out.println("===catalinaHome: " + catalinaHome);
+		
+		OperatingSystem os = Utils.getOsType();
+		switch (os) {
+		case LINUX:
+			
+			break;
+		case OSX:
+			
+			break;
+		case WINDOWS:
+			
+			break;
+		default:
+			break;
+		}
+		
+		
+		if (homeDir == null || homeDir.length() == 0) {
+			String[] temp = System.getProperty("catalina.home").split("/server/");
+			homeDir = temp[0];
+		}
+		if (homeDir.endsWith("/")) {
+			homeDir = homeDir.substring(0, homeDir.length()-1);
+		}
+		return homeDir;
 	}
 	
 	

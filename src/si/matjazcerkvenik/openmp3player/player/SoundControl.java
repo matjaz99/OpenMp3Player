@@ -1,6 +1,7 @@
 package si.matjazcerkvenik.openmp3player.player;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.backend.OperatingSystem;
 import si.matjazcerkvenik.openmp3player.backend.Utils;
 
 public class SoundControl {
@@ -50,14 +51,25 @@ public class SoundControl {
 	public static void setVolume(int level) {
 		OContext.getInstance().getLogger().info("Utils:setVolume(): " + level);	
 		String[] vol = { "" + level };
-		if (Utils.VOLUME_CUSTOM_SCRIPT != null) {
+		
+		if (Utils.VOLUME_CUSTOM_SCRIPT != null && Utils.VOLUME_CUSTOM_SCRIPT.length() > 0) {
 			Utils.runScript(Utils.VOLUME_CUSTOM_SCRIPT, vol);
-		} else if (Utils.getOsType().equalsIgnoreCase("OSX")) {
-			Utils.runScript("setVolumeOSX.sh", vol);
-		} else if (Utils.getOsType().equalsIgnoreCase("LINUX")) {
+			return;
+		}
+		
+		OperatingSystem os = Utils.getOsType();
+		switch (os) {
+		case LINUX:
 			Utils.runScript("setVolumeLinux.sh", vol);
-		} else if (Utils.getOsType().equalsIgnoreCase("WINDOWS")) {
+			break;
+		case OSX:
+			Utils.runScript("setVolumeOSX.sh", vol);
+			break;
+		case WINDOWS:
 			Utils.runScript("setVolume.bat", vol);
+			break;
+		default:
+			break;
 		}
 		
 		

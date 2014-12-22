@@ -71,18 +71,18 @@ public class Utils {
 	 * Return type of operating system: WINDOWS, OSX, LINUX
 	 * @return
 	 */
-	public static String getOsType() {
+	public static OperatingSystem getOsType() {
 		String os = System.getProperty("os.name");
 		
 		if (os.equalsIgnoreCase("Mac os X")) {
-			return "OSX";
+			return OperatingSystem.OSX;
 		} else if (os.equalsIgnoreCase("Linux")) {
-			return "LINUX";
+			return OperatingSystem.LINUX;
 		} else if (os.contains("Windows")) {
-			return "WINDOWS";
+			return OperatingSystem.WINDOWS;
 		}
 		
-		return os;
+		return OperatingSystem.OTHER;
 	}
 
 	/**
