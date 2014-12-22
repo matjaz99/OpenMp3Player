@@ -36,9 +36,13 @@ History
 -------------------
 
 2.0.0
-zzz 2014
+december 2014
 
 - use JSF instead of JSP technology and see if it still works
+- ID3 Tag support
+- playlist management (add/delete)
+- custom tags
+- embedded Tomcat for easier deployment
 
 
 
