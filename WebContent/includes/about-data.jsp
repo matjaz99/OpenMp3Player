@@ -60,6 +60,11 @@ Backup playlists before OpenMp3Player is updated to newer version.
 <p>october 2014</p>
 <ul>
 <li>redesign to JSF</li>
+<li>ID3 Tag support</li>
+<li>playlist management (add/delete)</li>
+<li>playing queue</li>
+<li>custom tags</li>
+<li>embedded Apache Tomcat</li>
 </ul>
 <br>
 
@@ -152,10 +157,9 @@ reloading page</li>
 </div>
 <h2>Plans for future</h2>
 <div>
-- better playlist management<br>
+- playlist management<br>
+- merge playlists
 - pause button<br>
-- ID3 Tag support<br>
-- tags and labels<br>
 - sorting (by song name, artist, tag...)<br>
 - warning if file does not exist<br>
 - upload file<br>
