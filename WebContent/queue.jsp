@@ -58,14 +58,9 @@
 			
 			
 			
-			<h:panelGrid columns="2">
-				<h:form>
-					<h:commandLink action="#">
-						<h:graphicImage url="img/refresh.png" styleClass="icon" />
-					</h:commandLink>
-				</h:form>
-				<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}"></h:outputLabel>
-			</h:panelGrid>
+			<hr/>
+			
+			<jsp:include page="/includes/currently-playing.jsp"></jsp:include>
 			
 			<hr/>
 			

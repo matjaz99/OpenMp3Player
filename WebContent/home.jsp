@@ -32,18 +32,7 @@
 			
 			<hr/>
 			
-			<h:panelGrid columns="2">
-				<h:form>
-					<h:commandLink action="#">
-						<h:graphicImage url="img/refresh.png" styleClass="icon" />
-					</h:commandLink>
-				</h:form>
-				<h:panelGrid columns="1">
-					<h:outputLabel value="Active playlist: #{playlistBean.activePlaylistName}" styleClass="smalltext-white" />
-					<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}" />
-					<h:outputLabel value="Next: #{playerBean.currentlyPlaying}" styleClass="smalltext-white" />
-				</h:panelGrid>
-			</h:panelGrid>
+			<jsp:include page="/includes/currently-playing.jsp"></jsp:include>
 			
 			<hr/>
 			
