@@ -61,6 +61,12 @@
 		</copy>
 		
 		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/playlists" />
+		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/playlists">
+			<fileset dir="playlists">
+				<include name="playlists.xml" />
+			</fileset>
+		</copy>
+		
 		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/log" />
 			
 		<copy todir="${dist.dir}/${ant.project.name}-${project.version}">
