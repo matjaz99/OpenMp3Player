@@ -104,27 +104,12 @@ public class OContext {
 		
 		String homeDir = System.getProperty("omp3p.home");
 		
-		OperatingSystem os = Utils.getOsType();
-		switch (os) {
-		case LINUX:
-			
-			break;
-		case OSX:
-			
-			break;
-		case WINDOWS:
-			
-			break;
-		default:
-			break;
-		}
-		
-		// if omp3p.home VM arg is not set, use ../server/ directory as default
+		// if -Domp3p.home VM arg is not set, use ../server/ directory as default
 		if (homeDir == null || homeDir.length() == 0) {
-			String[] temp = System.getProperty("catalina.home").split(File.pathSeparator + "server" + File.pathSeparator);
+			String[] temp = System.getProperty("catalina.home").split("server");
 			homeDir = temp[0];
 		}
-		if (homeDir.endsWith(File.pathSeparator)) {
+		if (homeDir.endsWith("/") || homeDir.endsWith("\\")) {
 			homeDir = homeDir.substring(0, homeDir.length()-1);
 		}
 		
