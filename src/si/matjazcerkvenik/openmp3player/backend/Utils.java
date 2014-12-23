@@ -125,7 +125,7 @@ public class Utils {
 		return props;
 	}
 	
-	
+	// not used anywhere
 	public static void writeProperties() {
 		try {
 		    props.store(new FileOutputStream("src/my/project/properties/test.properties"), null);
@@ -189,6 +189,7 @@ public class Utils {
 	/**
 	 * Change permissions of .sh scripts in config directory to a+x.
 	 */
+	@Deprecated
 	public static void changePermissions() {
 		
 		if (getOsType().equals("WINDOWS")) {
@@ -225,6 +226,10 @@ public class Utils {
 		
 	}
 	
+	/**
+	 * Run command in terminal
+	 * @param command
+	 */
 	public static void runConsoleCommand(String[] command) {
 		
 		String cmdStr = "";

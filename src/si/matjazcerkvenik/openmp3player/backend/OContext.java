@@ -1,5 +1,7 @@
 package si.matjazcerkvenik.openmp3player.backend;
 
+import java.io.File;
+
 import javax.faces.context.FacesContext;
 
 import si.matjazcerkvenik.openmp3player.cli.CommandLine;
@@ -31,7 +33,7 @@ public class OContext {
 	 * Get instance of OContext (singleton).
 	 * @return ctx
 	 */
-	public static OContext getInstance() {
+	public static synchronized OContext getInstance() {
 		if (!isInitialized) {
 			isInitialized = true;
 			if (ctx == null) {
@@ -99,10 +101,8 @@ public class OContext {
 	}
 	
 	private static String getHomeDir() {
+		
 		String homeDir = System.getProperty("omp3p.home");
-		System.out.println("===homeDir: " + homeDir);
-		String catalinaHome = System.getProperty("catalina.home");
-		System.out.println("===catalinaHome: " + catalinaHome);
 		
 		OperatingSystem os = Utils.getOsType();
 		switch (os) {
@@ -119,14 +119,15 @@ public class OContext {
 			break;
 		}
 		
-		
+		// if omp3p.home VM arg is not set, use ../server/ directory as default
 		if (homeDir == null || homeDir.length() == 0) {
-			String[] temp = System.getProperty("catalina.home").split("/server/");
+			String[] temp = System.getProperty("catalina.home").split(File.pathSeparator + "server" + File.pathSeparator);
 			homeDir = temp[0];
 		}
-		if (homeDir.endsWith("/")) {
+		if (homeDir.endsWith(File.pathSeparator)) {
 			homeDir = homeDir.substring(0, homeDir.length()-1);
 		}
+		
 		return homeDir;
 	}
 	
