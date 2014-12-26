@@ -20,33 +20,30 @@
 			<h:outputLabel value="Song details" styleClass="title"></h:outputLabel>
 			
 			<h:form>
-				<h:commandLink value="Back" action="home" />
+				<h:commandLink value="Back" action="home" styleClass="text-white largeText" />
 			</h:form>
 			
 			
 			<hr/>
 			
 			<h:panelGrid columns="2">
-				<h:outputLabel value="Title:"></h:outputLabel>
-				<h:outputLabel value="#{songBean.mp3File.title}"></h:outputLabel>
+				<h:outputLabel value="Title:" styleClass="text-white"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.title}" styleClass="text-white"></h:outputLabel>
 				
-				<h:outputLabel value="Artist:" styleClass="smalltext-white"></h:outputLabel>
-				<h:outputLabel value="#{songBean.mp3File.artist}"></h:outputLabel>
+				<h:outputLabel value="Artist:" styleClass="text-white"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.artist}" styleClass="text-white"></h:outputLabel>
 				
-				<h:outputLabel value="Album:" styleClass="smalltext-white"></h:outputLabel>
-				<h:outputLabel value="#{songBean.mp3File.album}"></h:outputLabel>
+				<h:outputLabel value="Album:" styleClass="text-white"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.album}" styleClass="text-white"></h:outputLabel>
 				
-				<h:outputLabel value="Genre:" styleClass="smalltext-white"></h:outputLabel>
-				<h:outputLabel value="#{songBean.mp3File.genre}"></h:outputLabel>
+				<h:outputLabel value="Genre:" styleClass="text-white"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.genre}" styleClass="text-white"></h:outputLabel>
 				
-				<h:outputLabel value="Year:" styleClass="smalltext-white"></h:outputLabel>
-				<h:outputLabel value="#{songBean.mp3File.year}"></h:outputLabel>
+				<h:outputLabel value="Year:" styleClass="text-white"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.year}" styleClass="text-white"></h:outputLabel>
 				
-				<h:outputLabel value="Size:" styleClass="smalltext-white"></h:outputLabel>
-				<h:outputLabel value="#{songBean.mp3File.size}"></h:outputLabel>
-				
-				<h:outputLabel value="Path:" styleClass="smalltext-white"></h:outputLabel>
-				<h:outputLabel value="#{songBean.mp3File.path}"></h:outputLabel>
+				<h:outputLabel value="Path:" styleClass="text-white"></h:outputLabel>
+				<h:outputLabel value="#{songBean.mp3File.path}" styleClass="text-white"></h:outputLabel>
 			</h:panelGrid>
 			
 			<hr/>
@@ -77,7 +74,7 @@
 			<hr/>
 			
 			<h:form>
-				<h:outputText value="Add tag: " />
+				<h:outputText value="Add tag: " styleClass="text-white" />
 				<h:selectOneMenu onchange="submit()" value="#{songBean.selectedTag}"
 					valueChangeListener="#{songBean.tagSelected}">
 					<f:selectItems value="#{songBean.tagItems}"/>
@@ -87,12 +84,12 @@
 			<hr/>
 			
 			<h:form>
-				<h:commandLink value="New tag" action="addTag" />
+				<h:commandLink value="New tag" action="addTag" styleClass="text-white" />
 			</h:form>
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
+			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>
 			

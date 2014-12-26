@@ -20,7 +20,7 @@ public class SingleTagComponent extends UIComponentBase {
 		
 		rw.startElement("div", this);
 		rw.writeAttribute("class", "tagBorder", null);
-		rw.writeAttribute("style", "background-color: " + tag.getColor() + ";", null);
+		rw.writeAttribute("style", "background-color: " + tag.getColor() + "; color: white;", null);
 		rw.write(tag.getName());
 		rw.endElement("div");
 		

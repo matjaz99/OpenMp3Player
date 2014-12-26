@@ -25,16 +25,19 @@
 			<hr/>
 			
 			<h:form>
-				<h:commandLink value="Back" action="home" />
+				<h:commandLink value="Back" action="home" styleClass="text-white largeText" />
 			</h:form>
 			
 			<hr/>
 			
-			<h:outputText value="Version: #{settingsBean.version}"></h:outputText>
+			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>
 			
-			<%@ include file="/includes/about-data.jsp" %>
+			<h:panelGrid style="background-color: white;">
+				<jsp:include page="/includes/about-data.jsp"></jsp:include>
+			</h:panelGrid>
+			
 			
 		</h:panelGrid>
 

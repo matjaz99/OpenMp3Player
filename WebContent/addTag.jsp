@@ -28,18 +28,18 @@
 			<hr/>
 			
 			<h:form>
-				<h:commandLink value="Back" action="song" />
+				<h:commandLink value="Back" action="song" styleClass="text-white largeText" />
 			</h:form>
 			
 			<hr/>
 				
 				<h:form>
 					<h:panelGrid columns="2">
-						<h:outputLabel value="Name: "></h:outputLabel>
+						<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
 						<h:inputText value="#{addTagBean.name}">
 							<f:validator validatorId="playlistValidator"/>
 						</h:inputText>
-						<h:outputLabel value="Color: "></h:outputLabel>
+						<h:outputLabel value="Color: " styleClass="text-white"></h:outputLabel>
 						<h:inputText value="#{addTagBean.color}" />
 						<h:commandButton action="#{addTagBean.addNew}" value="Add"></h:commandButton>
 					</h:panelGrid>
@@ -49,7 +49,7 @@
 			
 			<hr/>
 			
-			<h:outputLabel value="Available tags"></h:outputLabel>
+			<h:outputLabel value="Available tags" styleClass="text-white"></h:outputLabel>
 			<h:dataTable value="#{addTagBean.allTags}" var="tag">
 				
 				<h:column>
@@ -60,7 +60,7 @@
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
+			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>
 			

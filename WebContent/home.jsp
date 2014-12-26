@@ -40,11 +40,11 @@
 			
 			<hr/>
 			
-			<h:outputLabel value="Size: #{playlistBean.playlistSize}"></h:outputLabel>
+			<h:outputLabel value="Size: #{playlistBean.playlistSize}" styleClass="text-white"></h:outputLabel>
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
+			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>
 			

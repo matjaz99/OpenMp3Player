@@ -28,10 +28,11 @@
 			<hr/>
 			
 			<h:form>
-				<h:commandLink value="Back" action="home" />
+				<h:commandLink value="Back" action="home" styleClass="text-white largeText" />
 			</h:form>
+			<hr/>
 			<h:form>
-				<h:commandLink value="Add mp3s from directory" action="addPlaylist" />
+				<h:commandLink value="Add mp3s from directory" action="addPlaylist" styleClass="text-white" />
 			</h:form>
 			
 			<hr/>
@@ -51,8 +52,8 @@
 				</h:column>
 				
 				<h:column>
-					<h:outputText value="#{plist.name} - " />
-					<h:outputText value="#{plist.source}" />
+					<h:outputText value="#{plist.name}" styleClass="text-white largeText" /><br/>
+					<h:outputText value="#{plist.source}" styleClass="text-white" />
 				</h:column>
 				
 				<h:column>
@@ -71,7 +72,7 @@
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
+			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>
 			

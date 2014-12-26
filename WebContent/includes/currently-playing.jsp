@@ -9,7 +9,7 @@
 		</h:commandLink>
 	</h:form>
 	<h:panelGrid columns="1">
-		<h:outputLabel value="Active playlist: #{playlistBean.activePlaylistName}" styleClass="smalltext-white" />
-		<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}" />
+		<h:outputLabel value="Active playlist: #{playlistBean.activePlaylistName}" styleClass="text-white" />
+		<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}" styleClass="text-white largeText" />
 	</h:panelGrid>
 </h:panelGrid>

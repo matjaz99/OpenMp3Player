@@ -18,19 +18,21 @@
 			
 			<h:outputLabel value="Add new playlist" styleClass="title"></h:outputLabel>
 			
+			<hr/>
+			
 			<h:form>
-				<h:commandLink value="Back" action="playlists" />
+				<h:commandLink value="Back" action="playlists" styleClass="text-white largeText" />
 			</h:form>
 			
 			<hr/>
 				
 				<h:form>
 					<h:panelGrid columns="2">
-						<h:outputLabel value="Name: "></h:outputLabel>
+						<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
 						<h:inputText value="#{addPlaylistBean.name}">
 							<f:validator validatorId="playlistValidator"/>
 						</h:inputText>
-						<h:outputLabel value="Directory: "></h:outputLabel>
+						<h:outputLabel value="Directory: " styleClass="text-white"></h:outputLabel>
 						<h:inputText value="#{addPlaylistBean.source}" />
 						<h:commandButton action="#{addPlaylistBean.addPlaylist}" value="Add"></h:commandButton>
 					</h:panelGrid>
@@ -39,7 +41,7 @@
 			<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
 			<hr/>
 			
-			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
+			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>
 			

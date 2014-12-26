@@ -32,7 +32,7 @@
 			
 			<h:form prependId="false" rendered="#{playlistBean.queue}">
 				<h:panelGrid columns="3">
-					<h:outputLabel value="Name: "></h:outputLabel>
+					<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
 					<h:inputText value="#{queueBean.newQueueName}">
 						<f:validator validatorId="playlistValidator"/>
 					</h:inputText>
@@ -45,7 +45,7 @@
 			
 			<h:form rendered="#{playlistBean.queue}">
 				<h:commandLink action="#{queueBean.emptyQueue}">
-					<h:outputLabel value="Empty queue"></h:outputLabel>
+					<h:outputLabel value="Empty queue" styleClass="text-white"></h:outputLabel>
 					<h:graphicImage id="emptyBtn" url="img/empty.png" styleClass="icon" alt="Empty"
 						onmouseover="onMouse('#emptyBtn', 'img/empty-shadow.png')" 
 						onmouseout="onMouse('#emptyBtn', 'img/empty.png')" 
@@ -68,11 +68,11 @@
 			
 			<hr/>
 			
-			<h:outputLabel value="Size: #{playlistBean.playlistSize}"></h:outputLabel>
+			<h:outputLabel value="Size: #{playlistBean.playlistSize}" styleClass="text-white"></h:outputLabel>
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
+			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>
 			

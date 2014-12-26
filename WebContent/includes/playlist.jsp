@@ -34,11 +34,11 @@
 			
 				<h:commandLink action="#{playlistBean.showSongDetails}">
 					
-					<h:outputText value="#{mp3File.title}" styleClass="blackText" />
+					<h:outputText value="#{mp3File.title}" styleClass="largeText" />
 				</h:commandLink>
 			
 			</h:form>
-			<h:outputText value="#{mp3File.artist}" styleClass="smalltext" />
+			<h:outputText value="#{mp3File.artist}" />
 			
 		</h:column>
 		

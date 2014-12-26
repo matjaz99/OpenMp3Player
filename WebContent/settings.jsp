@@ -28,29 +28,29 @@
 			<hr/>
 			
 			<h:form>
-				<h:commandLink value="Back" action="home" />
+				<h:commandLink value="Back" action="home" styleClass="text-white largeText" />
 			</h:form>
 			
 			<hr/>
 			
-			<h:outputText value="Connect to OpenMp3Player from remote device:" />
+			<h:outputText value="Connect to OpenMp3Player from remote device:" styleClass="text-white" />
 			<h:outputLink value="http://#{settingsBean.localIp}:8080/OpenMp3Player/" >
-				<h:outputText value="http://#{settingsBean.localIp}:8080/OpenMp3Player/" />
+				<h:outputText value="http://#{settingsBean.localIp}:8080/OpenMp3Player/" styleClass="text-white" />
 			</h:outputLink>
 			
 			<hr/>
 			
-			<h:outputText value="Volume level: #{settingsBean.currentSoundLevel}" />
+			<h:outputText value="Volume level: #{settingsBean.currentSoundLevel}" styleClass="text-white" />
 			
 			<hr/>
 			
-			<h:outputText value="CLI: #{settingsBean.telnetEnabled}" />
-			<h:outputText value="$ telnet #{settingsBean.localIp} #{settingsBean.telnetPort}" />
-			<h:outputText value="> help" />
+			<h:outputText value="CLI: #{settingsBean.telnetEnabled}" styleClass="text-white" />
+			<h:outputText value="$ telnet #{settingsBean.localIp} #{settingsBean.telnetPort}" styleClass="text-white" />
+			<h:outputText value="> help" styleClass="text-white" />
 			
 			<hr/>
 			
-			<h:outputLabel value="Version: #{settingsBean.version}"></h:outputLabel>
+			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>
 			

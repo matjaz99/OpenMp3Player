@@ -28,7 +28,7 @@ public class MultiTagRenderer extends Renderer {
 			
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "tagBorder", null);
-			rw.writeAttribute("style", "background-color: " + tags.getTagList().get(i).getColor() + "; float: right;", null);
+			rw.writeAttribute("style", "background-color: " + tags.getTagList().get(i).getColor() + "; 	color: white; float: right;", null);
 			rw.write(tags.getTagList().get(i).getName());
 			rw.endElement("div");
 		}

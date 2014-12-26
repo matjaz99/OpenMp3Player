@@ -1,8 +1,8 @@
 @CHARSET "UTF-8";
 
 * {
-	font: 24px Verdana, Arial, Helvetica, sans-serif;
-	color: white;
+	font: 14px Verdana, Arial, Helvetica, sans-serif;
+	color: #323;
 	padding: 0px;
 	margin: 0px;
 }
@@ -31,17 +31,11 @@
 	background-color: #DDD;
 }
 
-.blackText {
-	color: #323;
+.largeText {
+	font-size: 24px;
 }
 
-.smalltext {
-	font-size: 14px;
-	color: #323;
-}
-
-.smalltext-white {
-	font-size: 14px;
+.text-white {
 	color: white;
 }
 
@@ -52,11 +46,11 @@
 a, a:hover, a:visited, a:link {
 	text-decoration: none;
 }
-
+/*
 input {
 	color: #323;
 }
-
+*/
 .tagBorder {
 	border: 1px solid #555;
 	border-bottom-left-radius: 4px 4px;
