@@ -2,25 +2,12 @@
 
 <h2>About</h2>
 <div>OpenMp3Player is a web application for playing mp3 files.</div><br><br>
-<h4>The idea</h4>
-<div>I wanted to have some sort of remote controller to control 
-music on my computer without getting out of the bed.</div>
-<h4>Design</h4>
-<div>The application will run on desktop machine, 
-because my MP3 files are stored there; I just need some remote handler of 
-these files and smart phone is always at the reach of the hand. 
-I need graphical user interface to put buttons on 
-(play, stop...). I chose HTML, because it is 
-easy to create GUI and most important - 
-it is supported on all (smart) devices and all operating systems. I use Java on 
-daily basis, so Java seems a reasonable choice to drive the application. 
-Consequently Apache Tomcat was chosen as a web server, and it has good support 
-for Java servlet technology.<br>
-To play mp3 files I found JLayer library on the internet.<br>
-Anyting else? Yes, some mechanism that manages mp3 files, 
-ie. playlists. Playlist is a list of files from the file system and 
-XML seems a logical choice to hold playlist data.<br>
-That's all, let's put these components to work.</div>
+<h4>What is it?</h4>
+<div>You probably have a computer loaded with mp3 files and connected to loudspeakers. This 
+is your entertainment center where you need to install OpenMp3Player. Run it and control music player 
+with any smart device that supports http. That is practically any smart device even 
+your dishwasher if it is connected to the internet (local network is enough). The users report that 
+it comes extremely handy to change the music without getting out of the bed or armchair.</div>
 <h4>Functionality</h4>
 <div>The application comes as <strong>war</strong> file and must be deployed 
 on <strong>web server</strong> that supports Java Servlet API (in my case 
@@ -51,6 +38,23 @@ are loaded. Currently the playlists can only be modified manually in text editor
 <br>
 Backup playlists before OpenMp3Player is updated to newer version.
 </div>
+<br>
+<br>
+<h2>Licencing</h2>
+<p>OpenMp3Player uses the following open source components.</p>
+<ul>
+<li><strong>Apache Tomcat server 7.0.57</strong> (<a href="http://tomcat.apache.org">http://tomcat.apache.org</a>) - web server</li>
+<li><strong>JSF 1.2</strong> (<a href="https://javaserverfaces.java.net">https://javaserverfaces.java.net</a>) - mojarra JSF implementation</li>
+<li><strong>JLayer 1.0.1</strong> (<a href="http://www.javazoom.net">http://www.javazoom.net</a>, 
+<a href="http://sourceforge.net/projects/javalayer">http://sourceforge.net/projects/javalayer</a>) - mp3 player implementation</li>
+<li><strong>jID3lib 0.5.4</strong> (<a href="http://javamusictag.sourceforge.net">http://javamusictag.sourceforge.net</a>) 
+- read ID3 tags</li>
+<li><strong>Icons from IconArchive.com</strong> (<a href="http://www.iconarchive.com">
+http://www.iconarchive.com</a>) - icons that are allowed for non-commercial 
+usage (which OpenMp3Player is)</li>
+<li><strong>simple-logger</strong> (<a href="http://www.matjazcerkvenik.si/projects/simplelogger">
+http://www.matjazcerkvenik.si/projects/simplelogger</a>) - logger utility</li>
+</ul>
 <br>
 <br>
 <h2>History</h2>
@@ -158,7 +162,8 @@ reloading page</li>
 <h2>Plans for future</h2>
 <div>
 - playlist management<br>
-- merge playlists
+- merge playlists<br>
+- youtube playlist
 - pause button<br>
 - sorting (by song name, artist, tag...)<br>
 - warning if file does not exist<br>
