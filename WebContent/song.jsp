@@ -15,7 +15,7 @@
 	
 	<f:view>
 		
-		<h:panelGrid columns="1" styleClass="background">
+		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
 			<h:outputLabel value="Song details" styleClass="title"></h:outputLabel>
 			

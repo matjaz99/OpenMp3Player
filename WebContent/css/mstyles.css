@@ -19,6 +19,10 @@
 /* 	border: 1px solid #FF0000; */
 }
 
+.icon {
+/* 	width: 64px; */
+}
+
 .test {
 	border: 1px solid #FF0000;
 }
@@ -46,11 +50,7 @@
 a, a:hover, a:visited, a:link {
 	text-decoration: none;
 }
-/*
-input {
-	color: #323;
-}
-*/
+
 .tagBorder {
 	border: 1px solid #555;
 	border-bottom-left-radius: 4px 4px;
