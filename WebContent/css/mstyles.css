@@ -23,6 +23,10 @@
 /* 	width: 64px; */
 }
 
+.valign-middle {
+	vertical-align: middle;
+}
+
 .test {
 	border: 1px solid #FF0000;
 }
