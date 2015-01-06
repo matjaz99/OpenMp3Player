@@ -27,10 +27,19 @@
 			
 			<hr/>
 			
-			<h:form>
-				<h:commandLink value="Back" action="home" styleClass="text-white largeText" />
+			<h:form prependId="false">
+				<h:commandLink action="home">
+					<h:graphicImage id="backBtn" url="img/back.png" styleClass="icon" alt="Back"
+						onmouseover="onMouse('#backBtn', 'img/back-shadow.png')" 
+						onmouseout="onMouse('#backBtn', 'img/back.png')" 
+						onmousedown="onMouse('#backBtn', 'img/back-pressed.png')" 
+						onmouseup="onMouse('#backBtn', 'img/back-shadow.png')" />
+					<h:outputLabel value="Back" styleClass="text-white largeText"></h:outputLabel>
+				</h:commandLink>
 			</h:form>
+			
 			<hr/>
+			
 			<h:form>
 				<h:commandLink value="Add mp3s from directory" action="addPlaylist" styleClass="text-white" />
 			</h:form>
