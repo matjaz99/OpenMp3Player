@@ -5,6 +5,8 @@
 <f:loadBundle basename="si.matjazcerkvenik.openmp3player.backend.om3p"
 	var="bundle" />
 
+<f:subview id="header">
+
 <h:panelGrid columns="6">
 
 	<h:form prependId="false">
@@ -54,14 +56,10 @@
 			<f:selectItems value="#{playerBean.playlists}"/>
 		</h:selectOneMenu>
 	</h:form>
-		
-	<h:panelGrid id="ddButton" rendered="false">
-		<h:graphicImage id="ddPanelBtn" url="img/showMenu.png" styleClass="icon"
-			onmouseover="onMouse('#ddPanelBtn', 'img/showMenu-shadow.png')" 
-			onmouseout="onMouse('#ddPanelBtn', 'img/showMenu.png')" 
-			onmousedown="onMouse('#ddPanelBtn', 'img/showMenu-pressed.png')" 
-			onmouseup="onMouse('#ddPanelBtn', 'img/showMenu-shadow.png')" />
-	</h:panelGrid>
+	
+	
+	<!-- dd -->
+	
 
 </h:panelGrid>
 
@@ -69,6 +67,7 @@
 <!-- ddPanel is below the guiPanel (and ddButton) -->
 <h:panelGrid id="ddPanel" columns="8">
 
+	
 	<h:form prependId="false">
 		<h:commandLink action="playlists">
 			<h:graphicImage id="showPlaylistsBtn" url="img/playlists.png" styleClass="icon"
@@ -98,6 +97,7 @@
 				onmouseup="onMouse('#volumeUpBtn', 'img/volumeUp-shadow.png')" />
 		</h:commandLink>
 	</h:form>
+	
 	
 	<h:form rendered="#{playerBean.repeatOn}" prependId="false">
 		<h:commandLink action="#{playerBean.turnRepeatOff}">
@@ -130,25 +130,6 @@
 	</h:form>
 	
 	
-	
-	<h:form prependId="false">
-		<h:commandLink action="settings">
-			<h:graphicImage id="settingsBtn" url="img/settings.png" styleClass="icon"
-				onmouseover="onMouse('#settingsBtn', 'img/settings-shadow.png')" 
-				onmouseout="onMouse('#settingsBtn', 'img/settings.png')" 
-				onmousedown="onMouse('#settingsBtn', 'img/settings-pressed.png')" 
-				onmouseup="onMouse('#settingsBtn', 'img/settings-shadow.png')" />
-		</h:commandLink>
-	</h:form>
-	
-	<h:form prependId="false">
-		<h:commandLink action="about">
-			<h:graphicImage id="helpBtn" url="img/help.png" styleClass="icon"
-				onmouseover="onMouse('#helpBtn', 'img/help-shadow.png')" 
-				onmouseout="onMouse('#helpBtn', 'img/help.png')" 
-				onmousedown="onMouse('#helpBtn', 'img/help-pressed.png')" 
-				onmouseup="onMouse('#helpBtn', 'img/help-shadow.png')" />
-		</h:commandLink>
-	</h:form>
-	
 </h:panelGrid>
+
+</f:subview>

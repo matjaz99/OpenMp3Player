@@ -16,13 +16,37 @@
 		
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<f:facet name="header">
-				<h:form>
+			
+			<h:form prependId="false">
+				<h:panelGrid columns="2" cellpadding="0" cellspacing="0" width="100%">
+				
 					<h:commandLink action="/">
+						<h:graphicImage id="dmdBtn" url="img/DMD.png" styleClass="icon"
+							onmouseover="onMouse('#dmdBtn', 'img/DMD.png')" 
+							onmouseout="onMouse('#dmdBtn', 'img/DMD.png')" 
+							onmousedown="onMouse('#dmdBtn', 'img/DMD.png')" 
+							onmouseup="onMouse('#dmdBtn', 'img/DMD.png')" />
 						<h:outputLabel value="OpenMp3Player" styleClass="title"></h:outputLabel>
 					</h:commandLink>
-				</h:form>
-			</f:facet>
+					<h:panelGroup>
+						<h:commandLink action="settings">
+							<h:graphicImage id="settingsBtn" url="img/settings.png" styleClass="icon"
+								onmouseover="onMouse('#settingsBtn', 'img/settings-shadow.png')" 
+								onmouseout="onMouse('#settingsBtn', 'img/settings.png')" 
+								onmousedown="onMouse('#settingsBtn', 'img/settings-pressed.png')" 
+								onmouseup="onMouse('#settingsBtn', 'img/settings-shadow.png')" />
+						</h:commandLink>
+						<h:commandLink action="about">
+							<h:graphicImage id="helpBtn" url="img/help.png" styleClass="icon"
+								onmouseover="onMouse('#helpBtn', 'img/help-shadow.png')" 
+								onmouseout="onMouse('#helpBtn', 'img/help.png')" 
+								onmousedown="onMouse('#helpBtn', 'img/help-pressed.png')" 
+								onmouseup="onMouse('#helpBtn', 'img/help-shadow.png')" />
+						</h:commandLink>
+					</h:panelGroup>
+				
+				</h:panelGrid>
+			</h:form>
 			
 			
 			<hr/>
