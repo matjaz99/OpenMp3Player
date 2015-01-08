@@ -17,9 +17,8 @@
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
 			
-			<h:form prependId="false">
+			<h:form>
 				<h:panelGrid columns="2" cellpadding="0" cellspacing="3" width="100%">
-					
 					
 					<h:panelGrid columns="2" cellpadding="0" cellspacing="0" styleClass="valign-middle">
 						<h:commandLink action="/">

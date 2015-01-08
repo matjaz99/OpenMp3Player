@@ -65,7 +65,7 @@
 
 
 <!-- ddPanel is below the guiPanel (and ddButton) -->
-<h:panelGrid id="ddPanel" columns="8">
+<h:panelGrid id="ddPanel" columns="4">
 
 	
 	<h:form>
@@ -95,27 +95,6 @@
 				onmouseout="onMouse(this, 'img/volumeUp.png')" 
 				onmousedown="onMouse(this, 'img/volumeUp-pressed.png')" 
 				onmouseup="onMouse(this, 'img/volumeUp-shadow.png')" />
-		</h:commandLink>
-	</h:form>
-	
-	
-	<h:form rendered="#{playerBean.repeatOn}">
-		<h:commandLink action="#{playerBean.turnRepeatOff}">
-			<h:graphicImage url="img/repeatOn.png" styleClass="icon"
-				onmouseover="onMouse(this, 'img/repeatOn-shadow.png')" 
-				onmouseout="onMouse(this, 'img/repeatOn.png')" 
-				onmousedown="onMouse(this, 'img/repeatOn-pressed.png')" 
-				onmouseup="onMouse(this, 'img/repeatOn-shadow.png')" />
-		</h:commandLink>
-	</h:form>
-	
-	<h:form rendered="#{!playerBean.repeatOn}">
-		<h:commandLink action="#{playerBean.turnRepeatOn}">
-			<h:graphicImage url="img/repeatOff.png" styleClass="icon"
-				onmouseover="onMouse(this, 'img/repeatOff-shadow.png')" 
-				onmouseout="onMouse(this, 'img/repeatOff.png')" 
-				onmousedown="onMouse(this, 'img/repeatOff-pressed.png')" 
-				onmouseup="onMouse(this, 'img/repeatOff-shadow.png')" />
 		</h:commandLink>
 	</h:form>
 	
