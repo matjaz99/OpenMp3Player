@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/omp3p.js"></script>
 <link rel="stylesheet" type="text/css" href="css/mstyles.css"/>
 <title>About</title>
 </head>
@@ -14,26 +16,40 @@
 		
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<f:facet name="header">
+			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="/">
-						<h:outputText value="About OpenMp3Player" styleClass="title" />
+						<h:graphicImage url="img/DMD.png" styleClass="icon"
+							onmouseover="onMouse(this, 'img/DMD.png')" 
+							onmouseout="onMouse(this, 'img/DMD.png')" 
+							onmousedown="onMouse(this, 'img/DMD.png')" 
+							onmouseup="onMouse(this, 'img/DMD.png')" />
 					</h:commandLink>
 				</h:form>
-			</f:facet>
+				<h:form>
+					<h:commandLink action="/" value="About OpenMp3Player" styleClass="title" />
+				</h:form>
+			</h:panelGrid>
+			
 			
 			<hr/>
 			
-			<h:form prependId="false">
-				<h:commandLink action="home">
-					<h:graphicImage id="backBtn" url="img/back.png" styleClass="icon" alt="Back"
-						onmouseover="onMouse(this, 'img/back-shadow.png')" 
-						onmouseout="onMouse(this, 'img/back.png')" 
-						onmousedown="onMouse(this, 'img/back-pressed.png')" 
-						onmouseup="onMouse(this, 'img/back-shadow.png')" />
-					<h:outputLabel value="Back" styleClass="text-white largeText"></h:outputLabel>
-				</h:commandLink>
-			</h:form>
+			<h:panelGrid columns="2" styleClass="valign-middle">
+				<h:form>
+					<h:commandLink action="home">
+						<h:graphicImage url="img/back.png" styleClass="icon" alt="Back"
+							onmouseover="onMouse(this, 'img/back-shadow.png')" 
+							onmouseout="onMouse(this, 'img/back.png')" 
+							onmousedown="onMouse(this, 'img/back-pressed.png')" 
+							onmouseup="onMouse(this, 'img/back-shadow.png')" />
+					</h:commandLink>
+				</h:form>
+				<h:form>
+					<h:commandLink action="home">
+						<h:outputLabel value="Back" styleClass="text-white largeText"></h:outputLabel>
+					</h:commandLink>
+				</h:form>
+			</h:panelGrid>
 			
 			<hr/>
 			

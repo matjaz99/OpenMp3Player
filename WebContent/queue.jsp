@@ -16,13 +16,18 @@
 		
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<f:facet name="header">
+			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="/">
-						<h:outputLabel value="Queue" styleClass="title"></h:outputLabel>
+						<h:graphicImage url="img/DMD.png" styleClass="icon"
+							onmouseover="onMouse(this, 'img/DMD.png')" 
+							onmouseout="onMouse(this, 'img/DMD.png')" 
+							onmousedown="onMouse(this, 'img/DMD.png')" 
+							onmouseup="onMouse(this, 'img/DMD.png')" />
 					</h:commandLink>
 				</h:form>
-			</f:facet>
+				<h:outputLabel value="Queue" styleClass="title"></h:outputLabel>
+			</h:panelGrid>
 			
 			<hr/>
 			
