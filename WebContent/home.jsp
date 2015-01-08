@@ -17,38 +17,76 @@
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
 			
-			<h:form>
-				<h:panelGrid columns="2" cellpadding="0" cellspacing="3" width="100%">
+			
+				<h:panelGrid columns="2" width="100%">
 					
-					<h:panelGrid columns="2" cellpadding="0" cellspacing="0" styleClass="valign-middle">
-						<h:commandLink action="/">
-							<h:graphicImage id="dmdBtn" url="img/DMD.png" styleClass="icon"
-								onmouseover="onMouse(this, 'img/DMD.png')" 
-								onmouseout="onMouse(this, 'img/DMD.png')" 
-								onmousedown="onMouse(this, 'img/DMD.png')" 
-								onmouseup="onMouse(this, 'img/DMD.png')" />
-						</h:commandLink>
-						<h:commandLink action="/" value="OpenMp3Player" styleClass="title" />
+					<h:panelGrid columns="2" styleClass="valign-middle">
+						<h:form>
+							<h:commandLink action="/">
+								<h:graphicImage url="img/DMD.png" styleClass="icon"
+									onmouseover="onMouse(this, 'img/DMD.png')" 
+									onmouseout="onMouse(this, 'img/DMD.png')" 
+									onmousedown="onMouse(this, 'img/DMD.png')" 
+									onmouseup="onMouse(this, 'img/DMD.png')" />
+							</h:commandLink>
+						</h:form>
+						<h:form>
+							<h:commandLink action="/" value="OpenMp3Player" styleClass="title" />
+						</h:form>
 					</h:panelGrid>
-					<h:panelGroup>
-						<h:commandLink action="settings">
-							<h:graphicImage id="settingsBtn" url="img/settings.png" styleClass="icon"
-								onmouseover="onMouse(this, 'img/settings-shadow.png')" 
-								onmouseout="onMouse(this, 'img/settings.png')" 
-								onmousedown="onMouse(this, 'img/settings-pressed.png')" 
-								onmouseup="onMouse(this, 'img/settings-shadow.png')" />
-						</h:commandLink>
-						<h:commandLink action="about">
-							<h:graphicImage id="helpBtn" url="img/help.png" styleClass="icon"
-								onmouseover="onMouse(this, 'img/help-shadow.png')" 
-								onmouseout="onMouse(this, 'img/help.png')" 
-								onmousedown="onMouse(this, 'img/help-pressed.png')" 
-								onmouseup="onMouse(this, 'img/help-shadow.png')" />
-						</h:commandLink>
+					
+					
+					<h:panelGroup style="text-align: right;">
+						<h:form>
+							<h:commandLink action="playlists">
+								<h:graphicImage url="img/playlists.png" styleClass="icon"
+									onmouseover="onMouse(this, 'img/playlists-shadow.png')" 
+									onmouseout="onMouse(this, 'img/playlists.png')" 
+									onmousedown="onMouse(this, 'img/playlists-pressed.png')" 
+									onmouseup="onMouse(this, 'img/playlists-shadow.png')" />
+							</h:commandLink>
+							<h:commandLink action="#{playerBean.gotoQueue}">
+								<h:graphicImage url="img/queue.png" styleClass="icon"
+									onmouseover="onMouse(this, 'img/queue-shadow.png')" 
+									onmouseout="onMouse(this, 'img/queue.png')" 
+									onmousedown="onMouse(this, 'img/queue-pressed.png')" 
+									onmouseup="onMouse(this, 'img/queue-shadow.png')" />
+							</h:commandLink>
+							<h:graphicImage url="img/separator.png" styleClass="icon" />
+							<h:commandLink action="#{playerBean.volumeDown}">
+								<h:graphicImage url="img/volumeDn.png" styleClass="icon"
+									onmouseover="onMouse(this, 'img/volumeDn-shadow.png')" 
+									onmouseout="onMouse(this, 'img/volumeDn.png')" 
+									onmousedown="onMouse(this, 'img/volumeDn-pressed.png')" 
+									onmouseup="onMouse(this, 'img/volumeDn-shadow.png')" />
+							</h:commandLink>
+							<h:commandLink action="#{playerBean.volumeUp}">
+								<h:graphicImage url="img/volumeUp.png" styleClass="icon"
+									onmouseover="onMouse(this, 'img/volumeUp-shadow.png')" 
+									onmouseout="onMouse(this, 'img/volumeUp.png')" 
+									onmousedown="onMouse(this, 'img/volumeUp-pressed.png')" 
+									onmouseup="onMouse(this, 'img/volumeUp-shadow.png')" />
+							</h:commandLink>
+							<h:graphicImage url="img/separator.png" styleClass="icon" />
+							<h:commandLink action="settings">
+								<h:graphicImage url="img/settings.png" styleClass="icon"
+									onmouseover="onMouse(this, 'img/settings-shadow.png')" 
+									onmouseout="onMouse(this, 'img/settings.png')" 
+									onmousedown="onMouse(this, 'img/settings-pressed.png')" 
+									onmouseup="onMouse(this, 'img/settings-shadow.png')" />
+							</h:commandLink>
+							<h:commandLink action="about">
+								<h:graphicImage url="img/help.png" styleClass="icon"
+									onmouseover="onMouse(this, 'img/help-shadow.png')" 
+									onmouseout="onMouse(this, 'img/help.png')" 
+									onmousedown="onMouse(this, 'img/help-pressed.png')" 
+									onmouseup="onMouse(this, 'img/help-shadow.png')" />
+							</h:commandLink>
+						</h:form>
 					</h:panelGroup>
 				
 				</h:panelGrid>
-			</h:form>
+			
 			
 			
 			<hr/>
