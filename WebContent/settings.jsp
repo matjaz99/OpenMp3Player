@@ -30,10 +30,10 @@
 			<h:form prependId="false">
 				<h:commandLink action="home">
 					<h:graphicImage id="backBtn" url="img/back.png" styleClass="icon" alt="Back"
-						onmouseover="onMouse('#backBtn', 'img/back-shadow.png')" 
-						onmouseout="onMouse('#backBtn', 'img/back.png')" 
-						onmousedown="onMouse('#backBtn', 'img/back-pressed.png')" 
-						onmouseup="onMouse('#backBtn', 'img/back-shadow.png')" />
+						onmouseover="onMouse(this, 'img/back-shadow.png')" 
+						onmouseout="onMouse(this, 'img/back.png')" 
+						onmousedown="onMouse(this, 'img/back-pressed.png')" 
+						onmouseup="onMouse(this, 'img/back-shadow.png')" />
 					<h:outputLabel value="Back" styleClass="text-white largeText"></h:outputLabel>
 				</h:commandLink>
 			</h:form>

@@ -18,7 +18,7 @@
 			
 			
 			<h:form prependId="false">
-				<h:panelGrid columns="2" cellpadding="0" cellspacing="0">
+				<h:panelGrid columns="2" cellpadding="0" cellspacing="3" width="100%">
 					
 					
 					<h:panelGrid columns="2" cellpadding="0" cellspacing="0" styleClass="valign-middle">
@@ -63,7 +63,7 @@
 			
 			<hr/>
 			
-			<%@ include file="/includes/playlist.jsp" %>
+			<jsp:include page="/includes/playlist.jsp"></jsp:include>
 			
 			<hr/>
 			

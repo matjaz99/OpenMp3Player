@@ -30,10 +30,10 @@
 			<h:form prependId="false">
 				<h:commandLink action="home">
 					<h:graphicImage id="backBtn" url="img/back.png" styleClass="icon" alt="Back"
-						onmouseover="onMouse('#backBtn', 'img/back-shadow.png')" 
-						onmouseout="onMouse('#backBtn', 'img/back.png')" 
-						onmousedown="onMouse('#backBtn', 'img/back-pressed.png')" 
-						onmouseup="onMouse('#backBtn', 'img/back-shadow.png')" />
+						onmouseover="onMouse(this, 'img/back-shadow.png')" 
+						onmouseout="onMouse(this, 'img/back.png')" 
+						onmousedown="onMouse(this, 'img/back-pressed.png')" 
+						onmouseup="onMouse(this, 'img/back-shadow.png')" />
 					<h:outputLabel value="Back" styleClass="text-white largeText"></h:outputLabel>
 				</h:commandLink>
 			</h:form>
@@ -52,10 +52,10 @@
 					<h:form prependId="false">
 						<h:commandLink action="#{playlistsBean.gotoPlaylist}">
 							<h:graphicImage id="playBtn" url="img/folder.png" styleClass="icon" alt="Goto"
-								onmouseover="onMouse('#playBtn', 'img/folder-shadow.png')" 
-								onmouseout="onMouse('#playBtn', 'img/folder.png')" 
-								onmousedown="onMouse('#playBtn', 'img/folder-pressed.png')" 
-								onmouseup="onMouse('#playBtn', 'img/folder-shadow.png')" />
+								onmouseover="onMouse(this, 'img/folder-shadow.png')" 
+								onmouseout="onMouse(this, 'img/folder.png')" 
+								onmousedown="onMouse(this, 'img/folder-pressed.png')" 
+								onmouseup="onMouse(this, 'img/folder-shadow.png')" />
 						</h:commandLink>
 					</h:form>
 				</h:column>
@@ -69,10 +69,10 @@
 					<h:form prependId="false">
 						<h:commandLink action="#{playlistsBean.deletePlaylist}">
 							<h:graphicImage id="queueBtn" url="img/remove.png" styleClass="icon" alt="Remove"
-								onmouseover="onMouse('#queueBtn', 'img/remove-shadow.png')" 
-								onmouseout="onMouse('#queueBtn', 'img/remove.png')" 
-								onmousedown="onMouse('#queueBtn', 'img/remove-pressed.png')" 
-								onmouseup="onMouse('#queueBtn', 'img/remove-shadow.png')" />
+								onmouseover="onMouse(this, 'img/remove-shadow.png')" 
+								onmouseout="onMouse(this, 'img/remove.png')" 
+								onmousedown="onMouse(this, 'img/remove-pressed.png')" 
+								onmouseup="onMouse(this, 'img/remove-shadow.png')" />
 						</h:commandLink>
 					</h:form>
 				</h:column>

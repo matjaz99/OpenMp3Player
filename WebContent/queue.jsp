@@ -47,10 +47,10 @@
 				<h:commandLink action="#{queueBean.emptyQueue}">
 					<h:outputLabel value="Empty queue" styleClass="text-white"></h:outputLabel>
 					<h:graphicImage id="emptyBtn" url="img/empty.png" styleClass="icon" alt="Empty"
-						onmouseover="onMouse('#emptyBtn', 'img/empty-shadow.png')" 
-						onmouseout="onMouse('#emptyBtn', 'img/empty.png')" 
-						onmousedown="onMouse('#emptyBtn', 'img/empty-pressed.png')" 
-						onmouseup="onMouse('#emptyBtn', 'img/empty-shadow.png')" />
+						onmouseover="onMouse(this, 'img/empty-shadow.png')" 
+						onmouseout="onMouse(this, 'img/empty.png')" 
+						onmousedown="onMouse(this, 'img/empty-pressed.png')" 
+						onmouseup="onMouse(this, 'img/empty-shadow.png')" />
 				</h:commandLink>
 				<hr/>
 			</h:form>
