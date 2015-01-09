@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="o" uri="/WEB-INF/tld/omp3p-tags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,11 +21,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="/">
-						<h:graphicImage url="img/DMD.png" styleClass="icon"
-							onmouseover="onMouse(this, 'img/DMD.png')" 
-							onmouseout="onMouse(this, 'img/DMD.png')" 
-							onmousedown="onMouse(this, 'img/DMD.png')" 
-							onmouseup="onMouse(this, 'img/DMD.png')" />
+						<h:graphicImage url="img/DMD.png" styleClass="icon" />
 					</h:commandLink>
 				</h:form>
 				<h:outputLabel value="Playlists" styleClass="title"></h:outputLabel>
@@ -35,11 +32,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="home">
-						<h:graphicImage url="img/back.png" styleClass="icon" alt="Back"
-							onmouseover="onMouse(this, 'img/back-shadow.png')" 
-							onmouseout="onMouse(this, 'img/back.png')" 
-							onmousedown="onMouse(this, 'img/back-pressed.png')" 
-							onmouseup="onMouse(this, 'img/back-shadow.png')" />
+						<o:icon img="back"/>
 					</h:commandLink>
 				</h:form>
 				<h:form>
@@ -60,13 +53,9 @@
 			<h:dataTable value="#{playlistsBean.playlistsList}" binding="#{playlistsBean.dataTable}" var="plist" width="100%">
 				
 				<h:column>
-					<h:form prependId="false">
-						<h:commandLink action="#{playlistsBean.gotoPlaylist}">
-							<h:graphicImage id="playBtn" url="img/folder.png" styleClass="icon" alt="Goto"
-								onmouseover="onMouse(this, 'img/folder-shadow.png')" 
-								onmouseout="onMouse(this, 'img/folder.png')" 
-								onmousedown="onMouse(this, 'img/folder-pressed.png')" 
-								onmouseup="onMouse(this, 'img/folder-shadow.png')" />
+					<h:form>
+						<h:commandLink action="#{playlistsBean.gotoPlaylist}" title="Goto">
+							<o:icon img="folder"/>
 						</h:commandLink>
 					</h:form>
 				</h:column>
@@ -77,13 +66,9 @@
 				</h:column>
 				
 				<h:column>
-					<h:form prependId="false">
-						<h:commandLink action="#{playlistsBean.deletePlaylist}">
-							<h:graphicImage id="queueBtn" url="img/remove.png" styleClass="icon" alt="Remove"
-								onmouseover="onMouse(this, 'img/remove-shadow.png')" 
-								onmouseout="onMouse(this, 'img/remove.png')" 
-								onmousedown="onMouse(this, 'img/remove-pressed.png')" 
-								onmouseup="onMouse(this, 'img/remove-shadow.png')" />
+					<h:form>
+						<h:commandLink action="#{playlistsBean.deletePlaylist}" title="Remove">
+							<o:icon img="remove"/>
 						</h:commandLink>
 					</h:form>
 				</h:column>

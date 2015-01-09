@@ -20,11 +20,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="/">
-						<h:graphicImage url="img/DMD.png" styleClass="icon"
-							onmouseover="onMouse(this, 'img/DMD.png')" 
-							onmouseout="onMouse(this, 'img/DMD.png')" 
-							onmousedown="onMouse(this, 'img/DMD.png')" 
-							onmouseup="onMouse(this, 'img/DMD.png')" />
+						<h:graphicImage url="img/DMD.png" styleClass="icon" />
 					</h:commandLink>
 				</h:form>
 				<h:outputLabel value="Add new tag" styleClass="title"></h:outputLabel>
@@ -35,11 +31,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="song">
-						<h:graphicImage url="img/back.png" styleClass="icon" alt="Back"
-							onmouseover="onMouse(this, 'img/back-shadow.png')" 
-							onmouseout="onMouse(this, 'img/back.png')" 
-							onmousedown="onMouse(this, 'img/back-pressed.png')" 
-							onmouseup="onMouse(this, 'img/back-shadow.png')" />
+						<o:icon img="back"/>
 					</h:commandLink>
 				</h:form>
 				<h:form>

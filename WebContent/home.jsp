@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="o" uri="/WEB-INF/tld/omp3p-tags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,48 +40,24 @@
 					<h:panelGroup style="text-align: right;">
 						<h:form>
 							<h:commandLink action="playlists">
-								<h:graphicImage url="img/playlists.png" styleClass="icon"
-									onmouseover="onMouse(this, 'img/playlists-shadow.png')" 
-									onmouseout="onMouse(this, 'img/playlists.png')" 
-									onmousedown="onMouse(this, 'img/playlists-pressed.png')" 
-									onmouseup="onMouse(this, 'img/playlists-shadow.png')" />
+								<o:icon img="playlists"/>
 							</h:commandLink>
 							<h:commandLink action="#{playerBean.gotoQueue}">
-								<h:graphicImage url="img/queue.png" styleClass="icon"
-									onmouseover="onMouse(this, 'img/queue-shadow.png')" 
-									onmouseout="onMouse(this, 'img/queue.png')" 
-									onmousedown="onMouse(this, 'img/queue-pressed.png')" 
-									onmouseup="onMouse(this, 'img/queue-shadow.png')" />
+								<o:icon img="queue"/>
 							</h:commandLink>
 							<h:graphicImage url="img/separator.png" styleClass="icon" />
 							<h:commandLink action="#{playerBean.volumeDown}">
-								<h:graphicImage url="img/volumeDn.png" styleClass="icon"
-									onmouseover="onMouse(this, 'img/volumeDn-shadow.png')" 
-									onmouseout="onMouse(this, 'img/volumeDn.png')" 
-									onmousedown="onMouse(this, 'img/volumeDn-pressed.png')" 
-									onmouseup="onMouse(this, 'img/volumeDn-shadow.png')" />
+								<o:icon img="volumeDn"/>
 							</h:commandLink>
 							<h:commandLink action="#{playerBean.volumeUp}">
-								<h:graphicImage url="img/volumeUp.png" styleClass="icon"
-									onmouseover="onMouse(this, 'img/volumeUp-shadow.png')" 
-									onmouseout="onMouse(this, 'img/volumeUp.png')" 
-									onmousedown="onMouse(this, 'img/volumeUp-pressed.png')" 
-									onmouseup="onMouse(this, 'img/volumeUp-shadow.png')" />
+								<o:icon img="volumeUp"/>
 							</h:commandLink>
 							<h:graphicImage url="img/separator.png" styleClass="icon" />
 							<h:commandLink action="settings">
-								<h:graphicImage url="img/settings.png" styleClass="icon"
-									onmouseover="onMouse(this, 'img/settings-shadow.png')" 
-									onmouseout="onMouse(this, 'img/settings.png')" 
-									onmousedown="onMouse(this, 'img/settings-pressed.png')" 
-									onmouseup="onMouse(this, 'img/settings-shadow.png')" />
+								<o:icon img="settings"/>
 							</h:commandLink>
 							<h:commandLink action="about">
-								<h:graphicImage url="img/help.png" styleClass="icon"
-									onmouseover="onMouse(this, 'img/help-shadow.png')" 
-									onmouseout="onMouse(this, 'img/help.png')" 
-									onmousedown="onMouse(this, 'img/help-pressed.png')" 
-									onmouseup="onMouse(this, 'img/help-shadow.png')" />
+								<o:icon img="help"/>
 							</h:commandLink>
 						</h:form>
 					</h:panelGroup>

@@ -24,11 +24,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="home">
-						<h:graphicImage url="img/back.png" styleClass="icon" alt="Back"
-							onmouseover="onMouse(this, 'img/back-shadow.png')" 
-							onmouseout="onMouse(this, 'img/back.png')" 
-							onmousedown="onMouse(this, 'img/back-pressed.png')" 
-							onmouseup="onMouse(this, 'img/back-shadow.png')" />
+						<o:icon img="back"/>
 					</h:commandLink>
 				</h:form>
 				<h:form>
@@ -83,9 +79,7 @@
 				</h:column>
 				
 			</h:dataTable>
-			
-<%-- 			<h:outputText value="#{songBean.tagsAsString}"/> --%>
-			
+						
 			<hr/>
 			
 			<h:form>

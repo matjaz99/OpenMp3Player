@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="o" uri="/WEB-INF/tld/omp3p-tags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,11 +20,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="/">
-						<h:graphicImage url="img/DMD.png" styleClass="icon"
-							onmouseover="onMouse(this, 'img/DMD.png')" 
-							onmouseout="onMouse(this, 'img/DMD.png')" 
-							onmousedown="onMouse(this, 'img/DMD.png')" 
-							onmouseup="onMouse(this, 'img/DMD.png')" />
+						<h:graphicImage url="img/DMD.png" styleClass="icon" />
 					</h:commandLink>
 				</h:form>
 				<h:form>
@@ -37,11 +34,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="home">
-						<h:graphicImage url="img/back.png" styleClass="icon" alt="Back"
-							onmouseover="onMouse(this, 'img/back-shadow.png')" 
-							onmouseout="onMouse(this, 'img/back.png')" 
-							onmousedown="onMouse(this, 'img/back-pressed.png')" 
-							onmouseup="onMouse(this, 'img/back-shadow.png')" />
+						<o:icon img="back"/>
 					</h:commandLink>
 				</h:form>
 				<h:form>

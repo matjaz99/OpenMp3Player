@@ -27,4 +27,14 @@
 			<deferred-value><type>java.lang.Object</type></deferred-value>
 		</attribute>
 	</tag>
+	<tag>
+		<description>Icon tag</description>
+		<name>icon</name>
+		<tag-class>si.matjazcerkvenik.openmp3player.web.comp.IconTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>img</name>
+			<required>true</required>
+		</attribute>
+	</tag>
 </taglib>
