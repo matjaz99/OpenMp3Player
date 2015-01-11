@@ -1,11 +1,7 @@
 OpenMp3Player
 ===================
 
-New version 2 is still in development phase. It will bring many new features, such as:
-- JSF 1.2 will be used (JSP based)
-- tags and labels
-
-Last stable release: 1.4.0
+Last stable release: 2.1.0
 
 
 What is it?
@@ -13,11 +9,17 @@ What is it?
 OpenMp3Player is a web application for playing mp3 files. It runs on Apache Tomcat server.
 
 
-Deploy
+Starting
 -------------------
-Before deploying make sure that Apache Tomcat server is running (run $TOMCAT_HOME/bin/startup.sh).
+Change file permissions to 755 for all *.sh files in OpenMp3Player directory (recursively):
+$ find OpenMp3Player-2.x.x -name \*.sh -exec chmod 755 {} +
 
-Unzip and put OpenMp3Player.war into $TOMCAT_HOME/webapps directory.
+To start OpenMp3Player on linux execute:
+$ ./start.sh
+or
+double click on start.bat (on windows).
+
+To stop execute stop.sh or stop.bat script.
 
 With web browser go to: <a href="http://hostname:8080/OpenMp3Player">
 http://hostname:8080/OpenMp3Player</a>
@@ -28,12 +30,23 @@ For developers
 Developed on tomcat 7. To start add VM arg to tomcat:
 -Domp3p.home="/path/to/OpenMp3Player"
 
-Change file permissions to 755 for all *.sh files in OpenMp3Player directory (recursively):
-$ find OpenMp3Player-2.0.0-beta.10.tomcat -name \*.sh -exec chmod 755 {} +
+
 
 
 History
 -------------------
+2.1.0
+january 2015
+
+- settings and help buttons moved to title bar
+- repeat button moved to currently-playing bar
+- volume and playlists button moved to title bar
+- reduced icon size to 48 px
+- new icons for volume control
+- custom tag o:icon to replace h:graphicImage
+- shutdown listener (interrupt watchdog, close log file)
+
+
 
 2.0.0
 december 2014
