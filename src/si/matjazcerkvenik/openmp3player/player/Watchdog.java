@@ -10,6 +10,9 @@ import si.matjazcerkvenik.openmp3player.backend.Utils;
  */
 public class Watchdog extends Thread {
 	
+	private boolean running = true;
+	
+	
 	public Watchdog() {
 		setName("Watchdog");
 	}
@@ -19,7 +22,7 @@ public class Watchdog extends Thread {
 	@Override
 	public void run() {
 		
-		while (true) {
+		while (running) {
 			
 			if (Mp3Player.getInstance().getPlayerStatus() == PlayerStatus.PLAY_ENDED) {
 				OContext.getInstance().getLogger().trace("Watchdog:run(): repeat is: " + Mp3Player.getInstance().isRepeatOn());
@@ -35,11 +38,15 @@ public class Watchdog extends Thread {
 			try {
 				sleep(Utils.PLAYER_DELAY * 1000);
 			} catch (InterruptedException e) {
-				
+				running = false;
 			}
 			
 		}
 		
+	}
+	
+	public void stopWatchdog() {
+		running = false;
 	}
 	
 }

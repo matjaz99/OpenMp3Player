@@ -100,6 +100,10 @@ public class OContext {
 		return logger;
 	}
 	
+	public Watchdog getWatchdog() {
+		return watchdog;
+	}
+	
 	private static String getHomeDir() {
 		
 		String homeDir = System.getProperty("omp3p.home");
