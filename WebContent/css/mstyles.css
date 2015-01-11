@@ -27,6 +27,10 @@
 	vertical-align: middle;
 }
 
+.align-right {
+	text-align: right;
+}
+
 .test {
 	border: 1px solid #FF0000;
 }

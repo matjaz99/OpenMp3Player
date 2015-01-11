@@ -8,7 +8,7 @@
 
 <f:subview id="playlists">
 
-	<h:panelGrid columns="1" width="100%" >
+<%-- 	<h:panelGrid columns="1" width="100%" > --%>
 		
 		<h:dataTable value="#{playlistBean.mp3List}" binding="#{playlistBean.dataTable}" var="mp3File"
 			rowClasses="table-odd-row,table-even-row" cellpadding="0" cellspacing="0" width="100%" >
@@ -59,7 +59,7 @@
 			
 		</h:dataTable>
 		
-	</h:panelGrid>
+<%-- 	</h:panelGrid> --%>
 
 </f:subview>
 

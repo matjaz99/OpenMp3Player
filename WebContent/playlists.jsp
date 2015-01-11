@@ -17,15 +17,21 @@
 		
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			
-			<h:panelGrid columns="2" styleClass="valign-middle">
-				<h:form>
-					<h:commandLink action="/">
-						<h:graphicImage url="img/DMD.png" styleClass="icon" />
-					</h:commandLink>
-				</h:form>
-				<h:outputLabel value="Playlists" styleClass="title"></h:outputLabel>
-			</h:panelGrid>
+
+			<h:panelGrid columns="2" width="100%">
+					
+					<h:panelGrid columns="2" styleClass="valign-middle">
+						<h:form>
+							<h:commandLink action="home">
+								<h:graphicImage url="img/DMD.png" styleClass="icon" />
+							</h:commandLink>
+						</h:form>
+						<h:outputText value="Playlists" styleClass="title" />
+					</h:panelGrid>
+					
+					<jsp:include page="/includes/toolbar.jsp"></jsp:include>
+				
+				</h:panelGrid>
 			
 			<hr/>
 			
@@ -44,13 +50,23 @@
 			
 			<hr/>
 			
-			<h:form>
-				<h:commandLink value="Add mp3s from directory" action="addPlaylist" styleClass="text-white" />
-			</h:form>
+			<h:panelGrid columns="2" styleClass="valign-middle">
+				<h:form>
+					<h:commandLink action="addPlaylist">
+						<o:icon img="addPlaylist"/>
+					</h:commandLink>
+				</h:form>
+				<h:form>
+					<h:commandLink action="addPlaylist">
+						<h:outputLabel value="Add mp3s from directory" styleClass="text-white largeText"></h:outputLabel>
+					</h:commandLink>
+				</h:form>
+			</h:panelGrid>
 			
 			<hr/>
 			
-			<h:dataTable value="#{playlistsBean.playlistsList}" binding="#{playlistsBean.dataTable}" var="plist" width="100%">
+			<h:dataTable value="#{playlistsBean.playlistsList}" binding="#{playlistsBean.dataTable}" 
+				rowClasses="table-odd-row,table-even-row" cellpadding="0" cellspacing="0" var="plist" width="100%">
 				
 				<h:column>
 					<h:form>
@@ -61,8 +77,8 @@
 				</h:column>
 				
 				<h:column>
-					<h:outputText value="#{plist.name}" styleClass="text-white largeText" /><br/>
-					<h:outputText value="#{plist.source}" styleClass="text-white" />
+					<h:outputText value="#{plist.name}" styleClass="largeText" /><br/>
+					<h:outputText value="#{plist.source}" />
 				</h:column>
 				
 				<h:column>

@@ -18,13 +18,19 @@
 		
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<h:panelGrid columns="2" styleClass="valign-middle">
-				<h:form>
-					<h:commandLink action="/">
-						<h:graphicImage url="img/DMD.png" styleClass="icon" />
-					</h:commandLink>
-				</h:form>
-				<h:outputLabel value="OpenMp3Player Settings" styleClass="title"></h:outputLabel>
+			<h:panelGrid columns="2" width="100%">
+					
+					<h:panelGrid columns="2" styleClass="valign-middle">
+						<h:form>
+							<h:commandLink action="home">
+								<h:graphicImage url="img/DMD.png" styleClass="icon"/>
+							</h:commandLink>
+						</h:form>
+						<h:outputText value="Settings" styleClass="title" />
+					</h:panelGrid>
+					
+					<jsp:include page="/includes/toolbar.jsp"></jsp:include>
+				
 			</h:panelGrid>
 			
 			<hr/>

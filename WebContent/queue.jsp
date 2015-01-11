@@ -17,42 +17,59 @@
 		
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<h:panelGrid columns="2" styleClass="valign-middle">
-				<h:form>
-					<h:commandLink action="/">
-						<h:graphicImage url="img/DMD.png" styleClass="icon" />
-					</h:commandLink>
-				</h:form>
-				<h:outputLabel value="Queue" styleClass="title"></h:outputLabel>
+			<h:panelGrid columns="2" width="100%">
+					
+					<h:panelGrid columns="2" styleClass="valign-middle">
+						<h:form>
+							<h:commandLink action="home">
+								<h:graphicImage url="img/DMD.png" styleClass="icon"/>
+							</h:commandLink>
+						</h:form>
+						<h:outputText value="Queue" styleClass="title" />
+					</h:panelGrid>
+					
+					<jsp:include page="/includes/toolbar.jsp"></jsp:include>
+				
 			</h:panelGrid>
 			
 			<hr/>
 			
-			<%@ include file="/includes/player-gui.jsp" %>
+			<jsp:include page="/includes/player-gui.jsp"></jsp:include>
 			
 			<hr/>
 			
-			<h:form prependId="false" rendered="#{playlistBean.queue}">
-				<h:panelGrid columns="3">
-					<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
-					<h:inputText value="#{queueBean.newQueueName}">
-						<f:validator validatorId="playlistValidator"/>
-					</h:inputText>
-					<h:commandButton action="#{queueBean.saveQueue}" value="Save"></h:commandButton>
-				</h:panelGrid>
-				<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
-				<hr/>
-			</h:form>
 			
 			
-			<h:form rendered="#{playlistBean.queue}">
-				<h:commandLink action="#{queueBean.emptyQueue}">
-					<h:outputLabel value="Empty queue" styleClass="text-white"></h:outputLabel>
-					<o:icon img="empty"/>
-				</h:commandLink>
-				<hr/>
-			</h:form>
 			
+			
+			<h:panelGrid columns="2" width="100%" rendered="#{playlistBean.queue}">
+		
+<%-- 				<h:panelGrid columns="2"> --%>
+					
+					<h:form>
+						<h:panelGrid columns="3">
+							<h:outputLabel value="Save queue as: " styleClass="text-white largeText"></h:outputLabel>
+							<h:inputText value="#{queueBean.newQueueName}">
+								<f:validator validatorId="playlistValidator"/>
+							</h:inputText>
+							<h:commandButton action="#{queueBean.saveQueue}" value="Save"></h:commandButton>
+						</h:panelGrid>
+						<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
+					</h:form>
+					
+<%-- 				</h:panelGrid> --%>
+		
+		
+				<h:panelGroup styleClass="align-right valign-middle">
+					<h:form>
+						<h:commandLink action="#{queueBean.emptyQueue}">
+							<h:outputLabel value="Empty queue " styleClass="text-white largeText"></h:outputLabel>
+							<h:commandButton action="#{queueBean.emptyQueue}" value="Empty"></h:commandButton>
+						</h:commandLink>
+					</h:form>
+				</h:panelGroup>
+		
+			</h:panelGrid>
 			
 			
 			
@@ -62,7 +79,7 @@
 			
 			<hr/>
 			
-			<%@ include file="/includes/playlist.jsp" %>
+			<jsp:include page="/includes/playlist.jsp"></jsp:include>
 			
 			<hr/>
 			

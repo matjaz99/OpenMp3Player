@@ -23,7 +23,7 @@
 					
 					<h:panelGrid columns="2" styleClass="valign-middle">
 						<h:form>
-							<h:commandLink action="/">
+							<h:commandLink action="home">
 								<h:graphicImage url="img/DMD.png" styleClass="icon"
 									onmouseover="onMouse(this, 'img/DMD.png')" 
 									onmouseout="onMouse(this, 'img/DMD.png')" 
@@ -31,36 +31,10 @@
 									onmouseup="onMouse(this, 'img/DMD.png')" />
 							</h:commandLink>
 						</h:form>
-						<h:form>
-							<h:commandLink action="/" value="OpenMp3Player" styleClass="title" />
-						</h:form>
+						<h:outputText value="OpenMp3Player" styleClass="title" />
 					</h:panelGrid>
 					
-					
-					<h:panelGroup style="text-align: right;">
-						<h:form>
-							<h:commandLink action="playlists">
-								<o:icon img="playlists"/>
-							</h:commandLink>
-							<h:commandLink action="#{playerBean.gotoQueue}">
-								<o:icon img="queue"/>
-							</h:commandLink>
-							<h:graphicImage url="img/separator.png" styleClass="icon" />
-							<h:commandLink action="#{playerBean.volumeDown}">
-								<o:icon img="volumeDn"/>
-							</h:commandLink>
-							<h:commandLink action="#{playerBean.volumeUp}">
-								<o:icon img="volumeUp"/>
-							</h:commandLink>
-							<h:graphicImage url="img/separator.png" styleClass="icon" />
-							<h:commandLink action="settings">
-								<o:icon img="settings"/>
-							</h:commandLink>
-							<h:commandLink action="about">
-								<o:icon img="help"/>
-							</h:commandLink>
-						</h:form>
-					</h:panelGroup>
+					<jsp:include page="/includes/toolbar.jsp"></jsp:include>
 				
 				</h:panelGrid>
 			

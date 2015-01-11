@@ -17,7 +17,20 @@
 		
 		<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
 			
-			<h:outputLabel value="Song details" styleClass="title"></h:outputLabel>
+			<h:panelGrid columns="2" width="100%">
+					
+					<h:panelGrid columns="2" styleClass="valign-middle">
+						<h:form>
+							<h:commandLink action="home">
+								<h:graphicImage url="img/DMD.png" styleClass="icon"/>
+							</h:commandLink>
+						</h:form>
+						<h:outputText value="Song details" styleClass="title" />
+					</h:panelGrid>
+					
+					<jsp:include page="/includes/toolbar.jsp"></jsp:include>
+				
+			</h:panelGrid>
 			
 			<hr/>
 			
@@ -71,8 +84,8 @@
 				<h:column>
 					
 					<h:form>
-						<h:commandLink action="#{songBean.removeTag}">
-							<h:graphicImage id="removeBtn" url="img/remove-small.png" styleClass="icon" alt="Remove" />
+						<h:commandLink action="#{songBean.removeTag}" title="Remove tag">
+							<o:icon img="remove-small"/>
 						</h:commandLink>
 					</h:form>
 					
@@ -83,7 +96,7 @@
 			<hr/>
 			
 			<h:form>
-				<h:outputText value="Add tag: " styleClass="text-white" />
+				<h:outputText value="Select tag: " styleClass="text-white" />
 				<h:selectOneMenu onchange="submit()" value="#{songBean.selectedTag}"
 					valueChangeListener="#{songBean.tagSelected}">
 					<f:selectItems value="#{songBean.tagItems}"/>
