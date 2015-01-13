@@ -1,7 +1,7 @@
 OpenMp3Player
 ===================
 
-Last stable release: 2.1.0
+Last stable release: 2.1.1
 
 
 What is it?
@@ -35,6 +35,12 @@ Developed on tomcat 7. To start add VM arg to tomcat:
 
 History
 -------------------
+2.1.1
+january 2015
+
+- added missing *.bat files
+
+
 2.1.0
 january 2015
 
