@@ -96,17 +96,11 @@
 			<hr/>
 			
 			<h:form>
-				<h:outputText value="Select tag: " styleClass="text-white" />
+				<h:outputText value="Select new tag: " styleClass="text-white" />
 				<h:selectOneMenu onchange="submit()" value="#{songBean.selectedTag}"
 					valueChangeListener="#{songBean.tagSelected}">
 					<f:selectItems value="#{songBean.tagItems}"/>
 				</h:selectOneMenu>
-			</h:form>
-			
-			<hr/>
-			
-			<h:form>
-				<h:commandLink value="New tag" action="addTag" styleClass="text-white" />
 			</h:form>
 			
 			<hr/>

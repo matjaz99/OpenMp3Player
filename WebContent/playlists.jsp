@@ -65,31 +65,33 @@
 			
 			<hr/>
 			
-			<h:dataTable value="#{playlistsBean.playlistsList}" binding="#{playlistsBean.dataTable}" 
-				rowClasses="table-odd-row,table-even-row" cellpadding="0" cellspacing="0" var="plist" width="100%">
-				
-				<h:column>
-					<h:form>
-						<h:commandLink action="#{playlistsBean.gotoPlaylist}" title="Goto">
-							<o:icon img="folder"/>
-						</h:commandLink>
-					</h:form>
-				</h:column>
-				
-				<h:column>
-					<h:outputText value="#{plist.name}" styleClass="largeText" /><br/>
-					<h:outputText value="#{plist.source}" />
-				</h:column>
-				
-				<h:column>
-					<h:form>
-						<h:commandLink action="#{playlistsBean.deletePlaylist}" title="Remove">
-							<o:icon img="remove"/>
-						</h:commandLink>
-					</h:form>
-				</h:column>
-				
-			</h:dataTable>
+			<h:panelGrid columns="1" styleClass="background" width="100%" >
+				<h:dataTable value="#{playlistsBean.playlistsList}" binding="#{playlistsBean.dataTable}" 
+					rowClasses="table-odd-row,table-even-row" cellpadding="0" cellspacing="0" var="plist" width="100%">
+					
+					<h:column>
+						<h:form>
+							<h:commandLink action="#{playlistsBean.gotoPlaylist}" title="Goto">
+								<o:icon img="folder"/>
+							</h:commandLink>
+						</h:form>
+					</h:column>
+					
+					<h:column>
+						<h:outputText value="#{plist.name}" styleClass="largeText" /><br/>
+						<h:outputText value="#{plist.source}" />
+					</h:column>
+					
+					<h:column>
+						<h:form>
+							<h:commandLink action="#{playlistsBean.deletePlaylist}" title="Remove">
+								<o:icon img="remove"/>
+							</h:commandLink>
+						</h:form>
+					</h:column>
+					
+				</h:dataTable>
+			</h:panelGrid>
 			
 			<hr/>
 			

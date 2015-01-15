@@ -16,8 +16,8 @@ $ find OpenMp3Player-2.x.x -name \*.sh -exec chmod 755 {} +
 
 To start OpenMp3Player on linux execute:
 $ ./start.sh
-or
-double click on start.bat (on windows).
+
+On Windows double click on start.bat.
 
 To stop execute stop.sh or stop.bat script.
 
@@ -31,10 +31,19 @@ Developed on tomcat 7. To start add VM arg to tomcat:
 -Domp3p.home="/path/to/OpenMp3Player"
 
 
+Git branches:
+master - JSP and servlet technology
+v2 - JSF 1.2
 
 
 History
 -------------------
+2.1.2-alpha
+xxx 2015
+
+- creating custom tags moved to settings
+
+
 2.1.1
 january 2015
 

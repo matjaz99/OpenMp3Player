@@ -67,6 +67,39 @@
 			
 			<hr/>
 			
+			<h:panelGrid columns="2" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
+				<h:form>
+				<h:outputText value="Create new tag" styleClass="text-white" />
+				<h:panelGrid columns="2">
+					
+						<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
+						<h:inputText value="#{addTagBean.name}">
+							<f:validator validatorId="playlistValidator"/>
+						</h:inputText>
+						<h:outputLabel value="Color: " styleClass="text-white"></h:outputLabel>
+						<h:inputText value="#{addTagBean.color}" />
+						<h:commandButton action="#{addTagBean.addNew}" value="Add"></h:commandButton>
+					
+				</h:panelGrid>
+				<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
+				</h:form>
+				
+				<h:panelGroup>
+					<h:outputLabel value="Available tags" styleClass="text-white"></h:outputLabel>
+					<h:dataTable value="#{addTagBean.allTags}" var="tag">
+				
+						<h:column>
+							<o:tag value="#{tag}"/>
+						</h:column>
+						
+					</h:dataTable>
+					
+				</h:panelGroup>
+				
+			</h:panelGrid>
+			
+			<hr/>
+			
 			<jsp:include page="/includes/version.jsp"></jsp:include>
 			
 			<hr/>

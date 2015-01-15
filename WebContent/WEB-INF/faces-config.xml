@@ -80,10 +80,6 @@
    <from-outcome>song</from-outcome>
    <to-view-id>/song.jsp</to-view-id>
   </navigation-case>
-  <navigation-case>
-   <from-outcome>addTag</from-outcome>
-   <to-view-id>/addTag.jsp</to-view-id>
-  </navigation-case>
  </navigation-rule>
  <render-kit>
   <renderer>
