@@ -77,8 +77,12 @@
 							<f:validator validatorId="playlistValidator"/>
 						</h:inputText>
 						<h:outputLabel value="Color: " styleClass="text-white"></h:outputLabel>
-						<h:inputText value="#{addTagBean.color}" />
+<%-- 						<h:inputText value="#{addTagBean.color}" /> --%>
+						<h:selectOneMenu value="#{addTagBean.color}">
+							<f:selectItems value="#{addTagBean.allColors}"/>
+						</h:selectOneMenu>
 						<h:commandButton action="#{addTagBean.addNew}" value="Add"></h:commandButton>
+						
 					
 				</h:panelGrid>
 				<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
