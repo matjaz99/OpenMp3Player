@@ -65,6 +65,11 @@ public class TagFactory {
 		return tags;
 
 	}
+	
+	public void deleteTag(Tag t) {
+		tags.removeTag(t);
+		saveTags();
+	}
 
 	/**
 	 * Save tags.xml

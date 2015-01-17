@@ -73,7 +73,7 @@
 			<hr/>
 			
 			<h:dataTable value="#{songBean.tagList}" binding="#{songBean.tagDataTable}" var="tag" 
-				cellpadding="0" cellspacing="0" width="100%" >
+				cellpadding="0" cellspacing="0" >
 				
 				<h:column>
 					

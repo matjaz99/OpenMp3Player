@@ -77,8 +77,7 @@
 							<f:validator validatorId="playlistValidator"/>
 						</h:inputText>
 						<h:outputLabel value="Color: " styleClass="text-white"></h:outputLabel>
-<%-- 						<h:inputText value="#{addTagBean.color}" /> --%>
-						<h:selectOneMenu value="#{addTagBean.color}">
+						<h:selectOneMenu value="#{addTagBean.color}" >
 							<f:selectItems value="#{addTagBean.allColors}"/>
 						</h:selectOneMenu>
 						<h:commandButton action="#{addTagBean.addNew}" value="Add"></h:commandButton>
@@ -90,10 +89,18 @@
 				
 				<h:panelGroup>
 					<h:outputLabel value="Available tags" styleClass="text-white"></h:outputLabel>
-					<h:dataTable value="#{addTagBean.allTags}" var="tag">
+					<h:dataTable value="#{addTagBean.allTags}" binding="#{addTagBean.availableTagsTable}" var="tag">
 				
 						<h:column>
 							<o:tag value="#{tag}"/>
+						</h:column>
+						
+						<h:column>
+							<h:form>
+								<h:commandLink action="#{addTagBean.deleteTag}" title="Delete tag">
+									<o:icon img="remove-small"/>
+								</h:commandLink>
+							</h:form>
 						</h:column>
 						
 					</h:dataTable>

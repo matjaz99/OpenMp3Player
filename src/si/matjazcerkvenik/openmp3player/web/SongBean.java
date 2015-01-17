@@ -149,6 +149,9 @@ public class SongBean {
 		return getMp3File().getTags().getTagList();
 	}
 	
+	/**
+	 * Remove tag from the song
+	 */
 	public void removeTag() {
 		Tag t = (Tag) tagDataTable.getRowData();
 		Mp3File m = getMp3File();
