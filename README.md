@@ -42,6 +42,13 @@ History
 xxx 2015
 
 - creating custom tags moved to settings
+- colors dropdown menu for creating new tags
+- dark text on bright tags
+- use color definition from tags.xml
+- delete tag button
+- validators moved from io to web package
+- TagValidator for duplicate tags
+- DirectoryValidator to check a directory before adding to playlists
 
 
 2.1.1

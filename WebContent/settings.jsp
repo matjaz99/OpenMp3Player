@@ -74,7 +74,7 @@
 					
 						<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
 						<h:inputText value="#{addTagBean.name}">
-							<f:validator validatorId="playlistValidator"/>
+							<f:validator validatorId="tagValidator"/>
 						</h:inputText>
 						<h:outputLabel value="Color: " styleClass="text-white"></h:outputLabel>
 						<h:selectOneMenu value="#{addTagBean.color}" >

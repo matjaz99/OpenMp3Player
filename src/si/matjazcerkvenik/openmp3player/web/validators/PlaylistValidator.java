@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.io;
+package si.matjazcerkvenik.openmp3player.web.validators;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -7,6 +7,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 
@@ -17,14 +18,14 @@ public class PlaylistValidator implements Validator {
 			throws ValidatorException {
 		
 		String pName = (String) value;
-		OContext.getInstance().getLogger().info("PlaylistValidator: new name: " + pName);
+		OContext.getInstance().getLogger().info("PlaylistValidator:validate(): new name: " + pName);
 		
 		Playlists playlists = PlaylistFactory.getInstance().getPlaylists();
 		
 		for (Playlist p : playlists.getPlist()) {
 			if (p.getName().equals(pName)) {
 				
-				OContext.getInstance().getLogger().warn("PlaylistValidator: already exist!!!!!!!!!!!!!!!!");
+				OContext.getInstance().getLogger().warn("PlaylistValidator:validate(): already exist!");
 				
 				FacesMessage message = new FacesMessage();
 				message.setDetail("Playlist with name " + pName + " already exist");
