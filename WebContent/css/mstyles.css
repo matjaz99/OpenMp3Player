@@ -51,7 +51,7 @@
 	color: white;
 }
 
-.error {
+.error tr td {
 	color: red;
 }
 
