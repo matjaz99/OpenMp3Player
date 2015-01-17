@@ -6,7 +6,9 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import si.matjazcerkvenik.openmp3player.io.TagFactory;
 import si.matjazcerkvenik.openmp3player.player.Tag;
+import si.matjazcerkvenik.openmp3player.web.Colors;
 
 public class SingleTagComponent extends UIComponentBase {
 	
@@ -18,9 +20,17 @@ public class SingleTagComponent extends UIComponentBase {
 		
 		Tag tag = (Tag) getAttributes().get("value");
 		
+		// use color from tags.xml if exists
+		Tag origTag = TagFactory.getInstance().getTag(tag.getName());
+		String tagColor = "Black";
+		if (origTag != null) {
+			tagColor = TagFactory.getInstance().getTag(tag.getName()).getColor();
+		}
+		String txtColor = Colors.getTextColor(tagColor);
+		
 		rw.startElement("div", this);
 		rw.writeAttribute("class", "tagBorder", null);
-		rw.writeAttribute("style", "background-color: " + tag.getColor() + "; color: white;", null);
+		rw.writeAttribute("style", "background-color: " + tagColor + "; color: " + txtColor + ";", null);
 		rw.write(tag.getName());
 		rw.endElement("div");
 		

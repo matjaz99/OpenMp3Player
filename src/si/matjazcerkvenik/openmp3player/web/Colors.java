@@ -5,155 +5,6 @@ import java.util.List;
 
 public class Colors {
 	
-	public static List<String> getAvailableColors() {
-		
-		List<String> list = new ArrayList<String>();
-		list.add(AliceBlue);
-		list.add(AntiqueWhite);
-		list.add(Aqua);
-		list.add(Aquamarine);
-		list.add(Azure);
-		list.add(Beige);
-		list.add(Bisque);
-		list.add(Black);
-		list.add(BlanchedAlmond);
-		list.add(Blue);
-		list.add(BlueViolet);
-		list.add(Brown);
-		list.add(BurlyWood);
-		list.add(CadetBlue);
-		list.add(Chartreuse);
-		list.add(Chocolate);
-		list.add(Coral);
-		list.add(CornflowerBlue);
-		list.add(Cornsilk);
-		list.add(Crimson);
-		list.add(Cyan);
-		list.add(DarkBlue);
-		list.add(DarkCyan);
-		list.add(DarkGoldenRod);
-		list.add(DarkGray);
-		list.add(DarkGreen);
-		list.add(DarkKhaki);
-		list.add(DarkMagenta);
-		list.add(DarkOliveGreen);
-		list.add(DarkOrange);
-		list.add(DarkOrchid);
-		list.add(DarkRed);
-		list.add(DarkSalmon);
-		list.add(DarkSeaGreen);
-		list.add(DarkSlateBlue);
-		list.add(DarkSlateGray);
-		list.add(DarkTurquoise);
-		list.add(DarkViolet);
-		list.add(DeepPink);
-		list.add(DeepSkyBlue);
-		list.add(DimGray);
-		list.add(DodgerBlue);
-		list.add(FireBrick);
-		list.add(FloralWhite);
-		list.add(ForestGreen);
-		list.add(Fuchsia);
-		list.add(Gainsboro);
-		list.add(GhostWhite);
-		list.add(Gold);
-		list.add(GoldenRod);
-		list.add(Gray);
-		list.add(Green);
-		list.add(GreenYellow);
-		list.add(HoneyDew);
-		list.add(HotPink);
-		list.add(IndianRed);
-		list.add(Indigo);
-		list.add(Ivory);
-		list.add(Khaki);
-		list.add(Lavender);
-		list.add(LavenderBlush);
-		list.add(LawnGreen);
-		list.add(LemonChiffon);
-		list.add(LightBlue);
-		list.add(LightCoral);
-		list.add(LightCyan);
-		list.add(LightGoldenRodYellow);
-		list.add(LightGray);
-		list.add(LightGreen);
-		list.add(LightPink);
-		list.add(LightSalmon);
-		list.add(LightSeaGreen);
-		list.add(LightSkyBlue);
-		list.add(LightSlateGray);
-		list.add(LightSteelBlue);
-		list.add(LightYellow);
-		list.add(Lime);
-		list.add(LimeGreen);
-		list.add(Linen);
-		list.add(Magenta);
-		list.add(Maroon);
-		list.add(MediumAquaMarine);
-		list.add(MediumBlue);
-		list.add(MediumOrchid);
-		list.add(MediumPurple);
-		list.add(MediumSeaGreen);
-		list.add(MediumSlateBlue);
-		list.add(MediumSpringGreen);
-		list.add(MediumTurquoise);
-		list.add(MediumVioletRed);
-		list.add(MidnightBlue);
-		list.add(MintCream);
-		list.add(MistyRose);
-		list.add(Moccasin);
-		list.add(NavajoWhite);
-		list.add(Navy);
-		list.add(OldLace);
-		list.add(Olive);
-		list.add(OliveDrab);
-		list.add(Orange);
-		list.add(OrangeRed);
-		list.add(Orchid);
-		list.add(PaleGoldenRod);
-		list.add(PaleGreen);
-		list.add(PaleTurquoise);
-		list.add(PaleVioletRed);
-		list.add(PapayaWhip);
-		list.add(PeachPuff);
-		list.add(Peru);
-		list.add(Pink);
-		list.add(Plum);
-		list.add(PowderBlue);
-		list.add(Purple);
-		list.add(Red);
-		list.add(RosyBrown);
-		list.add(RoyalBlue);
-		list.add(SaddleBrown);
-		list.add(Salmon);
-		list.add(SandyBrown);
-		list.add(SeaGreen);
-		list.add(SeaShell);
-		list.add(Sienna);
-		list.add(Silver);
-		list.add(SkyBlue);
-		list.add(SlateBlue);
-		list.add(SlateGray);
-		list.add(Snow);
-		list.add(SpringGreen);
-		list.add(SteelBlue);
-		list.add(Tan);
-		list.add(Teal);
-		list.add(Thistle);
-		list.add(Tomato);
-		list.add(Turquoise);
-		list.add(Violet);
-		list.add(Wheat);
-		list.add(White);
-		list.add(WhiteSmoke);
-		list.add(Yellow);
-		list.add(YellowGreen);
-		
-		return list;
-		
-	}
-	
-	
 	public static final String AliceBlue = "AliceBlue"; //#F0F8FF
 	public static final String AntiqueWhite = "AntiqueWhite"; //#FAEBD7
 	public static final String Aqua = "Aqua"; //#00FFFF
@@ -294,5 +145,211 @@ public class Colors {
 	public static final String WhiteSmoke = "WhiteSmoke"; //#F5F5F5
 	public static final String Yellow = "Yellow"; //#FFFF00
 	public static final String YellowGreen = "YellowGreen"; //#9ACD32
+	
+	public static List<String> availableColors = null;
+	
+	public static List<String> getAvailableColors() {
+		
+		if (availableColors != null) {
+			return availableColors;
+		}
+		
+		availableColors = new ArrayList<String>();
+		availableColors.add(AliceBlue);
+		availableColors.add(AntiqueWhite);
+		availableColors.add(Aqua);
+		availableColors.add(Aquamarine);
+		availableColors.add(Azure);
+		availableColors.add(Beige);
+		availableColors.add(Bisque);
+		availableColors.add(Black);
+		availableColors.add(BlanchedAlmond);
+		availableColors.add(Blue);
+		availableColors.add(BlueViolet);
+		availableColors.add(Brown);
+		availableColors.add(BurlyWood);
+		availableColors.add(CadetBlue);
+		availableColors.add(Chartreuse);
+		availableColors.add(Chocolate);
+		availableColors.add(Coral);
+		availableColors.add(CornflowerBlue);
+		availableColors.add(Cornsilk);
+		availableColors.add(Crimson);
+		availableColors.add(Cyan);
+		availableColors.add(DarkBlue);
+		availableColors.add(DarkCyan);
+		availableColors.add(DarkGoldenRod);
+		availableColors.add(DarkGray);
+		availableColors.add(DarkGreen);
+		availableColors.add(DarkKhaki);
+		availableColors.add(DarkMagenta);
+		availableColors.add(DarkOliveGreen);
+		availableColors.add(DarkOrange);
+		availableColors.add(DarkOrchid);
+		availableColors.add(DarkRed);
+		availableColors.add(DarkSalmon);
+		availableColors.add(DarkSeaGreen);
+		availableColors.add(DarkSlateBlue);
+		availableColors.add(DarkSlateGray);
+		availableColors.add(DarkTurquoise);
+		availableColors.add(DarkViolet);
+		availableColors.add(DeepPink);
+		availableColors.add(DeepSkyBlue);
+		availableColors.add(DimGray);
+		availableColors.add(DodgerBlue);
+		availableColors.add(FireBrick);
+		availableColors.add(FloralWhite);
+		availableColors.add(ForestGreen);
+		availableColors.add(Fuchsia);
+		availableColors.add(Gainsboro);
+		availableColors.add(GhostWhite);
+		availableColors.add(Gold);
+		availableColors.add(GoldenRod);
+		availableColors.add(Gray);
+		availableColors.add(Green);
+		availableColors.add(GreenYellow);
+		availableColors.add(HoneyDew);
+		availableColors.add(HotPink);
+		availableColors.add(IndianRed);
+		availableColors.add(Indigo);
+		availableColors.add(Ivory);
+		availableColors.add(Khaki);
+		availableColors.add(Lavender);
+		availableColors.add(LavenderBlush);
+		availableColors.add(LawnGreen);
+		availableColors.add(LemonChiffon);
+		availableColors.add(LightBlue);
+		availableColors.add(LightCoral);
+		availableColors.add(LightCyan);
+		availableColors.add(LightGoldenRodYellow);
+		availableColors.add(LightGray);
+		availableColors.add(LightGreen);
+		availableColors.add(LightPink);
+		availableColors.add(LightSalmon);
+		availableColors.add(LightSeaGreen);
+		availableColors.add(LightSkyBlue);
+		availableColors.add(LightSlateGray);
+		availableColors.add(LightSteelBlue);
+		availableColors.add(LightYellow);
+		availableColors.add(Lime);
+		availableColors.add(LimeGreen);
+		availableColors.add(Linen);
+		availableColors.add(Magenta);
+		availableColors.add(Maroon);
+		availableColors.add(MediumAquaMarine);
+		availableColors.add(MediumBlue);
+		availableColors.add(MediumOrchid);
+		availableColors.add(MediumPurple);
+		availableColors.add(MediumSeaGreen);
+		availableColors.add(MediumSlateBlue);
+		availableColors.add(MediumSpringGreen);
+		availableColors.add(MediumTurquoise);
+		availableColors.add(MediumVioletRed);
+		availableColors.add(MidnightBlue);
+		availableColors.add(MintCream);
+		availableColors.add(MistyRose);
+		availableColors.add(Moccasin);
+		availableColors.add(NavajoWhite);
+		availableColors.add(Navy);
+		availableColors.add(OldLace);
+		availableColors.add(Olive);
+		availableColors.add(OliveDrab);
+		availableColors.add(Orange);
+		availableColors.add(OrangeRed);
+		availableColors.add(Orchid);
+		availableColors.add(PaleGoldenRod);
+		availableColors.add(PaleGreen);
+		availableColors.add(PaleTurquoise);
+		availableColors.add(PaleVioletRed);
+		availableColors.add(PapayaWhip);
+		availableColors.add(PeachPuff);
+		availableColors.add(Peru);
+		availableColors.add(Pink);
+		availableColors.add(Plum);
+		availableColors.add(PowderBlue);
+		availableColors.add(Purple);
+		availableColors.add(Red);
+		availableColors.add(RosyBrown);
+		availableColors.add(RoyalBlue);
+		availableColors.add(SaddleBrown);
+		availableColors.add(Salmon);
+		availableColors.add(SandyBrown);
+		availableColors.add(SeaGreen);
+		availableColors.add(SeaShell);
+		availableColors.add(Sienna);
+		availableColors.add(Silver);
+		availableColors.add(SkyBlue);
+		availableColors.add(SlateBlue);
+		availableColors.add(SlateGray);
+		availableColors.add(Snow);
+		availableColors.add(SpringGreen);
+		availableColors.add(SteelBlue);
+		availableColors.add(Tan);
+		availableColors.add(Teal);
+		availableColors.add(Thistle);
+		availableColors.add(Tomato);
+		availableColors.add(Turquoise);
+		availableColors.add(Violet);
+		availableColors.add(Wheat);
+		availableColors.add(White);
+		availableColors.add(WhiteSmoke);
+		availableColors.add(Yellow);
+		availableColors.add(YellowGreen);
+		
+		return availableColors;
+		
+	}
+	
+	/**
+	 * Return 'white' for dark colors and '#323' for light colors where it 
+	 * is hard to read white text on white background.
+	 * @param tag color
+	 * @return text color
+	 */
+	public static String getTextColor(String color) {
+		
+		String txtColor = "white";
+		if (color.equals(AliceBlue)
+				|| color.equals(AntiqueWhite)
+				|| color.equals(Azure)
+				|| color.equals(Beige)
+				|| color.equals(Bisque)
+				|| color.equals(BlanchedAlmond)
+				|| color.equals(Cornsilk)
+				|| color.equals(FloralWhite)
+				|| color.equals(Gainsboro)
+				|| color.equals(GhostWhite)
+				|| color.equals(HoneyDew)
+				|| color.equals(Ivory)
+				|| color.equals(Lavender)
+				|| color.equals(LavenderBlush)
+				|| color.equals(LemonChiffon)
+				|| color.equals(LightBlue)
+				|| color.equals(LightCyan)
+				|| color.equals(LightGoldenRodYellow)
+				|| color.equals(LightYellow)
+				|| color.equals(Linen)
+				|| color.equals(MintCream)
+				|| color.equals(MistyRose)
+				|| color.equals(Moccasin)
+				|| color.equals(NavajoWhite)
+				|| color.equals(OldLace)
+				|| color.equals(PaleGoldenRod)
+				|| color.equals(PapayaWhip)
+				|| color.equals(PeachPuff)
+				|| color.equals(PowderBlue)
+				|| color.equals(SeaShell)
+				|| color.equals(Snow)
+				|| color.equals(Thistle)
+				|| color.equals(Wheat)
+				|| color.equals(White)
+				|| color.equals(WhiteSmoke)
+				|| color.equals(Yellow)) {
+			txtColor = "#323";
+		}
+		
+		return txtColor;
+	}
+	
 	
 }

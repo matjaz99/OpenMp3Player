@@ -22,6 +22,8 @@ public class TagFactory {
 
 	private TagFactory() {
 		logger = OContext.getInstance().getLogger();
+		// load tags
+		getTags();
 	}
 
 	public static TagFactory getInstance() {
