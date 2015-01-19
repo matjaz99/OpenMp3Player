@@ -35,7 +35,7 @@ public class Digester {
 	    // b + 0 = b --toString--> "b"
 	    // b + 100 = 10b --toString--> "10b" --substring--> "0b"
 	    
-	    OContext.getInstance().getLogger().info("Digester:getMd5(): file: " + file + " MD5=" + sb.toString());
+	    OContext.getInstance().getLogger().debug("Digester:getMd5(): file: " + file + " MD5=" + sb.toString());
 	    
 //	    System.out.println("Digest(in hex format):: " + sb.toString());
 	    
@@ -73,7 +73,7 @@ public class Digester {
 				sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));
 			}
 			
-			OContext.getInstance().getLogger().info("Digester:getSha1(): file: " + file + " SHA1=" + sb.toString());
+			OContext.getInstance().getLogger().debug("Digester:getSha1(): file: " + file + " SHA1=" + sb.toString());
 			
 			fis.close();
 			
