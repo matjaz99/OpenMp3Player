@@ -49,7 +49,7 @@
 					<h:form>
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Save queue as: " styleClass="text-white largeText"></h:outputLabel>
-							<h:inputText value="#{queueBean.newQueueName}">
+							<h:inputText value="#{queueBean.newQueueName}" required="true">
 								<f:validator validatorId="playlistValidator"/>
 							</h:inputText>
 							<h:commandButton action="#{queueBean.saveQueue}" value="Save"></h:commandButton>

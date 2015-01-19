@@ -4,8 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="o" uri="/WEB-INF/tld/omp3p-tags.tld"%>
 
-<f:loadBundle basename="si.matjazcerkvenik.openmp3player.backend.om3p" var="bundle"/>
-
 <f:subview id="playlists">
 
 	<h:panelGrid columns="1" styleClass="background" width="100%" >

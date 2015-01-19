@@ -52,11 +52,11 @@
 				<h:form>
 					<h:panelGrid columns="2">
 						<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
-						<h:inputText value="#{addPlaylistBean.name}">
+						<h:inputText value="#{addPlaylistBean.name}" required="true">
 							<f:validator validatorId="playlistValidator"/>
 						</h:inputText>
 						<h:outputLabel value="Directory: " styleClass="text-white"></h:outputLabel>
-						<h:inputText value="#{addPlaylistBean.source}">
+						<h:inputText value="#{addPlaylistBean.source}" required="true">
 							<f:validator validatorId="directoryValidator"/>
 						</h:inputText>
 						<h:commandButton action="#{addPlaylistBean.addPlaylist}" value="Add"></h:commandButton>

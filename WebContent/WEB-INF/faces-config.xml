@@ -106,6 +106,6 @@
    <supported-locale>en_US</supported-locale>
    <supported-locale>es_ES</supported-locale>
   </locale-config>
-  <message-bundle>si.matjazcerkvenik.openmp3player.backend.om3p</message-bundle>
+  <message-bundle>si.matjazcerkvenik.openmp3player.resources.omp3p-resources</message-bundle>
  </application>
 </faces-config>

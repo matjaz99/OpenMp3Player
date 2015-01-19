@@ -73,8 +73,9 @@
 				<h:panelGrid columns="2">
 					
 						<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
-						<h:inputText value="#{addTagBean.name}">
+						<h:inputText value="#{addTagBean.name}" required="true">
 							<f:validator validatorId="tagValidator"/>
+							<f:validateLength minimum="1"/>
 						</h:inputText>
 						<h:outputLabel value="Color: " styleClass="text-white"></h:outputLabel>
 						<h:selectOneMenu value="#{addTagBean.color}" >

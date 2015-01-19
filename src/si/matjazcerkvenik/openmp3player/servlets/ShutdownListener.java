@@ -4,6 +4,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 
 public class ShutdownListener implements ServletContextListener {
 	
@@ -15,6 +16,7 @@ public class ShutdownListener implements ServletContextListener {
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		System.out.println("ShutdownListener:contextDestroyed()");
+		Mp3Player.getInstance().stop();
 		OContext.getInstance().getWatchdog().interrupt();
 		OContext.getInstance().getLogger().close();
 	}

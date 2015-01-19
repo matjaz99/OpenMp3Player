@@ -25,6 +25,13 @@ With web browser go to: <a href="http://hostname:8080/OpenMp3Player">
 http://hostname:8080/OpenMp3Player</a>
 
 
+Upgrade
+-------------------
+Currently it is possible only manually:
+copy 'playlist' and 'config' directories from old version to new version
+restart OpenMp3Player (stop/start)
+
+
 For developers
 -------------------
 Developed on tomcat 7. To start add VM arg to tomcat:
@@ -49,6 +56,7 @@ xxx 2015
 - validators moved from io to web package
 - TagValidator for duplicate tags
 - DirectoryValidator to check a directory before adding to playlists
+- input fields are required, error message is displayed
 
 
 2.1.1
