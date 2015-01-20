@@ -364,7 +364,6 @@ public class Colors {
 		availableBackgroundColors = new ArrayList<String>();
 		availableBackgroundColors.add(AntiqueWhite);
 		availableBackgroundColors.add(Azure);
-		availableBackgroundColors.add(Beige);
 		availableBackgroundColors.add(DarkSalmon);
 		availableBackgroundColors.add(DarkSeaGreen);
 		availableBackgroundColors.add(HoneyDew);

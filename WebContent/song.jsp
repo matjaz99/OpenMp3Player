@@ -72,6 +72,17 @@
 			
 			<hr/>
 			
+			<h:form>
+				<h:outputText value="Select background color: " styleClass="text-white" />
+				<h:selectOneMenu onchange="submit()" value="#{songBean.selectedBackgroundColor}"
+					valueChangeListener="#{songBean.backgroundColorSelected}">
+					<f:selectItems value="#{songBean.backgroundColorItems}"/>
+				</h:selectOneMenu>
+				<h:commandButton action="#{songBean.removeBackgroundColor}" value="Remove color"></h:commandButton>
+			</h:form>
+			
+			<hr/>
+			
 			<h:dataTable value="#{songBean.tagList}" binding="#{songBean.tagDataTable}" var="tag" 
 				cellpadding="0" cellspacing="0" >
 				

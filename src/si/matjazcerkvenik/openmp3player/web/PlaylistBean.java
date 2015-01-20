@@ -69,5 +69,34 @@ public class PlaylistBean {
 		Mp3Player.getInstance().removeMp3FromPassiveList(mp3);
 	}
 	
+	/**
+	 * Return coma-separated list of row classes.
+	 * @return
+	 */
+	public String getBackgroundColorsArray() {
+		
+		StringBuilder rowClasses = new StringBuilder();
+		List<Mp3File> list = getMp3List();
+
+	    for (int i = 0; i < list.size(); i++) {
+	    	Mp3File m = list.get(i);
+	    	if (m.getBackgroundColor() != null && m.getBackgroundColor().length() > 0) {
+	    		rowClasses.append("bgColor-" + m.getBackgroundColor());
+			} else {
+				
+				if (i % 2 == 0) {
+					rowClasses.append("table-even-row");
+				} else {
+					rowClasses.append("table-odd-row");
+				}
+				
+			}
+	        if (i < list.size() - 1) rowClasses.append(",");
+	    }
+
+	    return rowClasses.toString();
+		
+	}
+	
 	
 }

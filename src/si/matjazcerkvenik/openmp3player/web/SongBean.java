@@ -18,6 +18,7 @@ import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
+import si.matjazcerkvenik.openmp3player.resources.Colors;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class SongBean {
@@ -27,6 +28,7 @@ public class SongBean {
 	private Mp3File mp3File = null;
 	
 	private String selectedTag = "- Select tag -";
+	private String selectedBackgroundColor = null;
 	
 	private HtmlDataTable tagDataTable = null;
 	
@@ -157,6 +159,63 @@ public class SongBean {
 		Mp3File m = getMp3File();
 		m.getTags().removeTag(t);
 		PlaylistFactory.getInstance().savePassivePlaylist();
+	}
+
+
+	public String getSelectedBackgroundColor() {
+		if (selectedBackgroundColor == null) {
+			selectedBackgroundColor = getMp3File().getBackgroundColor();
+		}
+		return selectedBackgroundColor;
+	}
+
+
+	public void setSelectedBackgroundColor(String selectedBackgroundColor) {
+		this.selectedBackgroundColor = selectedBackgroundColor;
+	}
+	
+	/**
+	 * Get background colors for dropdown menu
+	 * @return list
+	 */
+	public List<SelectItem> getBackgroundColorItems() {
+		
+		List<String> bgColorList = Colors.getAvailableBackgroundColors();
+		List<SelectItem> list = new ArrayList<SelectItem>();
+		list.add(new SelectItem("- Select color -", "- Select color -"));
+		
+		for (int i = 0; i < bgColorList.size(); i++) {
+			String name = bgColorList.get(i);
+			list.add(new SelectItem(name, name));
+		}
+		
+		return list;
+		
+	}
+	
+	/**
+	 * Event: new tag selected in dropdown menu
+	 * @param e
+	 */
+	public void backgroundColorSelected(ValueChangeEvent e) {
+		
+		selectedBackgroundColor = e.getNewValue().toString();
+		logger.info("SongBean:backgroundColorSelected(): event - selected color: " + selectedBackgroundColor);
+		if (selectedBackgroundColor.equals("- Select color -")) {
+			return;
+		}
+		mp3File = getMp3File();
+		mp3File.setBackgroundColor(selectedBackgroundColor);
+		PlaylistFactory.getInstance().savePassivePlaylist();
+				
+	}
+	
+	public void removeBackgroundColor() {
+		
+		Mp3File m = getMp3File();
+		m.setBackgroundColor(null);
+		PlaylistFactory.getInstance().savePassivePlaylist();
+		
 	}
 	
 }

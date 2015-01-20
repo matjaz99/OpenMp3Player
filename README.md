@@ -57,6 +57,10 @@ xxx 2015
 - TagValidator for duplicate tags
 - DirectoryValidator to check a directory before adding to playlists
 - input fields are required, error message is displayed
+- english and spanish resource files prepared (not completely supported yet)
+- Colors class moved to resources
+- list of allowed background colors (only bright colors)
+- labels implementation
 
 
 2.1.1
