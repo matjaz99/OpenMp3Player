@@ -9,6 +9,7 @@ import javax.faces.model.SelectItem;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.io.TagFactory;
 import si.matjazcerkvenik.openmp3player.player.Tag;
+import si.matjazcerkvenik.openmp3player.resources.Colors;
 
 public class AddTagBean {
 	
@@ -66,7 +67,7 @@ public class AddTagBean {
 	
 	public List<SelectItem> getAllColors() {
 		
-		List<String> cList = Colors.getAvailableColors();
+		List<String> cList = Colors.getAvailableTagColors();
 		
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		

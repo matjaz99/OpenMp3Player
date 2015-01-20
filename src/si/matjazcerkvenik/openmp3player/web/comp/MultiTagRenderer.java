@@ -10,7 +10,7 @@ import javax.faces.render.Renderer;
 import si.matjazcerkvenik.openmp3player.io.TagFactory;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
-import si.matjazcerkvenik.openmp3player.web.Colors;
+import si.matjazcerkvenik.openmp3player.resources.Colors;
 
 public class MultiTagRenderer extends Renderer {
 	
@@ -39,7 +39,7 @@ public class MultiTagRenderer extends Renderer {
 			if (origTag != null) {
 				tagColor = TagFactory.getInstance().getTag(tag.getName()).getColor();
 			}
-			String txtColor = Colors.getTextColor(tagColor);
+			String txtColor = Colors.getTagTextColor(tagColor);
 			
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "tagBorder", null);
