@@ -21,7 +21,7 @@
 		</h:panelGrid>
 		
 		
-		<h:panelGroup style="text-align: right;">
+		<h:panelGroup  styleClass="align-right">
 			<h:form rendered="#{playerBean.repeatOn}">
 				<h:commandLink action="#{playerBean.turnRepeatOff}">
 					<o:icon img="repeatOn"/>
