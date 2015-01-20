@@ -109,7 +109,11 @@ public class PlayerBean {
 		if (m == null) {
 			return "null";
 		}
-		return Mp3Player.getInstance().getCurrentlyPlaying().getTitle();
+		String s = m.getTitle();
+		if (m.getArtist() != null && m.getArtist().length() > 0) {
+			s = m.getArtist() + " - " + s;
+		}
+		return s;
 	}
 	
 	

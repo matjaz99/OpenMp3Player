@@ -10,11 +10,11 @@ public class Mp3File implements Cloneable {
 	private int index = 0;
 	private String hash = "0";
 	private String path = null;
-	private String title = "null";
-	private String artist = "null";
-	private String album = "null";
-	private String genre = "null";
-	private String year = "null";
+	private String title = "";
+	private String artist = "";
+	private String album = "";
+	private String genre = "";
+	private String year = "";
 	private int size = 0;
 	private String backgroundColor = null;
 	private Tags tags = new Tags();
