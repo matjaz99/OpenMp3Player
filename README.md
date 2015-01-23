@@ -1,20 +1,21 @@
 OpenMp3Player
 ===================
 
-Last stable release: 2.1.1
+Last stable release: 2.2.0
 
 
 What is it?
 -------------------
-OpenMp3Player is a web application for playing mp3 files. It runs on Apache Tomcat server.
+OpenMp3Player is a web application for playing mp3 files. It runs on Apache Tomcat 7 server.
 
 
 Starting
 -------------------
-Change file permissions to 755 for all *.sh files in OpenMp3Player directory (recursively):
+On Linux or OS X you mihgt need to change file permissions to 755 for all *.sh files 
+in OpenMp3Player directory. You can do this with single command (recursively):
 $ find OpenMp3Player-2.x.x -name \*.sh -exec chmod 755 {} +
 
-To start OpenMp3Player on linux execute:
+To start OpenMp3Player on Linux execute:
 $ ./start.sh
 
 On Windows double click on start.bat.
@@ -34,7 +35,9 @@ restart OpenMp3Player (stop/start)
 
 For developers
 -------------------
-Developed on tomcat 7. To start add VM arg to tomcat:
+Developed in Eclipse Kepler. JDK 1.6 is needed. Deploy to Apache Tomcat 7.
+To set custom OpenMp3Player home directory when starting the project in Eclipse add VM arg to 
+Apache Tomcat runtime configuration:
 -Domp3p.home="/path/to/OpenMp3Player"
 
 
@@ -45,8 +48,8 @@ v2 - JSF 1.2
 
 History
 -------------------
-2.1.2-alpha
-xxx 2015
+2.2.0
+january 2015
 
 - creating custom tags moved to settings
 - colors dropdown menu for creating new tags
