@@ -44,7 +44,9 @@ Apache Tomcat runtime configuration:
 
 
 Git branches:
+
 master - JSP and servlet technology
+
 v2 - JSF 1.2
 
 
