@@ -78,6 +78,7 @@
 					valueChangeListener="#{songBean.backgroundColorSelected}">
 					<f:selectItems value="#{songBean.backgroundColorItems}"/>
 				</h:selectOneMenu>
+				<h:outputText value="Example" style="background-color: #{songBean.selectedBackgroundColor}" />
 				<h:commandButton action="#{songBean.removeBackgroundColor}" value="Remove color"></h:commandButton>
 			</h:form>
 			
