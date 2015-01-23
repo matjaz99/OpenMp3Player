@@ -11,7 +11,7 @@ OpenMp3Player is a web application for playing mp3 files. It runs on Apache Tomc
 
 Starting
 -------------------
-On Linux or OS X you mihgt need to change file permissions to 755 for all *.sh files 
+On Linux or OS X you might need to change file permissions to 755 for all *.sh files 
 in OpenMp3Player directory. You can do this with single command (recursively):
 $ find OpenMp3Player-2.x.x -name \*.sh -exec chmod 755 {} +
 
