@@ -1,17 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>OpenMp3Player</title>
+	<title>OpenMp3Player About</title>
 </h:head>
 <h:body>
 	
-	
+	<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
+		
+		<h:panelGrid columns="2" width="100%">
+					
+			<h:panelGrid columns="2" styleClass="valign-middle">
+				<h:form>
+					<h:commandLink action="home?faces-redirect=true">
+						<h:graphicImage url="img/DMD.png" styleClass="icon"/>
+					</h:commandLink>
+				</h:form>
+				<h:outputText value="OpenMp3Player" styleClass="title" />
+			</h:panelGrid>
+			
+			<ui:include src="/includes/toolbar.xhtml"/>
+		
+		</h:panelGrid>
+		<hr/>
+		
+		
+		<h:panelGrid columns="2" styleClass="valign-middle">
+			<h:form>
+				<h:commandLink action="home">
+<!-- 					<o:icon img="back"/> -->
+					<h:graphicImage value="/img/back.png" />
+				</h:commandLink>
+			</h:form>
+			<h:form>
+				<h:commandLink action="home">
+					<h:outputLabel value="Back" styleClass="text-white largeText"></h:outputLabel>
+				</h:commandLink>
+			</h:form>
+		</h:panelGrid>
+		<hr/>
+		
+		<ui:include src="/includes/version.xhtml"/>
+		<hr/>
+		
+		<h:panelGrid style="background-color: white;">
+			<ui:include src="/includes/about-data.xhtml"/>
+		</h:panelGrid>
+		
+		
+	</h:panelGrid>
 
 </h:body>
 </html>

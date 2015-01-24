@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>OpenMp3Player</title>
+</h:head>
+<h:body>
+	
+	<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
+			
+			<h:panelGrid columns="2" width="100%">
+					
+					<h:panelGrid columns="2" styleClass="valign-middle">
+						<h:form>
+							<h:commandLink action="home">
+								<h:graphicImage url="img/DMD.png" styleClass="icon"/>
+							</h:commandLink>
+						</h:form>
+						<h:outputText value="Settings" styleClass="title" />
+					</h:panelGrid>
+					
+					<ui:include src="/includes/toolbar.xhtml"/>
+				
+			</h:panelGrid>
+			
+			<hr/>
+			
+			<h:panelGrid columns="2" styleClass="valign-middle">
+				<h:form>
+					<h:commandLink action="home">
+<!-- 						<o:icon img="back"/> -->
+						<h:graphicImage value="/img/back.png" />
+					</h:commandLink>
+				</h:form>
+				<h:form>
+					<h:commandLink action="home">
+						<h:outputLabel value="Back" styleClass="text-white largeText"></h:outputLabel>
+					</h:commandLink>
+				</h:form>
+			</h:panelGrid>
+			
+			<hr/>
+			
+			<h:outputText value="Connect to OpenMp3Player from remote device:" styleClass="text-white" />
+			<h:outputLink value="http://#{settingsBean.localIp}:8080/OpenMp3Player/" >
+				<h:outputText value="http://#{settingsBean.localIp}:8080/OpenMp3Player/" styleClass="text-white" />
+			</h:outputLink>
+			
+			<hr/>
+			
+			<h:outputText value="Volume level: #{settingsBean.currentSoundLevel}" styleClass="text-white" />
+			
+			<hr/>
+			
+			<h:outputText value="CLI: #{settingsBean.telnetEnabled}" styleClass="text-white" />
+			<h:outputText value="$ telnet #{settingsBean.localIp} #{settingsBean.telnetPort}" styleClass="text-white" />
+			<h:outputText value="> help" styleClass="text-white" />
+			
+			<hr/>
+			
+			<h:panelGrid columns="2" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
+				<h:form>
+				<h:outputText value="Create new tag" styleClass="text-white" />
+				<h:panelGrid columns="2">
+					
+						<h:outputLabel value="Name: " styleClass="text-white"></h:outputLabel>
+						<h:inputText value="#{addTagBean.name}" required="true">
+							<f:validator validatorId="tagValidator"/>
+							<f:validateLength minimum="1"/>
+						</h:inputText>
+						<h:outputLabel value="Color: " styleClass="text-white"></h:outputLabel>
+						<h:selectOneMenu value="#{addTagBean.color}" >
+							<f:selectItems value="#{addTagBean.allColors}"/>
+						</h:selectOneMenu>
+						<h:commandButton action="#{addTagBean.addNew}" value="Add"></h:commandButton>
+						
+					
+				</h:panelGrid>
+				<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
+				</h:form>
+				
+				<h:panelGroup>
+					<h:outputLabel value="Available tags" styleClass="text-white"></h:outputLabel>
+					<h:dataTable value="#{addTagBean.allTags}" binding="#{addTagBean.availableTagsTable}" var="tag">
+				
+						<h:column>
+<!-- 							<o:tag value="#{tag}"/> -->
+							<h:outputText value="some tag" />
+						</h:column>
+						
+						<h:column>
+							<h:form>
+								<h:commandLink action="#{addTagBean.deleteTag}" title="Delete tag">
+<!-- 									<o:icon img="remove-small"/> -->
+									<h:graphicImage value="/img/remove-small.png" />
+								</h:commandLink>
+							</h:form>
+						</h:column>
+						
+					</h:dataTable>
+					
+				</h:panelGroup>
+				
+			</h:panelGrid>
+			
+			<hr/>
+			
+			<ui:include src="/includes/version.xhtml"/>
+			
+			<hr/>
+			
+		</h:panelGrid>
+
+</h:body>
+</html>
