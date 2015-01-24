@@ -1,0 +1,38 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:panelGroup styleClass="align-right">
+		<h:form>
+			<h:commandLink action="playlists">
+<!-- 				<o:icon img="playlists"/> -->
+				<h:graphicImage value="/img/playlists.png" />
+			</h:commandLink>
+			<h:commandLink action="#{playerBean.gotoQueue}">
+<!-- 				<o:icon img="queue"/> -->
+				<h:graphicImage value="/img/queue.png" />
+			</h:commandLink>
+			<h:graphicImage url="img/separator.png" styleClass="icon" />
+			<h:commandLink action="#{playerBean.volumeDown}">
+<!-- 				<o:icon img="volumeDn"/> -->
+				<h:graphicImage value="/img/volumeDn.png" />
+			</h:commandLink>
+			<h:commandLink action="#{playerBean.volumeUp}">
+<!-- 				<o:icon img="volumeUp"/> -->
+				<h:graphicImage value="/img/volumeUp.png" />
+			</h:commandLink>
+			<h:graphicImage url="img/separator.png" styleClass="icon" />
+			<h:commandLink action="settings">
+<!-- 				<o:icon img="settings"/> -->
+				<h:graphicImage value="/img/settings.png" />
+			</h:commandLink>
+			<h:commandLink action="about">
+<!-- 				<o:icon img="help"/> -->
+				<h:graphicImage value="/img/help.png" />
+			</h:commandLink>
+		</h:form>
+	</h:panelGroup>
+    
+</ui:composition>

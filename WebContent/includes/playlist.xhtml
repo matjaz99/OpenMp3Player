@@ -1,0 +1,65 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:panelGrid columns="1" styleClass="background" width="100%" >
+		
+		<h:dataTable value="#{playlistBean.mp3List}" binding="#{playlistBean.dataTable}" var="mp3File"
+			rowClasses="#{playlistBean.backgroundColorsArray}" cellpadding="0" cellspacing="0" width="100%" >
+			
+			<h:column>
+				
+				<h:form>
+					<h:commandLink action="#{playlistBean.play}">
+<!-- 						<o:icon img="play"/> -->
+						<h:graphicImage value="/img/play.png" />
+					</h:commandLink>
+				</h:form>
+				
+			</h:column>
+			
+			<h:column>
+				
+<!-- 				<o:tags value="#{mp3File.tags}"/> -->
+				
+				<h:form>
+				
+					<h:commandLink action="#{playlistBean.showSongDetails}">
+						<h:outputText value="#{mp3File.title}" styleClass="largeText" />
+					</h:commandLink>
+				
+				</h:form>
+				<h:outputText value="#{mp3File.artist}" />
+				
+			</h:column>
+			
+			
+			<h:column>
+				
+				<h:form rendered="#{!playlistBean.queue}">
+					<h:commandLink action="#{playlistBean.putToQueue}" title="Put to queue">
+<!-- 						<o:icon img="toqueue"/> -->
+						<h:graphicImage value="/img/toqueue.png" />
+					</h:commandLink>
+				</h:form>
+				
+			</h:column>
+			
+			<h:column>
+				<h:form>
+					<h:commandLink action="#{playlistBean.removeMp3FromTheList}" title="Remove">
+<!-- 						<o:icon img="remove"/> -->
+						<h:graphicImage value="/img/remove.png" />
+					</h:commandLink>
+				</h:form>
+			</h:column>
+			
+		</h:dataTable>
+		
+	</h:panelGrid>
+	
+	<hr/>
+    
+</ui:composition>

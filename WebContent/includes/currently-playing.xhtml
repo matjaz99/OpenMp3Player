@@ -1,0 +1,44 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:panelGrid columns="2" width="100%">
+		
+		<h:panelGrid columns="2">
+			<h:form>
+				<h:commandLink action="#">
+<!-- 					<o:icon img="refresh"/> -->
+					<h:graphicImage value="/img/refresh.png" />
+				</h:commandLink>
+			</h:form>
+			
+			<h:panelGrid columns="1">
+				<h:outputLabel value="Active playlist: #{playlistBean.activePlaylistName}" styleClass="text-white" />
+				<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}" styleClass="text-white largeText" />
+			</h:panelGrid>
+		</h:panelGrid>
+		
+		
+		<h:panelGroup  styleClass="align-right">
+			<h:form rendered="#{playerBean.repeatOn}">
+				<h:commandLink action="#{playerBean.turnRepeatOff}">
+<!-- 					<o:icon img="repeatOn"/> -->
+					<h:graphicImage value="/img/repeatOn.png" />
+				</h:commandLink>
+			</h:form>
+			
+			<h:form rendered="#{!playerBean.repeatOn}">
+				<h:commandLink action="#{playerBean.turnRepeatOn}">
+<!-- 					<o:icon img="repeatOff"/> -->
+					<h:graphicImage value="/img/repeatOff.png" />
+				</h:commandLink>
+			</h:form>
+		</h:panelGroup>
+		
+	</h:panelGrid>
+	
+	<hr/>
+    
+</ui:composition>
