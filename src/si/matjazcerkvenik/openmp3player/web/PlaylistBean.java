@@ -2,6 +2,8 @@ package si.matjazcerkvenik.openmp3player.web;
 
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 
@@ -10,6 +12,8 @@ import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
+@ManagedBean
+@RequestScoped
 public class PlaylistBean {
 	
 	private SimpleLogger logger = null;

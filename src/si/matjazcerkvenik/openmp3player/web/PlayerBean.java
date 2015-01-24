@@ -3,6 +3,8 @@ package si.matjazcerkvenik.openmp3player.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -21,6 +23,8 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
  * @author matjaz
  *
  */
+@ManagedBean
+@RequestScoped
 public class PlayerBean {
 	
 	private String selectedPlaylist = null;

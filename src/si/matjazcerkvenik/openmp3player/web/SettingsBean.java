@@ -1,9 +1,14 @@
 package si.matjazcerkvenik.openmp3player.web;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.Utils;
 import si.matjazcerkvenik.openmp3player.player.SoundControl;
 
+@ManagedBean
+@RequestScoped
 public class SettingsBean {
 	
 	/**

@@ -1,11 +1,16 @@
 package si.matjazcerkvenik.openmp3player.web;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.Mp3Files;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
+@ManagedBean
+@RequestScoped
 public class AddPlaylistBean {
 	
 	private SimpleLogger logger = OContext.getInstance().getLogger();

@@ -12,77 +12,77 @@
 		<component-type>omp3p.singleTagComponent</component-type>
 		<component-class>si.matjazcerkvenik.openmp3player.web.comp.SingleTagComponent</component-class>
 	</component>
-	<managed-bean>
-		<managed-bean-name>playerBean</managed-bean-name>
-		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlayerBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>playlistBean</managed-bean-name>
-		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlaylistBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>playlistsBean</managed-bean-name>
-		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlaylistsBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>addPlaylistBean</managed-bean-name>
-		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.AddPlaylistBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>songBean</managed-bean-name>
-		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.SongBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>addTagBean</managed-bean-name>
-		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.AddTagBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>queueBean</managed-bean-name>
-		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.QueueBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>settingsBean</managed-bean-name>
-		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.SettingsBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<navigation-rule>
-		<from-view-id>/*</from-view-id>
-		<navigation-case>
-			<from-outcome>about</from-outcome>
-			<to-view-id>/about.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>settings</from-outcome>
-			<to-view-id>/settings.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>playlists</from-outcome>
-			<to-view-id>/playlists.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>addPlaylist</from-outcome>
-			<to-view-id>/addPlaylist.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>home</from-outcome>
-			<to-view-id>/home.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>queue</from-outcome>
-			<to-view-id>/queue.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>song</from-outcome>
-			<to-view-id>/song.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>playerBean</managed-bean-name> -->
+<!-- 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlayerBean</managed-bean-class> -->
+<!-- 		<managed-bean-scope>request</managed-bean-scope> -->
+<!-- 	</managed-bean> -->
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>playlistBean</managed-bean-name> -->
+<!-- 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlaylistBean</managed-bean-class> -->
+<!-- 		<managed-bean-scope>request</managed-bean-scope> -->
+<!-- 	</managed-bean> -->
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>playlistsBean</managed-bean-name> -->
+<!-- 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.PlaylistsBean</managed-bean-class> -->
+<!-- 		<managed-bean-scope>request</managed-bean-scope> -->
+<!-- 	</managed-bean> -->
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>addPlaylistBean</managed-bean-name> -->
+<!-- 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.AddPlaylistBean</managed-bean-class> -->
+<!-- 		<managed-bean-scope>request</managed-bean-scope> -->
+<!-- 	</managed-bean> -->
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>songBean</managed-bean-name> -->
+<!-- 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.SongBean</managed-bean-class> -->
+<!-- 		<managed-bean-scope>request</managed-bean-scope> -->
+<!-- 	</managed-bean> -->
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>addTagBean</managed-bean-name> -->
+<!-- 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.AddTagBean</managed-bean-class> -->
+<!-- 		<managed-bean-scope>request</managed-bean-scope> -->
+<!-- 	</managed-bean> -->
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>queueBean</managed-bean-name> -->
+<!-- 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.QueueBean</managed-bean-class> -->
+<!-- 		<managed-bean-scope>request</managed-bean-scope> -->
+<!-- 	</managed-bean> -->
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>settingsBean</managed-bean-name> -->
+<!-- 		<managed-bean-class>si.matjazcerkvenik.openmp3player.web.SettingsBean</managed-bean-class> -->
+<!-- 		<managed-bean-scope>request</managed-bean-scope> -->
+<!-- 	</managed-bean> -->
+<!-- 	<navigation-rule> -->
+<!-- 		<from-view-id>/*</from-view-id> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>about</from-outcome> -->
+<!-- 			<to-view-id>/about.jsp</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>settings</from-outcome> -->
+<!-- 			<to-view-id>/settings.jsp</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>playlists</from-outcome> -->
+<!-- 			<to-view-id>/playlists.jsp</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>addPlaylist</from-outcome> -->
+<!-- 			<to-view-id>/addPlaylist.jsp</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>home</from-outcome> -->
+<!-- 			<to-view-id>/home.jsp</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>queue</from-outcome> -->
+<!-- 			<to-view-id>/queue.jsp</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>song</from-outcome> -->
+<!-- 			<to-view-id>/song.jsp</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 	</navigation-rule> -->
 	<render-kit>
 		<renderer>
 			<component-family>omp3p.multiTag</component-family>

@@ -3,6 +3,8 @@ package si.matjazcerkvenik.openmp3player.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.model.SelectItem;
 
@@ -11,6 +13,8 @@ import si.matjazcerkvenik.openmp3player.io.TagFactory;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
 
+@ManagedBean
+@RequestScoped
 public class AddTagBean {
 	
 	private String name = null;
