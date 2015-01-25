@@ -15,18 +15,20 @@
 				<h:graphicImage value="/img/queue.png" />
 			</h:commandLink>
 			<h:graphicImage url="img/separator.png" styleClass="icon" />
-			<h:commandLink action="#{playerBean.volumeDown}">
+			<h:commandLink>
 <!-- 				<o:icon img="volumeDn"/> -->
 				<h:graphicImage value="/img/volumeDn.png" />
+				<f:ajax listener="#{playerBean.volumeDown}" />
 			</h:commandLink>
-			<h:commandLink action="#{playerBean.volumeUp}">
+			<h:commandLink>
 <!-- 				<o:icon img="volumeUp"/> -->
 				<h:graphicImage value="/img/volumeUp.png" />
+				<f:ajax listener="#{playerBean.volumeUp}" />
 			</h:commandLink>
 			<h:graphicImage url="img/separator.png" styleClass="icon" />
 			<h:commandLink action="settings">
 <!-- 				<o:icon img="settings"/> -->
-				<h:graphicImage value="/img/settings.png" />
+				<h:graphicImage value="/img/settings.png"  />
 			</h:commandLink>
 			<h:commandLink action="about">
 <!-- 				<o:icon img="help"/> -->
