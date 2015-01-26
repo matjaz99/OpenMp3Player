@@ -1,36 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/playlists-template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<title>OpenMp3Player Add Playlist</title>
-</h:head>
-<h:body>
+	<ui:define name="title">OpenMp3Player</ui:define>
 	
-	<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
-			
-
-			<h:panelGrid columns="2" width="100%">
+	<ui:define name="header">
+    	<h:panelGrid columns="2" width="100%">
 					
-					<h:panelGrid columns="2" styleClass="valign-middle">
-						<h:form>
-							<h:commandLink action="home">
-								<h:graphicImage url="img/DMD.png" styleClass="icon" />
-							</h:commandLink>
-						</h:form>
-						<h:outputText value="Playlists" styleClass="title" />
-					</h:panelGrid>
-					
-					<ui:include src="/includes/toolbar.xhtml"/>
-				
-				</h:panelGrid>
-			
-			<hr/>
-			
 			<h:panelGrid columns="2" styleClass="valign-middle">
+				<h:form>
+					<h:commandLink action="home">
+						<h:graphicImage url="img/DMD.png" styleClass="icon" />
+					</h:commandLink>
+				</h:form>
+				<h:outputText value="Playlists" styleClass="title" />
+			</h:panelGrid>
+			
+			<ui:include src="/includes/toolbar.xhtml"/>
+		
+		</h:panelGrid>
+		<hr/>
+		
+		<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="home">
 <!-- 						<o:icon img="back"/> -->
@@ -45,8 +38,8 @@
 			</h:panelGrid>
 			
 			<hr/>
-			
-			<h:panelGrid columns="2" styleClass="valign-middle">
+		
+		<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="addPlaylist">
 <!-- 						<o:icon img="addPlaylist"/> -->
@@ -61,8 +54,16 @@
 			</h:panelGrid>
 			
 			<hr/>
-			
-			<h:panelGrid columns="1" styleClass="background" width="100%" >
+		
+    </ui:define>
+	
+	<ui:define name="currently-playing">
+        <ui:include src="/includes/currently-playing.xhtml"/>
+    </ui:define>
+
+
+    <ui:define name="content">
+        <h:panelGrid columns="1" styleClass="background" width="100%" >
 				<h:dataTable value="#{playlistsBean.playlistsList}" binding="#{playlistsBean.dataTable}" 
 					rowClasses="table-odd-row,table-even-row" cellpadding="0" cellspacing="0" var="plist" width="100%">
 					
@@ -93,13 +94,11 @@
 			</h:panelGrid>
 			
 			<hr/>
-			
-			<ui:include src="/includes/version.xhtml"/>
-			
-			<hr/>
-			
-			
-		</h:panelGrid>
+    </ui:define>
+    
+    
+    <ui:define name="version">
+        <ui:include src="/includes/version.xhtml"/>
+    </ui:define>
 
-</h:body>
-</html>
+</ui:composition>
