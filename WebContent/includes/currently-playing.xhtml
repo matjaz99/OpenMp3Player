@@ -6,18 +6,23 @@
     
     <h:panelGrid columns="2" width="100%">
 		
-		<h:panelGrid columns="2">
+		<h:panelGrid columns="1">
 			<h:form>
-				<h:commandLink action="#">
+				
+				<h:panelGrid columns="2">
+				<h:commandLink>
 <!-- 					<o:icon img="refresh"/> -->
 					<h:graphicImage value="/img/refresh.png" />
+					<f:ajax event="click" render="actPlaylist currPlaying"/>
 				</h:commandLink>
+				
+				<h:panelGrid columns="1">
+				<h:outputLabel id="actPlaylist" value="Active playlist: #{playlistBean.activePlaylistName}" styleClass="text-white" />
+				<h:outputLabel id="currPlaying" value="Playing: #{playerBean.currentlyPlaying}" styleClass="text-white largeText" />
+				</h:panelGrid>
+				</h:panelGrid>
 			</h:form>
 			
-			<h:panelGrid columns="1">
-				<h:outputLabel value="Active playlist: #{playlistBean.activePlaylistName}" styleClass="text-white" />
-				<h:outputLabel value="Playing: #{playerBean.currentlyPlaying}" styleClass="text-white largeText" />
-			</h:panelGrid>
 		</h:panelGrid>
 		
 		
