@@ -26,20 +26,16 @@
 		</h:panelGrid>
 		
 		
-		<h:panelGroup  styleClass="align-right">
-			<h:form rendered="#{playerBean.repeatOn}">
-				<h:commandLink action="#{playerBean.turnRepeatOff}">
+		<h:panelGroup styleClass="align-right">
+			<h:form>
+				<h:commandLink id="repeatLink" action="#{playerBean.toggleRepeat}">
 <!-- 					<o:icon img="repeatOn"/> -->
-					<h:graphicImage value="/img/repeatOn.png" />
+					<h:graphicImage id="repeatBtn" 
+						value="#{playerBean.repeatOn == true ? '/img/repeatOn.png' : '/img/repeatOff.png'}" />
+					<f:ajax render="repeatBtn"/>
 				</h:commandLink>
 			</h:form>
 			
-			<h:form rendered="#{!playerBean.repeatOn}">
-				<h:commandLink action="#{playerBean.turnRepeatOn}">
-<!-- 					<o:icon img="repeatOff"/> -->
-					<h:graphicImage value="/img/repeatOff.png" />
-				</h:commandLink>
-			</h:form>
 		</h:panelGroup>
 		
 	</h:panelGrid>

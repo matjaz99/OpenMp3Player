@@ -213,24 +213,9 @@ public class PlayerBean {
 		return Mp3Player.getInstance().isRepeatOn();
 	}
 	
-	
-	
-	/**
-	 * Turn repeat button on.
-	 */
-	public void turnRepeatOn() {
-		Mp3Player.getInstance().setRepeatOn(true);
-		logger.debug("PlayerBean:turnRepeatOn(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
-	}
-	
-	
-	
-	/**
-	 * Turn repeat button off.
-	 */
-	public void turnRepeatOff() {
-		Mp3Player.getInstance().setRepeatOn(false);
-		logger.debug("PlayerBean:turnRepeatOff(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
+	public void toggleRepeat() {
+		Mp3Player.getInstance().setRepeatOn(!Mp3Player.getInstance().isRepeatOn());
+		logger.info("PlayerBean:toggleRepeat(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
 	}
 	
 	
