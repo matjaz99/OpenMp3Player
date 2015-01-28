@@ -4,45 +4,36 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
     
-    <h:panelGrid columns="5">
+    <h:form>
+    <h:panelGrid columns="4">
 	
-		<h:form>
 			<h:commandLink action="#{playerBean.prev}" title="#{bundle.buttonLabelPrevious}">
 <!-- 				<o:icon img="rewind"/> -->
 				<h:graphicImage value="/img/rewind.png" />
+				<f:ajax />
 			</h:commandLink>
-		</h:form>
-	
-		<h:form rendered="#{!playerBean.playing}">
-			<h:commandLink action="#{playerBean.play}" title="Play">
-<!-- 				<o:icon img="play"/> -->
-				<h:graphicImage value="/img/play.png" />
-			</h:commandLink>
-		</h:form>
 		
-		<h:form rendered="#{playerBean.playing}">
-			<h:commandLink action="#{playerBean.stop}" title="Stop">
+			<h:commandLink action="#{playerBean.togglePlayStop}" title="Play/Stop">
 <!-- 				<o:icon img="stop"/> -->
-				<h:graphicImage value="/img/stop.png" />
+				<h:graphicImage id="playBtn" 
+					value="#{playerBean.playing == true ? '/img/stop.png' : '/img/play.png'}" />
+				<f:ajax render="playBtn"/>
 			</h:commandLink>
-		</h:form>
 	
-		<h:form>
 			<h:commandLink action="#{playerBean.next}" title="Next">
 <!-- 				<o:icon img="fast_forward"/> -->
 				<h:graphicImage value="/img/fast_forward.png" />
+				<f:ajax />
 			</h:commandLink>
-		</h:form>
 		
-		<h:form>
 			<h:selectOneMenu onchange="submit()" value="#{playerBean.selectedPlaylist}"
 				valueChangeListener="#{playerBean.playlistChanged}">
 				<f:selectItems value="#{playerBean.playlists}"/>
 			</h:selectOneMenu>
-		</h:form>
 		
 	
 	</h:panelGrid>
+	</h:form>
 	
 	<hr/>
     

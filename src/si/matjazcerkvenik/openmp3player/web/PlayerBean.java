@@ -172,6 +172,15 @@ public class PlayerBean {
 	}
 	
 	
+	public String togglePlayStop() {
+		if (isPlaying()) {
+			return stop();
+		} else {
+			return play();
+		}
+	}
+	
+	
 	
 	/**
 	 * Play next
