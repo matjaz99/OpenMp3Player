@@ -2,7 +2,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:o="http://omp3p.com/facelets" >
     
     <h:panelGrid columns="1" styleClass="background" width="100%" >
 		
@@ -13,8 +14,7 @@
 				
 				<h:form>
 					<h:commandLink action="#{playlistBean.play}">
-<!-- 						<o:icon img="play"/> -->
-						<h:graphicImage value="/img/play.png" />
+						<o:icon img="play"/>
 					</h:commandLink>
 				</h:form>
 				
@@ -40,8 +40,7 @@
 				
 				<h:form rendered="#{!playlistBean.queue}">
 					<h:commandLink action="#{playlistBean.putToQueue}" title="Put to queue">
-<!-- 						<o:icon img="toqueue"/> -->
-						<h:graphicImage value="/img/toqueue.png" />
+						<o:icon img="toqueue"/>
 					</h:commandLink>
 				</h:form>
 				
@@ -50,8 +49,7 @@
 			<h:column>
 				<h:form>
 					<h:commandLink action="#{playlistBean.removeMp3FromTheList}" title="Remove">
-<!-- 						<o:icon img="remove"/> -->
-						<h:graphicImage value="/img/remove.png" />
+						<o:icon img="remove"/>
 					</h:commandLink>
 				</h:form>
 			</h:column>

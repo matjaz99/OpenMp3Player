@@ -2,7 +2,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:o="http://omp3p.com/facelets" >
 
     <ui:define name="title">OpenMp3Player</ui:define>
     
@@ -12,11 +13,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="home">
-						<h:graphicImage url="img/DMD.png" styleClass="icon"
-							onmouseover="onMouse(this, 'img/DMD-shadow.png')" 
-							onmouseout="onMouse(this, 'img/DMD.png')" 
-							onmousedown="onMouse(this, 'img/DMD-pressed.png')" 
-							onmouseup="onMouse(this, 'img/DMD-shadow.png')" />
+						<o:icon img="DMD"/>
 					</h:commandLink>
 				</h:form>
 				<h:outputText value="Settings" styleClass="title" />
@@ -29,8 +26,7 @@
 		<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="home">
-<!-- 						<o:icon img="back"/> -->
-						<h:graphicImage value="/img/back.png" />
+						<o:icon img="back"/>
 					</h:commandLink>
 				</h:form>
 				<h:form>

@@ -2,37 +2,32 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:o="http://omp3p.com/facelets" >
     
     <h:panelGroup styleClass="align-right">
 		<h:form>
 			<h:commandLink action="playlists">
-<!-- 				<o:icon img="playlists"/> -->
-				<h:graphicImage value="/img/playlists.png" />
+				<o:icon img="playlists"/>
 			</h:commandLink>
 			<h:commandLink action="#{playerBean.gotoQueue}">
-<!-- 				<o:icon img="queue"/> -->
-				<h:graphicImage value="/img/queue.png" />
+				<o:icon img="queue"/>
 			</h:commandLink>
 			<h:graphicImage url="img/separator.png" styleClass="icon" />
 			<h:commandLink>
-<!-- 				<o:icon img="volumeDn"/> -->
-				<h:graphicImage value="/img/volumeDn.png" />
+				<o:icon img="volumeDn"/>
 				<f:ajax listener="#{playerBean.volumeDown}" />
 			</h:commandLink>
 			<h:commandLink>
-<!-- 				<o:icon img="volumeUp"/> -->
-				<h:graphicImage value="/img/volumeUp.png" />
+				<o:icon img="volumeUp"/>
 				<f:ajax listener="#{playerBean.volumeUp}" />
 			</h:commandLink>
 			<h:graphicImage url="img/separator.png" styleClass="icon" />
 			<h:commandLink action="settings">
-<!-- 				<o:icon img="settings"/> -->
-				<h:graphicImage value="/img/settings.png"  />
+				<o:icon img="settings"/>
 			</h:commandLink>
 			<h:commandLink action="about">
-<!-- 				<o:icon img="help"/> -->
-				<h:graphicImage value="/img/help.png" />
+				<o:icon img="help"/>
 			</h:commandLink>
 		</h:form>
 	</h:panelGroup>

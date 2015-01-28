@@ -2,7 +2,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:o="http://omp3p.com/facelets" >
 
 	<ui:define name="title">OpenMp3Player</ui:define>
 	
@@ -12,7 +13,7 @@
 			<h:panelGrid columns="2" styleClass="valign-middle">
 				<h:form>
 					<h:commandLink action="home">
-						<h:graphicImage url="img/DMD.png" styleClass="icon" />
+						<o:icon img="DMD"/>
 					</h:commandLink>
 				</h:form>
 				<h:outputText value="Playlists" styleClass="title" />
@@ -26,8 +27,7 @@
 		<h:panelGrid columns="2" styleClass="valign-middle">
 			<h:form>
 				<h:commandLink action="home">
-<!-- 					<o:icon img="back"/> -->
-					<h:graphicImage value="/img/back.png" />
+					<o:icon img="back"/>
 				</h:commandLink>
 			</h:form>
 			<h:form>
@@ -41,8 +41,7 @@
 		<h:panelGrid columns="2" styleClass="valign-middle">
 			<h:form>
 				<h:commandLink action="addPlaylist">
-<!-- 					<o:icon img="addPlaylist"/> -->
-					<h:graphicImage value="/img/addPlaylist.png" />
+					<o:icon img="addPlaylist"/>
 				</h:commandLink>
 			</h:form>
 			<h:form>
@@ -68,8 +67,7 @@
 				<h:column>
 					<h:form>
 						<h:commandLink action="#{playlistsBean.gotoPlaylist}" title="Goto">
-<!-- 							<o:icon img="folder"/> -->
-							<h:graphicImage value="/img/folder.png" />
+							<o:icon img="folder"/>
 						</h:commandLink>
 					</h:form>
 				</h:column>
@@ -82,8 +80,7 @@
 				<h:column>
 					<h:form>
 						<h:commandLink action="#{playlistsBean.deletePlaylist}" title="Remove">
-<!-- 							<o:icon img="remove"/> -->
-							<h:graphicImage value="/img/remove.png" />
+							<o:icon img="remove"/>
 						</h:commandLink>
 					</h:form>
 				</h:column>

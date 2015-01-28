@@ -2,7 +2,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:o="http://omp3p.com/facelets" >
     
     <h:panelGrid columns="2" width="100%">
 		
@@ -11,8 +12,7 @@
 				
 				<h:panelGrid columns="2">
 				<h:commandLink>
-<!-- 					<o:icon img="refresh"/> -->
-					<h:graphicImage value="/img/refresh.png" />
+					<o:icon img="refresh"/>
 					<f:ajax event="click" render="actPlaylist currPlaying"/>
 				</h:commandLink>
 				
@@ -29,10 +29,8 @@
 		<h:panelGroup styleClass="align-right">
 			<h:form>
 				<h:commandLink id="repeatLink" action="#{playerBean.toggleRepeat}">
-<!-- 					<o:icon img="repeatOn"/> -->
-					<h:graphicImage id="repeatBtn" 
-						value="#{playerBean.repeatOn == true ? '/img/repeatOn.png' : '/img/repeatOff.png'}" />
-					<f:ajax render="repeatBtn"/>
+					<o:icon img="#{playerBean.repeatOn == true ? 'repeatOn' : 'repeatOff'}"/>
+					<f:ajax render="repeatLink"/>
 				</h:commandLink>
 			</h:form>
 			

@@ -22,4 +22,8 @@
 	<session-config>
 		<session-timeout>-1</session-timeout>
 	</session-config>
+	<context-param>
+	    <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+	    <param-value>/WEB-INF/omp3p.taglib.xml</param-value>
+	</context-param>
 </web-app>
