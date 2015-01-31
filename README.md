@@ -52,6 +52,12 @@ v2 - JSF 1.2
 
 History
 -------------------
+3.0.0-alpha.03
+february 2015
+
+- ajax on putToQueue button
+
+
 3.0.0-alpha.02
 january 2015
 
