@@ -41,6 +41,7 @@
 				<h:form rendered="#{!playlistBean.queue}">
 					<h:commandLink action="#{playlistBean.putToQueue}" title="Put to queue">
 						<o:icon img="toqueue"/>
+						<f:ajax />
 					</h:commandLink>
 				</h:form>
 				
