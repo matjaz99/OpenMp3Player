@@ -52,6 +52,23 @@ v2 - JSF 1.2
 
 History
 -------------------
+3.0.0-alpha.02
+january 2015
+
+- ajax on some buttons (play, stop, prev, next, volume, refresh, repeat)
+- o:icon composition
+- o:tag component
+- cleared faces-config - using faces component annotations
+
+
+3.0.0-alpha.01
+january 2015
+
+- JSF 2.0 (mojarra 2.1.29)
+- changed jsp into xhtml
+- cleared faces-config - using managed beans annotations
+
+
 2.2.0
 january 2015
 

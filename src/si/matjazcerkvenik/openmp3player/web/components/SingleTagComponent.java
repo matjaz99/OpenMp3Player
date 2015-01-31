@@ -1,7 +1,8 @@
-package si.matjazcerkvenik.openmp3player.web.comp;
+package si.matjazcerkvenik.openmp3player.web.components;
 
 import java.io.IOException;
 
+import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -10,11 +11,14 @@ import si.matjazcerkvenik.openmp3player.io.TagFactory;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
 
+@FacesComponent(value="SingleTag")
 public class SingleTagComponent extends UIComponentBase {
 	
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException {
 		super.encodeBegin(ctx);
+		
+		System.out.println("THIS IS RENDERED IN SingleTagComponent");
 		
 		ResponseWriter rw = ctx.getResponseWriter();
 		

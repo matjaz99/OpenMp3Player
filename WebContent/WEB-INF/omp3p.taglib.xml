@@ -5,7 +5,13 @@
 <facelet-taglib>
     <namespace>http://omp3p.com/facelets</namespace>
     <tag>
-	<tag-name>icon</tag-name>
-	<source>tags/icon.xhtml</source>
+		<tag-name>icon</tag-name>
+		<source>tags/icon.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>tag</tag-name>
+        <component>
+            <component-type>SingleTag</component-type>
+        </component>
     </tag>
 </facelet-taglib>

@@ -82,15 +82,13 @@
 					<h:dataTable value="#{addTagBean.allTags}" binding="#{addTagBean.availableTagsTable}" var="tag">
 				
 						<h:column>
-<!-- 							<o:tag value="#{tag}"/> -->
-							<h:outputText value="some tag" />
+							<o:tag value="#{tag}"/>
 						</h:column>
 						
 						<h:column>
 							<h:form>
 								<h:commandLink action="#{addTagBean.deleteTag}" title="Delete tag">
-<!-- 									<o:icon img="remove-small"/> -->
-									<h:graphicImage value="/img/remove-small.png" />
+									<o:icon img="remove-small"/>
 								</h:commandLink>
 							</h:form>
 						</h:column>
