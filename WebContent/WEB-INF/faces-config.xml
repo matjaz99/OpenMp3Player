@@ -4,18 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
     version="2.1">
-	<validator>
-		<validator-id>playlistValidator</validator-id>
-		<validator-class>si.matjazcerkvenik.openmp3player.web.validators.PlaylistValidator</validator-class>
-	</validator>
-	<validator>
-		<validator-id>directoryValidator</validator-id>
-		<validator-class>si.matjazcerkvenik.openmp3player.web.validators.DirectoryValidator</validator-class>
-	</validator>
-	<validator>
-		<validator-id>tagValidator</validator-id>
-		<validator-class>si.matjazcerkvenik.openmp3player.web.validators.TagValidator</validator-class>
-	</validator>
 	<application>
 		<locale-config>
 			<default-locale>en_US</default-locale>

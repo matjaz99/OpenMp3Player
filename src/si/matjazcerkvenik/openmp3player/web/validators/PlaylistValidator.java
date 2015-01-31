@@ -3,6 +3,7 @@ package si.matjazcerkvenik.openmp3player.web.validators;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
@@ -11,6 +12,7 @@ import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 
+@FacesValidator(value="playlistValidator")
 public class PlaylistValidator implements Validator {
 	
 	@Override

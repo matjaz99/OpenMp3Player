@@ -5,11 +5,13 @@ import java.io.File;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 
+@FacesValidator(value="directoryValidator")
 public class DirectoryValidator implements Validator {
 	
 	@Override
