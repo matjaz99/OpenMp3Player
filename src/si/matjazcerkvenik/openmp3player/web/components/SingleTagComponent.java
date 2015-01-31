@@ -17,9 +17,7 @@ public class SingleTagComponent extends UIComponentBase {
 	@Override
 	public void encodeBegin(FacesContext ctx) throws IOException {
 		super.encodeBegin(ctx);
-		
-		System.out.println("THIS IS RENDERED IN SingleTagComponent");
-		
+				
 		ResponseWriter rw = ctx.getResponseWriter();
 		
 		Tag tag = (Tag) getAttributes().get("value");

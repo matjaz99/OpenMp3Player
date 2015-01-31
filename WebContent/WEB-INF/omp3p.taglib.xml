@@ -14,4 +14,11 @@
             <component-type>SingleTag</component-type>
         </component>
     </tag>
+    <tag>
+        <tag-name>tags</tag-name>
+        <component>
+            <component-type>MultiTag</component-type>
+            <renderer-type>omp3p.MultiTagRenderer</renderer-type>
+        </component>
+    </tag>
 </facelet-taglib>

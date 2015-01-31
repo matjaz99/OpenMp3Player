@@ -1,10 +1,11 @@
-package si.matjazcerkvenik.openmp3player.web.comp;
+package si.matjazcerkvenik.openmp3player.web.components;
 
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
 import si.matjazcerkvenik.openmp3player.io.TagFactory;
@@ -12,6 +13,7 @@ import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
 
+@FacesRenderer(componentFamily = "omp3p.multiTag", rendererType = "omp3p.MultiTagRenderer")
 public class MultiTagRenderer extends Renderer {
 	
 	@Override
@@ -23,9 +25,7 @@ public class MultiTagRenderer extends Renderer {
 		ResponseWriter rw = context.getResponseWriter();
 		
 		Tags tags = (Tags) component.getAttributes().get("value");
-		
-		
-		
+				
 		rw.startElement("div", component);
 		rw.writeAttribute("style", "float: right;", null);
 		

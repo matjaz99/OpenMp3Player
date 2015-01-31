@@ -58,7 +58,8 @@ january 2015
 - ajax on some buttons (play, stop, prev, next, volume, refresh, repeat)
 - o:icon composition
 - o:tag component
-- cleared faces-config - using faces component annotations
+- o:tags component and renderer
+- cleared faces-config - using faces annotations
 
 
 3.0.0-alpha.01
