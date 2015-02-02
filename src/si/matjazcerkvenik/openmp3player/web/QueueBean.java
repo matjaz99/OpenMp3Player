@@ -21,6 +21,8 @@ public class QueueBean {
 	
 	public String saveQueue() {
 		Mp3Player.getInstance().saveQueue(newQueueName);
+		Mp3Player.getInstance().emptyQueue();
+		Mp3Player.getInstance().setPassivePlaylist(newQueueName);
 		return "home";
 	}
 	

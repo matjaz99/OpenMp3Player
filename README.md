@@ -51,6 +51,8 @@ master - JSP and servlet technology
 
 v2 - JSF 1.2
 
+v3 - JSF 2.1
+
 
 ### History
 -------------------
@@ -58,6 +60,7 @@ v2 - JSF 1.2
 february 2015
 
 - ajax on putToQueue button
+- empty queue on save
 
 
 3.0.0-alpha.02
@@ -67,7 +70,10 @@ january 2015
 - o:icon composition
 - o:tag component
 - o:tags component and renderer
-- cleared faces-config - using faces annotations
+- managed beans annotations
+- component and renderer annotations
+- validator annotations
+- cleared faces-config - using only faces annotations
 
 
 3.0.0-alpha.01
