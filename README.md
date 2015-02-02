@@ -1,4 +1,4 @@
-OpenMp3Player
+# OpenMp3Player
 ===================
 
 Release 3 is still in development phase. It features JSF 2.0.
@@ -6,21 +6,23 @@ Release 3 is still in development phase. It features JSF 2.0.
 Last stable release: 2.2.0
 
 
-What is it?
+## What is it?
 -------------------
-OpenMp3Player is a web application for playing mp3 files. It runs on Apache Tomcat 7 server.
+OpenMp3Player is a web application for playing mp3 files. It runs on Apache Tomcat 7 server which comes 
+embedded with the application (deployment is not required).
 
 
-Starting
+## Starting
 -------------------
-On Linux or OS X you might need to change file permissions to 755 for all *.sh files 
+On Windows just double click the start.bat.
+
+On Linux or OS X you might first need to change file permissions of all .sh files 
 in OpenMp3Player directory. You can do this with single command (recursively):
-$ find OpenMp3Player-2.x.x -name \*.sh -exec chmod 755 {} +
+'$ find OpenMp3Player-2.x.x -name \*.sh -exec chmod 755 {} +'
 
-To start OpenMp3Player on Linux execute:
+Then start OpenMp3Player on Linux or OS X by executing start.sh script:
 $ ./start.sh
 
-On Windows double click on start.bat.
 
 To stop execute stop.sh or stop.bat script.
 
@@ -28,14 +30,14 @@ With web browser go to: <a href="http://hostname:8080/OpenMp3Player">
 http://hostname:8080/OpenMp3Player</a>
 
 
-Upgrade
+## Upgrade
 -------------------
 Currently it is possible only manually:
 copy 'playlist' and 'config' directories from old version to new version
 restart OpenMp3Player (stop/start)
 
 
-For developers
+## For developers
 -------------------
 Developed in Eclipse Kepler. JDK 1.6 is needed. Deploy to Apache Tomcat 7.
 To set custom OpenMp3Player home directory when starting the project in Eclipse add VM arg to 
@@ -43,14 +45,14 @@ Apache Tomcat runtime configuration:
 -Domp3p.home="/path/to/OpenMp3Player"
 
 
-Git branches:
+## Git branches:
 
 master - JSP and servlet technology
 
 v2 - JSF 1.2
 
 
-History
+## History
 -------------------
 3.0.0-alpha.03
 february 2015
