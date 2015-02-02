@@ -61,6 +61,7 @@ february 2015
 
 - ajax on putToQueue button
 - empty queue on save
+- player and currently-playing as one component
 
 
 3.0.0-alpha.02
