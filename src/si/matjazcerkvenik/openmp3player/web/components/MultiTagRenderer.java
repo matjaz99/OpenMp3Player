@@ -8,7 +8,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
-import si.matjazcerkvenik.openmp3player.io.TagFactory;
+import si.matjazcerkvenik.openmp3player.io.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
@@ -34,10 +34,10 @@ public class MultiTagRenderer extends Renderer {
 			Tag tag = tags.getTagList().get(i);
 			
 			// use color from tags.xml if exists
-			Tag origTag = TagFactory.getInstance().getTag(tag.getName());
+			Tag origTag = TagsDAO.getInstance().getTag(tag.getName());
 			String tagColor = "Black";
 			if (origTag != null) {
-				tagColor = TagFactory.getInstance().getTag(tag.getName()).getColor();
+				tagColor = TagsDAO.getInstance().getTag(tag.getName()).getColor();
 			}
 			String txtColor = Colors.getTagTextColor(tagColor);
 			

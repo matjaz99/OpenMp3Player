@@ -12,25 +12,25 @@ import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
-public class TagFactory {
+public class TagsDAO {
 
 	private SimpleLogger logger = null;
 
-	private static TagFactory factory = null;
+	private static TagsDAO dao = null;
 	
 	private Tags tags = null;
 
-	private TagFactory() {
+	private TagsDAO() {
 		logger = OContext.getInstance().getLogger();
 		// load tags
 		getTags();
 	}
 
-	public static TagFactory getInstance() {
-		if (factory == null) {
-			factory = new TagFactory();
+	public static TagsDAO getInstance() {
+		if (dao == null) {
+			dao = new TagsDAO();
 		}
-		return factory;
+		return dao;
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class TagFactory {
 
 			File file = new File(OContext.CFG_DIR + "/tags.xml");
 			if (!file.exists()) {
-				logger.warn("TagFactory:getTags(): tags.xml not found; creating new");
+				logger.warn("TagsDAO:getTags(): tags.xml not found; creating new");
 				tags = new Tags();
 				JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
 				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -54,11 +54,11 @@ public class TagFactory {
 				jaxbMarshaller.marshal(tags, file);
 
 			}
-			logger.info("TagFactory:getTags(): tags.xml");
+			logger.info("TagsDAO:getTags(): tags.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			tags = (Tags) jaxbUnmarshaller.unmarshal(file);
-			logger.debug("TagFactory:getTags(): " + tags.toString());
+			logger.debug("TagsDAO:getTags(): " + tags.toString());
 
 		} catch (JAXBException e) {
 			logger.error("JAXBException", e);
@@ -77,7 +77,7 @@ public class TagFactory {
 	 * Save tags.xml
 	 */
 	public void saveTags() {
-		logger.info("TagFactory:saveTags(): saving...");
+		logger.info("TagsDAO:saveTags(): saving...");
 		try {
 
 			File file = new File(OContext.CFG_DIR + "/tags.xml");

@@ -7,7 +7,7 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import si.matjazcerkvenik.openmp3player.io.TagFactory;
+import si.matjazcerkvenik.openmp3player.io.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
 
@@ -23,10 +23,10 @@ public class SingleTagComponent extends UIComponentBase {
 		Tag tag = (Tag) getAttributes().get("value");
 		
 		// use color from tags.xml if exists
-		Tag origTag = TagFactory.getInstance().getTag(tag.getName());
+		Tag origTag = TagsDAO.getInstance().getTag(tag.getName());
 		String tagColor = "Black";
 		if (origTag != null) {
-			tagColor = TagFactory.getInstance().getTag(tag.getName()).getColor();
+			tagColor = TagsDAO.getInstance().getTag(tag.getName()).getColor();
 		}
 		String txtColor = Colors.getTagTextColor(tagColor);
 		

@@ -15,7 +15,7 @@ import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.io.Digester;
 import si.matjazcerkvenik.openmp3player.io.ID3Tag;
 import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
-import si.matjazcerkvenik.openmp3player.io.TagFactory;
+import si.matjazcerkvenik.openmp3player.io.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Tag;
@@ -74,7 +74,7 @@ public class SongBean {
 	 */
 	public List<SelectItem> getTagItems() {
 		
-		Tags tags = TagFactory.getInstance().getTags();
+		Tags tags = TagsDAO.getInstance().getTags();
 		
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		list.add(new SelectItem("- Select tag -", "- Select tag -"));
@@ -103,7 +103,7 @@ public class SongBean {
 		if (selectedTag.equals("- Select tag -")) {
 			return;
 		}
-		Tag t = TagFactory.getInstance().getTag(selectedTag);
+		Tag t = TagsDAO.getInstance().getTag(selectedTag);
 		mp3File = getMp3File();
 		mp3File.addTag(t);
 		PlaylistDAO.getInstance().savePassivePlaylist();
