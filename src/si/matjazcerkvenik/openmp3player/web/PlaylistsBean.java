@@ -7,7 +7,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
+import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
@@ -25,7 +25,7 @@ public class PlaylistsBean {
 	}
 	
 	public List<Playlist> getPlaylistsList() {
-		return PlaylistFactory.getInstance().getPlaylists().getPlist();
+		return PlaylistDAO.getInstance().getPlaylists().getPlist();
 	}
 	
 	public HtmlDataTable getDataTable() {
@@ -60,7 +60,7 @@ public class PlaylistsBean {
 		Playlist p = (Playlist) dataTable.getRowData();
 		logger.info("PlaylistsBean:deletePlaylist(): " + p.getName());
 		
-		PlaylistFactory.getInstance().removePlaylist(p);
+		PlaylistDAO.getInstance().removePlaylist(p);
 		
 		return "playlists";
 		

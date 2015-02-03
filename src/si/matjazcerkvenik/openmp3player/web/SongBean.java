@@ -14,7 +14,7 @@ import javax.faces.model.SelectItem;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.io.Digester;
 import si.matjazcerkvenik.openmp3player.io.ID3Tag;
-import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
+import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.io.TagFactory;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
@@ -58,7 +58,7 @@ public class SongBean {
 		if (!mp3File.getHash().equals(hash)) {
 			mp3File.setHash(hash);
 			mp3File = ID3Tag.getMetadata(mp3File);
-			PlaylistFactory.getInstance().savePassivePlaylist();
+			PlaylistDAO.getInstance().savePassivePlaylist();
 		}
 		return mp3File;
 		
@@ -106,7 +106,7 @@ public class SongBean {
 		Tag t = TagFactory.getInstance().getTag(selectedTag);
 		mp3File = getMp3File();
 		mp3File.addTag(t);
-		PlaylistFactory.getInstance().savePassivePlaylist();
+		PlaylistDAO.getInstance().savePassivePlaylist();
 		
 		selectedTag = "- Select tag -";
 				
@@ -162,7 +162,7 @@ public class SongBean {
 		Tag t = (Tag) tagDataTable.getRowData();
 		Mp3File m = getMp3File();
 		m.getTags().removeTag(t);
-		PlaylistFactory.getInstance().savePassivePlaylist();
+		PlaylistDAO.getInstance().savePassivePlaylist();
 	}
 
 
@@ -210,7 +210,7 @@ public class SongBean {
 		}
 		mp3File = getMp3File();
 		mp3File.setBackgroundColor(selectedBackgroundColor);
-		PlaylistFactory.getInstance().savePassivePlaylist();
+		PlaylistDAO.getInstance().savePassivePlaylist();
 				
 	}
 	
@@ -218,7 +218,7 @@ public class SongBean {
 		
 		Mp3File m = getMp3File();
 		m.setBackgroundColor(null);
-		PlaylistFactory.getInstance().savePassivePlaylist();
+		PlaylistDAO.getInstance().savePassivePlaylist();
 		
 	}
 	

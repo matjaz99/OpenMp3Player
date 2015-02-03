@@ -1,7 +1,7 @@
 package si.matjazcerkvenik.openmp3player.player;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.io.PlaylistFactory;
+import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -25,9 +25,9 @@ public class Mp3Player {
 		
 		player = new JLayerPlayer();
 		
-		Playlists p = PlaylistFactory.getInstance().getPlaylists();
+		Playlists p = PlaylistDAO.getInstance().getPlaylists();
 		if (p.getPlist().size() > 0) {
-			activePlaylist = PlaylistFactory.getInstance().getPlaylist(p.getPlist().get(0).getName());
+			activePlaylist = PlaylistDAO.getInstance().getPlaylist(p.getPlist().get(0).getName());
 		} else {
 			activePlaylist = new Playlist();
 		}
@@ -166,7 +166,7 @@ public class Mp3Player {
 		if (name.equals("Queue")) {
 			activePlaylist = queue;
 		} else {
-			activePlaylist = PlaylistFactory.getInstance().getPlaylist(name);
+			activePlaylist = PlaylistDAO.getInstance().getPlaylist(name);
 		}
 		
 	}
@@ -185,7 +185,7 @@ public class Mp3Player {
 		if (name.equals("Queue")) {
 			passivePlaylist = queue;
 		} else {
-			passivePlaylist = PlaylistFactory.getInstance().getPlaylist(name);
+			passivePlaylist = PlaylistDAO.getInstance().getPlaylist(name);
 		}
 		
 	}
@@ -240,7 +240,7 @@ public class Mp3Player {
 			}
 		}
 		
-		PlaylistFactory.getInstance().addPlaylist(p);
+		PlaylistDAO.getInstance().addPlaylist(p);
 	}
 	
 	/**
@@ -269,7 +269,7 @@ public class Mp3Player {
 		}
 		// save playlist (if not queue)
 		if (!passivePlaylist.getName().equals("Queue")) {
-			PlaylistFactory.getInstance().savePassivePlaylist();
+			PlaylistDAO.getInstance().savePassivePlaylist();
 		}
 		
 	}

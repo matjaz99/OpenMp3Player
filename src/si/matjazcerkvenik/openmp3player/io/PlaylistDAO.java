@@ -18,16 +18,16 @@ import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
-public class PlaylistFactory {
+public class PlaylistDAO {
 	
 	private SimpleLogger logger = null;
 	
-	private static PlaylistFactory factory = null;
+	private static PlaylistDAO dao = null;
 	
 	private Playlists playlists = null;
 	
 	
-	private PlaylistFactory() {
+	private PlaylistDAO() {
 		logger = OContext.getInstance().getLogger();
 	}
 	
@@ -36,12 +36,12 @@ public class PlaylistFactory {
 	 * Return instance of <code>PlaylistFactory</code> (singleton)
 	 * @return factory
 	 */
-	public static PlaylistFactory getInstance() {
+	public static PlaylistDAO getInstance() {
 		
-		if (factory == null) {
-			factory = new PlaylistFactory();
+		if (dao == null) {
+			dao = new PlaylistDAO();
 		}
-		return factory;
+		return dao;
 		
 	}
 	

@@ -78,7 +78,7 @@ public class PlaylistBean {
 	 * @return
 	 */
 	public String getBackgroundColorsArray() {
-		
+		// FIXME this should be done differently in JSF 2 - style for each row
 		StringBuilder rowClasses = new StringBuilder();
 		List<Mp3File> list = getMp3List();
 
