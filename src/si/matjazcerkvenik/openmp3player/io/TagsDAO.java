@@ -34,61 +34,16 @@ public class TagsDAO {
 	}
 
 	/**
-	 * Read tags.xml
+	 * Return all tags
 	 */
 	public Tags getTags() {
 
-		if (tags != null) {
-			return tags;
+		if (tags == null) {
+			loadTags();
 		}
-
-		try {
-
-			File file = new File(OContext.CFG_DIR + "/tags.xml");
-			if (!file.exists()) {
-				logger.warn("TagsDAO:getTags(): tags.xml not found; creating new");
-				tags = new Tags();
-				JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
-				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-				jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-				jaxbMarshaller.marshal(tags, file);
-
-			}
-			logger.info("TagsDAO:getTags(): tags.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			tags = (Tags) jaxbUnmarshaller.unmarshal(file);
-			logger.debug("TagsDAO:getTags(): " + tags.toString());
-
-		} catch (JAXBException e) {
-			logger.error("JAXBException", e);
-		}
-
+		
 		return tags;
 
-	}
-	
-	public void deleteTag(Tag t) {
-		tags.removeTag(t);
-		saveTags();
-	}
-
-	/**
-	 * Save tags.xml
-	 */
-	public void saveTags() {
-		logger.info("TagsDAO:saveTags(): saving...");
-		try {
-
-			File file = new File(OContext.CFG_DIR + "/tags.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			jaxbMarshaller.marshal(tags, file);
-
-		} catch (JAXBException e) {
-			logger.error("JAXBException", e);
-		}
 	}
 	
 	/**
@@ -105,5 +60,75 @@ public class TagsDAO {
 		}
 		return null;
 	}
+	
+	/**
+	 * Add new tag and save tags.xml
+	 * @param t
+	 */
+	public void addTag(Tag t) {
+		tags.addTag(t);
+		saveTags();
+	}
+	
+	/**
+	 * Delete tag and save tags.xml
+	 * @param t
+	 */
+	public void deleteTag(Tag t) {
+		tags.removeTag(t);
+		saveTags();
+		logger.info("AddTagBean:deleteTag(): delete " + t.getName());
+	}
+	
+	
+	
+	
+	/**
+	 * Read from tags.xml file
+	 */
+	private void loadTags() {
+		try {
+
+			File file = new File(OContext.CFG_DIR + "/tags.xml");
+			if (!file.exists()) {
+				logger.warn("TagsDAO:loadTags(): tags.xml not found; creating new");
+				tags = new Tags();
+				JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
+				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+				jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+				jaxbMarshaller.marshal(tags, file);
+
+			}
+			logger.info("TagsDAO:loadTags(): tags.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			tags = (Tags) jaxbUnmarshaller.unmarshal(file);
+			logger.debug("TagsDAO:loadTags(): " + tags.toString());
+
+		} catch (JAXBException e) {
+			logger.error("JAXBException", e);
+		}
+	}
+	
+
+	/**
+	 * Save to file tags.xml
+	 */
+	private void saveTags() {
+		logger.info("TagsDAO:saveTags(): saving...");
+		try {
+
+			File file = new File(OContext.CFG_DIR + "/tags.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.marshal(tags, file);
+
+		} catch (JAXBException e) {
+			logger.error("JAXBException", e);
+		}
+	}
+	
+	
 
 }

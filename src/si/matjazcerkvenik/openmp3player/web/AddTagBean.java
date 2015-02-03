@@ -8,7 +8,6 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.model.SelectItem;
 
-import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.io.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
@@ -41,9 +40,7 @@ public class AddTagBean {
 		t.setName(name);
 		t.setColor(color);
 		
-		TagsDAO.getInstance().getTags().addTag(t);
-		
-		TagsDAO.getInstance().saveTags();
+		TagsDAO.getInstance().addTag(t);
 		
 		name = null;
 		color = null;
@@ -52,7 +49,6 @@ public class AddTagBean {
 	
 	public void deleteTag() {
 		Tag t = (Tag) availableTagsTable.getRowData();
-		OContext.getInstance().getLogger().info("AddTagBean:deleteTag(): delete " + t.getName());
 		TagsDAO.getInstance().deleteTag(t);
 	}
 	
