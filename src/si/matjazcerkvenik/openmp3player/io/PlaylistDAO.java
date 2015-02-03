@@ -33,8 +33,8 @@ public class PlaylistDAO {
 	
 	
 	/**
-	 * Return instance of <code>PlaylistFactory</code> (singleton)
-	 * @return factory
+	 * Return instance of <code>PlaylistDAO</code> (singleton)
+	 * @return dao
 	 */
 	public static PlaylistDAO getInstance() {
 		
@@ -52,15 +52,22 @@ public class PlaylistDAO {
 	 */
 	public Playlists getPlaylists() {
 		
-		if (playlists != null) {
-			return playlists;
+		if (playlists == null) {
+			loadPlaylists();
 		}
 		
+		return playlists;
+	}
+	
+	/**
+	 * Read from playlists.xml file
+	 */
+	private void loadPlaylists() {
 		try {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/playlists.xml");
 			if (!file.exists()) {
-				logger.warn("PlaylistFactory:getPlaylists(): playlists.xml not found; creating new");
+				logger.warn("PlaylistDAO:loadPlaylists(): playlists.xml not found; creating new");
 				playlists = new Playlists();
 				JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -68,27 +75,26 @@ public class PlaylistDAO {
 				jaxbMarshaller.marshal(playlists, file);
 				
 			}
-			logger.info("PlaylistFactory:getPlaylists(): playlists.xml");
+			logger.info("PlaylistDAO:loadPlaylists(): playlists.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			playlists = (Playlists) jaxbUnmarshaller.unmarshal(file);
 			if (playlists.getPlist() == null) {
 				playlists.setPlist(new ArrayList<Playlist>());
 			}
-			logger.debug("PlaylistFactory:getPlaylists(): " + playlists.toString());
+			logger.debug("PlaylistDAO:loadPlaylists(): " + playlists.toString());
 
 		} catch (JAXBException e) {
 			logger.error("JAXBException", e);
 		}
-		
-		return playlists;
 	}
 	
+	
 	/**
-	 * Save playlists.xml
+	 * Save to playlists.xml file
 	 */
 	private void savePlaylists() {
-		logger.info("PlaylistFactory:savePlaylists(): saving...");
+		logger.info("PlaylistDAO:savePlaylists(): saving...");
 		try {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/playlists.xml");
@@ -176,7 +182,7 @@ public class PlaylistDAO {
 			if (plist.getName().equals(p.getName())) {
 				if (plist.getSource().endsWith(".xml")) {
 					File f = new File(OContext.PLAYLISTS_DIR + "/" + plist.getSource());
-					logger.debug("PlaylistFactory:deletePlaylist(): delete: " + f.getAbsolutePath());
+					logger.debug("PlaylistDAO:deletePlaylist(): delete: " + f.getAbsolutePath());
 					f.delete();
 				}
 			}
@@ -211,10 +217,10 @@ public class PlaylistDAO {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/" + source);
 			if (!file.exists()) {
-				logger.warn("PlaylistFactory:unmarshall(): playlist not found: " + OContext.PLAYLISTS_DIR + "/" + source);
+				logger.warn("PlaylistDAO:unmarshall(): playlist not found: " + OContext.PLAYLISTS_DIR + "/" + source);
 				return new Mp3Files();
 			}
-			logger.debug("PlaylistFactory:unmarshall(): playlist found: " + OContext.PLAYLISTS_DIR + "/" + source);
+			logger.debug("PlaylistDAO:unmarshall(): playlist found: " + OContext.PLAYLISTS_DIR + "/" + source);
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			mp3Files = (Mp3Files) jaxbUnmarshaller.unmarshal(file);
@@ -231,7 +237,7 @@ public class PlaylistDAO {
 	 * @param source
 	 */
 	private void savePlaylist(Playlist p) {
-		logger.info("PlaylistFactory:savePlaylist(): saving...");
+		logger.info("PlaylistDAO:savePlaylist(): saving...");
 		try {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/" + p.getSource());
