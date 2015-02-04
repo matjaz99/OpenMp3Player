@@ -13,7 +13,6 @@ import javax.xml.bind.Unmarshaller;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Files;
-import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
@@ -259,8 +258,9 @@ public class PlaylistDAO {
 	
 	
 	public void savePassivePlaylist() {
-		Playlist p = Mp3Player.getInstance().getPassivePlaylist();
-		savePlaylist(p);
+		// FIXME provide playlist as arg (separate Mp3Player from the DAO)
+//		Playlist p = Mp3Player.getInstance().getPassivePlaylist();
+//		savePlaylist(p);
 	}
 	
 	

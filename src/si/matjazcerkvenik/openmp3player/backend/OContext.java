@@ -1,10 +1,7 @@
 package si.matjazcerkvenik.openmp3player.backend;
 
-import java.io.File;
-
-import javax.faces.context.FacesContext;
-
 import si.matjazcerkvenik.openmp3player.cli.CommandLine;
+import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Watchdog;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -12,7 +9,7 @@ public class OContext {
 	
 	private static OContext ctx = null;
 	
-	private Watchdog watchdog = null;
+	
 	private CommandLine cli = null;
 	public static boolean repeatSong = false;
 	
@@ -45,8 +42,8 @@ public class OContext {
 	}
 	
 	/**
-	 * Initialize application - load properties, init logger, read playlists, 
-	 * set volume, start CLI server...<br>
+	 * Initialize application - load properties, init logger, 
+	 * set volume...<br>
 	 * Set VM arg: -Domp3p.home="/Users/matjaz/Documents/git/OpenMp3Player"
 	 */
 	private void initialize() {
@@ -78,19 +75,8 @@ public class OContext {
 //		logger.debug("Request Path Info: " + FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo());
 //		logger.debug("Request Sevlet Path: " + FacesContext.getCurrentInstance().getExternalContext().getRequestServletPath());
 		
-		watchdog = new Watchdog();
-		watchdog.start();
-		
 //		Utils.changePermissions();
 //		Utils.setVolume(Utils.CURRENT_VOLUME_LEVEL);
-		
-		if (Utils.TELNET_ENABLED) {
-			logger.info("TELNET=enabled on port " + Utils.TELNET_PORT);
-			cli = new CommandLine();
-			cli.start();
-		} else {
-			logger.info("TELNET=disabled");
-		}
 		
 		logger.info("OContext initialized");
 		
@@ -101,7 +87,8 @@ public class OContext {
 	}
 	
 	public Watchdog getWatchdog() {
-		return watchdog;
+//		return watchdog;
+		return null;
 	}
 	
 	private static String getHomeDir() {
@@ -118,6 +105,19 @@ public class OContext {
 		}
 		
 		return homeDir;
+	}
+	
+	/**
+	 * Start command line interface
+	 */
+	public void startCli(Mp3Player player) {
+		if (Utils.TELNET_ENABLED) {
+			logger.info("TELNET=enabled on port " + Utils.TELNET_PORT);
+			cli = new CommandLine(player);
+			cli.start();
+		} else {
+			logger.info("TELNET=disabled");
+		}
 	}
 	
 	

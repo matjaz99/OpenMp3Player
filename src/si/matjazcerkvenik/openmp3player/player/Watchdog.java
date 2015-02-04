@@ -12,9 +12,12 @@ public class Watchdog extends Thread {
 	
 	private boolean running = true;
 	
+	private Mp3Player mp3Player;
 	
-	public Watchdog() {
+	
+	public Watchdog(Mp3Player mp3Player) {
 		setName("Watchdog");
+		this.mp3Player = mp3Player;
 	}
 
 
@@ -24,13 +27,13 @@ public class Watchdog extends Thread {
 		
 		while (running) {
 			
-			if (Mp3Player.getInstance().getPlayerStatus() == PlayerStatus.PLAY_ENDED) {
-				OContext.getInstance().getLogger().trace("Watchdog:run(): repeat is: " + Mp3Player.getInstance().isRepeatOn());
-				if (Mp3Player.getInstance().isRepeatOn()) {
-					int i = Mp3Player.getInstance().getCurrentlyPlaying().getIndex();
-					Mp3Player.getInstance().play(i);
+			if (mp3Player.getPlayerStatus() == PlayerStatus.PLAY_ENDED) {
+				OContext.getInstance().getLogger().trace("Watchdog:run(): repeat is: " + mp3Player.isRepeatOn());
+				if (mp3Player.isRepeatOn()) {
+					int i = mp3Player.getCurrentlyPlaying().getIndex();
+					mp3Player.play(i);
 				} else {
-					Mp3Player.getInstance().next();
+					mp3Player.next();
 				}
 				
 			}

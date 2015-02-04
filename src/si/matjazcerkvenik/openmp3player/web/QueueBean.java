@@ -1,15 +1,22 @@
 package si.matjazcerkvenik.openmp3player.web;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-
-import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 
 @ManagedBean
 @RequestScoped
 public class QueueBean {
 	
 	private String newQueueName = null;
+	
+	@ManagedProperty(value="#{playerBean}")
+	private PlayerBean playerBean;
+	
+
+	public void setPlayerBean(PlayerBean playerBean) {
+		this.playerBean = playerBean;
+	}
 	
 	public String getNewQueueName() {
 		return newQueueName;
@@ -20,14 +27,14 @@ public class QueueBean {
 	}
 	
 	public String saveQueue() {
-		Mp3Player.getInstance().saveQueue(newQueueName);
-		Mp3Player.getInstance().emptyQueue();
-		Mp3Player.getInstance().setPassivePlaylist(newQueueName);
+		playerBean.getMp3Player().saveQueue(newQueueName);
+		playerBean.getMp3Player().emptyQueue();
+		playerBean.getMp3Player().setPassivePlaylist(newQueueName);
 		return "home";
 	}
 	
 	public void emptyQueue() {
-		Mp3Player.getInstance().emptyQueue();
+		playerBean.getMp3Player().emptyQueue();
 	}
 	
 	

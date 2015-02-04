@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
@@ -17,7 +18,6 @@ import si.matjazcerkvenik.openmp3player.io.ID3Tag;
 import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.io.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
-import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
@@ -36,8 +36,18 @@ public class SongBean {
 	
 	private HtmlDataTable tagDataTable = null;
 	
+	@ManagedProperty(value="#{playerBean}")
+	private PlayerBean playerBean;
+	
+	
 	public SongBean() {
 		logger = OContext.getInstance().getLogger();
+	}
+	
+	
+
+	public void setPlayerBean(PlayerBean playerBean) {
+		this.playerBean = playerBean;
 	}
 	
 
@@ -53,7 +63,7 @@ public class SongBean {
 		int id = m.getIndex();
 		logger.info("SongBean:getMp3File: id=" + id);
 		
-		mp3File = Mp3Player.getInstance().getMp3(id);
+		mp3File = playerBean.getMp3Player().getMp3(id);
 		String hash = Digester.getSha1(mp3File.getPath());
 		if (!mp3File.getHash().equals(hash)) {
 			mp3File.setHash(hash);

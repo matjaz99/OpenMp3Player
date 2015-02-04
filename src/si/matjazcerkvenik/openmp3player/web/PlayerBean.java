@@ -3,8 +3,8 @@ package si.matjazcerkvenik.openmp3player.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -14,6 +14,7 @@ import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.openmp3player.player.SoundControl;
+import si.matjazcerkvenik.openmp3player.player.Watchdog;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 /**
@@ -24,20 +25,33 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
  *
  */
 @ManagedBean
-@RequestScoped
+@ApplicationScoped
 public class PlayerBean {
-	
-	private String selectedPlaylist = null;
-	
 	
 	private SimpleLogger logger = null;
 	
+	private String selectedPlaylist = null;
+	
+	private Mp3Player mp3Player = null;
+	private Watchdog watchdog = null;
+	
+	
 	public PlayerBean() {
 		logger = OContext.getInstance().getLogger();
+		mp3Player = new Mp3Player();
+		watchdog = new Watchdog(mp3Player);
+		watchdog.start();
+		OContext.getInstance().startCli(mp3Player);
 	}
 	
 	
 	
+	public Mp3Player getMp3Player() {
+		return mp3Player;
+	}
+
+
+
 	/**
 	 * Get playlists for dropdown menu
 	 * @return list
@@ -70,11 +84,11 @@ public class PlayerBean {
 	public void playlistChanged(ValueChangeEvent e) {
 		selectedPlaylist = e.getNewValue().toString();
 		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
-		Mp3Player.getInstance().setPassivePlaylist(selectedPlaylist);
+		mp3Player.setPassivePlaylist(selectedPlaylist);
 	}
 	
 	public String gotoQueue() {
-		Mp3Player.getInstance().setPassivePlaylist("Queue");
+		mp3Player.setPassivePlaylist("Queue");
 		return "queue";
 	}
 	
@@ -86,7 +100,7 @@ public class PlayerBean {
 	 */
 	public String getSelectedPlaylist() {
 		if (selectedPlaylist == null) {
-			selectedPlaylist = Mp3Player.getInstance().getPassivePlaylist().getName();
+			selectedPlaylist = mp3Player.getPassivePlaylist().getName();
 		}
 		return selectedPlaylist;
 	}
@@ -109,7 +123,7 @@ public class PlayerBean {
 	 * @return title or "null"
 	 */
 	public String getCurrentlyPlaying() {
-		Mp3File m = Mp3Player.getInstance().getCurrentlyPlaying();
+		Mp3File m = mp3Player.getCurrentlyPlaying();
 		if (m == null) {
 			return "null";
 		}
@@ -156,8 +170,8 @@ public class PlayerBean {
 	 * @return title of the song
 	 */
 	public String play() {
-		Mp3Player.getInstance().setPassiveToActive();
-		return Mp3Player.getInstance().play(0);
+		mp3Player.setPassiveToActive();
+		return mp3Player.play(0);
 	}
 	
 	
@@ -167,7 +181,7 @@ public class PlayerBean {
 	 * @return "null"
 	 */
 	public String stop() {
-		Mp3Player.getInstance().stop();
+		mp3Player.stop();
 		return "null";
 	}
 	
@@ -187,7 +201,7 @@ public class PlayerBean {
 	 * @return title
 	 */
 	public String next() {
-		return Mp3Player.getInstance().next();
+		return mp3Player.next();
 	}
 	
 	
@@ -197,7 +211,7 @@ public class PlayerBean {
 	 * @return title
 	 */
 	public String prev() {
-		return Mp3Player.getInstance().prev();
+		return mp3Player.prev();
 	}
 	
 	
@@ -207,7 +221,7 @@ public class PlayerBean {
 	 * @return true if playing
 	 */
 	public boolean isPlaying() {
-		return Mp3Player.getInstance().isPlaying();
+		return mp3Player.isPlaying();
 	}
 	
 	
@@ -219,12 +233,12 @@ public class PlayerBean {
 	public boolean isRepeatOn() {
 		// TODO why is this method called so many times???
 //		logger.info("PlayerBean:isRepeatOn(): " + Mp3Player.getInstance().isRepeatOn());
-		return Mp3Player.getInstance().isRepeatOn();
+		return mp3Player.isRepeatOn();
 	}
 	
 	public void toggleRepeat() {
-		Mp3Player.getInstance().setRepeatOn(!Mp3Player.getInstance().isRepeatOn());
-		logger.info("PlayerBean:toggleRepeat(): repeat is now: " + Mp3Player.getInstance().isRepeatOn());
+		mp3Player.setRepeatOn(!mp3Player.isRepeatOn());
+		logger.info("PlayerBean:toggleRepeat(): repeat is now: " + mp3Player.isRepeatOn());
 	}
 	
 	

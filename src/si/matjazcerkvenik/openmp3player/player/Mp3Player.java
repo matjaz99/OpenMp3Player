@@ -8,7 +8,6 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
 public class Mp3Player {
 	
 	private SimpleLogger logger = null;
-	private static Mp3Player mp3player = null;
 	
 	private IPlayer player = null;
 	private Mp3File currentlyPlaying = null;
@@ -19,7 +18,7 @@ public class Mp3Player {
 	private Playlist passivePlaylist = null;
 	private Playlist queue = null;
 	
-	private Mp3Player() {
+	public Mp3Player() {
 		
 		logger = OContext.getInstance().getLogger();
 		
@@ -39,13 +38,7 @@ public class Mp3Player {
 		
 	}
 	
-	public static Mp3Player getInstance() {
-		
-		if (mp3player == null) {
-			mp3player = new Mp3Player();
-		}
-		return mp3player;
-	}
+	
 	
 	/**
 	 * Return title of currently playing song.
