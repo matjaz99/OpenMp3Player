@@ -63,6 +63,7 @@ february 2015
 - empty queue on save
 - player and currently-playing as one component
 - PlayerBean is now ApplicationScoped bean (behaves as a singleton) and manages single instance of Mp3Player
+- Watchdog moved to Mp3Player
 
 
 3.0.0-alpha.02

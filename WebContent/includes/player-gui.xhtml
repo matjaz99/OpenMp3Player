@@ -10,7 +10,7 @@
 	
 			<h:commandLink action="#{playerBean.prev}" title="#{bundle.buttonLabelPrevious}">
 				<o:icon img="rewind"/>
-				<f:ajax />
+				<f:ajax render="playBtn repeatLink actPlaylist currPlaying"/>
 			</h:commandLink>
 		
 			<h:commandLink id="playBtn" action="#{playerBean.togglePlayStop}" title="Play/Stop">
@@ -20,7 +20,7 @@
 	
 			<h:commandLink action="#{playerBean.next}" title="Next">
 				<o:icon img="fast_forward"/>
-				<f:ajax />
+				<f:ajax render="playBtn repeatLink actPlaylist currPlaying"/>
 			</h:commandLink>
 		
 			<h:selectOneMenu onchange="submit()" value="#{playerBean.selectedPlaylist}"
@@ -44,7 +44,7 @@
 					
 					<h:panelGrid columns="1">
 						<h:outputLabel id="actPlaylist" value="Active playlist: #{playlistBean.activePlaylistName}" styleClass="text-white" />
-						<h:outputLabel id="currPlaying" value="Playing: #{playerBean.currentlyPlaying}" styleClass="text-white largeText" />
+						<h:outputLabel id="currPlaying" value="#{playerBean.currentlyPlaying}" styleClass="text-white largeText" />
 					</h:panelGrid>
 				
 			</h:panelGrid>

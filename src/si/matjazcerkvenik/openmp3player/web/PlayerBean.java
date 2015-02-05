@@ -122,13 +122,13 @@ public class PlayerBean {
 	public String getCurrentlyPlaying() {
 		Mp3File m = mp3Player.getCurrentlyPlaying();
 		if (m == null) {
-			return "null";
+			return "Stopped";
 		}
 		String s = m.getTitle();
 		if (m.getArtist() != null && m.getArtist().length() > 0) {
 			s = m.getArtist() + " - " + s;
 		}
-		return s;
+		return "Playing: " + s;
 	}
 	
 	
