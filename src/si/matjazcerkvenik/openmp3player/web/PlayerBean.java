@@ -14,7 +14,6 @@ import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.openmp3player.player.SoundControl;
-import si.matjazcerkvenik.openmp3player.player.Watchdog;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 /**
@@ -33,14 +32,12 @@ public class PlayerBean {
 	private String selectedPlaylist = null;
 	
 	private Mp3Player mp3Player = null;
-	private Watchdog watchdog = null;
+	
 	
 	
 	public PlayerBean() {
 		logger = OContext.getInstance().getLogger();
 		mp3Player = new Mp3Player();
-		watchdog = new Watchdog(mp3Player);
-		watchdog.start();
 		OContext.getInstance().startCli(mp3Player);
 	}
 	

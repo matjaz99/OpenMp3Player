@@ -18,6 +18,8 @@ public class Mp3Player {
 	private Playlist passivePlaylist = null;
 	private Playlist queue = null;
 	
+	private Watchdog watchdog = null;
+	
 	public Mp3Player() {
 		
 		logger = OContext.getInstance().getLogger();
@@ -35,6 +37,9 @@ public class Mp3Player {
 		queue = new Playlist();
 		queue.setName("Queue");
 		queue.setSource("queue");
+		
+		watchdog = new Watchdog(this);
+		watchdog.start();
 		
 	}
 	
