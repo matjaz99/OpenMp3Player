@@ -1,7 +1,7 @@
 package si.matjazcerkvenik.openmp3player.player;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
+import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 

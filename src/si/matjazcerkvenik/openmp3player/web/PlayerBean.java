@@ -9,7 +9,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
+import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 import si.matjazcerkvenik.openmp3player.player.Playlists;

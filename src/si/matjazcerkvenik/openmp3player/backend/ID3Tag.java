@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.io;
+package si.matjazcerkvenik.openmp3player.backend;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,6 @@ import org.farng.mp3.TagException;
 import org.farng.mp3.id3.AbstractID3v1;
 import org.farng.mp3.id3.AbstractID3v2;
 
-import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 
 public class ID3Tag {

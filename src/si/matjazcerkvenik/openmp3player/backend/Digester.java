@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.io;
+package si.matjazcerkvenik.openmp3player.backend;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import si.matjazcerkvenik.openmp3player.backend.OContext;
 
 public class Digester {
 	

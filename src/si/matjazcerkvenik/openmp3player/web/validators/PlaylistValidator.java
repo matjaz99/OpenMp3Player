@@ -8,7 +8,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
+import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 

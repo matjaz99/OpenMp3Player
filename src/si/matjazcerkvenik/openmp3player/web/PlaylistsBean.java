@@ -8,7 +8,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.io.PlaylistDAO;
+import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 

@@ -8,7 +8,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
-import si.matjazcerkvenik.openmp3player.io.TagsDAO;
+import si.matjazcerkvenik.openmp3player.backend.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.openmp3player.resources.Colors;

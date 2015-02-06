@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.io;
+package si.matjazcerkvenik.openmp3player.backend;
 
 import java.io.File;
 
@@ -7,7 +7,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
