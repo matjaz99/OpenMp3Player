@@ -45,7 +45,7 @@ public class PlaylistDAO {
 	
 	
 	/**
-	 * Read playlists.xml. If playlists.xml does not exist, create new one.
+	 * Get all playlists 
 	 * @return playlists
 	 */
 	public Playlists getPlaylists() {
@@ -58,7 +58,7 @@ public class PlaylistDAO {
 	}
 	
 	/**
-	 * Read from playlists.xml file
+	 * Read from playlists.xml file. If playlists.xml does not exist, create new one.
 	 */
 	private void loadPlaylists() {
 		try {
@@ -89,7 +89,7 @@ public class PlaylistDAO {
 	
 	
 	/**
-	 * Save to playlists.xml file
+	 * Save playlists to playlists.xml file
 	 */
 	private void savePlaylists() {
 		logger.info("PlaylistDAO:savePlaylists(): saving...");
@@ -119,16 +119,16 @@ public class PlaylistDAO {
 	
 	
 	/**
-	 * Get playlist containing mp3 files
-	 * @param name
+	 * Get playlist with name <code>pName</code> containing mp3 files
+	 * @param pName
 	 * @return playlist
 	 */
-	public Playlist getPlaylist(String name) {
+	public Playlist getPlaylist(String pName) {
 		
 		// search for playlist
 		Playlist playlist = null;
 		for (int i = 0; i < playlists.getPlist().size(); i++) {
-			if (playlists.getPlist().get(i).getName().equals(name)) {
+			if (playlists.getPlist().get(i).getName().equals(pName)) {
 				playlist = playlists.getPlist().get(i);
 			}
 		}
@@ -142,7 +142,7 @@ public class PlaylistDAO {
 			files = loadFromDirectory(playlist.getSource());
 		}
 		
-		logger.info("PlaylistFactory:getPlaylist(): loaded " + files.size() + " mp3s from playlist " + name);
+		logger.info("PlaylistDAO:getPlaylist(): loaded " + files.size() + " mp3s from playlist " + pName);
 		
 		// set indexes
 		for (int i = 0; i < files.size(); i++) {
@@ -169,11 +169,11 @@ public class PlaylistDAO {
 	
 	
 	/**
-	 * Remove playlist
+	 * Remove playlist p
 	 * @param p
 	 */
 	public void removePlaylist(Playlist p) {
-		
+		// TODO rename to delete
 		// delete xml file
 		for (Playlist plist : playlists.getPlist()) {
 			
@@ -205,7 +205,7 @@ public class PlaylistDAO {
 	
 	
 	/**
-	 * Read &lt;source&gt;.xml 
+	 * Read playlist xml file 
 	 * @param source
 	 * @return mp3Files
 	 */
@@ -230,9 +230,8 @@ public class PlaylistDAO {
 	}
 	
 	/**
-	 * save
-	 * @param m
-	 * @param source
+	 * Save playlist to xml file
+	 * @param p
 	 */
 	private void savePlaylist(Playlist p) {
 		logger.info("PlaylistDAO:savePlaylist(): saving...");
