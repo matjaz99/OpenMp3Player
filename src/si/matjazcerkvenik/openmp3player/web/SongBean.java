@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
@@ -24,7 +24,7 @@ import si.matjazcerkvenik.openmp3player.resources.Colors;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class SongBean {
 	
 	private SimpleLogger logger = null;
@@ -34,7 +34,7 @@ public class SongBean {
 	private String selectedTag = "- Select tag -";
 	private String selectedBackgroundColor = null;
 	
-	private HtmlDataTable tagDataTable = null;
+//	private HtmlDataTable tagDataTable = null;
 	
 	@ManagedProperty(value="#{playerBean}")
 	private PlayerBean playerBean;
@@ -152,14 +152,14 @@ public class SongBean {
 	}
 
 
-	public HtmlDataTable getTagDataTable() {
-		return tagDataTable;
-	}
-
-
-	public void setTagDataTable(HtmlDataTable tagDataTable) {
-		this.tagDataTable = tagDataTable;
-	}
+//	public HtmlDataTable getTagDataTable() {
+//		return tagDataTable;
+//	}
+//
+//
+//	public void setTagDataTable(HtmlDataTable tagDataTable) {
+//		this.tagDataTable = tagDataTable;
+//	}
 	
 	public List<Tag> getTagList() {
 		return getMp3File().getTags().getTagList();
@@ -168,8 +168,8 @@ public class SongBean {
 	/**
 	 * Remove tag from the song
 	 */
-	public void removeTag() {
-		Tag t = (Tag) tagDataTable.getRowData();
+	public void removeTag(Tag t) {
+//		Tag t = (Tag) tagDataTable.getRowData();
 		Mp3File m = getMp3File();
 		m.getTags().removeTag(t);
 		PlaylistDAO.getInstance().savePassivePlaylist();

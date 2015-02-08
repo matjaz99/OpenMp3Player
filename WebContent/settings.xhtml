@@ -66,7 +66,7 @@
 				
 				<h:panelGroup>
 					<h:outputLabel value="Available tags" styleClass="text-white"></h:outputLabel>
-					<h:dataTable value="#{addTagBean.allTags}" binding="#{addTagBean.availableTagsTable}" var="tag">
+					<h:dataTable value="#{addTagBean.allTags}" var="tag">
 				
 						<h:column>
 							<o:tag value="#{tag}"/>
@@ -74,7 +74,7 @@
 						
 						<h:column>
 							<h:form>
-								<h:commandLink action="#{addTagBean.deleteTag}" title="Delete tag">
+								<h:commandLink action="#{addTagBean.deleteTag(tag)}" title="Delete tag">
 									<o:icon img="remove-small"/>
 								</h:commandLink>
 							</h:form>

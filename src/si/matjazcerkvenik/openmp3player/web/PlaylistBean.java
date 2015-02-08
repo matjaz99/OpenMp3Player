@@ -1,31 +1,44 @@
 package si.matjazcerkvenik.openmp3player.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
+import si.matjazcerkvenik.openmp3player.player.Playlist;
+import si.matjazcerkvenik.openmp3player.player.PlaylistMng;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class PlaylistBean {
 	
 	private SimpleLogger logger = null;
 	
-	private HtmlDataTable dataTable = null;
+	private String selectedPlaylist = null;
+	
+//	private HtmlDataTable dataTable = null;
 	
 	@ManagedProperty(value="#{playerBean}")
 	private PlayerBean playerBean;
 	
+	private PlaylistMng playlistMng = null;
+	
+	private Playlist passivePlaylist = null;
+	
 	
 	public PlaylistBean() {
 		logger = OContext.getInstance().getLogger();
+		playlistMng = new PlaylistMng();
+		passivePlaylist = playlistMng.getAllPlaylists().get(0);
 	}
 	
 	
@@ -33,53 +46,124 @@ public class PlaylistBean {
 		this.playerBean = playerBean;
 	}
 	
+	
+	/* DROPDOWN MENU */
+	
+	/**
+	 * Get playlists for dropdown menu
+	 * @return list
+	 */
+	public List<SelectItem> getPlaylistsDropdown() {
+		
+		List<Playlist> pList = playlistMng.getAllPlaylists();
+		
+		List<SelectItem> list = new ArrayList<SelectItem>();
+		
+		for (int i = 0; i < pList.size(); i++) {
+			String s = pList.get(i).getName();
+			list.add(new SelectItem(s, s));
+		}
+		
+		return list;
+		
+	}
+	
+	/**
+	 * This method is fired when another playlist is selected from dropdown menu.
+	 * @param e
+	 */
+	public void playlistChanged(ValueChangeEvent e) {
+		selectedPlaylist = e.getNewValue().toString();
+		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
+		passivePlaylist = playlistMng.getPlaylist(selectedPlaylist);
+	}
+	
+	/**
+	 * Get selected playlist (dropdown menu)
+	 * @return selectedPlaylist
+	 */
+	public String getSelectedPlaylist() {
+		return selectedPlaylist;
+	}
+	
+	
+	/**
+	 * Set selected playlist (dropdown menu)
+	 * @param selectedPlaylist
+	 */
+	public void setSelectedPlaylist(String selectedPlaylist) {
+		this.selectedPlaylist = selectedPlaylist;
+	}
+	
+	
+	
+	
+	/* PLAYLIST */
+	
 	public List<Mp3File> getMp3List() {
-		return playerBean.getMp3Player().getPassivePlaylist().getMp3files().getFiles();
+		return passivePlaylist.getMp3files().getFiles();
 	}
 	
 	public int getPlaylistSize() {
-		return playerBean.getMp3Player().getPassivePlaylist().getMp3files().getFiles().size();
+		return passivePlaylist.getMp3files().getFiles().size();
 	}
 	
 	public boolean isQueue() {
-		return playerBean.getMp3Player().getPassivePlaylist().isQueue();
+		return passivePlaylist.isQueue();
 	}
 	
-	public String getActivePlaylistName() {
-		return playerBean.getMp3Player().getActivePlaylist().getName();
-	}
 	
-	public void play() {
-		Mp3File mp3 = (Mp3File) dataTable.getRowData();
-		logger.debug("PlaylistBean:play(): " + mp3.getIndex());
-		playerBean.getMp3Player().setPassiveToActive();
+	
+	
+	public Playlist getPassivePlaylist() {
+		return passivePlaylist;
+	}
+
+
+	public void setPassivePlaylist(Playlist passivePlaylist) {
+		this.passivePlaylist = passivePlaylist;
+	}
+
+
+//	@Deprecated
+//	public void play() {
+//		Mp3File mp3 = (Mp3File) dataTable.getRowData();
+//		logger.debug("PlaylistBean#" + this.hashCode() + ":play(): " + mp3.getIndex());
+//		playerBean.getMp3Player().setActivePlaylist(passivePlaylist);
+//		playerBean.getMp3Player().play(mp3.getIndex());
+//	}
+	
+	public void play(Mp3File mp3) {
+		logger.debug("PlaylistBean#" + this.hashCode() + ":play(): " + mp3.getIndex());
+		playerBean.getMp3Player().setActivePlaylist(passivePlaylist);
 		playerBean.getMp3Player().play(mp3.getIndex());
 	}
 	
-	public void putToQueue() {
-		Mp3File mp3 = (Mp3File) dataTable.getRowData();
+	public void putToQueue(Mp3File mp3) {
+//		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		logger.info("PlaylistBean:putToQueue(): " + mp3.getIndex());
 		playerBean.getMp3Player().putToQueue(mp3);
 	}
 
-	public HtmlDataTable getDataTable() {
-		return dataTable;
-	}
-
-	public void setDataTable(HtmlDataTable dataTable) {
-		this.dataTable = dataTable;
-	}
+//	public HtmlDataTable getDataTable() {
+//		return dataTable;
+//	}
+//
+//	public void setDataTable(HtmlDataTable dataTable) {
+//		this.dataTable = dataTable;
+//	}
 	
-	public String showSongDetails() {
-		Mp3File mp3 = (Mp3File) dataTable.getRowData();
+	public String showSongDetails(Mp3File mp3) {
+//		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", mp3);
 		return "song";
 	}
 	
-	public void removeMp3FromTheList() {
-		Mp3File mp3 = (Mp3File) dataTable.getRowData();
+	public void removeMp3FromTheList(Mp3File mp3) {
+//		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		logger.info("PlaylistBean:removeMp3FromTheList(): " + mp3.getIndex());
-		playerBean.getMp3Player().removeMp3FromPassiveList(mp3);
+		passivePlaylist = playlistMng.removeMp3FromPlaylist(mp3, passivePlaylist);
+		
 	}
 	
 	/**

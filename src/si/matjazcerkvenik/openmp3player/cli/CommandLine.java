@@ -76,7 +76,8 @@ public class CommandLine extends Thread {
 						
 						String[] args = line.split(" ");
 						if (args.length == 0) {
-							out.println("Playing: " + mp3Player.play(0));
+							mp3Player.play(0);
+							out.println("Playing: " + mp3Player.getCurrentlyPlaying());
 						} else if (args.length > 1) {
 							
 							for (int i = 1; i < args.length; i++) {
@@ -88,14 +89,16 @@ public class CommandLine extends Thread {
 									} catch (NumberFormatException e) {
 										out.println("Object not integer: " + args[i+1].trim());
 									}
-									out.println("Playing: " + mp3Player.play(indx));
+									mp3Player.play(indx);
+									out.println("Playing: " + mp3Player.getCurrentlyPlaying());
 									
 								}
 								
 							}
 							
 						} else {
-							out.println("Playing: " + mp3Player.play(0));
+							mp3Player.play(0);
+							out.println("Playing: " + mp3Player.getCurrentlyPlaying());
 						}
 						
 						
@@ -107,11 +110,13 @@ public class CommandLine extends Thread {
 
 					} else if (line.equalsIgnoreCase("next")) {
 						
-						out.println("Playing: " + mp3Player.next());
+						mp3Player.next();
+						out.println("Playing: " + mp3Player.getCurrentlyPlaying());
 
 					} else if (line.equalsIgnoreCase("prev")) {
 						
-						out.println("Playing: " + mp3Player.prev());
+						mp3Player.prev();
+						out.println("Playing: " + mp3Player.getCurrentlyPlaying());
 
 					} else if (line.startsWith("repeat")) {
 						

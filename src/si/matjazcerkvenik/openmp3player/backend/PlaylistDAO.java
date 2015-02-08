@@ -80,7 +80,7 @@ public class PlaylistDAO {
 			if (playlists.getPlist() == null) {
 				playlists.setPlist(new ArrayList<Playlist>());
 			}
-			logger.debug("PlaylistDAO:loadPlaylists(): " + playlists.toString());
+			logger.trace("PlaylistDAO:loadPlaylists(): " + playlists.toString());
 
 		} catch (JAXBException e) {
 			logger.error("JAXBException", e);
@@ -233,7 +233,7 @@ public class PlaylistDAO {
 	 * Save playlist to xml file
 	 * @param p
 	 */
-	private void savePlaylist(Playlist p) {
+	public void savePlaylist(Playlist p) {
 		logger.info("PlaylistDAO:savePlaylist(): saving...");
 		try {
 

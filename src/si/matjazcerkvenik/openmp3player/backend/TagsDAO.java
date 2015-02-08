@@ -102,7 +102,7 @@ public class TagsDAO {
 			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			tags = (Tags) jaxbUnmarshaller.unmarshal(file);
-			logger.debug("TagsDAO:loadTags(): " + tags.toString());
+			logger.trace("TagsDAO:loadTags(): " + tags.toString());
 
 		} catch (JAXBException e) {
 			logger.error("JAXBException", e);

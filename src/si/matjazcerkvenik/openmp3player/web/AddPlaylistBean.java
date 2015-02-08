@@ -1,7 +1,7 @@
 package si.matjazcerkvenik.openmp3player.web;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
@@ -10,7 +10,7 @@ import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class AddPlaylistBean {
 	
 	private SimpleLogger logger = OContext.getInstance().getLogger();

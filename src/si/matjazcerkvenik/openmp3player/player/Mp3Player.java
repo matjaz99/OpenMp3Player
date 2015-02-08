@@ -15,7 +15,6 @@ public class Mp3Player {
 	
 	
 	private Playlist activePlaylist = null;
-	private Playlist passivePlaylist = null;
 	private Playlist queue = null;
 	
 	private Watchdog watchdog = null;
@@ -32,7 +31,6 @@ public class Mp3Player {
 		} else {
 			activePlaylist = new Playlist();
 		}
-		passivePlaylist = activePlaylist;
 		
 		queue = new Playlist();
 		queue.setName("Queue");
@@ -40,6 +38,8 @@ public class Mp3Player {
 		
 		watchdog = new Watchdog(this);
 		watchdog.start();
+		
+		logger.info("Mp3Player: #" + this.hashCode());
 		
 	}
 	
@@ -62,14 +62,14 @@ public class Mp3Player {
 	 * @param i
 	 * @return title of the song
 	 */
-	public String play(int i) {
+	public void play(int i) {
 		
 		if (currentlyPlaying != null) {
 			stop();
 		}
 		
 		if (activePlaylist.getMp3files().getFiles().isEmpty()) {
-			return "null";
+			return;
 		}
 		
 		currentlyPlaying = activePlaylist.getMp3files().getFiles().get(i);
@@ -77,18 +77,16 @@ public class Mp3Player {
 				+ activePlaylist.getName() + ", MP3: "
 				+ currentlyPlaying.toString());
 		player.play(currentlyPlaying.getPath());
-		
-		return currentlyPlaying.getTitle();
-		
+				
 	}
 	
 	/**
 	 * Stop playing song
 	 * @return 'null'
 	 */
-	public String stop() {
+	public void stop() {
 		if (currentlyPlaying == null) {
-			return "null";
+			return;
 		}
 		
 		logger.info("Mp3Player:stop(): playlist: " + activePlaylist.getName() 
@@ -96,16 +94,15 @@ public class Mp3Player {
 		player.stop();
 		currentlyPlaying = null;
 		
-		return "null";
 	}
 	
 	/**
 	 * Play next song
 	 * @return title
 	 */
-	public String next() {
+	public void next() {
 		if (currentlyPlaying == null) {
-			return "null";
+			return;
 		}
 		
 		if (currentlyPlaying.getIndex() 
@@ -114,16 +111,15 @@ public class Mp3Player {
 		} else {
 			play(currentlyPlaying.getIndex() + 1);
 		}
-		return currentlyPlaying.getTitle();
 	}
 	
 	/**
 	 * Play previous song
 	 * @return title
 	 */
-	public String prev() {
+	public void prev() {
 		if (currentlyPlaying == null) {
-			return "null";
+			return;
 		}
 		
 		if (currentlyPlaying.getIndex() == 0) {
@@ -131,7 +127,6 @@ public class Mp3Player {
 		} else {
 			play(currentlyPlaying.getIndex() - 1);
 		}
-		return currentlyPlaying.getTitle();
 	}
 	
 	
@@ -159,39 +154,11 @@ public class Mp3Player {
 		return activePlaylist;
 	}
 	
-	public void setActivePlaylist(String name) {
-		logger.debug("Mp3Player:setActivePlaylist(): " + name);
-		if (name.equals("Queue")) {
-			activePlaylist = queue;
-		} else {
-			activePlaylist = PlaylistDAO.getInstance().getPlaylist(name);
-		}
-		
+	public void setActivePlaylist(Playlist p) {
+		logger.debug("Mp3Player:setActivePlaylist(): " + p.getName());
+		activePlaylist = p;
 	}
 	
-	/**
-	 * Return passive playlist
-	 * @return size
-	 */
-	public Playlist getPassivePlaylist() {
-		logger.trace("Mp3Player:getPassivePlaylist(): " + passivePlaylist.getName());
-		return passivePlaylist;
-	}
-	
-	public void setPassivePlaylist(String name) {
-		logger.debug("Mp3Player:setPassivePlaylist(): " + name);
-		if (name.equals("Queue")) {
-			passivePlaylist = queue;
-		} else {
-			passivePlaylist = PlaylistDAO.getInstance().getPlaylist(name);
-		}
-		
-	}
-	
-	public void setPassiveToActive() {
-		activePlaylist = passivePlaylist;
-		logger.debug("Mp3Player:setPassiveToActive(): active: " + activePlaylist.getName());
-	}
 	
 
 	public boolean isRepeatOn() {
@@ -200,6 +167,7 @@ public class Mp3Player {
 
 	public void setRepeatOn(boolean repeatOn) {
 		this.repeatOn = repeatOn;
+		logger.info("Mp3Player:setRepeatOn(): repeat is now: " + this.repeatOn);
 	}
 	
 	public void putToQueue(Mp3File mp3) {
@@ -249,27 +217,15 @@ public class Mp3Player {
 	}
 	
 	
+//	
+//	/**
+//	 * Get i-th mp3file from the passive playlist
+//	 * @param i
+//	 * @return mp3File
+//	 */
+//	public Mp3File getMp3(int i) {
+//		return passivePlaylist.getMp3files().getFiles().get(i);
+//	}
 	
-	/**
-	 * Get i-th mp3file from the passive playlist
-	 * @param i
-	 * @return mp3File
-	 */
-	public Mp3File getMp3(int i) {
-		return passivePlaylist.getMp3files().getFiles().get(i);
-	}
-	
-	public void removeMp3FromPassiveList(Mp3File m) {
-		passivePlaylist.getMp3files().getFiles().remove(m);
-		// set new indexes
-		for (int i = 0; i < passivePlaylist.getMp3files().getFiles().size(); i++) {
-			passivePlaylist.getMp3files().getFiles().get(i).setIndex(i);
-		}
-		// save playlist (if not queue)
-		if (!passivePlaylist.getName().equals("Queue")) {
-			PlaylistDAO.getInstance().savePassivePlaylist();
-		}
-		
-	}
 	
 }

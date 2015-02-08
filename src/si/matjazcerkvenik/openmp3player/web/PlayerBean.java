@@ -1,20 +1,12 @@
 package si.matjazcerkvenik.openmp3player.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.model.SelectItem;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
-import si.matjazcerkvenik.openmp3player.player.Playlists;
 import si.matjazcerkvenik.openmp3player.player.SoundControl;
-import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 /**
  * This class handles all user interactions with player, including play/stop/next/prev buttons,
@@ -27,93 +19,43 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
 @ApplicationScoped
 public class PlayerBean {
 	
-	private SimpleLogger logger = null;
-	
-	private String selectedPlaylist = null;
 	
 	private Mp3Player mp3Player = null;
 	
 	
-	
 	public PlayerBean() {
-		logger = OContext.getInstance().getLogger();
 		mp3Player = new Mp3Player();
 		OContext.getInstance().startCli(mp3Player);
 	}
 	
 	
 	
+	/**
+	 * Access mp3Player from other beans
+	 * @return mp3Player
+	 */
 	public Mp3Player getMp3Player() {
 		return mp3Player;
 	}
-
-
-
-	/**
-	 * Get playlists for dropdown menu
-	 * @return list
-	 */
-	public List<SelectItem> getPlaylists() {
-		
-		Playlists playlists = PlaylistDAO.getInstance().getPlaylists();
-		
-		List<SelectItem> list = new ArrayList<SelectItem>();
-		
-		if (playlists.getPlist() == null) {
-			return list;
-		}
-		
-		for (int i = 0; i < playlists.getPlist().size(); i++) {
-			String s = playlists.getPlist().get(i).getName();
-			list.add(new SelectItem(s, s));
-		}
-		
-		return list;
-		
-	}
 	
 	
-	
-	/**
-	 * This method is fired when another playlist is selected from dropdown menu.
-	 * @param e
-	 */
-	public void playlistChanged(ValueChangeEvent e) {
-		selectedPlaylist = e.getNewValue().toString();
-		logger.info("PlayerBean:playlistChanged(): event - selected playlist: " + selectedPlaylist);
-		mp3Player.setPassivePlaylist(selectedPlaylist);
-	}
 	
 	public String gotoQueue() {
-		mp3Player.setPassivePlaylist("Queue");
+//		mp3Player.setPassivePlaylist("Queue");
 		return "queue";
 	}
 	
-	
+
 	
 	/**
-	 * Get current playlist source.
-	 * @return playlist
+	 * Return name of active playlist
+	 * @return playlist name
 	 */
-	public String getSelectedPlaylist() {
-		if (selectedPlaylist == null) {
-			selectedPlaylist = mp3Player.getPassivePlaylist().getName();
-		}
-		return selectedPlaylist;
+	public String getActivePlaylistName() {
+		return mp3Player.getActivePlaylist().getName();
 	}
 	
 	
-	
-	public void setSelectedPlaylist(String selectedPlaylist) {
-		this.selectedPlaylist = selectedPlaylist;
-	}
-	
-	
-	
-
-	
-
-
 
 	/**
 	 * Return title of currently playing song. If no song is playing "null" is returned.
@@ -150,25 +92,13 @@ public class PlayerBean {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	/**
 	 * Start playing (first song in the playlist)
 	 * @return title of the song
 	 */
-	public String play() {
-		mp3Player.setPassiveToActive();
-		return mp3Player.play(0);
+	public void play() {
+		mp3Player.play(0);
 	}
 	
 	
@@ -177,17 +107,17 @@ public class PlayerBean {
 	 * Stop playing
 	 * @return "null"
 	 */
-	public String stop() {
+	public void stop() {
 		mp3Player.stop();
-		return "null";
 	}
 	
 	
-	public String togglePlayStop() {
+	// TODO replace play/stop?
+	public void togglePlayStop() {
 		if (isPlaying()) {
-			return stop();
+			stop();
 		} else {
-			return play();
+			play();
 		}
 	}
 	
@@ -197,8 +127,8 @@ public class PlayerBean {
 	 * Play next
 	 * @return title
 	 */
-	public String next() {
-		return mp3Player.next();
+	public void next() {
+		mp3Player.next();
 	}
 	
 	
@@ -207,8 +137,8 @@ public class PlayerBean {
 	 * Play previous
 	 * @return title
 	 */
-	public String prev() {
-		return mp3Player.prev();
+	public void prev() {
+		mp3Player.prev();
 	}
 	
 	
@@ -233,9 +163,10 @@ public class PlayerBean {
 		return mp3Player.isRepeatOn();
 	}
 	
+	
+	
 	public void toggleRepeat() {
 		mp3Player.setRepeatOn(!mp3Player.isRepeatOn());
-		logger.info("PlayerBean:toggleRepeat(): repeat is now: " + mp3Player.isRepeatOn());
 	}
 	
 	

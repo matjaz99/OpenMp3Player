@@ -1,11 +1,11 @@
 package si.matjazcerkvenik.openmp3player.web;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 
 @ManagedBean
-@RequestScoped
+@ApplicationScoped
 public class QueueBean {
 	
 	private String newQueueName = null;
