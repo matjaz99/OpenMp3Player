@@ -33,11 +33,10 @@ public class SongBean {
 	
 	private String selectedTag = "- Select tag -";
 	private String selectedBackgroundColor = null;
-	
-//	private HtmlDataTable tagDataTable = null;
-	
+		
 	@ManagedProperty(value="#{playerBean}")
 	private PlayerBean playerBean;
+	
 	
 	
 	public SongBean() {
@@ -50,7 +49,8 @@ public class SongBean {
 		this.playerBean = playerBean;
 	}
 	
-
+	
+	
 	/**
 	 * Get selected mp3file from the session
 	 * @return mp3File
@@ -73,10 +73,14 @@ public class SongBean {
 		return mp3File;
 		
 	}
+	
+	
 
 	public void setMp3File(Mp3File mp3File) {
 		this.mp3File = mp3File;
 	}
+	
+	
 	
 	/**
 	 * Get tags for dropdown menu
@@ -102,6 +106,8 @@ public class SongBean {
 		
 	}
 	
+	
+	
 	/**
 	 * Event: new tag selected in dropdown menu
 	 * @param e
@@ -123,18 +129,21 @@ public class SongBean {
 	}
 	
 	
+	
 	public String getSelectedTag() {
 		if (selectedTag == null) {
 			selectedTag = "- Select tag -";
 		}
 		return selectedTag;
 	}
-
+	
+	
 
 	public void setSelectedTag(String selectedTag) {
 		this.selectedTag = selectedTag;
 	}
-
+	
+	
 
 	public String getTagsAsString() {
 		mp3File = getMp3File();
@@ -150,30 +159,24 @@ public class SongBean {
 		}
 		return s;
 	}
-
-
-//	public HtmlDataTable getTagDataTable() {
-//		return tagDataTable;
-//	}
-//
-//
-//	public void setTagDataTable(HtmlDataTable tagDataTable) {
-//		this.tagDataTable = tagDataTable;
-//	}
+	
+	
 	
 	public List<Tag> getTagList() {
 		return getMp3File().getTags().getTagList();
 	}
 	
+	
+	
 	/**
 	 * Remove tag from the song
 	 */
 	public void removeTag(Tag t) {
-//		Tag t = (Tag) tagDataTable.getRowData();
 		Mp3File m = getMp3File();
 		m.getTags().removeTag(t);
 		PlaylistDAO.getInstance().savePassivePlaylist();
 	}
+	
 
 
 	public String getSelectedBackgroundColor() {
@@ -182,11 +185,14 @@ public class SongBean {
 		}
 		return selectedBackgroundColor;
 	}
-
+	
+	
 
 	public void setSelectedBackgroundColor(String selectedBackgroundColor) {
 		this.selectedBackgroundColor = selectedBackgroundColor;
 	}
+	
+	
 	
 	/**
 	 * Get background colors for dropdown menu
@@ -207,6 +213,8 @@ public class SongBean {
 		
 	}
 	
+	
+	
 	/**
 	 * Event: new tag selected in dropdown menu
 	 * @param e
@@ -221,8 +229,10 @@ public class SongBean {
 		mp3File = getMp3File();
 		mp3File.setBackgroundColor(selectedBackgroundColor);
 		PlaylistDAO.getInstance().savePassivePlaylist();
-				
+		
 	}
+	
+	
 	
 	public void removeBackgroundColor() {
 		

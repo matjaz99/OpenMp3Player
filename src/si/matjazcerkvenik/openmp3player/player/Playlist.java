@@ -18,6 +18,10 @@ public class Playlist {
 		return source;
 	}
 
+	/**
+	 * Set name of xml file
+	 * @param source
+	 */
 	@XmlElement
 	public void setSource(String source) {
 		this.source = source;
@@ -31,15 +35,28 @@ public class Playlist {
 		return name;
 	}
 
+	/**
+	 * Set name of playlist. Xml file with the same name is created.
+	 * @param name
+	 */
 	@XmlElement
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * Get origin of playlist. Used for directory type of playlist, which 
+	 * can be reloaded.
+	 * @return
+	 */
 	public String getOrigin() {
 		return origin;
 	}
 
+	/**
+	 * Original source of playlist - directory.
+	 * @param origin
+	 */
 	@XmlElement
 	public void setOrigin(String origin) {
 		this.origin = origin;

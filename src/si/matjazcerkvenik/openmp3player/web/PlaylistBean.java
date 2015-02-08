@@ -6,7 +6,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -24,9 +23,7 @@ public class PlaylistBean {
 	private SimpleLogger logger = null;
 	
 	private String selectedPlaylist = null;
-	
-//	private HtmlDataTable dataTable = null;
-	
+		
 	@ManagedProperty(value="#{playerBean}")
 	private PlayerBean playerBean;
 	
@@ -123,15 +120,8 @@ public class PlaylistBean {
 	public void setPassivePlaylist(Playlist passivePlaylist) {
 		this.passivePlaylist = passivePlaylist;
 	}
-
-
-//	@Deprecated
-//	public void play() {
-//		Mp3File mp3 = (Mp3File) dataTable.getRowData();
-//		logger.debug("PlaylistBean#" + this.hashCode() + ":play(): " + mp3.getIndex());
-//		playerBean.getMp3Player().setActivePlaylist(passivePlaylist);
-//		playerBean.getMp3Player().play(mp3.getIndex());
-//	}
+	
+	
 	
 	public void play(Mp3File mp3) {
 		logger.debug("PlaylistBean#" + this.hashCode() + ":play(): " + mp3.getIndex());
@@ -139,28 +129,23 @@ public class PlaylistBean {
 		playerBean.getMp3Player().play(mp3.getIndex());
 	}
 	
+	
+	
 	public void putToQueue(Mp3File mp3) {
-//		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		logger.info("PlaylistBean:putToQueue(): " + mp3.getIndex());
 		playerBean.getMp3Player().putToQueue(mp3);
 	}
-
-//	public HtmlDataTable getDataTable() {
-//		return dataTable;
-//	}
-//
-//	public void setDataTable(HtmlDataTable dataTable) {
-//		this.dataTable = dataTable;
-//	}
+	
+	
 	
 	public String showSongDetails(Mp3File mp3) {
-//		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", mp3);
 		return "song";
 	}
 	
+	
+	
 	public void removeMp3FromTheList(Mp3File mp3) {
-//		Mp3File mp3 = (Mp3File) dataTable.getRowData();
 		logger.info("PlaylistBean:removeMp3FromTheList(): " + mp3.getIndex());
 		passivePlaylist = playlistMng.removeMp3FromPlaylist(mp3, passivePlaylist);
 		
