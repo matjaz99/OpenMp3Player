@@ -113,6 +113,7 @@ public class PlaylistBean {
 	
 	
 	public Playlist getPassivePlaylist() {
+		logger.debug("PlaylistBean#" + this.hashCode() + ":getPassivePlaylist(): " + passivePlaylist.getName());
 		return passivePlaylist;
 	}
 

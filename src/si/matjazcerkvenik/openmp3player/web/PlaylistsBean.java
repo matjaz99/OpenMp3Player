@@ -16,9 +16,6 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
 public class PlaylistsBean {
 	
 	private SimpleLogger logger = null;
-		
-	@ManagedProperty(value="#{playerBean}")
-	private PlayerBean playerBean;
 	
 	@ManagedProperty(value="#{playlistBean}")
 	private PlaylistBean playlistBean;
@@ -31,18 +28,12 @@ public class PlaylistsBean {
 	
 	
 	
-	public void setPlayerBean(PlayerBean playerBean) {
-		this.playerBean = playerBean;
-	}
-	
-	
-	
 	public void setPlaylistBean(PlaylistBean playlistBean) {
 		this.playlistBean = playlistBean;
 	}
 	
 	
-
+	
 	public List<Playlist> getPlaylistsList() {
 		return PlaylistDAO.getInstance().getPlaylists().getPlist();
 	}
@@ -55,7 +46,8 @@ public class PlaylistsBean {
 	 */
 	public String gotoPlaylist(Playlist p) {
 		logger.info("PlaylistsBean:gotoPlaylist(): " + p.getName());
-		playlistBean.setPassivePlaylist(p);
+		Playlist pList = PlaylistDAO.getInstance().getPlaylist(p.getName());
+		playlistBean.setPassivePlaylist(pList);
 		return "home";
 	}
 	
