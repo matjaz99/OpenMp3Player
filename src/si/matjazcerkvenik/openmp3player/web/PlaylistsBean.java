@@ -48,6 +48,7 @@ public class PlaylistsBean {
 		logger.info("PlaylistsBean:gotoPlaylist(): " + p.getName());
 		Playlist pList = PlaylistDAO.getInstance().getPlaylist(p.getName());
 		playlistBean.setPassivePlaylist(pList);
+		playlistBean.setSelectedPlaylist(pList.getName());
 		return "home";
 	}
 	

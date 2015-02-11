@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-import javax.faces.component.html.HtmlDataTable;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -18,18 +18,20 @@ import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.backend.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
+import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class SongBean {
 	
 	private SimpleLogger logger = null;
 	
 	private Mp3File mp3File = null;
+	private Playlist playlist = null;
 	
 	private String selectedTag = "- Select tag -";
 	private String selectedBackgroundColor = null;
@@ -39,10 +41,19 @@ public class SongBean {
 	
 	
 	
-	public SongBean() {
+	@PostConstruct
+	public void init() {
 		logger = OContext.getInstance().getLogger();
+		Map<String, Object> requestParameterMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		mp3File = (Mp3File) requestParameterMap.get("mp3");
+		playlist = (Playlist) requestParameterMap.get("playlist");
+		String hash = Digester.getSha1(mp3File.getPath());
+		if (!mp3File.getHash().equals(hash)) {
+			mp3File.setHash(hash);
+			mp3File = ID3Tag.getMetadata(mp3File);
+			PlaylistDAO.getInstance().savePlaylist(playlist);
+		}
 	}
-	
 	
 
 	public void setPlayerBean(PlayerBean playerBean) {
@@ -56,22 +67,7 @@ public class SongBean {
 	 * @return mp3File
 	 */
 	public Mp3File getMp3File() {
-		
-		Map<String, Object> requestParameterMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		Mp3File m = (Mp3File) requestParameterMap.get("id");
-		
-		int id = m.getIndex();
-		logger.info("SongBean:getMp3File: id=" + id);
-		
-		mp3File = playerBean.getMp3Player().getMp3(id);
-		String hash = Digester.getSha1(mp3File.getPath());
-		if (!mp3File.getHash().equals(hash)) {
-			mp3File.setHash(hash);
-			mp3File = ID3Tag.getMetadata(mp3File);
-			PlaylistDAO.getInstance().savePassivePlaylist();
-		}
 		return mp3File;
-		
 	}
 	
 	
@@ -120,9 +116,8 @@ public class SongBean {
 			return;
 		}
 		Tag t = TagsDAO.getInstance().getTag(selectedTag);
-		mp3File = getMp3File();
 		mp3File.addTag(t);
-		PlaylistDAO.getInstance().savePassivePlaylist();
+		PlaylistDAO.getInstance().savePlaylist(playlist);
 		
 		selectedTag = "- Select tag -";
 				
@@ -144,26 +139,9 @@ public class SongBean {
 	}
 	
 	
-
-	public String getTagsAsString() {
-		mp3File = getMp3File();
-		String s = "";
-		if (mp3File.getTags() == null) {
-			return s;
-		}
-		for (int i = 0; i < mp3File.getTags().getTagList().size(); i++) {
-			s += mp3File.getTags().getTagList().get(i);
-			if (i < mp3File.getTags().getTagList().size() - 1) {
-				s += ", ";
-			}
-		}
-		return s;
-	}
-	
-	
 	
 	public List<Tag> getTagList() {
-		return getMp3File().getTags().getTagList();
+		return mp3File.getTags().getTagList();
 	}
 	
 	
@@ -172,9 +150,8 @@ public class SongBean {
 	 * Remove tag from the song
 	 */
 	public void removeTag(Tag t) {
-		Mp3File m = getMp3File();
-		m.getTags().removeTag(t);
-		PlaylistDAO.getInstance().savePassivePlaylist();
+		mp3File.getTags().removeTag(t);
+		PlaylistDAO.getInstance().savePlaylist(playlist);
 	}
 	
 
@@ -226,20 +203,16 @@ public class SongBean {
 		if (selectedBackgroundColor.equals("- Select color -")) {
 			return;
 		}
-		mp3File = getMp3File();
 		mp3File.setBackgroundColor(selectedBackgroundColor);
-		PlaylistDAO.getInstance().savePassivePlaylist();
+		PlaylistDAO.getInstance().savePlaylist(playlist);
 		
 	}
 	
 	
 	
 	public void removeBackgroundColor() {
-		
-		Mp3File m = getMp3File();
-		m.setBackgroundColor(null);
-		PlaylistDAO.getInstance().savePassivePlaylist();
-		
+		mp3File.setBackgroundColor(null);
+		PlaylistDAO.getInstance().savePlaylist(playlist);
 	}
 	
 }

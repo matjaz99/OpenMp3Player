@@ -25,9 +25,11 @@ public class PlaylistDAO {
 	private Playlists playlists = null;
 	
 	
+	
 	private PlaylistDAO() {
 		logger = OContext.getInstance().getLogger();
 	}
+	
 	
 	
 	/**
@@ -44,6 +46,7 @@ public class PlaylistDAO {
 	}
 	
 	
+	
 	/**
 	 * Get all playlists 
 	 * @return playlists
@@ -56,6 +59,8 @@ public class PlaylistDAO {
 		
 		return playlists;
 	}
+	
+	
 	
 	/**
 	 * Read from playlists.xml file. If playlists.xml does not exist, create new one.
@@ -86,6 +91,7 @@ public class PlaylistDAO {
 			logger.error("JAXBException", e);
 		}
 	}
+	
 	
 	
 	/**
@@ -157,6 +163,7 @@ public class PlaylistDAO {
 	}
 	
 	
+	
 	/**
 	 * Add new playlist
 	 * @param p
@@ -166,6 +173,7 @@ public class PlaylistDAO {
 		savePlaylists();
 		savePlaylist(p);
 	}
+	
 	
 	
 	/**
@@ -229,6 +237,8 @@ public class PlaylistDAO {
 		return mp3Files;
 	}
 	
+	
+	
 	/**
 	 * Save playlist to xml file
 	 * @param p
@@ -253,14 +263,6 @@ public class PlaylistDAO {
 		}
 
 	}
-	
-	
-	public void savePassivePlaylist() {
-		// FIXME provide playlist as arg (separate Mp3Player from the DAO)
-//		Playlist p = Mp3Player.getInstance().getPassivePlaylist();
-//		savePlaylist(p);
-	}
-	
 	
 	
 	

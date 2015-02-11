@@ -140,7 +140,8 @@ public class PlaylistBean {
 	
 	
 	public String showSongDetails(Mp3File mp3) {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", mp3);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("mp3", mp3);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("playlist", passivePlaylist);
 		return "song";
 	}
 	

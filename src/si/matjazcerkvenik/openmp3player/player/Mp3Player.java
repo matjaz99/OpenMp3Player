@@ -217,15 +217,5 @@ public class Mp3Player {
 	}
 	
 	
-//	
-//	/**
-//	 * Get i-th mp3file from the passive playlist
-//	 * @param i
-//	 * @return mp3File
-//	 */
-//	public Mp3File getMp3(int i) {
-//		return passivePlaylist.getMp3files().getFiles().get(i);
-//	}
-	
 	
 }
