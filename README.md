@@ -66,6 +66,7 @@ february 2015
 - Watchdog moved to Mp3Player
 - passive playlist separated from Mp3Player and moved to session scoped PlaylistBean.PlaylistMng
 - removed binding to datatables (not needed in jsf 2)
+- added start.jar, removed .sh and .bat script
 
 
 3.0.0-alpha.02
