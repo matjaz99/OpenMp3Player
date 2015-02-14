@@ -1,14 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_run_jar" name="Create Runnable Jar for Project OMP3P-Starter">
-    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
-    <!--ANT 1.7 is required                                        -->
-    <target name="create_run_jar">
-        <jar destfile="start.jar" filesetmanifest="mergewithoutmain">
-            <manifest>
-                <attribute name="Main-Class" value="si.matjazcerkvenik.openmp3player.starter.Start"/>
-                <attribute name="Class-Path" value="."/>
-            </manifest>
-            <fileset dir="/Users/matjaz/Documents/git/OMP3P-Starter/bin"/>
-        </jar>
-    </target>
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="start" basedir="." default="jar">
+
+	<property name="src.dir" value="src-starter" />
+	<property name="build.dir" value="build-starter" />
+	<property name="dist.dir" value="." />
+	<property name="version" value="1.0" />
+
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" />
+	</target>
+
+	<target name="jar" depends="compile">
+		<tstamp>
+			<format property="TODAY" pattern="dd.MM.yyyy hh:mm" />
+		</tstamp>
+		<jar destfile="${dist.dir}/${ant.project.name}.jar" basedir="${build.dir}">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0" />
+				<attribute name="Creation-Date" value="${TODAY}" />
+				<attribute name="Created-By" value="Matjaz Cerkvenik" />
+				<attribute name="Main-Class" value="si.matjazcerkvenik.openmp3player.starter.Start" />
+				<attribute name="Class-Path" value="." />
+				<attribute name="Content" value="OpenMp3Player starter" />
+				<attribute name="Project-Version" value="${version}" />
+				<attribute name="Compiled-By" value="${ant.java.version}" />
+			</manifest>
+		</jar>
+	</target>
+
 </project>

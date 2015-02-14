@@ -4,7 +4,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -31,6 +33,7 @@ public class Start extends JFrame {
 	public Start() {
 		
 		super("Starter");
+		lblTitle.setText("OpenMp3Player v" + readVersion());
 		pnlControls.setLayout(new GridLayout(2, 1));
 		pnlControls.add(lblTitle);
 		if (runningFileExist()) btnStartStop.setText("Stop server");
@@ -150,6 +153,31 @@ public class Start extends JFrame {
 		}
 
 		return "X";
+	}
+	
+	
+	
+	public String readVersion() {
+
+		String ver = "0.0";
+		
+		try {
+
+			FileInputStream fis = new FileInputStream("config/version.txt");
+
+			DataInputStream dis = new DataInputStream(fis);
+			BufferedReader br = new BufferedReader(new InputStreamReader(dis));
+
+			ver = br.readLine();
+
+			dis.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ver;
+
 	}
 	
 	
