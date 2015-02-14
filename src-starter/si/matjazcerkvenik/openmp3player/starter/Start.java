@@ -21,6 +21,7 @@ public class Start extends JFrame {
 	private static final long serialVersionUID = -94309834027528490L;
 
 	private JLabel lblTitle = new JLabel("OpenMp3Player");
+	private JLabel lblStatus = new JLabel("Status: Stopped");
 	private JButton btnStartStop = new JButton("Start server");
 
 	private JPanel pnlControls = new JPanel();
@@ -33,10 +34,14 @@ public class Start extends JFrame {
 	public Start() {
 		
 		super("Starter");
+		pnlControls.setLayout(new GridLayout(3, 1));
 		lblTitle.setText("OpenMp3Player v" + readVersion());
-		pnlControls.setLayout(new GridLayout(2, 1));
 		pnlControls.add(lblTitle);
-		if (runningFileExist()) btnStartStop.setText("Stop server");
+		if (runningFileExist()) {
+			lblStatus.setText("Status: Running");
+			btnStartStop.setText("Stop server");
+		}
+		pnlControls.add(lblStatus);
 		pnlControls.add(btnStartStop);
 
 		add(pnlControls);
@@ -70,10 +75,12 @@ public class Start extends JFrame {
 		if (runningFileExist()) {
 			runConsoleCommand(stopServerCommand);
 			removeRunningFile();
+			lblStatus.setText("Status: Stopped");
 			btnStartStop.setText("Start server");
 		} else {
 			runConsoleCommand(startServerCommand);
 			createRunningFile();
+			lblStatus.setText("Status: Running");
 			btnStartStop.setText("Stop server");
 		}
 	}
