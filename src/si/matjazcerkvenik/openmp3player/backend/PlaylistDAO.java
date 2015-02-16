@@ -24,10 +24,20 @@ public class PlaylistDAO {
 	
 	private Playlists playlists = null;
 	
+	private Playlist queue = null;
+	
 	
 	
 	private PlaylistDAO() {
+		
 		logger = OContext.getInstance().getLogger();
+		
+		if (queue == null) {
+			queue = new Playlist();
+			queue.setName("Queue");
+			queue.setSource("queue");
+		}
+		
 	}
 	
 	
@@ -55,6 +65,7 @@ public class PlaylistDAO {
 		
 		if (playlists == null) {
 			loadPlaylists();
+			playlists.add(queue);
 		}
 		
 		return playlists;
@@ -131,6 +142,10 @@ public class PlaylistDAO {
 	 */
 	public Playlist getPlaylist(String pName) {
 		
+		if (pName.equals("Queue")) {
+			return queue;
+		}
+		
 		// search for playlist
 		Playlist playlist = null;
 		for (int i = 0; i < playlists.getPlist().size(); i++) {
@@ -165,7 +180,7 @@ public class PlaylistDAO {
 	
 	
 	/**
-	 * Add new playlist
+	 * Add new playlist. Save playlists xml and playlist xml file.
 	 * @param p
 	 */
 	public void addPlaylist(Playlist p) {
@@ -197,6 +212,14 @@ public class PlaylistDAO {
 		
 		playlists.getPlist().remove(p);
 		savePlaylists();
+		
+	}
+	
+	
+	public void addMp3ToPlaylist(Mp3File m, Playlist p) {
+		
+		m.setIndex(p.getMp3files().getFiles().size());
+		p.addMp3File(m);
 		
 	}
 	
@@ -240,10 +263,15 @@ public class PlaylistDAO {
 	
 	
 	/**
-	 * Save playlist to xml file
+	 * Save playlist to xml file. Queue will not be saved!
 	 * @param p
 	 */
 	public void savePlaylist(Playlist p) {
+		
+		if (p.getName().equals("Queue")) {
+			return;
+		}
+		
 		logger.info("PlaylistDAO:savePlaylist(): saving...");
 		try {
 

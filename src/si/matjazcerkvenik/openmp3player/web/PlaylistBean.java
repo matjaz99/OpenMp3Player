@@ -94,6 +94,18 @@ public class PlaylistBean {
 	
 	
 	
+	/**
+	 * This method is called from toolbar
+	 * @return navigation to queue
+	 */
+	public String gotoQueue() {
+		selectedPlaylist = PlaylistMng.QUEUE_NAME;
+		passivePlaylist = playlistMng.getPlaylist(PlaylistMng.QUEUE_NAME);
+		return "queue";
+	}
+	
+	
+	
 	
 	/* PLAYLIST */
 	
@@ -113,7 +125,6 @@ public class PlaylistBean {
 	
 	
 	public Playlist getPassivePlaylist() {
-		logger.debug("PlaylistBean#" + this.hashCode() + ":getPassivePlaylist(): " + passivePlaylist.getName());
 		return passivePlaylist;
 	}
 
@@ -125,7 +136,6 @@ public class PlaylistBean {
 	
 	
 	public void play(Mp3File mp3) {
-		logger.debug("PlaylistBean#" + this.hashCode() + ":play(): " + mp3.getIndex());
 		playerBean.getMp3Player().setActivePlaylist(passivePlaylist);
 		playerBean.getMp3Player().play(mp3.getIndex());
 	}
@@ -133,8 +143,7 @@ public class PlaylistBean {
 	
 	
 	public void putToQueue(Mp3File mp3) {
-		logger.info("PlaylistBean:putToQueue(): " + mp3.getIndex());
-		playerBean.getMp3Player().putToQueue(mp3);
+		playlistMng.putToQueue(mp3);
 	}
 	
 	
@@ -148,9 +157,7 @@ public class PlaylistBean {
 	
 	
 	public void removeMp3FromTheList(Mp3File mp3) {
-		logger.info("PlaylistBean:removeMp3FromTheList(): " + mp3.getIndex());
 		passivePlaylist = playlistMng.removeMp3FromPlaylist(mp3, passivePlaylist);
-		
 	}
 	
 	/**

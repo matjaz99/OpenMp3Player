@@ -40,10 +40,7 @@ public class PlayerBean {
 	
 	
 	
-	public String gotoQueue() {
-//		mp3Player.setPassivePlaylist("Queue");
-		return "queue";
-	}
+	
 	
 
 	

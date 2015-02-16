@@ -10,14 +10,12 @@ public class Mp3Player {
 	private SimpleLogger logger = null;
 	
 	private IPlayer player = null;
-	private Mp3File currentlyPlaying = null;
 	private boolean repeatOn = false;
-	
-	
+	private Mp3File currentlyPlaying = null;
 	private Playlist activePlaylist = null;
-	private Playlist queue = null;
-	
 	private Watchdog watchdog = null;
+	
+	
 	
 	public Mp3Player() {
 		
@@ -32,10 +30,6 @@ public class Mp3Player {
 			activePlaylist = new Playlist();
 		}
 		
-		queue = new Playlist();
-		queue.setName("Queue");
-		queue.setSource("queue");
-		
 		watchdog = new Watchdog(this);
 		watchdog.start();
 		
@@ -46,14 +40,12 @@ public class Mp3Player {
 	
 	
 	/**
-	 * Return title of currently playing song.
-	 * @return title
+	 * Return currently playing mp3 file.
+	 * @return mp3
 	 */
 	public Mp3File getCurrentlyPlaying() {
 		return currentlyPlaying;
 	}
-	
-	
 	
 	
 	
@@ -80,6 +72,8 @@ public class Mp3Player {
 				
 	}
 	
+	
+	
 	/**
 	 * Stop playing song
 	 * @return 'null'
@@ -95,6 +89,8 @@ public class Mp3Player {
 		currentlyPlaying = null;
 		
 	}
+	
+	
 	
 	/**
 	 * Play next song
@@ -112,6 +108,8 @@ public class Mp3Player {
 			play(currentlyPlaying.getIndex() + 1);
 		}
 	}
+	
+	
 	
 	/**
 	 * Play previous song
@@ -131,8 +129,6 @@ public class Mp3Player {
 	
 	
 	
-	
-	
 	/**
 	 * Return true if song is currently playing
 	 * @return true if playing
@@ -141,9 +137,13 @@ public class Mp3Player {
 		return currentlyPlaying != null;
 	}
 	
+	
+	
 	public PlayerStatus getPlayerStatus() {
 		return player.getStatus();
 	}
+	
+	
 	
 	/**
 	 * Return active playlist
@@ -154,68 +154,34 @@ public class Mp3Player {
 		return activePlaylist;
 	}
 	
+	
+	/**
+	 * Set active playlist
+	 * @param p
+	 */
 	public void setActivePlaylist(Playlist p) {
 		logger.debug("Mp3Player:setActivePlaylist(): " + p.getName());
 		activePlaylist = p;
 	}
 	
 	
-
+	/**
+	 * Return true if repeat is on.
+	 * @return
+	 */
 	public boolean isRepeatOn() {
 		return repeatOn;
 	}
-
+	
+	
+	
+	/**
+	 * Set repeat on/off
+	 * @param repeatOn
+	 */
 	public void setRepeatOn(boolean repeatOn) {
 		this.repeatOn = repeatOn;
 		logger.info("Mp3Player:setRepeatOn(): repeat is now: " + this.repeatOn);
 	}
-	
-	public void putToQueue(Mp3File mp3) {
-		
-		try {
-			
-			Mp3File clone = (Mp3File) mp3.clone();
-			clone.setIndex(queue.getMp3files().getFiles().size());
-			queue.addMp3File(clone);
-			
-		} catch (CloneNotSupportedException e) {
-			logger.error("Mp3Player:putToQueue(): CloneNotSupportedException", e);
-		}
-		
-	}
-	
-	
-	
-	public void saveQueue(String name) {
-		
-		if (name == null || name.trim().length() == 0) {
-			return;
-		}
-		
-		Playlist p = new Playlist();
-		p.setName(name);
-		p.setSource(name + ".xml");
-		
-		for (int i = 0; i < queue.getMp3files().getFiles().size(); i++) {
-			try {
-				Mp3File mp3 = (Mp3File) queue.getMp3files().getFiles().get(i).clone();
-				mp3.setIndex(i);
-				p.addMp3File(mp3);
-			} catch (CloneNotSupportedException e) {
-				logger.error("Mp3Player:saveQueue(): CloneNotSupportedException", e);
-			}
-		}
-		
-		PlaylistDAO.getInstance().addPlaylist(p);
-	}
-	
-	/**
-	 * Remove all songs from queue.
-	 */
-	public void emptyQueue() {
-		queue.getMp3files().getFiles().clear();
-	}
-	
-	
 	
 }

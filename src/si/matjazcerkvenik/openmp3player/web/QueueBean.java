@@ -1,11 +1,15 @@
 package si.matjazcerkvenik.openmp3player.web;
 
-import javax.faces.bean.ApplicationScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+
+import si.matjazcerkvenik.openmp3player.player.Playlist;
+import si.matjazcerkvenik.openmp3player.player.PlaylistMng;
 
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
 public class QueueBean {
 	
 	private String newQueueName = null;
@@ -13,9 +17,24 @@ public class QueueBean {
 	@ManagedProperty(value="#{playerBean}")
 	private PlayerBean playerBean;
 	
+	@ManagedProperty(value="#{playlistBean}")
+	private PlaylistBean playlistBean;
+	
+	private PlaylistMng playlistMng = null;
+	
+	@PostConstruct
+	public void init() {
+		
+		playlistMng = new PlaylistMng();
+		
+	}
 
 	public void setPlayerBean(PlayerBean playerBean) {
 		this.playerBean = playerBean;
+	}
+	
+	public void setPlaylistBean(PlaylistBean playlistBean) {
+		this.playlistBean = playlistBean;
 	}
 	
 	public String getNewQueueName() {
@@ -27,15 +46,19 @@ public class QueueBean {
 	}
 	
 	public String saveQueue() {
-		playerBean.getMp3Player().saveQueue(newQueueName);
-		playerBean.getMp3Player().emptyQueue();
-		playerBean.getMp3Player().setPassivePlaylist(newQueueName);
+		playlistMng.saveQueue(newQueueName);
+		playlistMng.emptyQueue();
+		Playlist pList = playlistMng.getPlaylist(newQueueName);
+		playlistBean.setPassivePlaylist(pList);
+		playlistBean.setSelectedPlaylist(newQueueName);
 		return "home";
 	}
 	
 	public void emptyQueue() {
-		playerBean.getMp3Player().emptyQueue();
+		playlistMng.emptyQueue();
 	}
+	
+	
 	
 	
 }

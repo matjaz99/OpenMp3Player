@@ -25,7 +25,7 @@ public class PlaylistValidator implements Validator {
 		Playlists playlists = PlaylistDAO.getInstance().getPlaylists();
 		
 		for (Playlist p : playlists.getPlist()) {
-			if (p.getName().equals(pName) || p.getName().equals("Queue")) {
+			if (p.getName().equals(pName)) {
 				
 				OContext.getInstance().getLogger().warn("PlaylistValidator:validate(): already exist!");
 				
