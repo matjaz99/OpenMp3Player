@@ -110,6 +110,16 @@ public class PlaylistDAO {
 	 */
 	private void savePlaylists() {
 		logger.info("PlaylistDAO:savePlaylists(): saving...");
+		
+		// temporarly remove queue
+		Playlist q = null;
+		for (int i = 0; i < playlists.getPlist().size(); i++) {
+			if (playlists.getPlist().get(i).getName().equalsIgnoreCase("queue")) {
+				q = playlists.getPlist().remove(i);
+				break;
+			}
+		}
+		
 		try {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/playlists.xml");
@@ -125,6 +135,10 @@ public class PlaylistDAO {
 		} catch (JAXBException e) {
 			logger.error("JAXBException", e);
 		}
+		
+		// add queue back to playlists
+		playlists.add(q);
+		
 	}
 	
 	
