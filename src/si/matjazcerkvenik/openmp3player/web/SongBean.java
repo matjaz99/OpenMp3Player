@@ -1,6 +1,7 @@
 package si.matjazcerkvenik.openmp3player.web;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class SongBean {
 	
 	private String selectedTag = "- Select tag -";
 	private String selectedBackgroundColor = null;
+	private String numberOfStars = "0";
 		
 	@ManagedProperty(value="#{playerBean}")
 	private PlayerBean playerBean;
@@ -214,5 +216,41 @@ public class SongBean {
 		mp3File.setBackgroundColor(null);
 		PlaylistDAO.getInstance().savePlaylist(playlist);
 	}
+
+
+	
+	
+	
+	/* STARS */
+	
+	public String getNumberOfStars() {
+		return mp3File.getStars() + "";
+	}
+
+
+	public void setNumberOfStars(String numberOfStars) {
+		this.numberOfStars = numberOfStars;
+	}
+	
+	public Map<String,Object> getStarsMap() {
+		Map<String,Object> color2Value = new LinkedHashMap<String,Object>();
+		color2Value.put("0", "0");
+		color2Value.put("1", "1");
+		color2Value.put("2", "2");
+		color2Value.put("3", "3");
+		color2Value.put("4", "4");
+		color2Value.put("5", "5");
+		return color2Value;
+	}
+	
+	public void starsSelected(ValueChangeEvent e) {
+		
+		numberOfStars = e.getNewValue().toString();
+		logger.info("SongBean:starsSelected(): event - selected stars: " + numberOfStars);
+		mp3File.setStars(Integer.parseInt(numberOfStars));
+		PlaylistDAO.getInstance().savePlaylist(playlist);
+		
+	}
+	
 	
 }

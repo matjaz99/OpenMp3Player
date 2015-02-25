@@ -9,8 +9,8 @@ public class ShutdownListener implements ServletContextListener {
 	
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		System.out.println("ShutdownListener:contextInitialized()");
 		OContext.getInstance();
+		System.out.println("ShutdownListener:contextInitialized()");
 	}
 	
 	@Override

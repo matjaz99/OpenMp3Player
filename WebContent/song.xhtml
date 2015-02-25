@@ -63,6 +63,16 @@
 			<hr/>
 			
 			<h:form>
+				<h:outputText value="Rate song: " styleClass="text-white" />
+				<h:selectOneRadio value="#{songBean.numberOfStars}" onchange="submit()"
+					valueChangeListener="#{songBean.starsSelected}">
+					<f:selectItems value="#{songBean.starsMap}" />
+				</h:selectOneRadio>
+			</h:form>
+			
+			<hr/>
+			
+			<h:form>
 				<h:outputText value="Select background color: " styleClass="text-white" />
 				<h:selectOneMenu onchange="submit()" value="#{songBean.selectedBackgroundColor}"
 					valueChangeListener="#{songBean.backgroundColorSelected}">

@@ -24,14 +24,26 @@
 				
 				<o:tags value="#{mp3File.tags}"/>
 				
-				<h:form>
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<h:form>
 				
-					<h:commandLink action="#{playlistBean.showSongDetails(mp3File)}">
-						<h:outputText value="#{mp3File.title}" styleClass="largeText" />
-					</h:commandLink>
+							<h:commandLink action="#{playlistBean.showSongDetails(mp3File)}">
+								<h:outputText value="#{mp3File.title}" styleClass="largeText" />
+							</h:commandLink>
+						
+						</h:form>
+						<h:outputText value="#{mp3File.artist}" />
+					</h:panelGrid>
+					<h:panelGroup styleClass="align-right">
+						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 0}" />
+						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 1}" />
+						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 2}" />
+						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 3}" />
+						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 4}" />
+					</h:panelGroup>
+				</h:panelGrid>
 				
-				</h:form>
-				<h:outputText value="#{mp3File.artist}" />
 				
 			</h:column>
 			

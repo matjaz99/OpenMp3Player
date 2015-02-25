@@ -1,7 +1,7 @@
 ## OpenMp3Player
 
 
-Release 3 is still in development phase. It features JSF 2.0.
+Release 3 is still in development phase. It features JSF 2.0, custom components and ajax.
 
 Last stable release: 2.2.0
 
@@ -25,6 +25,10 @@ $ ./start.sh
 
 
 To stop execute stop.sh or stop.bat script.
+
+
+Since v3 use start.jar to start/stop.
+
 
 With web browser go to: <a href="http://hostname:8080/OpenMp3Player">
 http://hostname:8080/OpenMp3Player</a>
@@ -56,6 +60,13 @@ v3 - JSF 2.1
 
 ### History
 -------------------
+3.0.0-alpha.04
+february 2015
+
+- fixed bug in starter - server does not start in windows
+- added stars (rating)
+
+
 3.0.0-alpha.03
 february 2015
 
@@ -66,8 +77,8 @@ february 2015
 - Watchdog moved to Mp3Player
 - passive playlist separated from Mp3Player and moved to session scoped PlaylistBean.PlaylistMng
 - removed binding to datatables (not needed in jsf 2)
-- queue moved from Mp3Player to PlaylistDAO
-- added start.jar, removed .sh and .bat script
+- queue moved from Mp3Player to PlaylistDAO (singleton)
+- added start.jar, removed .sh and .bat scripts
 
 
 3.0.0-alpha.02

@@ -18,6 +18,7 @@ public class Mp3File implements Cloneable {
 	private int size = 0;
 	private String backgroundColor = null;
 	private Tags tags = new Tags();
+	private int stars = 0;
 
 	@XmlTransient
 	public int getIndex() {
@@ -147,6 +148,15 @@ public class Mp3File implements Cloneable {
 	
 	public void addTag(Tag t) {
 		tags.addTag(t);
+	}
+
+	public int getStars() {
+		return stars;
+	}
+
+	@XmlElement
+	public void setStars(int stars) {
+		this.stars = stars;
 	}
 
 	@Override

@@ -1,8 +1,5 @@
 package si.matjazcerkvenik.openmp3player.starter;
 
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -10,52 +7,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-
-public class Start extends JFrame {
-
-	private static final long serialVersionUID = -94309834027528490L;
-
-	private JLabel lblTitle = new JLabel("OpenMp3Player");
-	private JLabel lblStatus = new JLabel("Status: Stopped");
-	private JButton btnStartStop = new JButton("Start server");
-
-	private JPanel pnlControls = new JPanel();
-
-	private String[] startServerCommand = { "./server/apache-tomcat-7.0.57/bin/startup" };
-	private String[] stopServerCommand = { "./server/apache-tomcat-7.0.57/bin/shutdown" };
+public class Start {
 	
+	public static String[] startServerCommand = { "./server/apache-tomcat-7.0.57/bin/startup" };
+	public static String[] stopServerCommand = { "./server/apache-tomcat-7.0.57/bin/shutdown" };
 	
 	
 	public Start() {
-		
-		super("Starter");
-		pnlControls.setLayout(new GridLayout(3, 1));
-		lblTitle.setText("OpenMp3Player v" + readVersion());
-		pnlControls.add(lblTitle);
-		if (runningFileExist()) {
-			lblStatus.setText("Status: Running");
-			btnStartStop.setText("Stop server");
-		}
-		pnlControls.add(lblStatus);
-		pnlControls.add(btnStartStop);
-
-		add(pnlControls);
-
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-		btnStartStop.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				startStopTomcat();
-			}
-		});
-		
 		
 		if (getOsType().endsWith("X")) {
 			String[] cmd1 = {"find", ".", "-name", "*.sh", "-exec", "chmod", "755", "{}", "+"};
@@ -70,24 +28,51 @@ public class Start extends JFrame {
 	}
 	
 	
-
-	private void startStopTomcat() {
-		if (runningFileExist()) {
-			runConsoleCommand(stopServerCommand);
-			removeRunningFile();
-			lblStatus.setText("Status: Stopped");
-			btnStartStop.setText("Start server");
+	
+	public static void main(String[] args) {
+		
+		// cli mode: start/stop/status as args, no gui
+		if (args.length > 0) {
+			
+			if (args[0].equalsIgnoreCase("start")) {
+				
+				if (!runningFileExist()) {
+					runConsoleCommand(startServerCommand);
+					createRunningFile();
+				}
+				System.out.println("Started");
+				
+			} else if (args[0].equalsIgnoreCase("stop")) {
+				
+				if (runningFileExist()) {
+					runConsoleCommand(stopServerCommand);
+					removeRunningFile();
+				}
+				System.out.println("Stopped");
+				
+			} else if (args[0].equalsIgnoreCase("status")) {
+				
+				if (runningFileExist()) {
+					System.out.println("Stopped");
+				} else {
+					System.out.println("Started");
+				}
+				
+			}
+			
 		} else {
-			runConsoleCommand(startServerCommand);
-			createRunningFile();
-			lblStatus.setText("Status: Running");
-			btnStartStop.setText("Stop server");
+			Gui gui = new Gui();
+			gui.pack();
+			gui.setVisible(true);
 		}
+		
+		
 	}
 	
 	
 	
-	private void createRunningFile() {
+	
+	public static void createRunningFile() {
 		File f = new File("config/running.tmp");
 		try {
 			f.createNewFile();
@@ -96,19 +81,19 @@ public class Start extends JFrame {
 		}
 	}
 	
-	private boolean runningFileExist() {
+	public static boolean runningFileExist() {
 		File f = new File("config/running.tmp");
 		return f.exists();
 	}
 	
-	private void removeRunningFile() {
+	public static void removeRunningFile() {
 		File f = new File("config/running.tmp");
 		f.delete();
 	}
 	
 	
 
-	private void runConsoleCommand(String[] command) {
+	public static void runConsoleCommand(String[] command) {
 
 		String cmdStr = "";
 		for (int i = 0; i < command.length; i++) {
@@ -164,7 +149,7 @@ public class Start extends JFrame {
 	
 	
 	
-	public String readVersion() {
+	public static String readVersion() {
 
 		String ver = "0.0";
 		
@@ -189,12 +174,6 @@ public class Start extends JFrame {
 	
 	
 	
-	public static void main(String[] args) {
-		
-		Start gui = new Start();
-		gui.pack();
-		gui.setVisible(true);
-		
-	}
+	
 
 }
