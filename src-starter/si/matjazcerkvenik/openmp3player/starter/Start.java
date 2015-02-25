@@ -8,70 +8,96 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Start {
-	
-	public static String[] startServerCommand = { "./server/apache-tomcat-7.0.57/bin/startup" };
-	public static String[] stopServerCommand = { "./server/apache-tomcat-7.0.57/bin/shutdown" };
-	
-	
-	public Start() {
-		
-		if (getOsType().endsWith("X")) {
-			String[] cmd1 = {"find", ".", "-name", "*.sh", "-exec", "chmod", "755", "{}", "+"};
-			runConsoleCommand(cmd1);
-			startServerCommand[0] += ".sh";
-			stopServerCommand[0] += ".sh";
-		} else {
-			startServerCommand[0] += ".bat";
-			stopServerCommand[0] += ".bat";
-		}
 
-	}
+	public static String[] startServerCommandX = { "./server/apache-tomcat-7.0.57/bin/startup.sh" };
+	public static String[] stopServerCommandX = { "./server/apache-tomcat-7.0.57/bin/shutdown.sh" };
 	
-	
-	
+	public static String[] startServerCommandWin = { "cmd.exe", "/c", /*"@echo", "off", "&",*/ "set", "\"CATALINA_HOME=%cd%/server/apache-tomcat-7.0.57\"", "&", "START", "/B", "call", "server/apache-tomcat-7.0.57/bin/startup.bat" };
+	public static String[] stopServerCommandWin = { "cmd.exe", "/c", "set", "\"CATALINA_HOME=%cd%/server/apache-tomcat-7.0.57\"", "&", "START", "/B", "call", "server/apache-tomcat-7.0.57/bin/shutdown.bat" };
+
+
 	public static void main(String[] args) {
-		
+
+		// String[] cmd = { "cmd.exe", "/c", "echo", "hello" };
+		// runConsoleCommand(cmd);
+
+		init();
+
 		// cli mode: start/stop/status as args, no gui
 		if (args.length > 0) {
-			
+
 			if (args[0].equalsIgnoreCase("start")) {
-				
+
 				if (!runningFileExist()) {
-					runConsoleCommand(startServerCommand);
-					createRunningFile();
+					startServer();
 				}
 				System.out.println("Started");
-				
+
 			} else if (args[0].equalsIgnoreCase("stop")) {
-				
+
 				if (runningFileExist()) {
-					runConsoleCommand(stopServerCommand);
-					removeRunningFile();
+					stopServer();
 				}
 				System.out.println("Stopped");
-				
+
 			} else if (args[0].equalsIgnoreCase("status")) {
-				
+
 				if (runningFileExist()) {
 					System.out.println("Stopped");
 				} else {
 					System.out.println("Started");
 				}
-				
+
 			}
-			
+
 		} else {
 			Gui gui = new Gui();
 			gui.pack();
 			gui.setVisible(true);
 		}
-		
-		
+
 	}
-	
-	
-	
-	
+
+	/**
+	 * Change file permissions of .sh files to 755 (Linux and OS X only)
+	 */
+	public static void init() {
+
+		if (getOsType().endsWith("X")) {
+			String[] cmd1 = { "find", ".", "-name", "*.sh", "-exec", "chmod",
+					"755", "{}", "+" };
+			Executor e = new Executor();
+			e.execute(cmd1, false);
+		}
+
+	}
+
+	public static void startServer() {
+
+		Executor e = new Executor();
+
+		if (getOsType().endsWith("X")) {
+			e.execute(startServerCommandX, false);
+		} else {
+			e.execute(startServerCommandWin, true);
+		}
+		createRunningFile();
+
+	}
+
+	public static void stopServer() {
+
+		Executor e = new Executor();
+
+		if (getOsType().endsWith("X")) {
+			e.execute(stopServerCommandX, false);
+		} else {
+			e.execute(stopServerCommandWin, true);
+		}
+		removeRunningFile();
+
+	}
+
 	public static void createRunningFile() {
 		File f = new File("config/running.tmp");
 		try {
@@ -80,58 +106,16 @@ public class Start {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static boolean runningFileExist() {
 		File f = new File("config/running.tmp");
 		return f.exists();
 	}
-	
+
 	public static void removeRunningFile() {
 		File f = new File("config/running.tmp");
 		f.delete();
 	}
-	
-	
-
-	public static void runConsoleCommand(String[] command) {
-
-		String cmdStr = "";
-		for (int i = 0; i < command.length; i++) {
-			cmdStr += command[i] + " ";
-		}
-		System.out.println("runConsoleCommand(): " + cmdStr.trim());
-
-		Runtime rt = Runtime.getRuntime();
-		try {
-			Process p = rt.exec(command);
-
-			String s;
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					p.getInputStream()));
-			BufferedReader errbr = new BufferedReader(new InputStreamReader(
-					p.getErrorStream()));
-			while ((s = br.readLine()) != null) {
-				System.out.println("runConsoleCommand(): response : " + s);
-			}
-			while ((s = errbr.readLine()) != null) {
-				System.out.println("runConsoleCommand(): errResponse : " + s);
-			}
-
-			// wait for ending command
-			try {
-				p.waitFor();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-	
-	
 
 	public static String getOsType() {
 		String os = System.getProperty("os.name");
@@ -146,13 +130,11 @@ public class Start {
 
 		return "X";
 	}
-	
-	
-	
+
 	public static String readVersion() {
 
 		String ver = "0.0";
-		
+
 		try {
 
 			FileInputStream fis = new FileInputStream("config/version.txt");
@@ -167,13 +149,9 @@ public class Start {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return ver;
 
 	}
-	
-	
-	
-	
 
 }

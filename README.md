@@ -14,24 +14,15 @@ embedded with the application (deployment is not required).
 
 ### Starting
 
-On Windows just double click the start.bat.
-
-On Linux or OS X you might first need to change file permissions of all .sh files 
-in OpenMp3Player directory. You can do this with single command (recursively):
-'$ find OpenMp3Player-2.x.x -name \*.sh -exec chmod 755 {} +'
-
-Then start OpenMp3Player on Linux or OS X by executing start.sh script:
-$ ./start.sh
+Double click the start.jar and start/stop server.
 
 
-To stop execute stop.sh or stop.bat script.
+Open web browser and go to: <a href="http://localhost:8080/OpenMp3Player">
+http://localhost:8080/OpenMp3Player</a>
 
 
-Since v3 use start.jar to start/stop.
+If connecting from remote device, enter server's IP address instead of 'localhost'
 
-
-With web browser go to: <a href="http://hostname:8080/OpenMp3Player">
-http://hostname:8080/OpenMp3Player</a>
 
 
 ### Upgrade
@@ -63,7 +54,7 @@ v3 - JSF 2.1
 3.0.0-alpha.04
 february 2015
 
-- fixed bug in starter - server does not start in windows
+- fixed bug in starter: server does not start in windows
 - added stars (rating)
 
 
