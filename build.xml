@@ -34,6 +34,13 @@
 			</fileset>
 		</copy>
 		
+		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/src-starter" />
+		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/src-starter">
+			<fileset dir="src-starter">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		
 		<mkdir dir="${dist.dir}/${ant.project.name}-${project.version}/WebContent" />
 		<copy todir="${dist.dir}/${ant.project.name}-${project.version}/WebContent">
 			<fileset dir="${web.dir}">
