@@ -58,6 +58,12 @@
 			
 			<h:outputLabel value="Path:" styleClass="text-white"></h:outputLabel>
 			<h:outputLabel value="#{songBean.mp3File.path}" styleClass="text-white"></h:outputLabel>
+			
+			<h:outputLabel value="Played " styleClass="text-white"></h:outputLabel>
+			<h:outputLabel value="#{songBean.mp3File.count} times" styleClass="text-white"></h:outputLabel>
+			
+			<h:outputLabel value="Last played:" styleClass="text-white"></h:outputLabel>
+			<h:outputLabel value="#{songBean.mp3File.lastPlayedTime}" styleClass="text-white"></h:outputLabel>
 			</h:panelGrid>
 			
 			<hr/>

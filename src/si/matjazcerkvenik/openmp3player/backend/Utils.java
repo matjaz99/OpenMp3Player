@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import si.matjazcerkvenik.openmp3player.player.SoundControl;
@@ -37,7 +41,8 @@ public class Utils {
 	public static String VOLUME_CUSTOM_SCRIPT = null;
 	public static boolean TELNET_ENABLED = true;
 	public static int TELNET_PORT = 4444;
-
+	
+	public static final String datePattern = "yyyy/MM/dd H:mm:ss";
 	
 	
 	public static void init() {
@@ -278,6 +283,28 @@ public class Utils {
 			OContext.getInstance().getLogger().error("Utils:getLocalIp(): ", e);
 		}
 		return "unknown host";
+	}
+	
+	
+	/**
+	 * Get current date and time as formatted string
+	 * @return current date and time
+	 */
+	public static String getNow() {
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat(datePattern);
+		return sdf.format(d);
+	}
+	
+	public static Date stringToDate(String date) {
+		DateFormat df = new SimpleDateFormat(datePattern);
+		Date d = new Date();
+		try {
+			d = df.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return d;
 	}
 
 }

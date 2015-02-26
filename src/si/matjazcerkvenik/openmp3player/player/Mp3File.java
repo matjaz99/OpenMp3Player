@@ -5,6 +5,8 @@ import java.io.File;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import si.matjazcerkvenik.openmp3player.backend.OContext;
+
 public class Mp3File implements Cloneable {
 	
 	private int index = 0;
@@ -19,6 +21,8 @@ public class Mp3File implements Cloneable {
 	private String backgroundColor = null;
 	private Tags tags = new Tags();
 	private int stars = 0;
+	private int count = 0;
+	private String lastPlayedTime = null;
 
 	@XmlTransient
 	public int getIndex() {
@@ -159,9 +163,37 @@ public class Mp3File implements Cloneable {
 		this.stars = stars;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	@XmlElement
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getLastPlayedTime() {
+		return lastPlayedTime;
+	}
+
+	@XmlElement
+	public void setLastPlayedTime(String date) {
+		this.lastPlayedTime = date;
+	}
+
 	@Override
 	public String toString() {
 		return "[" + index + "] Path: " + path;
+	}
+	
+	public Mp3File makeClone() {
+		Mp3File m = null;
+		try {
+			m = (Mp3File) this.clone();
+		} catch (CloneNotSupportedException e) {
+			OContext.getInstance().getLogger().error("Mp3File:makeClone(): CloneNotSupportedException", e);
+		}
+		return m;
 	}
 	
 	@Override

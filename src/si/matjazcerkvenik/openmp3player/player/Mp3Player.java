@@ -2,6 +2,7 @@ package si.matjazcerkvenik.openmp3player.player;
 
 import si.matjazcerkvenik.openmp3player.backend.OContext;
 import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
+import si.matjazcerkvenik.openmp3player.backend.Utils;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -182,6 +183,18 @@ public class Mp3Player {
 	public void setRepeatOn(boolean repeatOn) {
 		this.repeatOn = repeatOn;
 		logger.info("Mp3Player:setRepeatOn(): repeat is now: " + this.repeatOn);
+	}
+	
+	
+	/**
+	 * Increment counter of currently playing song and set current time for last played time.
+	 */
+	public void updateCurrentlyPlaying() {
+		
+		currentlyPlaying.setLastPlayedTime(Utils.getNow());
+		currentlyPlaying.setCount(currentlyPlaying.getCount() + 1);
+		PlaylistDAO.getInstance().savePlaylist(activePlaylist);
+		
 	}
 	
 }
