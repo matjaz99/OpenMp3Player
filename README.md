@@ -56,6 +56,9 @@ february 2015
 
 - fixed bug in starter: server does not start in windows
 - added stars (rating)
+- added play counter
+- added last played time
+- when creating clone reset counter and last played time
 
 
 3.0.0-alpha.03

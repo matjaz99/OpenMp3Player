@@ -72,15 +72,7 @@ public class PlaylistMng {
 	public void putToQueue(Mp3File mp3) {
 		
 		logger.info("PlaylistMng:putToQueue(): " + mp3.getIndex());
-		
-		try {
-			
-			Mp3File clone = (Mp3File) mp3.clone();
-			PlaylistDAO.getInstance().addMp3ToPlaylist(clone, getPlaylist(QUEUE_NAME));
-			
-		} catch (CloneNotSupportedException e) {
-			logger.error("Mp3Player:putToQueue(): CloneNotSupportedException", e);
-		}
+		PlaylistDAO.getInstance().addMp3ToPlaylist(mp3.makeClone(), getPlaylist(QUEUE_NAME));
 		
 	}
 	
@@ -103,13 +95,11 @@ public class PlaylistMng {
 		Playlist queue = PlaylistDAO.getInstance().getPlaylist(QUEUE_NAME);
 		
 		for (int i = 0; i < queue.getMp3files().getFiles().size(); i++) {
-			try {
-				Mp3File mp3 = (Mp3File) queue.getMp3files().getFiles().get(i).clone();
-				mp3.setIndex(i);
-				p.addMp3File(mp3);
-			} catch (CloneNotSupportedException e) {
-				logger.error("Mp3Player:saveQueue(): CloneNotSupportedException", e);
-			}
+			
+			Mp3File mp3 = queue.getMp3files().getFiles().get(i).makeClone();
+			mp3.setIndex(i);
+			p.addMp3File(mp3);
+			
 		}
 		
 		PlaylistDAO.getInstance().addPlaylist(p);

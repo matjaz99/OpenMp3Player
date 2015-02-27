@@ -190,6 +190,8 @@ public class Mp3File implements Cloneable {
 		Mp3File m = null;
 		try {
 			m = (Mp3File) this.clone();
+			m.setLastPlayedTime(null);
+			m.setCount(0);
 		} catch (CloneNotSupportedException e) {
 			OContext.getInstance().getLogger().error("Mp3File:makeClone(): CloneNotSupportedException", e);
 		}
