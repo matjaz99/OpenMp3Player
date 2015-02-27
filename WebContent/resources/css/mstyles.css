@@ -51,6 +51,11 @@
 	color: white;
 }
 
+/* radio box */
+.text-white tr td label {
+	color: white;
+}
+
 .error tr td {
 	color: red;
 }
