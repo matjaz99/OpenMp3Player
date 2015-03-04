@@ -50,11 +50,13 @@
 			</h:panelGrid>
 			
 			<h:panelGroup styleClass="align-right">
+				<h:panelGrid columns="1" width="100%">
 					<h:commandLink id="repeatLink" action="#{playerBean.toggleRepeat}">
 						<o:icon img="#{playerBean.repeatOn == true ? 'repeatOn' : 'repeatOff'}"/>
 						<f:ajax render="repeatLink actPlaylist currPlaying playBtn"/>
 					</h:commandLink>
-				</h:panelGroup>
+				</h:panelGrid>
+			</h:panelGroup>
 			
 		
 		</h:panelGrid>
