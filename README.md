@@ -51,8 +51,14 @@ v3 - JSF 2.1
 
 ### History
 -------------------
+3.0.0-beta.01
+march 2015
+
+- 
+
+
 3.0.0-alpha.04
-february 2015
+march 2015
 
 - fixed bug in starter: server does not start in windows
 - added stars (rating)
