@@ -22,6 +22,15 @@ public class PlaylistValidator implements Validator {
 		String pName = (String) value;
 		OContext.getInstance().getLogger().info("PlaylistValidator:validate(): new name: " + pName);
 		
+		if (pName.toLowerCase().equals("queue")) {
+			OContext.getInstance().getLogger().warn("PlaylistValidator:validate(): not allowed!");
+			FacesMessage message = new FacesMessage();
+			message.setDetail("Playlist name " + pName + " is not allowed");
+			message.setSummary("Error");
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(message);
+		}
+		
 		Playlists playlists = PlaylistDAO.getInstance().getPlaylists();
 		
 		for (Playlist p : playlists.getPlist()) {
@@ -31,7 +40,7 @@ public class PlaylistValidator implements Validator {
 				
 				FacesMessage message = new FacesMessage();
 				message.setDetail("Playlist with name " + pName + " already exist");
-				message.setSummary("Forbidden");
+				message.setSummary("Error");
 				message.setSeverity(FacesMessage.SEVERITY_ERROR);
 				throw new ValidatorException(message);
 				

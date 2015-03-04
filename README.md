@@ -54,7 +54,8 @@ v3 - JSF 2.1
 3.0.0-beta.01
 march 2015
 
-- 
+- fixed alignment
+- playlist with name 'queue' is not allowed
 
 
 3.0.0-alpha.04
