@@ -24,7 +24,7 @@
 				
 				<o:tags value="#{mp3File.tags}"/>
 				
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="2" width="100%">
 					<h:panelGrid columns="1">
 						<h:form>
 				
@@ -36,11 +36,7 @@
 						<h:outputText value="#{mp3File.artist}" />
 					</h:panelGrid>
 					<h:panelGroup styleClass="align-right">
-						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 0}" />
-						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 1}" />
-						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 2}" />
-						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 3}" />
-						<h:graphicImage value="/img/star.png" rendered="#{mp3File.stars > 4}" />
+						<o:stars num="#{mp3File.stars}"/>
 					</h:panelGroup>
 				</h:panelGrid>
 				

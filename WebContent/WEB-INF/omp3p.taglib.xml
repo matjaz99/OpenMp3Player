@@ -9,6 +9,10 @@
 		<source>tags/icon.xhtml</source>
     </tag>
     <tag>
+		<tag-name>stars</tag-name>
+		<source>tags/stars.xhtml</source>
+    </tag>
+    <tag>
         <tag-name>tag</tag-name>
         <component>
             <component-type>SingleTag</component-type>
