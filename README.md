@@ -55,6 +55,7 @@ v3 - JSF 2.1
 march 2015
 
 - fixed alignment
+- stars custom tag
 - playlist with name 'queue' is not allowed
 
 

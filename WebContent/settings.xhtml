@@ -43,8 +43,7 @@
 			
 			<hr/>
 			
-			<h:panelGrid columns="2" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
-				<h:form>
+			<h:form>
 				<h:outputText value="Create new tag" styleClass="text-white" />
 				<h:panelGrid columns="2">
 					
@@ -62,12 +61,20 @@
 					
 				</h:panelGrid>
 				<h:messages layout="table" showDetail="true" showSummary="false" styleClass="error"></h:messages>
-				</h:form>
+			</h:form>
+			
+			<br/>
+			
+			<h:outputLabel value="Available tags" styleClass="text-white"></h:outputLabel>
+			
+			
+			
+			<h:panelGrid columns="1" styleClass="background" cellpadding="0" cellspacing="0" width="100%">
+				
 				
 				<h:panelGroup>
-					<h:outputLabel value="Available tags" styleClass="text-white"></h:outputLabel>
 					<h:dataTable value="#{addTagBean.allTags}" var="tag">
-				
+
 						<h:column>
 							<o:tag value="#{tag}"/>
 						</h:column>
