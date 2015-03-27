@@ -1,6 +1,7 @@
 package si.matjazcerkvenik.openmp3player.web;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,8 @@ public class SongBean {
 	private Playlist playlist = null;
 	
 	private String selectedTag = "- Select tag -";
-	private String selectedBackgroundColor = null;
+	private String selectedBackgroundColor = "- Select color -";
+	private String selectedBackgroundColorValue = null;
 	private String numberOfStars = "0";
 		
 	@ManagedProperty(value="#{playerBean}")
@@ -78,6 +80,10 @@ public class SongBean {
 		this.mp3File = mp3File;
 	}
 	
+	
+	
+	
+	/* TAGS */
 	
 	
 	/**
@@ -156,7 +162,13 @@ public class SongBean {
 		PlaylistDAO.getInstance().savePlaylist(playlist);
 	}
 	
-
+	
+	
+	
+	
+	/* BACKGROUND */
+	
+	
 
 	public String getSelectedBackgroundColor() {
 		if (selectedBackgroundColor == null) {
@@ -173,18 +185,31 @@ public class SongBean {
 	
 	
 	
+	public String getSelectedBackgroundColorValue() {
+		if (selectedBackgroundColorValue == null) {
+			selectedBackgroundColorValue = Colors.getBgColors().get(getMp3File().getBackgroundColor());
+		}
+		return selectedBackgroundColorValue;
+	}
+
+
+	public void setSelectedBackgroundColorValue(String selectedBackgroundColorValue) {
+		this.selectedBackgroundColorValue = selectedBackgroundColorValue;
+	}
+
+
 	/**
 	 * Get background colors for dropdown menu
 	 * @return list
 	 */
 	public List<SelectItem> getBackgroundColorItems() {
 		
-		List<String> bgColorList = Colors.getAvailableBackgroundColors();
+		Map<String, String> bgColorList = Colors.getBgColors();
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		list.add(new SelectItem("- Select color -", "- Select color -"));
 		
-		for (int i = 0; i < bgColorList.size(); i++) {
-			String name = bgColorList.get(i);
+		for (Iterator<String> it = bgColorList.keySet().iterator(); it.hasNext();) {
+			String name = it.next();
 			list.add(new SelectItem(name, name));
 		}
 		
@@ -207,21 +232,29 @@ public class SongBean {
 		}
 		mp3File.setBackgroundColor(selectedBackgroundColor);
 		PlaylistDAO.getInstance().savePlaylist(playlist);
+		selectedBackgroundColorValue = Colors.getBgColors().get(selectedBackgroundColor);
+		selectedBackgroundColor = "- Select color -";
 		
 	}
 	
 	
-	
+	/**
+	 * Remove background color. Default color will be used (#FFF or #EEE).
+	 */
 	public void removeBackgroundColor() {
 		mp3File.setBackgroundColor(null);
 		PlaylistDAO.getInstance().savePlaylist(playlist);
+		selectedBackgroundColor = "- Select color -";
+		selectedBackgroundColorValue = null;
 	}
 
 
 	
 	
 	
+	
 	/* STARS */
+	
 	
 	public String getNumberOfStars() {
 		return mp3File.getStars() + "";

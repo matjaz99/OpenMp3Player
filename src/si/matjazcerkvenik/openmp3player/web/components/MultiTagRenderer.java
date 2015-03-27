@@ -33,11 +33,14 @@ public class MultiTagRenderer extends Renderer {
 			
 			Tag tag = tags.getTagList().get(i);
 			
+			// ignore color in playlist
 			// use color from tags.xml if exists
 			Tag origTag = TagsDAO.getInstance().getTag(tag.getName());
 			String tagColor = "Black";
 			if (origTag != null) {
-				tagColor = TagsDAO.getInstance().getTag(tag.getName()).getColor();
+				String c = TagsDAO.getInstance().getTag(tag.getName()).getColor();
+				tagColor = Colors.getTagColors().get(c);
+				if (tagColor == null) tagColor = "Black";
 			}
 			String txtColor = Colors.getTagTextColor(tagColor);
 			

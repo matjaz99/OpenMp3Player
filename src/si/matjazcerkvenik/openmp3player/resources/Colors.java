@@ -1,7 +1,16 @@
 package si.matjazcerkvenik.openmp3player.resources;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
+import si.matjazcerkvenik.openmp3player.backend.OContext;
 
 /*
  * http://www.w3schools.com/cssref/css_colornames.asp
@@ -17,7 +26,7 @@ public class Colors {
 	public static final String Bisque = "Bisque"; //#FFE4C4
 	public static final String Black = "Black"; //#000000
 	public static final String BlanchedAlmond = "BlanchedAlmond"; //#FFEBCD
-	public static final String Blue = "Blue"; //#0000FF	 	Shades	Mix
+	public static final String Blue = "Blue"; //#0000FF
 	public static final String BlueViolet = "BlueViolet"; //#8A2BE2
 	public static final String Brown = "Brown"; //#A52A2A
 	public static final String BurlyWood = "BurlyWood"; //#DEB887
@@ -149,160 +158,54 @@ public class Colors {
 	public static final String Yellow = "Yellow"; //#FFFF00
 	public static final String YellowGreen = "YellowGreen"; //#9ACD32
 	
-	public static List<String> availableTagColors = null;
-	public static List<String> availableBackgroundColors = null;
+	public static Map<String, String> tagColors = null;
+	public static Map<String, String> bgColors = null;
 	
-	public static List<String> getAvailableTagColors() {
+	
+	
+	
+	
+	/* TAG COLORS */
+	
+	
+	
+	
+	/**
+	 * Return map of default tag colors
+	 * @return colors
+	 */
+	private static Map<String, String> getDefaultTagColors() {
 		
-		if (availableTagColors != null) {
-			return availableTagColors;
-		}
+		Map<String, String> colors = new HashMap<String, String>();
 		
-		availableTagColors = new ArrayList<String>();
-		availableTagColors.add(AliceBlue);
-		availableTagColors.add(AntiqueWhite);
-		availableTagColors.add(Aqua);
-		availableTagColors.add(Aquamarine);
-		availableTagColors.add(Azure);
-		availableTagColors.add(Beige);
-		availableTagColors.add(Bisque);
-		availableTagColors.add(Black);
-		availableTagColors.add(BlanchedAlmond);
-		availableTagColors.add(Blue);
-		availableTagColors.add(BlueViolet);
-		availableTagColors.add(Brown);
-		availableTagColors.add(BurlyWood);
-		availableTagColors.add(CadetBlue);
-		availableTagColors.add(Chartreuse);
-		availableTagColors.add(Chocolate);
-		availableTagColors.add(Coral);
-		availableTagColors.add(CornflowerBlue);
-		availableTagColors.add(Cornsilk);
-		availableTagColors.add(Crimson);
-		availableTagColors.add(Cyan);
-		availableTagColors.add(DarkBlue);
-		availableTagColors.add(DarkCyan);
-		availableTagColors.add(DarkGoldenRod);
-		availableTagColors.add(DarkGray);
-		availableTagColors.add(DarkGreen);
-		availableTagColors.add(DarkKhaki);
-		availableTagColors.add(DarkMagenta);
-		availableTagColors.add(DarkOliveGreen);
-		availableTagColors.add(DarkOrange);
-		availableTagColors.add(DarkOrchid);
-		availableTagColors.add(DarkRed);
-		availableTagColors.add(DarkSalmon);
-		availableTagColors.add(DarkSeaGreen);
-		availableTagColors.add(DarkSlateBlue);
-		availableTagColors.add(DarkSlateGray);
-		availableTagColors.add(DarkTurquoise);
-		availableTagColors.add(DarkViolet);
-		availableTagColors.add(DeepPink);
-		availableTagColors.add(DeepSkyBlue);
-		availableTagColors.add(DimGray);
-		availableTagColors.add(DodgerBlue);
-		availableTagColors.add(FireBrick);
-		availableTagColors.add(FloralWhite);
-		availableTagColors.add(ForestGreen);
-		availableTagColors.add(Fuchsia);
-		availableTagColors.add(Gainsboro);
-		availableTagColors.add(GhostWhite);
-		availableTagColors.add(Gold);
-		availableTagColors.add(GoldenRod);
-		availableTagColors.add(Gray);
-		availableTagColors.add(Green);
-		availableTagColors.add(GreenYellow);
-		availableTagColors.add(HoneyDew);
-		availableTagColors.add(HotPink);
-		availableTagColors.add(IndianRed);
-		availableTagColors.add(Indigo);
-		availableTagColors.add(Ivory);
-		availableTagColors.add(Khaki);
-		availableTagColors.add(Lavender);
-		availableTagColors.add(LavenderBlush);
-		availableTagColors.add(LawnGreen);
-		availableTagColors.add(LemonChiffon);
-		availableTagColors.add(LightBlue);
-		availableTagColors.add(LightCoral);
-		availableTagColors.add(LightCyan);
-		availableTagColors.add(LightGoldenRodYellow);
-		availableTagColors.add(LightGray);
-		availableTagColors.add(LightGreen);
-		availableTagColors.add(LightPink);
-		availableTagColors.add(LightSalmon);
-		availableTagColors.add(LightSeaGreen);
-		availableTagColors.add(LightSkyBlue);
-		availableTagColors.add(LightSlateGray);
-		availableTagColors.add(LightSteelBlue);
-		availableTagColors.add(LightYellow);
-		availableTagColors.add(Lime);
-		availableTagColors.add(LimeGreen);
-		availableTagColors.add(Linen);
-		availableTagColors.add(Magenta);
-		availableTagColors.add(Maroon);
-		availableTagColors.add(MediumAquaMarine);
-		availableTagColors.add(MediumBlue);
-		availableTagColors.add(MediumOrchid);
-		availableTagColors.add(MediumPurple);
-		availableTagColors.add(MediumSeaGreen);
-		availableTagColors.add(MediumSlateBlue);
-		availableTagColors.add(MediumSpringGreen);
-		availableTagColors.add(MediumTurquoise);
-		availableTagColors.add(MediumVioletRed);
-		availableTagColors.add(MidnightBlue);
-		availableTagColors.add(MintCream);
-		availableTagColors.add(MistyRose);
-		availableTagColors.add(Moccasin);
-		availableTagColors.add(NavajoWhite);
-		availableTagColors.add(Navy);
-		availableTagColors.add(OldLace);
-		availableTagColors.add(Olive);
-		availableTagColors.add(OliveDrab);
-		availableTagColors.add(Orange);
-		availableTagColors.add(OrangeRed);
-		availableTagColors.add(Orchid);
-		availableTagColors.add(PaleGoldenRod);
-		availableTagColors.add(PaleGreen);
-		availableTagColors.add(PaleTurquoise);
-		availableTagColors.add(PaleVioletRed);
-		availableTagColors.add(PapayaWhip);
-		availableTagColors.add(PeachPuff);
-		availableTagColors.add(Peru);
-		availableTagColors.add(Pink);
-		availableTagColors.add(Plum);
-		availableTagColors.add(PowderBlue);
-		availableTagColors.add(Purple);
-		availableTagColors.add(Red);
-		availableTagColors.add(RosyBrown);
-		availableTagColors.add(RoyalBlue);
-		availableTagColors.add(SaddleBrown);
-		availableTagColors.add(Salmon);
-		availableTagColors.add(SandyBrown);
-		availableTagColors.add(SeaGreen);
-		availableTagColors.add(SeaShell);
-		availableTagColors.add(Sienna);
-		availableTagColors.add(Silver);
-		availableTagColors.add(SkyBlue);
-		availableTagColors.add(SlateBlue);
-		availableTagColors.add(SlateGray);
-		availableTagColors.add(Snow);
-		availableTagColors.add(SpringGreen);
-		availableTagColors.add(SteelBlue);
-		availableTagColors.add(Tan);
-		availableTagColors.add(Teal);
-		availableTagColors.add(Thistle);
-		availableTagColors.add(Tomato);
-		availableTagColors.add(Turquoise);
-		availableTagColors.add(Violet);
-		availableTagColors.add(Wheat);
-		availableTagColors.add(White);
-		availableTagColors.add(WhiteSmoke);
-		availableTagColors.add(Yellow);
-		availableTagColors.add(YellowGreen);
+		colors.put(Aqua, "#00FFFF");
+		colors.put(Blue, "#0000FF");
+		colors.put(Chartreuse, "#7FFF00");
+		colors.put(Crimson, "#DC143C");
+		colors.put(DarkBlue, "#00008B");
+		colors.put(DarkOrange, "#FF8C00");
+		colors.put(DarkRed, "#8B0000");
+		colors.put(DarkViolet, "#9400D3");
+		colors.put(DeepPink, "#FF1493");
+		colors.put(DeepSkyBlue, "#00BFFF");
+		colors.put(FireBrick, "#B22222");
+		colors.put(Green, "#008000");
+		colors.put(Lime, "#00FF00");
+		colors.put(Magenta, "#FF00FF");
+		colors.put(MediumSpringGreen, "#00FA9A");
+		colors.put(OliveDrab, "#6B8E23");
+		colors.put(OrangeRed, "#FF4500");
+		colors.put(Peru, "#CD853F");
+		colors.put(Red, "#FF0000");
+		colors.put(SaddleBrown, "#8B4513");
+		colors.put(Teal, "#008080");
+		colors.put(Tomato, "#FF6347");
 		
-		return availableTagColors;
+		return colors;
 		
 	}
+	
+	
 	
 	/**
 	 * Return 'white' for dark colors and '#323' for light colors where it 
@@ -310,11 +213,15 @@ public class Colors {
 	 * @param tag color
 	 * @return text color
 	 */
+	@Deprecated
 	public static String getTagTextColor(String color) {
 		
 		String txtColor = "white";
+		if (color == null) {
+			// FIXME tuki dobis #123456 ne ime barve
+			return txtColor;
+		}
 		if (color.equals(AliceBlue)
-				|| color.equals(AntiqueWhite)
 				|| color.equals(Azure)
 				|| color.equals(Beige)
 				|| color.equals(Bisque)
@@ -355,41 +262,161 @@ public class Colors {
 		return txtColor;
 	}
 	
-	public static List<String> getAvailableBackgroundColors() {
+	
+	/**
+	 * Load tagColors.properties. If file doesn't exist, create new one and write default color set.
+	 * @return props
+	 */
+	private static Properties loadTagColorsProperties() {
 		
-		if (availableBackgroundColors != null) {
-			return availableBackgroundColors;
+		File f = new File(OContext.CFG_DIR + "/tagColors.properties");
+		Properties props = new Properties();
+		
+		if (f.exists()) {
+			
+			try {
+				props.load(new FileInputStream(OContext.CFG_DIR + "/tagColors.properties"));
+			} catch (FileNotFoundException e) {
+				OContext.getInstance().getLogger().error("Colors:loadTagColorsProperties(): error writing properties", e);
+			} catch (IOException e) {
+				OContext.getInstance().getLogger().error("Colors:loadTagColorsProperties(): error writing properties", e);
+			}
+			
+		} else {
+			
+			// create default properties file if it doesn't exist
+			props.putAll(getDefaultTagColors());
+			try {
+			    props.store(new FileOutputStream(OContext.CFG_DIR + "/tagColors.properties"), null);
+			} catch (IOException e) {
+				OContext.getInstance().getLogger().error("Colors:loadTagColorsProperties(): error writing properties", e);
+			}
+			
 		}
 		
-		availableBackgroundColors = new ArrayList<String>();
-		availableBackgroundColors.add(AntiqueWhite);
-		availableBackgroundColors.add(Azure);
-		availableBackgroundColors.add(DarkSalmon);
-		availableBackgroundColors.add(DarkSeaGreen);
-		availableBackgroundColors.add(HoneyDew);
-		availableBackgroundColors.add(Ivory);
-		availableBackgroundColors.add(Khaki);
-		availableBackgroundColors.add(Lavender);
-		availableBackgroundColors.add(LemonChiffon);
-		availableBackgroundColors.add(LightBlue);
-		availableBackgroundColors.add(LightCyan);
-		availableBackgroundColors.add(LightGray);
-		availableBackgroundColors.add(LightGreen);
-		availableBackgroundColors.add(LightPink);
-		availableBackgroundColors.add(LightSalmon);
-		availableBackgroundColors.add(LightSkyBlue);
-		availableBackgroundColors.add(LightSteelBlue);
-		availableBackgroundColors.add(LightYellow);
-		availableBackgroundColors.add(Moccasin);
-		availableBackgroundColors.add(PaleGreen);
-		availableBackgroundColors.add(PaleTurquoise);
-		availableBackgroundColors.add(Pink);
-		availableBackgroundColors.add(Plum);
-		availableBackgroundColors.add(PowderBlue);
-		availableBackgroundColors.add(Thistle);
+		return props;
 		
-		return availableBackgroundColors;
+	}
+	
+	
+	/**
+	 * Get map of background colors.<br>
+	 * Keep in mind, that for every background color there must be the same bgColor-* class in css.
+	 * @return tagColors
+	 */
+	public static Map<String, String> getTagColors() {
 		
+		if (tagColors != null) {
+			return tagColors;
+		}
+		
+		tagColors = new HashMap<String, String>();
+		
+		Properties p = loadTagColorsProperties();
+		
+		Enumeration<?> e = p.propertyNames();
+		while (e.hasMoreElements()) {
+		      String key = (String) e.nextElement();
+		      tagColors.put(key, p.getProperty(key));
+		}
+		
+		return tagColors;
+	}
+	
+	
+	
+	
+	
+	
+	
+	/* BACKGROUND COLORS */
+	
+	
+	
+	/**
+	 * Return map of default background colors
+	 * @return colors
+	 */
+	private static Map<String, String> getDefaultBackgroundColors() {
+		
+		Map<String, String> colors = new HashMap<String, String>();
+		
+		colors.put(LightPink, "#FFB6C1");
+		colors.put(LightSkyBlue, "#87CEFA");
+		colors.put(Moccasin, "#FFE4B5");
+		colors.put(PaleGreen, "#98FB98");
+		colors.put(PaleTurquoise, "#AFEEEE");
+		colors.put(Pink, "#FFC0CB");
+		colors.put(Plum, "#DDA0DD");
+		colors.put("MYellow", "#FFFFAA");
+		colors.put("MOrange", "#FFCC99");
+		colors.put("MGreen", "#CCFF99");
+		colors.put("MBlue", "#CCFFFF");
+		colors.put("MViolet", "#FFCCFF");
+		
+		return colors;
+		
+	}
+	
+	
+	/**
+	 * Load bgColors.properties. If file doesn't exist, create new one and write default color set.
+	 * @return props
+	 */
+	private static Properties loadBgColorsProperties() {
+		
+		File f = new File(OContext.CFG_DIR + "/bgColors.properties");
+		Properties props = new Properties();
+		
+		if (f.exists()) {
+			
+			try {
+				props.load(new FileInputStream(OContext.CFG_DIR + "/bgColors.properties"));
+			} catch (FileNotFoundException e) {
+				OContext.getInstance().getLogger().error("Colors:loadBgColorsProperties(): error writing properties", e);
+			} catch (IOException e) {
+				OContext.getInstance().getLogger().error("Colors:loadBgColorsProperties(): error writing properties", e);
+			}
+			
+		} else {
+			
+			// create default properties file if it doesn't exist
+			props.putAll(getDefaultBackgroundColors());
+			try {
+			    props.store(new FileOutputStream(OContext.CFG_DIR + "/bgColors.properties"), null);
+			} catch (IOException e) {
+				OContext.getInstance().getLogger().error("Colors:loadBgColorsProperties(): error writing properties", e);
+			}
+			
+		}
+		
+		return props;
+		
+	}
+	
+	
+	/**
+	 * Get map of background colors.<br>
+	 * Keep in mind, that for every background color there must be the same bgColor-* class in css.
+	 * @return bgColors
+	 */
+	public static Map<String, String> getBgColors() {
+		
+		if (bgColors != null) {
+			return bgColors;
+		}
+		
+		bgColors = new HashMap<String, String>();
+		
+		Properties p = loadBgColorsProperties();
+		
+		Enumeration<?> e = p.propertyNames();
+		while (e.hasMoreElements()) {
+		      String key = (String) e.nextElement();
+		      bgColors.put(key, p.getProperty(key));
+		}
+		
+		return bgColors;
 	}
 	
 	

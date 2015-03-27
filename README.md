@@ -9,12 +9,13 @@ Last stable release: 2.2.0
 ### What is it?
 
 OpenMp3Player is a web application for playing mp3 files. It runs on Apache Tomcat 7 server which comes 
-embedded with the application (deployment is not required).
+bundled with the application (deployment is not required).
 
 
 ### Starting
 
-Double click the start.jar and start/stop server.
+Since v3: double click the start.jar and start/stop server.
+Before v3: use start.sh/stop.sh or start.bat/stop.bat scripts
 
 
 Open web browser and go to: <a href="http://localhost:8080/OpenMp3Player">
@@ -57,6 +58,8 @@ march 2015
 - fixed alignment
 - stars custom tag
 - playlist with name 'queue' is not allowed
+- less tags colors
+- less background colors
 
 
 3.0.0-alpha.04

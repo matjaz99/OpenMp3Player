@@ -40,7 +40,7 @@
 }
 
 .table-even-row {
-	background-color: #DDD;
+	background-color: #EEE;
 }
 
 .largeText {
@@ -104,59 +104,13 @@ a, a:hover, a:visited, a:link {
 
 
 
-.bgColor-AntiqueWhite {
-	background-color: AntiqueWhite;
-}
-.bgColor-Azure {
-	background-color: Azure;
-}
-.bgColor-DarkSalmon {
-	background-color: DarkSalmon;
-}
-.bgColor-DarkSeaGreen {
-	background-color: DarkSeaGreen;
-}
-.bgColor-HoneyDew {
-	background-color: HoneyDew;
-}
-.bgColor-Ivory {
-	background-color: Ivory;
-}
-.bgColor-Khaki {
-	background-color: Khaki;
-}
-.bgColor-Lavender {
-	background-color: Lavender;
-}
-.bgColor-LemonChiffon {
-	background-color: LemonChiffon;
-}
-.bgColor-LightBlue {
-	background-color: LightBlue;
-}
-.bgColor-LightCyan {
-	background-color: LightCyan;
-}
-.bgColor-LightGray {
-	background-color: LightGray;
-}
-.bgColor-LightGreen {
-	background-color: LightGreen;
-}
+
+
 .bgColor-LightPink {
 	background-color: LightPink;
 }
-.bgColor-LightSalmon {
-	background-color: LightSalmon;
-}
 .bgColor-LightSkyBlue {
 	background-color: LightSkyBlue;
-}
-.bgColor-LightSteelBlue {
-	background-color: LightSteelBlue;
-}
-.bgColor-LightYellow {
-	background-color: LightYellow;
 }
 .bgColor-Moccasin {
 	background-color: Moccasin;
@@ -173,10 +127,23 @@ a, a:hover, a:visited, a:link {
 .bgColor-Plum {
 	background-color: Plum;
 }
-.bgColor-PowderBlue {
-	background-color: PowderBlue;
+.bgColor-MYellow {
+	background-color: #FFFFAA;
 }
-.bgColor-Thistle {
-	background-color: Thistle;
+.bgColor-MOrange {
+	background-color: #FFCC99;
 }
+.bgColor-MGreen {
+	background-color: #CCFF99;
+}
+.bgColor-MBlue {
+	background-color: #CCFFFF;
+}
+.bgColor-MViolet {
+	background-color: #FFCCFF;
+}
+
+
+
+
 
