@@ -14,6 +14,8 @@ public class Start {
 	
 	public static String[] startServerCommandWin = { "cmd.exe", "/c", /*"@echo", "off", "&",*/ "set", "\"CATALINA_HOME=%cd%/server/apache-tomcat-7.0.57\"", "&", "START", "/B", "call", "server/apache-tomcat-7.0.57/bin/startup.bat" };
 	public static String[] stopServerCommandWin = { "cmd.exe", "/c", "set", "\"CATALINA_HOME=%cd%/server/apache-tomcat-7.0.57\"", "&", "START", "/B", "call", "server/apache-tomcat-7.0.57/bin/shutdown.bat" };
+	
+	public static String version = "0.0.0";
 
 
 	public static void main(String[] args) {
@@ -28,21 +30,21 @@ public class Start {
 
 			if (args[0].equalsIgnoreCase("start")) {
 
-				if (!runningFileExist()) {
+				if (!isServerRunning()) {
 					startServer();
 				}
 				System.out.println("Started");
 
 			} else if (args[0].equalsIgnoreCase("stop")) {
 
-				if (runningFileExist()) {
+				if (isServerRunning()) {
 					stopServer();
 				}
 				System.out.println("Stopped");
 
 			} else if (args[0].equalsIgnoreCase("status")) {
 
-				if (runningFileExist()) {
+				if (isServerRunning()) {
 					System.out.println("Stopped");
 				} else {
 					System.out.println("Started");
@@ -58,10 +60,13 @@ public class Start {
 
 	}
 
+	
 	/**
 	 * Change file permissions of .sh files to 755 (Linux and OS X only)
 	 */
 	public static void init() {
+		
+		readVersion();
 
 		if (getOsType().endsWith("X")) {
 			String[] cmd1 = { "find", ".", "-name", "*.sh", "-exec", "chmod",
@@ -72,6 +77,11 @@ public class Start {
 
 	}
 
+	
+	/**
+	 * Execute script to start the server. On X systems .sh script is run, 
+	 * on windows .bat script is run.
+	 */
 	public static void startServer() {
 
 		Executor e = new Executor();
@@ -85,6 +95,11 @@ public class Start {
 
 	}
 
+	
+	/**
+	 * Execute script to stop the server. On X systems .sh script is run, 
+	 * on windows .bat script is run.
+	 */
 	public static void stopServer() {
 
 		Executor e = new Executor();
@@ -98,6 +113,10 @@ public class Start {
 
 	}
 
+	
+	/**
+	 * When server is started create dummy running.tmp file.
+	 */
 	public static void createRunningFile() {
 		File f = new File("config/running.tmp");
 		try {
@@ -107,16 +126,29 @@ public class Start {
 		}
 	}
 
-	public static boolean runningFileExist() {
+	
+	/**
+	 * Return true if running.tmp file exists (indicating that server is running).
+	 */
+	public static boolean isServerRunning() {
 		File f = new File("config/running.tmp");
 		return f.exists();
 	}
 
+	
+	/**
+	 * When server is stopped delete running.tmp file.
+	 */
 	public static void removeRunningFile() {
 		File f = new File("config/running.tmp");
 		f.delete();
 	}
 
+	
+	/**
+	 * Return type of operating system: OSX, LINUX or WINDOWS.
+	 * @return osType
+	 */
 	public static String getOsType() {
 		String os = System.getProperty("os.name");
 
@@ -131,9 +163,13 @@ public class Start {
 		return "X";
 	}
 
-	public static String readVersion() {
+	
+	/**
+	 * Read version.txt file
+	 */
+	private static void readVersion() {
 
-		String ver = "0.0";
+		String ver = "0.0.0";
 
 		try {
 
@@ -150,8 +186,9 @@ public class Start {
 			e.printStackTrace();
 		}
 
-		return ver;
+		version = ver;
 
 	}
+	
 
 }

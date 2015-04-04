@@ -23,21 +23,35 @@ public class Gui extends JFrame {
 	private JLabel lblTitle = new JLabel("OpenMp3Player");
 	private JLabel lblStatus = new JLabel("Status: Stopped");
 	private JButton btnStartStop = new JButton("Start server");
+	private JButton btnUpdate = new JButton("Update");
 
 	private JPanel pnlControls = new JPanel();
+	
+	private Updater u = new Updater();
 
 	public Gui() {
 
 		super("Starter");
-		pnlControls.setLayout(new GridLayout(3, 1));
-		lblTitle.setText("OpenMp3Player v" + Start.readVersion());
+		pnlControls.setLayout(new GridLayout(4, 1));
+		lblTitle.setText("OpenMp3Player v" + Start.version);
 		pnlControls.add(lblTitle);
-		if (Start.runningFileExist()) {
+		pnlControls.add(lblStatus);
+		pnlControls.add(btnStartStop);
+		pnlControls.add(btnUpdate);
+		
+		if (Start.isServerRunning()) {
 			lblStatus.setText("Status: Running");
 			btnStartStop.setText("Stop server");
 		}
-		pnlControls.add(lblStatus);
-		pnlControls.add(btnStartStop);
+				
+		if (!Start.isServerRunning() && u.isUpdateRequired()) {
+			btnUpdate.setEnabled(true);
+		} else {
+			btnUpdate.setEnabled(false);
+		}
+		
+		
+		
 
 		add(pnlControls);
 
@@ -50,6 +64,17 @@ public class Gui extends JFrame {
 				startStopTomcat();
 			}
 		});
+		
+		btnUpdate.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				u.updateOmp3p();
+				Start.version = Updater.lastVersion;
+				lblTitle.setText("OpenMp3Player v" + Start.version);
+				btnUpdate.setEnabled(false);
+			}
+		});
 
 	}
 
@@ -57,14 +82,20 @@ public class Gui extends JFrame {
 	 * Implementation of start/stop button.
 	 */
 	private void startStopTomcat() {
-		if (Start.runningFileExist()) {
+		if (Start.isServerRunning()) {
 			Start.stopServer();
 			lblStatus.setText("Status: Stopped");
 			btnStartStop.setText("Start server");
+			if (u.isUpdateRequired()) {
+				btnUpdate.setEnabled(true);
+			} else {
+				btnUpdate.setEnabled(false);
+			}
 		} else {
 			Start.startServer();
 			lblStatus.setText("Status: Running");
 			btnStartStop.setText("Stop server");
+			btnUpdate.setEnabled(false);
 		}
 	}
 

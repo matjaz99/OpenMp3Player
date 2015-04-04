@@ -60,6 +60,7 @@ march 2015
 - playlist with name 'queue' is not allowed
 - less tags colors
 - less background colors
+- upgrade omp3p function in starter
 
 
 3.0.0-alpha.04
