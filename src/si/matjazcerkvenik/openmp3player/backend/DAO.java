@@ -14,22 +14,21 @@ import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Mp3Files;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
+import si.matjazcerkvenik.openmp3player.player.Tag;
+import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
-public class PlaylistDAO {
+public class DAO {
 	
 	private SimpleLogger logger = null;
 	
-	private static PlaylistDAO dao = null;
+	private static DAO instance = null;
 	
 	private Playlists playlists = null;
-	
 	private Playlist queue = null;
+	private Tags tags = null;
 	
-	
-	
-	private PlaylistDAO() {
-		
+	private DAO() {
 		logger = OContext.getInstance().getLogger();
 		
 		if (queue == null) {
@@ -38,21 +37,16 @@ public class PlaylistDAO {
 			queue.setSource("queue");
 		}
 		
+		// load tags
+		getTags();
+		
 	}
 	
-	
-	
-	/**
-	 * Return instance of <code>PlaylistDAO</code> (singleton)
-	 * @return dao
-	 */
-	public static PlaylistDAO getInstance() {
-		
-		if (dao == null) {
-			dao = new PlaylistDAO();
+	public static DAO getInstance() {
+		if (instance == null) {
+			instance = new DAO();
 		}
-		return dao;
-		
+		return instance;
 	}
 	
 	
@@ -71,8 +65,6 @@ public class PlaylistDAO {
 		return playlists;
 	}
 	
-	
-	
 	/**
 	 * Read from playlists.xml file. If playlists.xml does not exist, create new one.
 	 */
@@ -81,7 +73,7 @@ public class PlaylistDAO {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/playlists.xml");
 			if (!file.exists()) {
-				logger.warn("PlaylistDAO:loadPlaylists(): playlists.xml not found; creating new");
+				logger.warn("DAO:loadPlaylists(): playlists.xml not found; creating new");
 				playlists = new Playlists();
 				JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -89,14 +81,14 @@ public class PlaylistDAO {
 				jaxbMarshaller.marshal(playlists, file);
 				
 			}
-			logger.info("PlaylistDAO:loadPlaylists(): playlists.xml");
+			logger.info("DAO:loadPlaylists(): playlists.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Playlists.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			playlists = (Playlists) jaxbUnmarshaller.unmarshal(file);
 			if (playlists.getPlist() == null) {
 				playlists.setPlist(new ArrayList<Playlist>());
 			}
-			logger.trace("PlaylistDAO:loadPlaylists(): " + playlists.toString());
+			logger.trace("DAO:loadPlaylists(): " + playlists.toString());
 
 		} catch (JAXBException e) {
 			logger.error("JAXBException", e);
@@ -109,7 +101,7 @@ public class PlaylistDAO {
 	 * Save playlists to playlists.xml file
 	 */
 	private void savePlaylists() {
-		logger.info("PlaylistDAO:savePlaylists(): saving...");
+		logger.info("DAO:savePlaylists(): saving...");
 		
 		// temporarly remove queue
 		Playlist q = null;
@@ -142,13 +134,6 @@ public class PlaylistDAO {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * Get playlist with name <code>pName</code> containing mp3 files
 	 * @param pName
@@ -177,7 +162,7 @@ public class PlaylistDAO {
 			files = loadFromDirectory(playlist.getSource());
 		}
 		
-		logger.info("PlaylistDAO:getPlaylist(): loaded " + files.size() + " mp3s from playlist " + pName);
+		logger.info("DAO:getPlaylist(): loaded " + files.size() + " mp3s from playlist " + pName);
 		
 		// set indexes
 		for (int i = 0; i < files.size(); i++) {
@@ -217,7 +202,7 @@ public class PlaylistDAO {
 			if (plist.getName().equals(p.getName())) {
 				if (plist.getSource().endsWith(".xml")) {
 					File f = new File(OContext.PLAYLISTS_DIR + "/" + plist.getSource());
-					logger.debug("PlaylistDAO:deletePlaylist(): delete: " + f.getAbsolutePath());
+					logger.debug("DAO:deletePlaylist(): delete: " + f.getAbsolutePath());
 					f.delete();
 				}
 			}
@@ -238,17 +223,6 @@ public class PlaylistDAO {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * Read playlist xml file 
 	 * @param source
@@ -260,10 +234,10 @@ public class PlaylistDAO {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/" + source);
 			if (!file.exists()) {
-				logger.warn("PlaylistDAO:unmarshall(): playlist not found: " + OContext.PLAYLISTS_DIR + "/" + source);
+				logger.warn("DAO:unmarshall(): playlist not found: " + OContext.PLAYLISTS_DIR + "/" + source);
 				return new Mp3Files();
 			}
-			logger.debug("PlaylistDAO:unmarshall(): playlist found: " + OContext.PLAYLISTS_DIR + "/" + source);
+			logger.debug("DAO:unmarshall(): playlist found: " + OContext.PLAYLISTS_DIR + "/" + source);
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			mp3Files = (Mp3Files) jaxbUnmarshaller.unmarshal(file);
@@ -286,7 +260,7 @@ public class PlaylistDAO {
 			return;
 		}
 		
-		logger.info("PlaylistDAO:savePlaylist(): saving...");
+		logger.info("DAO:savePlaylist(): saving...");
 		try {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/" + p.getSource());
@@ -341,5 +315,110 @@ public class PlaylistDAO {
 				
 		return list;
 	}
+	
+	
+	
+	
+	
+	/* TAGS */
+	
+	
+	/**
+	 * Return all tags
+	 */
+	public Tags getTags() {
 
+		if (tags == null) {
+			loadTags();
+		}
+		
+		return tags;
+
+	}
+	
+	/**
+	 * Return tag according to given name
+	 * @param name
+	 * @return tag
+	 */
+	public Tag getTag(String name) {
+		
+		for (Tag t : tags.getTagList()) {
+			if (t.getName().equals(name)) {
+				return t;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Add new tag and save tags.xml
+	 * @param t
+	 */
+	public void addTag(Tag t) {
+		tags.addTag(t);
+		saveTags();
+	}
+	
+	/**
+	 * Delete tag and save tags.xml
+	 * @param t
+	 */
+	public void deleteTag(Tag t) {
+		tags.removeTag(t);
+		saveTags();
+		logger.info("DAO:deleteTag(): delete " + t.getName());
+	}
+	
+	
+	
+	
+	/**
+	 * Read from tags.xml file
+	 */
+	private void loadTags() {
+		try {
+
+			File file = new File(OContext.CFG_DIR + "/tags.xml");
+			if (!file.exists()) {
+				logger.warn("DAO:loadTags(): tags.xml not found; creating new");
+				tags = new Tags();
+				JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
+				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+				jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+				jaxbMarshaller.marshal(tags, file);
+
+			}
+			logger.info("DAO:loadTags(): tags.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			tags = (Tags) jaxbUnmarshaller.unmarshal(file);
+			logger.trace("DAO:loadTags(): " + tags.toString());
+
+		} catch (JAXBException e) {
+			logger.error("JAXBException", e);
+		}
+	}
+	
+
+	/**
+	 * Save to file tags.xml
+	 */
+	private void saveTags() {
+		logger.info("DAO:saveTags(): saving...");
+		try {
+
+			File file = new File(OContext.CFG_DIR + "/tags.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Tags.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.marshal(tags, file);
+
+		} catch (JAXBException e) {
+			logger.error("JAXBException", e);
+		}
+	}
+	
+	
+	
 }

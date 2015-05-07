@@ -3,8 +3,8 @@ package si.matjazcerkvenik.openmp3player.web;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.Mp3Files;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
@@ -54,10 +54,10 @@ public class AddPlaylistBean {
 		p.setSource(name + ".xml");
 		
 		Mp3Files m = new Mp3Files();
-		m.setFiles(PlaylistDAO.getInstance().loadFromDirectory(source));
+		m.setFiles(DAO.getInstance().loadFromDirectory(source));
 		p.setMp3files(m);
 		
-		PlaylistDAO.getInstance().addPlaylist(p);
+		DAO.getInstance().addPlaylist(p);
 		return "playlists";
 		
 	}

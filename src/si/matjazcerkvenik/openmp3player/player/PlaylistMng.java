@@ -2,8 +2,8 @@ package si.matjazcerkvenik.openmp3player.player;
 
 import java.util.List;
 
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 public class PlaylistMng {
@@ -24,7 +24,7 @@ public class PlaylistMng {
 	 * @return
 	 */
 	public List<Playlist> getAllPlaylists() {
-		List<Playlist> pList = PlaylistDAO.getInstance().getPlaylists().getPlist();
+		List<Playlist> pList = DAO.getInstance().getPlaylists().getPlist();
 		return pList;
 	}
 	
@@ -36,7 +36,7 @@ public class PlaylistMng {
 	 * @return playlist
 	 */
 	public Playlist getPlaylist(String name) {
-		return PlaylistDAO.getInstance().getPlaylist(name);
+		return DAO.getInstance().getPlaylist(name);
 	}
 	
 	
@@ -59,7 +59,7 @@ public class PlaylistMng {
 			p.getMp3files().getFiles().get(i).setIndex(i);
 		}
 		// save playlist
-		PlaylistDAO.getInstance().savePlaylist(p);
+		DAO.getInstance().savePlaylist(p);
 		
 		return p;
 	}
@@ -72,7 +72,7 @@ public class PlaylistMng {
 	public void putToQueue(Mp3File mp3) {
 		
 		logger.info("PlaylistMng:putToQueue(): " + mp3.getIndex());
-		PlaylistDAO.getInstance().addMp3ToPlaylist(mp3.makeClone(), getPlaylist(QUEUE_NAME));
+		DAO.getInstance().addMp3ToPlaylist(mp3.makeClone(), getPlaylist(QUEUE_NAME));
 		
 	}
 	
@@ -92,7 +92,7 @@ public class PlaylistMng {
 		p.setName(name);
 		p.setSource(name + ".xml");
 		
-		Playlist queue = PlaylistDAO.getInstance().getPlaylist(QUEUE_NAME);
+		Playlist queue = DAO.getInstance().getPlaylist(QUEUE_NAME);
 		
 		for (int i = 0; i < queue.getMp3files().getFiles().size(); i++) {
 			
@@ -102,7 +102,7 @@ public class PlaylistMng {
 			
 		}
 		
-		PlaylistDAO.getInstance().addPlaylist(p);
+		DAO.getInstance().addPlaylist(p);
 	}
 	
 	
@@ -111,7 +111,7 @@ public class PlaylistMng {
 	 * Clear all songs from queue.
 	 */
 	public void emptyQueue() {
-		PlaylistDAO.getInstance().getPlaylist(QUEUE_NAME).getMp3files().getFiles().clear();
+		DAO.getInstance().getPlaylist(QUEUE_NAME).getMp3files().getFiles().clear();
 	}
 	
 }

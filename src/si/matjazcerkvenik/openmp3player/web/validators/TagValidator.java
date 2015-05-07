@@ -7,8 +7,8 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 
@@ -22,7 +22,7 @@ public class TagValidator implements Validator {
 		String tName = (String) value;
 		OContext.getInstance().getLogger().info("TagValidator:validate(): new name: " + tName);
 		
-		Tags tags = TagsDAO.getInstance().getTags();
+		Tags tags = DAO.getInstance().getTags();
 		
 		for (Tag t : tags.getTagList()) {
 			if (t.getName().equals(tName)) {

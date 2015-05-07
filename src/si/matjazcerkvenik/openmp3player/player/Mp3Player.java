@@ -1,7 +1,7 @@
 package si.matjazcerkvenik.openmp3player.player;
 
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.backend.Utils;
 import si.matjazcerkvenik.openmp3player.player.jlayer.JLayerPlayer;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
@@ -24,9 +24,9 @@ public class Mp3Player {
 		
 		player = new JLayerPlayer();
 		
-		Playlists p = PlaylistDAO.getInstance().getPlaylists();
+		Playlists p = DAO.getInstance().getPlaylists();
 		if (p.getPlist().size() > 0) {
-			activePlaylist = PlaylistDAO.getInstance().getPlaylist(p.getPlist().get(0).getName());
+			activePlaylist = DAO.getInstance().getPlaylist(p.getPlist().get(0).getName());
 		} else {
 			activePlaylist = new Playlist();
 		}
@@ -193,7 +193,7 @@ public class Mp3Player {
 		
 		currentlyPlaying.setLastPlayedTime(Utils.getNow());
 		currentlyPlaying.setCount(currentlyPlaying.getCount() + 1);
-		PlaylistDAO.getInstance().savePlaylist(activePlaylist);
+		DAO.getInstance().savePlaylist(activePlaylist);
 		
 	}
 	

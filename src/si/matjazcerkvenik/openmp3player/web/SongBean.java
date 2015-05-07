@@ -14,11 +14,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.backend.Digester;
 import si.matjazcerkvenik.openmp3player.backend.ID3Tag;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
-import si.matjazcerkvenik.openmp3player.backend.TagsDAO;
 import si.matjazcerkvenik.openmp3player.player.Mp3File;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Tag;
@@ -55,7 +54,7 @@ public class SongBean {
 		if (!mp3File.getHash().equals(hash)) {
 			mp3File.setHash(hash);
 			mp3File = ID3Tag.getMetadata(mp3File);
-			PlaylistDAO.getInstance().savePlaylist(playlist);
+			DAO.getInstance().savePlaylist(playlist);
 		}
 	}
 	
@@ -92,7 +91,7 @@ public class SongBean {
 	 */
 	public List<SelectItem> getTagItems() {
 		
-		Tags tags = TagsDAO.getInstance().getTags();
+		Tags tags = DAO.getInstance().getTags();
 		
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		list.add(new SelectItem("- Select tag -", "- Select tag -"));
@@ -123,9 +122,9 @@ public class SongBean {
 		if (selectedTag.equals("- Select tag -")) {
 			return;
 		}
-		Tag t = TagsDAO.getInstance().getTag(selectedTag);
+		Tag t = DAO.getInstance().getTag(selectedTag);
 		mp3File.addTag(t);
-		PlaylistDAO.getInstance().savePlaylist(playlist);
+		DAO.getInstance().savePlaylist(playlist);
 		
 		selectedTag = "- Select tag -";
 				
@@ -159,7 +158,7 @@ public class SongBean {
 	 */
 	public void removeTag(Tag t) {
 		mp3File.getTags().removeTag(t);
-		PlaylistDAO.getInstance().savePlaylist(playlist);
+		DAO.getInstance().savePlaylist(playlist);
 	}
 	
 	
@@ -231,7 +230,7 @@ public class SongBean {
 			return;
 		}
 		mp3File.setBackgroundColor(selectedBackgroundColor);
-		PlaylistDAO.getInstance().savePlaylist(playlist);
+		DAO.getInstance().savePlaylist(playlist);
 		selectedBackgroundColorValue = Colors.getBgColors().get(selectedBackgroundColor);
 		selectedBackgroundColor = "- Select color -";
 		
@@ -243,7 +242,7 @@ public class SongBean {
 	 */
 	public void removeBackgroundColor() {
 		mp3File.setBackgroundColor(null);
-		PlaylistDAO.getInstance().savePlaylist(playlist);
+		DAO.getInstance().savePlaylist(playlist);
 		selectedBackgroundColor = "- Select color -";
 		selectedBackgroundColorValue = null;
 	}
@@ -281,7 +280,7 @@ public class SongBean {
 		numberOfStars = e.getNewValue().toString();
 		logger.info("SongBean:starsSelected(): event - selected stars: " + numberOfStars);
 		mp3File.setStars(Integer.parseInt(numberOfStars));
-		PlaylistDAO.getInstance().savePlaylist(playlist);
+		DAO.getInstance().savePlaylist(playlist);
 		
 	}
 	

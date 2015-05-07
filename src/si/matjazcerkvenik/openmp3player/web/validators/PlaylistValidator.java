@@ -7,8 +7,8 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Playlists;
 
@@ -31,7 +31,7 @@ public class PlaylistValidator implements Validator {
 			throw new ValidatorException(message);
 		}
 		
-		Playlists playlists = PlaylistDAO.getInstance().getPlaylists();
+		Playlists playlists = DAO.getInstance().getPlaylists();
 		
 		for (Playlist p : playlists.getPlist()) {
 			if (p.getName().equals(pName)) {

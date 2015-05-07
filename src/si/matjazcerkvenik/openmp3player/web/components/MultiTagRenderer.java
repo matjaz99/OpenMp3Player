@@ -8,7 +8,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
-import si.matjazcerkvenik.openmp3player.backend.TagsDAO;
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
@@ -35,10 +35,10 @@ public class MultiTagRenderer extends Renderer {
 			
 			// ignore color in playlist
 			// use color from tags.xml if exists
-			Tag origTag = TagsDAO.getInstance().getTag(tag.getName());
+			Tag origTag = DAO.getInstance().getTag(tag.getName());
 			String tagColor = "Black";
 			if (origTag != null) {
-				String c = TagsDAO.getInstance().getTag(tag.getName()).getColor();
+				String c = DAO.getInstance().getTag(tag.getName()).getColor();
 				tagColor = Colors.getTagColors().get(c);
 				if (tagColor == null) tagColor = "Black";
 			}

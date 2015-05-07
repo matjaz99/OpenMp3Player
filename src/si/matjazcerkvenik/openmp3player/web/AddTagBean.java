@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
-import si.matjazcerkvenik.openmp3player.backend.TagsDAO;
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
 
@@ -55,7 +55,7 @@ public class AddTagBean {
 		t.setName(name);
 		t.setColor(color);
 		
-		TagsDAO.getInstance().addTag(t);
+		DAO.getInstance().addTag(t);
 		
 		name = null;
 		color = null;
@@ -69,7 +69,7 @@ public class AddTagBean {
 	 * @param t
 	 */
 	public void deleteTag(Tag t) {
-		TagsDAO.getInstance().deleteTag(t);
+		DAO.getInstance().deleteTag(t);
 	}
 	
 	
@@ -79,7 +79,7 @@ public class AddTagBean {
 	 * @return list
 	 */
 	public List<Tag> getAllTags() {
-		return TagsDAO.getInstance().getTags().getTagList();
+		return DAO.getInstance().getTags().getTagList();
 	}
 	
 	

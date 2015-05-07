@@ -6,8 +6,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.backend.OContext;
-import si.matjazcerkvenik.openmp3player.backend.PlaylistDAO;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
@@ -35,7 +35,7 @@ public class PlaylistsBean {
 	
 	
 	public List<Playlist> getPlaylistsList() {
-		return PlaylistDAO.getInstance().getPlaylists().getPlist();
+		return DAO.getInstance().getPlaylists().getPlist();
 	}
 	
 	
@@ -46,7 +46,7 @@ public class PlaylistsBean {
 	 */
 	public String gotoPlaylist(Playlist p) {
 		logger.info("PlaylistsBean:gotoPlaylist(): " + p.getName());
-		Playlist pList = PlaylistDAO.getInstance().getPlaylist(p.getName());
+		Playlist pList = DAO.getInstance().getPlaylist(p.getName());
 		playlistBean.setPassivePlaylist(pList);
 		playlistBean.setSelectedPlaylist(pList.getName());
 		return "home";
@@ -60,7 +60,7 @@ public class PlaylistsBean {
 	 */
 	public String deletePlaylist(Playlist p) {
 		logger.info("PlaylistsBean:deletePlaylist(): " + p.getName());
-		PlaylistDAO.getInstance().removePlaylist(p);
+		DAO.getInstance().removePlaylist(p);
 		return "playlists";
 	}
 	

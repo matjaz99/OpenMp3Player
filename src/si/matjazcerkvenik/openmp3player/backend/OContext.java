@@ -20,7 +20,6 @@ public class OContext {
 	public static String version = "0.0";
 	
 	private SimpleLogger logger = null;
-	private static boolean isInitialized = false;
 	
 	private OContext() {
 		initialize();
@@ -30,14 +29,10 @@ public class OContext {
 	 * Get instance of OContext (singleton).
 	 * @return ctx
 	 */
-	public static synchronized OContext getInstance() {
-		if (!isInitialized) {
-			isInitialized = true;
-			if (ctx == null) {
-				ctx = new OContext();
-			}
+	public static OContext getInstance() {
+		if (ctx == null) {
+			ctx = new OContext();
 		}
-		
 		return ctx;
 	}
 	
