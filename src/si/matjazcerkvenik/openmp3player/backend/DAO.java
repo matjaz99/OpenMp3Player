@@ -18,6 +18,13 @@ import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.player.Tags;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
+
+/**
+ * This class provides access to xml files.
+ * 
+ * @author matjaz
+ *
+ */
 public class DAO {
 	
 	private SimpleLogger logger = null;
