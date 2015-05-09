@@ -50,8 +50,8 @@ public class AddPlaylistBean {
 		logger.info("AddPlaylistBean:addPlaylist(): " + source);
 		Playlist p = new Playlist();
 		p.setName(name);
-		p.setOrigin(source);
-		p.setSource(name + ".xml");
+		p.setSource(source);
+		p.setFile(name + ".xml");
 		
 		Mp3Files m = new Mp3Files();
 		m.setFiles(DAO.getInstance().loadFromDirectory(source));

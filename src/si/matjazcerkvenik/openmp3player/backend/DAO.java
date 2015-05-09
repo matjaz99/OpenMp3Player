@@ -34,7 +34,7 @@ public class DAO {
 		if (queue == null) {
 			queue = new Playlist();
 			queue.setName("Queue");
-			queue.setSource("queue");
+			queue.setFile("queue");
 		}
 		
 		// load tags
@@ -156,10 +156,10 @@ public class DAO {
 		// load mp3 files
 		List<Mp3File> files = null;
 		// FIXME always load from file, check hash, load id3...
-		if (playlist.getSource().endsWith(".xml")) {
-			files = loadFromXml(playlist.getSource()).getFiles();
+		if (playlist.getFile().endsWith(".xml")) {
+			files = loadFromXml(playlist.getFile()).getFiles();
 		} else {
-			files = loadFromDirectory(playlist.getSource());
+			files = loadFromDirectory(playlist.getFile());
 		}
 		
 		logger.info("DAO:getPlaylist(): loaded " + files.size() + " mp3s from playlist " + pName);
@@ -196,12 +196,14 @@ public class DAO {
 	 */
 	public void removePlaylist(Playlist p) {
 		// TODO rename to delete
+		logger.info("DAO:deletePlaylist(): " + p.getName());
+		
 		// delete xml file
 		for (Playlist plist : playlists.getPlist()) {
 			
 			if (plist.getName().equals(p.getName())) {
-				if (plist.getSource().endsWith(".xml")) {
-					File f = new File(OContext.PLAYLISTS_DIR + "/" + plist.getSource());
+				if (plist.getFile().endsWith(".xml")) {
+					File f = new File(OContext.PLAYLISTS_DIR + "/" + plist.getFile());
 					logger.debug("DAO:deletePlaylist(): delete: " + f.getAbsolutePath());
 					f.delete();
 				}
@@ -225,19 +227,19 @@ public class DAO {
 	
 	/**
 	 * Read playlist xml file 
-	 * @param source
+	 * @param filename
 	 * @return mp3Files
 	 */
-	private Mp3Files loadFromXml(String source) {
+	private Mp3Files loadFromXml(String filename) {
 		Mp3Files mp3Files = null;
 		try {
 
-			File file = new File(OContext.PLAYLISTS_DIR + "/" + source);
+			File file = new File(OContext.PLAYLISTS_DIR + "/" + filename);
 			if (!file.exists()) {
-				logger.warn("DAO:unmarshall(): playlist not found: " + OContext.PLAYLISTS_DIR + "/" + source);
+				logger.warn("DAO:unmarshall(): playlist not found: " + OContext.PLAYLISTS_DIR + "/" + filename);
 				return new Mp3Files();
 			}
-			logger.debug("DAO:unmarshall(): playlist found: " + OContext.PLAYLISTS_DIR + "/" + source);
+			logger.debug("DAO:unmarshall(): playlist found: " + OContext.PLAYLISTS_DIR + "/" + filename);
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			mp3Files = (Mp3Files) jaxbUnmarshaller.unmarshal(file);
@@ -263,7 +265,7 @@ public class DAO {
 		logger.info("DAO:savePlaylist(): saving...");
 		try {
 
-			File file = new File(OContext.PLAYLISTS_DIR + "/" + p.getSource());
+			File file = new File(OContext.PLAYLISTS_DIR + "/" + p.getFile());
 			JAXBContext jaxbContext = JAXBContext.newInstance(Mp3Files.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 

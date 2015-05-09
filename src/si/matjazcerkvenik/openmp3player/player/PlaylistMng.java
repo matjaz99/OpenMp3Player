@@ -90,7 +90,7 @@ public class PlaylistMng {
 		
 		Playlist p = new Playlist();
 		p.setName(name);
-		p.setSource(name + ".xml");
+		p.setFile(name + ".xml");
 		
 		Playlist queue = DAO.getInstance().getPlaylist(QUEUE_NAME);
 		

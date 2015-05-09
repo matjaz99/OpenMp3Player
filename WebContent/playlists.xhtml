@@ -56,7 +56,16 @@
 				
 				<h:column>
 					<h:outputText value="#{plist.name}" styleClass="largeText" /><br/>
+					<h:outputText value="#{plist.file}" /><br/>
 					<h:outputText value="#{plist.source}" />
+				</h:column>
+				
+				<h:column>
+					<h:form>
+						<h:commandLink action="#{playlistsBean.reloadPlaylist(plist)}" title="Reload from directory" rendered="#{plist.sourceDirectory}">
+							<o:icon img="refresh"/>
+						</h:commandLink>
+					</h:form>
 				</h:column>
 				
 				<h:column>

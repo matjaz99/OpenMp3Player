@@ -6,25 +6,25 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Playlist {
 
 	private String name;
+	private String file;
 	private String source;
-	private String origin;
 	private Mp3Files mp3files = new Mp3Files();
 
 	/**
 	 * Get name of xml file
-	 * @return source
+	 * @return file
 	 */
-	public String getSource() {
-		return source;
+	public String getFile() {
+		return file;
 	}
 
 	/**
 	 * Set name of xml file
-	 * @param source
+	 * @param file
 	 */
 	@XmlElement
-	public void setSource(String source) {
-		this.source = source;
+	public void setFile(String file) {
+		this.file = file;
 	}
 
 	/**
@@ -47,19 +47,19 @@ public class Playlist {
 	/**
 	 * Get origin of playlist. Used for directory type of playlist, which 
 	 * can be reloaded.
-	 * @return
+	 * @return source
 	 */
-	public String getOrigin() {
-		return origin;
+	public String getSource() {
+		return source;
 	}
 
 	/**
 	 * Original source of playlist - directory.
-	 * @param origin
+	 * @param source
 	 */
 	@XmlElement
-	public void setOrigin(String origin) {
-		this.origin = origin;
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 	/**
@@ -83,7 +83,18 @@ public class Playlist {
 	 * @return true/false
 	 */
 	public boolean isQueue() {
-		if (source.equals("queue")) {
+		if (file.equals("queue")) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Return true if directory is the source.
+	 * @return true/false
+	 */
+	public boolean isSourceDirectory() {
+		if (source != null) {
 			return true;
 		}
 		return false;
@@ -92,7 +103,7 @@ public class Playlist {
 
 	@Override
 	public String toString() {
-		return "PLAYLIST: " + name + ", SOURCE: " + source;
+		return "PLAYLIST: " + name + ", SOURCE: " + file;
 	}
 
 }

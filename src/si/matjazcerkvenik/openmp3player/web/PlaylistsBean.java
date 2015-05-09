@@ -7,15 +7,14 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import si.matjazcerkvenik.openmp3player.backend.DAO;
-import si.matjazcerkvenik.openmp3player.backend.OContext;
+import si.matjazcerkvenik.openmp3player.player.Mp3File;
+import si.matjazcerkvenik.openmp3player.player.Mp3Files;
 import si.matjazcerkvenik.openmp3player.player.Playlist;
-import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 @ManagedBean
 @SessionScoped
 public class PlaylistsBean {
 	
-	private SimpleLogger logger = null;
 	
 	@ManagedProperty(value="#{playlistBean}")
 	private PlaylistBean playlistBean;
@@ -23,7 +22,7 @@ public class PlaylistsBean {
 	
 	
 	public PlaylistsBean() {
-		logger = OContext.getInstance().getLogger();
+		
 	}
 	
 	
@@ -45,11 +44,39 @@ public class PlaylistsBean {
 	 * @return home page
 	 */
 	public String gotoPlaylist(Playlist p) {
-		logger.info("PlaylistsBean:gotoPlaylist(): " + p.getName());
 		Playlist pList = DAO.getInstance().getPlaylist(p.getName());
 		playlistBean.setPassivePlaylist(pList);
 		playlistBean.setSelectedPlaylist(pList.getName());
 		return "home";
+	}
+	
+	
+	/**
+	 * Reload files from directory (add new files and remove non-existing). This 
+	 * method can only be applied to directory playlists.
+	 * @param p
+	 * @return home page
+	 */
+	public String reloadPlaylist(Playlist p) {
+		List<Mp3File> newFilesList = DAO.getInstance().loadFromDirectory(p.getSource());
+		List<Mp3File> oldFilesList = DAO.getInstance().getPlaylist(p.getName()).getMp3files().getFiles();
+		for (int i = 0; i < newFilesList.size(); i++) {
+			Mp3File mNew = newFilesList.get(i);
+			for (int j = 0; j < oldFilesList.size(); j++) {
+				Mp3File mOld = oldFilesList.get(j);
+				if (mNew.getHash().equals(mOld.getHash())) {
+					// copy styles from old mp3 to new
+					mNew.setTags(mOld.getTags());
+					mNew.setBackgroundColor(mOld.getBackgroundColor());
+					mNew.setStars(mOld.getStars());
+				}
+			}
+		}
+		Mp3Files ms = new Mp3Files();
+		ms.setFiles(newFilesList);
+		p.setMp3files(ms);
+		DAO.getInstance().savePlaylist(p);
+		return "playlists";
 	}
 	
 	
@@ -59,7 +86,6 @@ public class PlaylistsBean {
 	 * @return home page
 	 */
 	public String deletePlaylist(Playlist p) {
-		logger.info("PlaylistsBean:deletePlaylist(): " + p.getName());
 		DAO.getInstance().removePlaylist(p);
 		return "playlists";
 	}
