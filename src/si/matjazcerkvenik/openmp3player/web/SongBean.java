@@ -59,6 +59,10 @@ public class SongBean {
 	}
 	
 
+	/**
+	 * You need setter to successfully inject object
+	 * @param playerBean
+	 */
 	public void setPlayerBean(PlayerBean playerBean) {
 		this.playerBean = playerBean;
 	}
@@ -170,8 +174,9 @@ public class SongBean {
 	
 
 	public String getSelectedBackgroundColor() {
+		selectedBackgroundColor = mp3File.getBackgroundColor();
 		if (selectedBackgroundColor == null) {
-			selectedBackgroundColor = getMp3File().getBackgroundColor();
+			selectedBackgroundColor  = "- Select color -";
 		}
 		return selectedBackgroundColor;
 	}
@@ -186,7 +191,7 @@ public class SongBean {
 	
 	public String getSelectedBackgroundColorValue() {
 		if (selectedBackgroundColorValue == null) {
-			selectedBackgroundColorValue = Colors.getBgColors().get(getMp3File().getBackgroundColor());
+			selectedBackgroundColorValue = Colors.getBgColors().get(mp3File.getBackgroundColor());
 		}
 		return selectedBackgroundColorValue;
 	}
@@ -225,10 +230,10 @@ public class SongBean {
 	public void backgroundColorSelected(ValueChangeEvent e) {
 		
 		selectedBackgroundColor = e.getNewValue().toString();
-		logger.info("SongBean:backgroundColorSelected(): event - selected color: " + selectedBackgroundColor);
 		if (selectedBackgroundColor.equals("- Select color -")) {
 			return;
 		}
+		logger.info("SongBean:backgroundColorSelected(): event - selected color: " + selectedBackgroundColor);
 		mp3File.setBackgroundColor(selectedBackgroundColor);
 		DAO.getInstance().savePlaylist(playlist);
 		selectedBackgroundColorValue = Colors.getBgColors().get(selectedBackgroundColor);

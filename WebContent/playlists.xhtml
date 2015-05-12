@@ -49,7 +49,7 @@
 				<h:column>
 					<h:form>
 						<h:commandLink action="#{playlistsBean.gotoPlaylist(plist)}" title="Goto">
-							<o:icon img="folder"/>
+							<o:icon img="#{plist.sourceDirectory == true ? 'folder' : 'customplaylist'}"/>
 						</h:commandLink>
 					</h:form>
 				</h:column>
@@ -70,7 +70,7 @@
 				
 				<h:column>
 					<h:form>
-						<h:commandLink action="#{playlistsBean.deletePlaylist(plist)}" title="Remove">
+						<h:commandLink action="#{playlistsBean.deletePlaylist(plist)}" title="Remove" rendered="#{!plist.queue}">
 							<o:icon img="remove"/>
 						</h:commandLink>
 					</h:form>

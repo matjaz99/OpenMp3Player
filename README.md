@@ -1,7 +1,7 @@
 ## OpenMp3Player
 
 
-Release 3 is still in development phase. It features JSF 2.0, custom components and ajax.
+Release 3 is still in development phase. It features JSF 2, custom components and ajax.
 
 Last stable release: 2.2.0
 
@@ -47,7 +47,7 @@ master - JSP and servlet technology
 
 v2 - JSF 1.2
 
-v3 - JSF 2.1
+v3 - JSF 2.2
 
 
 ### History
@@ -56,11 +56,14 @@ v3 - JSF 2.1
 march 2015
 
 - fixed alignment
-- stars custom tag
-- playlist with name 'queue' is not allowed
+- stars tag
+- playlist with name 'queue' is not allowed to save
+- queue cannot be deleted
 - less tags colors
 - less background colors
+- new icons
 - upgrade omp3p function in starter
+- replaced jsf-impl 2.2.29 with 2.2.7 (because of ConcurrentModificationException in new session)
 
 
 3.0.0-alpha.04
