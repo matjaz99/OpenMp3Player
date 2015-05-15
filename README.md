@@ -52,6 +52,14 @@ v3 - JSF 2.2
 
 ### History
 -------------------
+3.0.0-beta.02
+march 2015
+
+- new icons
+- moved img, css and js directories to resources/defaultStyle
+- replaced jsf-impl 2.2.29 with 2.2.7 (because of ConcurrentModificationException in new session)
+
+
 3.0.0-beta.01
 march 2015
 
@@ -61,9 +69,7 @@ march 2015
 - queue cannot be deleted
 - less tags colors
 - less background colors
-- new icons
 - upgrade omp3p function in starter
-- replaced jsf-impl 2.2.29 with 2.2.7 (because of ConcurrentModificationException in new session)
 
 
 3.0.0-alpha.04

@@ -56,8 +56,7 @@
 				
 				<h:column>
 					<h:outputText value="#{plist.name}" styleClass="largeText" /><br/>
-					<h:outputText value="#{plist.file}" /><br/>
-					<h:outputText value="#{plist.source}" />
+					<h:outputText value="Directory: #{plist.source}" rendered="#{plist.sourceDirectory}" />
 				</h:column>
 				
 				<h:column>
