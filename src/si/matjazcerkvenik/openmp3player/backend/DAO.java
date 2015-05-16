@@ -260,7 +260,7 @@ public class DAO {
 	
 	
 	/**
-	 * Save playlist to xml file. Queue will not be saved!
+	 * Save playlist to xml file. Queue cannot be saved!
 	 * @param p
 	 */
 	public void savePlaylist(Playlist p) {
@@ -270,6 +270,7 @@ public class DAO {
 		}
 		
 		logger.info("DAO:savePlaylist(): saving...");
+		
 		try {
 
 			File file = new File(OContext.PLAYLISTS_DIR + "/" + p.getFile());

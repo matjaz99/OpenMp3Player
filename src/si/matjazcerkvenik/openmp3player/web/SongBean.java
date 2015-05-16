@@ -126,7 +126,8 @@ public class SongBean {
 		if (selectedTag.equals("- Select tag -")) {
 			return;
 		}
-		Tag t = DAO.getInstance().getTag(selectedTag);
+		Tag t = new Tag();
+		t.setName(selectedTag);
 		mp3File.addTag(t);
 		DAO.getInstance().savePlaylist(playlist);
 		

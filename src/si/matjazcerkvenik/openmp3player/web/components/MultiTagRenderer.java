@@ -31,23 +31,26 @@ public class MultiTagRenderer extends Renderer {
 		
 		for (int i = 0; i < tags.getTagList().size(); i++) {
 			
-			Tag tag = tags.getTagList().get(i);
+			Tag mp3Tag = tags.getTagList().get(i);
 			
-			// ignore color in playlist
-			// use color from tags.xml if exists
-			Tag origTag = DAO.getInstance().getTag(tag.getName());
-			String tagColor = "Black";
-			if (origTag != null) {
-				String c = DAO.getInstance().getTag(tag.getName()).getColor();
-				tagColor = Colors.getTagColors().get(c);
-				if (tagColor == null) tagColor = "Black";
+			// default values (if tag definition does not exist)
+			String backgroundColor = "Black";
+			String textColor = "White";
+			
+			// search tag definition from tags.xml
+			Tag tagDefinition = DAO.getInstance().getTag(mp3Tag.getName());
+			
+			if (tagDefinition != null) {
+				String c = DAO.getInstance().getTag(mp3Tag.getName()).getColor();
+				// search tagColors.properties
+				backgroundColor = Colors.getTagColors().get(c);
+				if (backgroundColor == null) backgroundColor = "Black";
 			}
-			String txtColor = Colors.getTagTextColor(tagColor);
 			
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "tagBorder", null);
-			rw.writeAttribute("style", "background-color: " + tagColor + "; 	color: " + txtColor + "; float: right;", null);
-			rw.write(tag.getName());
+			rw.writeAttribute("style", "background-color: " + backgroundColor + "; 	color: " + textColor + "; float: right;", null);
+			rw.write(mp3Tag.getName());
 			rw.endElement("div");
 		}
 		

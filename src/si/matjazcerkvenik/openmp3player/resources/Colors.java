@@ -207,61 +207,6 @@ public class Colors {
 	
 	
 	
-	/**
-	 * Return 'white' for dark colors and '#323' for light colors where it 
-	 * is hard to read white text on white background.
-	 * @param tag color
-	 * @return text color
-	 */
-	@Deprecated
-	public static String getTagTextColor(String color) {
-		
-		String txtColor = "white";
-		if (color == null) {
-			// FIXME tuki dobis #123456 ne ime barve
-			return txtColor;
-		}
-		if (color.equals(AliceBlue)
-				|| color.equals(Azure)
-				|| color.equals(Beige)
-				|| color.equals(Bisque)
-				|| color.equals(BlanchedAlmond)
-				|| color.equals(Cornsilk)
-				|| color.equals(FloralWhite)
-				|| color.equals(Gainsboro)
-				|| color.equals(GhostWhite)
-				|| color.equals(HoneyDew)
-				|| color.equals(Ivory)
-				|| color.equals(Lavender)
-				|| color.equals(LavenderBlush)
-				|| color.equals(LemonChiffon)
-				|| color.equals(LightBlue)
-				|| color.equals(LightCyan)
-				|| color.equals(LightGoldenRodYellow)
-				|| color.equals(LightYellow)
-				|| color.equals(Linen)
-				|| color.equals(MintCream)
-				|| color.equals(MistyRose)
-				|| color.equals(Moccasin)
-				|| color.equals(NavajoWhite)
-				|| color.equals(OldLace)
-				|| color.equals(PaleGoldenRod)
-				|| color.equals(PapayaWhip)
-				|| color.equals(PeachPuff)
-				|| color.equals(PowderBlue)
-				|| color.equals(SeaShell)
-				|| color.equals(Snow)
-				|| color.equals(Thistle)
-				|| color.equals(Wheat)
-				|| color.equals(White)
-				|| color.equals(WhiteSmoke)
-				|| color.equals(Yellow)) {
-			txtColor = "#323";
-		}
-		
-		return txtColor;
-	}
-	
 	
 	/**
 	 * Load tagColors.properties. If file doesn't exist, create new one and write default color set.
@@ -301,7 +246,6 @@ public class Colors {
 	
 	/**
 	 * Get map of background colors.<br>
-	 * Keep in mind, that for every background color there must be the same bgColor-* class in css.
 	 * @return tagColors
 	 */
 	public static Map<String, String> getTagColors() {

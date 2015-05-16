@@ -7,6 +7,7 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import si.matjazcerkvenik.openmp3player.backend.DAO;
 import si.matjazcerkvenik.openmp3player.player.Tag;
 import si.matjazcerkvenik.openmp3player.resources.Colors;
 
@@ -19,26 +20,26 @@ public class SingleTagComponent extends UIComponentBase {
 				
 		ResponseWriter rw = ctx.getResponseWriter();
 		
-		Tag t = (Tag) getAttributes().get("value");
+		Tag mp3Tag = (Tag) getAttributes().get("value");
 		
-//		// use color from tags.xml if exists
-//		Tag tag = TagsDAO.getInstance().getTag(t.getName());
-//		String tagColor = "Black";
-//		if (tag != null) {
-//			String c = tag.getColor();
-//			tagColor = Colors.getTagColors().get(c);
-//		}
-//		String txtColor = Colors.getTagTextColor(tagColor);
+		// default values (if tag definition does not exist)
+		String backgroundColor = "Black";
+		String textColor = "White";
 		
+		// search tag definition from tags.xml
+		Tag tagDefinition = DAO.getInstance().getTag(mp3Tag.getName());
 		
-		String tagColor = Colors.getTagColors().get(t.getColor());
-		if (tagColor == null) tagColor = "Black";
-		String txtColor = Colors.getTagTextColor(tagColor);
+		if (tagDefinition != null) {
+			String c = DAO.getInstance().getTag(mp3Tag.getName()).getColor();
+			// search tagColors.properties
+			backgroundColor = Colors.getTagColors().get(c);
+			if (backgroundColor == null) backgroundColor = "Black";
+		}
 		
 		rw.startElement("div", this);
 		rw.writeAttribute("class", "tagBorder", null);
-		rw.writeAttribute("style", "background-color: " + tagColor + "; color: " + txtColor + ";", null);
-		rw.write(t.getName());
+		rw.writeAttribute("style", "background-color: " + backgroundColor + "; color: " + textColor + ";", null);
+		rw.write(mp3Tag.getName());
 		rw.endElement("div");
 		
 	}
