@@ -58,6 +58,8 @@ march 2015
 - new icons
 - moved img, css and js directories to resources/defaultStyle
 - replaced jsf-impl 2.2.29 with 2.2.7 (because of ConcurrentModificationException in new session)
+- fixed bug: single tags without background colors
+- disable update developer version in starter (alpha or beta)
 
 
 3.0.0-beta.01

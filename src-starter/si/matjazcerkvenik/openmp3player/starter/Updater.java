@@ -26,7 +26,6 @@ public class Updater {
 
 	public static String lastVersion = "0.0.0";
 	
-	
 	/**
 	 * When Updater is instanced, check for last version.
 	 */
@@ -89,6 +88,11 @@ public class Updater {
 	 * @return true if update is required
 	 */
 	public boolean isUpdateRequired() {
+		
+		if (Start.version.contains("alpha") || Start.version.contains("beta")) {
+			// cannot update developer version, maybe in future
+			return false;
+		}
 		
 		if (Start.version.equals(lastVersion)) {
 			return false;
