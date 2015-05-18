@@ -20,7 +20,7 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
 
 /**
- * This class provides access to xml files.
+ * This class provides access to xml files (read/write).
  * 
  * @author matjaz
  *
@@ -44,11 +44,17 @@ public class DAO {
 			queue.setFile("queue");
 		}
 		
-		// load tags
+		// load tags and playlists
 		getTags();
+		getPlaylists();
 		
 	}
 	
+	
+	/**
+	 * Return instance of DAO (singleton)
+	 * @return dao
+	 */
 	public static DAO getInstance() {
 		if (instance == null) {
 			instance = new DAO();
@@ -201,8 +207,8 @@ public class DAO {
 	 * Remove playlist p
 	 * @param p
 	 */
-	public void removePlaylist(Playlist p) {
-		// TODO rename to delete
+	public void deletePlaylist(Playlist p) {
+		
 		logger.info("DAO:deletePlaylist(): " + p.getName());
 		
 		// delete xml file
@@ -224,10 +230,17 @@ public class DAO {
 	}
 	
 	
+	/**
+	 * Add mp3 file to the end of given playlist
+	 * @param m
+	 * @param p
+	 */
 	public void addMp3ToPlaylist(Mp3File m, Playlist p) {
 		
 		m.setIndex(p.getMp3files().getFiles().size());
 		p.addMp3File(m);
+		// currently mp3s can only be added to queue which cannot be saved
+		savePlaylist(p);
 		
 	}
 	
@@ -304,7 +317,9 @@ public class DAO {
 			
 			@Override
 			public boolean accept(File pathname) {
-				return pathname.isFile() && pathname.getAbsolutePath().endsWith(".mp3");
+				return pathname.isFile() && (pathname.getAbsolutePath().endsWith(".mp3")
+						|| pathname.getAbsolutePath().endsWith(".MP3")
+						|| pathname.getAbsolutePath().endsWith(".Mp3"));
 			}
 		});
 		

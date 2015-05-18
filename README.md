@@ -58,7 +58,9 @@ march 2015
 - new icons
 - moved img, css and js directories to resources/defaultStyle
 - replaced jsf-impl 2.2.29 with 2.2.7 (because of ConcurrentModificationException in new session)
+- show playlist size in footer
 - fixed bug: single tags without background colors
+- fixed bug: load mp3, MP3 and Mp3 files (case sensitive)
 - disable update developer version in starter (alpha or beta)
 
 

@@ -86,7 +86,7 @@ public class PlaylistsBean {
 	 * @return home page
 	 */
 	public String deletePlaylist(Playlist p) {
-		DAO.getInstance().removePlaylist(p);
+		DAO.getInstance().deletePlaylist(p);
 		return "playlists";
 	}
 	
