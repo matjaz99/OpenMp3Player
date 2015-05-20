@@ -43,7 +43,9 @@ Apache Tomcat runtime configuration (Eclipse):
 
 Build war file using ant. First you need to build starter (build-starter.xml) then 
 OpenMp3Player project using build.xml.
-Bug: you need to manually add servlet.jar into WebContent/WEB-INF/lib to build successfully
+Bug: you need to manually add servlet.jar into WebContent/WEB-INF/lib to build successfully - no, 
+that still doesn't solve the problem, because servlet.jar will be copied to WEB-INF/lib inside war
+which will cause problems for deployment, because Tomcat also has servlet.jar...
 
 
 
@@ -58,6 +60,12 @@ v3 - JSF 2.2 - active branch
 
 ### History
 -------------------
+3.0.0
+may 2015
+
+- finally v3 is released
+
+
 3.0.0-beta.02
 may 2015
 
