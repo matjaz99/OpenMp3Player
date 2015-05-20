@@ -50,11 +50,13 @@ which will cause problems for deployment, because Tomcat also has servlet.jar...
 
 ### Git branches:
 
-master - JSP and servlet technology
+master - active branch
+
+v1 - JSP and servlet technology
 
 v2 - JSF 1.2
 
-v3 - JSF 2.2 - active branch
+v3 - JSF 2.2 (3.0.0 release, then merged to master)
 
 
 ### History
