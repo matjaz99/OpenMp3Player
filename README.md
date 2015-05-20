@@ -1,9 +1,8 @@
 ## OpenMp3Player
 
 
-Release 3 is still in development phase. It features JSF 2, custom components and ajax.
 
-Last stable release: 2.2.0
+Last stable release: 3.0.0
 
 
 ### What is it?
