@@ -14,7 +14,7 @@ bundled with the application (deployment is not required).
 
 ### Starting
 
-Since v3: double click the start.jar and start/stop server.
+Since v3: double click the start.jar to start/stop server.
 Before v3: use start.sh/stop.sh or start.bat/stop.bat scripts
 
 
@@ -33,12 +33,18 @@ copy 'playlist' and 'config' directories from old version to new version and
 restart OpenMp3Player (stop/start)
 
 
+
 ### For developers
 
 Developed in Eclipse Kepler. JDK 1.6 is needed. Deploy on Apache Tomcat 7.
 Add VM args to set custom OpenMp3Player home directory when starting the project in 
 Apache Tomcat runtime configuration (Eclipse):
 -Domp3p.home="/path/to/OpenMp3Player"
+
+Build war file using ant. First you need to build starter (build-starter.xml) then 
+OpenMp3Player project using build.xml.
+Bug: you need to manually add servlet.jar into WebContent/WEB-INF/lib to build successfully
+
 
 
 ### Git branches:
@@ -47,13 +53,13 @@ master - JSP and servlet technology
 
 v2 - JSF 1.2
 
-v3 - JSF 2.2
+v3 - JSF 2.2 - active branch
 
 
 ### History
 -------------------
 3.0.0-beta.02
-march 2015
+may 2015
 
 - new icons
 - moved img, css and js directories to resources/defaultStyle
