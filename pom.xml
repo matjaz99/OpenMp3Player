@@ -4,6 +4,11 @@
   <artifactId>OpenMp3Player</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
+  
+  <properties>
+		<java.version>1.8</java.version>
+	</properties>
+  
   <dependencies>
     <dependency>
       <groupId>org.apache.tomcat</groupId>
@@ -176,9 +181,9 @@
     </plugins>
   </build>
   <modules>
-  	<module>omp3p-gui</module>
+  	<module>omp3p-ui</module>
   	<module>omp3p-player</module>
   	<module>omp3p-install</module>
-  	<module>omp3p-ui</module>
+  	<module>omp3p-v3</module>
   </modules>
 </project>

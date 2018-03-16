@@ -1,6 +1,8 @@
 ## OpenMp3Player
 
 
+This is Proof Of Concept v4 (Spring Boot, Thymeleaf)
+
 
 Last stable release: 3.0.0
 
@@ -57,6 +59,8 @@ v1 - JSP and servlet technology
 v2 - JSF 1.2
 
 v3 - JSF 2.2 (3.0.0 release, then merged to master)
+
+v4 - Spring Boot, Thymeleaf
 
 
 ### History
