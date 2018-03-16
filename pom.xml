@@ -177,5 +177,8 @@
   </build>
   <modules>
   	<module>omp3p-gui</module>
+  	<module>omp3p-player</module>
+  	<module>omp3p-install</module>
+  	<module>omp3p-ui</module>
   </modules>
 </project>
