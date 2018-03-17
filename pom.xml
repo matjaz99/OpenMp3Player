@@ -5,152 +5,21 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   
+  <modules>
+  	<module>omp3p-ui</module>
+  	<module>omp3p-player</module>
+  	<module>omp3p-install</module>
+  	<module>omp3p-v3</module>
+  </modules>
+  
   <properties>
 		<java.version>1.8</java.version>
 	</properties>
   
   <dependencies>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-annotations-api</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-catalina-ant</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-catalina-ha</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-storeconfig</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-tribes</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-catalina</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.scout.sdk.deps</groupId>
-      <artifactId>ecj</artifactId>
-      <version>4.5</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-el-api</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jasper-el</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jasper</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jsp-api</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-servlet-api</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-api</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-coyote</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-dbcp</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-i18n-es</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-i18n-fr</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-i18n-ja</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jdbc</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jni</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-util-scan</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-util</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-websocket</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-websocket-api</artifactId>
-      <version>8.0.37</version>
-    </dependency>
-    <dependency>
-      <groupId>net.sf.javamusictag</groupId>
-      <artifactId>jid3lib</artifactId>
-      <version>0.5.4</version>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.faces</groupId>
-      <artifactId>jsf-api</artifactId>
-      <version>2.2.7</version>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.faces</groupId>
-      <artifactId>jsf-impl</artifactId>
-      <version>2.2.7</version>
-    </dependency>
-    <dependency>
-      <groupId>jstl</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
+    
   </dependencies>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -180,10 +49,5 @@
       </plugin>
     </plugins>
   </build>
-  <modules>
-  	<module>omp3p-ui</module>
-  	<module>omp3p-player</module>
-  	<module>omp3p-install</module>
-  	<module>omp3p-v3</module>
-  </modules>
+  
 </project>
