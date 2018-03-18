@@ -14,3 +14,10 @@ $ mvn install:install-file -Dfile=/Users/matjaz/Developer/git-workspace/OpenMp3P
 </dependency>
 
 
+
+Tutorial with Derby on Spring Boot
+
+https://github.com/springframeworkguru/spring-boot-apache-derby-example
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
+
+
