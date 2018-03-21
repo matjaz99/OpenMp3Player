@@ -16,9 +16,28 @@
 			<version>1.6.3</version>
 		</dependency>
 		<dependency>
-			<groupId>javazoom.jl</groupId>
+			<groupId>org.farng</groupId>
 			<artifactId>jid3lib</artifactId>
 			<version>0.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>javazoom.jl</groupId>
+			<artifactId>jlayer</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<!-- <groupId>javax.faces</groupId> -->
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.1.11</version>
+<!-- 			<scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<!-- <groupId>javax.faces</groupId> -->
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.1.11</version>
+<!-- 			<scope>provided</scope> -->
 		</dependency>
 	</dependencies>
 

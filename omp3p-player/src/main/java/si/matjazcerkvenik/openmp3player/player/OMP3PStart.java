@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/files")
+@RequestMapping("/openmp3player/rest")
 @SpringBootApplication
 public class OMP3PStart {
 	

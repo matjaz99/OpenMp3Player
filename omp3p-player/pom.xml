@@ -16,9 +16,14 @@
 			<version>1.6.3</version>
 		</dependency>
 		<dependency>
-			<groupId>javazoom.jl</groupId>
+			<groupId>org.farng</groupId>
 			<artifactId>jid3lib</artifactId>
 			<version>0.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>javazoom.jl</groupId>
+			<artifactId>jlayer</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -31,18 +36,17 @@
 			<version>1.5.9.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.derby</groupId> -->
-<!-- 			<artifactId>derby</artifactId> -->
-<!-- 			<version>10.14.1.0</version> -->
-			<!-- <scope>test</scope> -->
-<!-- 		</dependency> -->
-		<!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
 		<dependency>
 			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
+			<artifactId>derby</artifactId>
 			<version>10.14.1.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.derby</groupId> -->
+<!-- 			<artifactId>derbyclient</artifactId> -->
+<!-- 			<version>10.14.1.0</version> -->
+<!-- 		</dependency> -->
 
 	</dependencies>
 
