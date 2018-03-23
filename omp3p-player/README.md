@@ -27,3 +27,18 @@ Mp3 player from:
 https://sourceforge.net/projects/javalayer/
 
 
+
+DB
+
+$ java -jar /Users/matjaz/Developer/db/db-derby-10.14.1.0-bin/lib/derbyrun.jar ij
+
+ij> connect 'jdbc:derby:omp3pdb;';
+
+ij(CONNECTION1)> show tables;
+
+ij(CONNECTION1)> select * from mp3file;
+
+ij(CONNECTION1)> exit;
+
+
+

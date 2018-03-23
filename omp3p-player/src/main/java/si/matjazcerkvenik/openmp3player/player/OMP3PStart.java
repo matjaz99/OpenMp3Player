@@ -19,7 +19,7 @@ public class OMP3PStart {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Mp3File> findAll() {
-		return service.findAll();
+		return service.listAll();
 	}
 	
 	public static void main(String[] args) {
