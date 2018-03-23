@@ -14,7 +14,8 @@ public class Omp3pServiceImpl {
 	
 	public List<Mp3File> listAll() {
 		List<Mp3File> list = new ArrayList<Mp3File>();
-        return (List<Mp3File>) repository.findAll();
+        repository.findAll().forEach(list::add);
+        return list;
     }
 
 }
