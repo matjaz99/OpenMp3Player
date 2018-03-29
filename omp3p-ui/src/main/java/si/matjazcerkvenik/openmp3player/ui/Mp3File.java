@@ -1,33 +1,15 @@
-package si.matjazcerkvenik.openmp3player.player;
+package si.matjazcerkvenik.openmp3player.ui;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "mp3file")
 public class Mp3File implements Cloneable {
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
 	private int id = 0;
 	
-	@Column(name = "hash")
 	private String hash = "0";
 	
-	@Column(name = "path")
 	private String path = null;
 	
-	@OneToMany(cascade=CascadeType.ALL, targetEntity=Tag.class, fetch=FetchType.EAGER)
 	private List<Tag> tags = null;
 	
 	public Mp3File() {

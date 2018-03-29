@@ -5,7 +5,7 @@
 
 $ mvn install:install-file -Dfile=/Users/matjaz/Developer/git-workspace/OpenMp3Player/omp3p-v3/lib/jid3lib-0.5.4.jar -DgroupId=org.farng -DartifactId=jid3lib -Dversion=0.5.4 -Dpackaging=jar
 
-
+$ mvn install:install-file -Dfile=/Users/matjaz/Developer/git-workspace/OpenMp3Player/omp3p-v3/lib/jlayer-1.0.1.jar -DgroupId=javazoom.jl -DartifactId=jlayer -Dversion=1.0.1 -Dpackaging=jar
 
 
 
