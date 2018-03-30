@@ -15,7 +15,7 @@ public class RestServiceImpl {
 	@Autowired
     private RestTemplate restTemplate;
 	
-	@Value("${resource.tasks}")
+	@Value("${resource.url}")
 	private String resource;
 	
 	public List<Mp3File> findAll() {

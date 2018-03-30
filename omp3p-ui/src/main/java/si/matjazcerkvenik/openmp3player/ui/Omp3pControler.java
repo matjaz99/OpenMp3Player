@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/OpenMp3Player")
 public class Omp3pControler {
 	
 	@Autowired
@@ -20,7 +20,7 @@ public class Omp3pControler {
     public String findAll(Model model) {
         model.addAttribute("files", service.findAll());
         model.addAttribute("newMp3File", new Mp3File());
-        return "tasks";
+        return "mp3files";
     }
 	
 	@RequestMapping(method = RequestMethod.POST)

@@ -1,0 +1,7 @@
+resource:
+  url: http://localhost:8080/openmp3player/rest
+server:
+  port: 8083
+spring:
+  thymeleaf:
+    cache: false
