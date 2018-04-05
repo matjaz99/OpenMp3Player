@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:fragment="header">
+		<title th:text="${title}">Getting Started: OpenMp3Player</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+		<link rel="stylesheet" th:href="@{/css/bootstrap-3.3.7-dist/css/bootstrap.min.css}" />
+		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+		<script th:src="@{/js/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/oscript.js}"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link th:href="@{/css/ostyles.css}" rel="stylesheet" />
+	</head>
+	
+	<div>
+	<p th:fragment="topLayer">Player</p>
+	</div>
+	
+	<p th:fragment="footer">This is footer</p>
+</html>

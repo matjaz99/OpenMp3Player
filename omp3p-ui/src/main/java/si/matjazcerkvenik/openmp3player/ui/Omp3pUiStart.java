@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class Omp3pClientApp {
+public class Omp3pUiStart {
 	
 	@Bean
 	public RestTemplate restTemplate() {
@@ -14,7 +14,7 @@ public class Omp3pClientApp {
 	}
 	
 	public static void main(String[] args) {
-        SpringApplication.run(Omp3pClientApp.class, args);
+        SpringApplication.run(Omp3pUiStart.class, args);
     }
 	
 }

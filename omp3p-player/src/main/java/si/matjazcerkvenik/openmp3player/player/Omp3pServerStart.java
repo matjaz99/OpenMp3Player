@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/openmp3player/rest")
 @SpringBootApplication
-public class OMP3PStart {
+public class Omp3pServerStart {
 	
 	@Autowired
 	private Omp3pServiceImpl service;
@@ -31,7 +31,7 @@ public class OMP3PStart {
 	}
 	
 	public static void main(String[] args) {
-        SpringApplication.run(OMP3PStart.class, args);
+        SpringApplication.run(Omp3pServerStart.class, args);
     }
 	
 }

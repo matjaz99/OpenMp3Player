@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>
-
-<title>OpenMp3Player</title>
-</head>
+<head th:replace="template :: header"></head>
 <body>
 
-	<div>
+	<div class="container">
 		<h1>My files</h1>
+		<div th:replace="template :: topLayer" class="border"></div>
 		<div th:each="file : ${files}">
 			<div>
 				<form th:method="put" th:action="@{/}">
@@ -25,6 +23,7 @@
 			</div>
 		</div>
 		<hr />
+		<div th:replace="template :: footer"></div>
 	</div>
 
 </body>
