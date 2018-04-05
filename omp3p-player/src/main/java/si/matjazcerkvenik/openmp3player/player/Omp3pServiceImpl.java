@@ -27,5 +27,30 @@ public class Omp3pServiceImpl {
 		m = repository.save(m);
 		return m;
 	}
+	
+//	@Transactional
+//    public Mp3File update(Long id, Mp3File task) {
+//        Task entity = findOneSafe(id);
+//        entity.setDescription(task.getDescription());
+//        entity.setCompleted(task.isCompleted());
+//        return new TaskDTO(entity.getId(), entity.getDescription(), entity.isCompleted());
+//    }
+
+    @Transactional
+    public void delete(Integer id) {
+    	Mp3File m = findOneSafe(id);
+        repository.delete(m);
+    }
+    
+    private Mp3File findOneSafe(Integer id) {
+    	Mp3File task = repository.findOne(id);
+        if (task == null) {
+//            throw new TaskNotFoundException();
+        	System.out.println("Mp3File not found");
+        	return null;
+        } else {
+            return task;
+        }
+    }
 
 }
