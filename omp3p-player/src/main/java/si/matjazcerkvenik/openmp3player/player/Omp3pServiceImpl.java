@@ -14,7 +14,24 @@ public class Omp3pServiceImpl {
 	@Autowired
 	private Mp3FilesRepository repository;
 	
-	public List<Mp3File> listAll() {
+	@Autowired
+	private PlaylistsRepository plalyistsRepository;
+	
+	public List<Playlist> listAllPlaylists() {
+		List<Playlist> list = new ArrayList<Playlist>();
+        plalyistsRepository.findAll().forEach(list::add);
+        return list;
+    }
+	
+	@Transactional
+	public Playlist create(Playlist p) {
+		List<Mp3File> list = listAllMp3Files();
+		p.setMp3files(list);
+		plalyistsRepository.save(p);
+		return p;
+	}
+	
+	public List<Mp3File> listAllMp3Files() {
 		List<Mp3File> list = new ArrayList<Mp3File>();
         repository.findAll().forEach(list::add);
         return list;

@@ -21,9 +21,20 @@ public class Omp3pServerStart {
 	@Autowired
 	private Omp3pServiceImpl service;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Mp3File> findAll() {
-		return service.listAll();
+	
+	@RequestMapping(value = "/playlists", method = RequestMethod.GET)
+	public List<Playlist> findAllPlaylists() {
+		return service.listAllPlaylists();
+	}
+	
+	@RequestMapping(value = "/playlists", method = RequestMethod.POST)
+	public Playlist create(@Valid @RequestBody Playlist p) {
+		return service.create(p);
+	}
+	
+	@RequestMapping(value = "/files", method = RequestMethod.GET)
+	public List<Mp3File> findAllMp3Files() {
+		return service.listAllMp3Files();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -40,6 +51,8 @@ public class Omp3pServerStart {
 	public void delete(@PathVariable Integer id) {
 		service.delete(id);
 	}
+	
+	
 	
 	public static void main(String[] args) {
         SpringApplication.run(Omp3pServerStart.class, args);

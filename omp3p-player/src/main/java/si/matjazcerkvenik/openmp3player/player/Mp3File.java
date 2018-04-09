@@ -18,14 +18,14 @@ public class Mp3File implements Cloneable {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-	private int id = 0;
+    @Column(name = "file_id")
+	private int id;
 	
 	@Column(name = "hash")
-	private String hash = "0";
+	private String hash;
 	
 	@Column(name = "path")
-	private String path = null;
+	private String path;
 	
 	@OneToMany(cascade=CascadeType.ALL, targetEntity=Tag.class, fetch=FetchType.EAGER)
 	private List<Tag> tags = null;

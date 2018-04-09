@@ -9,7 +9,7 @@
   	<module>omp3p-ui</module>
   	<module>omp3p-player</module>
   	<module>omp3p-install</module>
-  	<module>omp3p-v3</module>
+  	
   </modules>
   
   <properties>
