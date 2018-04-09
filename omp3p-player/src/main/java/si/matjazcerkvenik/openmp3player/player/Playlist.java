@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Playlist {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "playlist_id")
 	private int id;
 	

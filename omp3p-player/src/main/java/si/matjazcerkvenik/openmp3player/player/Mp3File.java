@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Mp3File implements Cloneable {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
 	private int id;
 	
