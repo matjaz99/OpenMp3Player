@@ -1,5 +1,7 @@
 package si.matjazcerkvenik.openmp3player.player;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import si.matjazcerkvenik.utils4j.Utils4j;
+
 @Service
 public class Omp3pServiceImpl {
 	
@@ -15,21 +19,30 @@ public class Omp3pServiceImpl {
 	private Mp3FilesRepository repository;
 	
 	@Autowired
-	private PlaylistsRepository plalyistsRepository;
+	private PlaylistsRepository playistsRepository;
 	
-	public List<Playlist> listAllPlaylists() {
+	public List<Playlist> getAllPlaylists() {
 		List<Playlist> list = new ArrayList<Playlist>();
-        plalyistsRepository.findAll().forEach(list::add);
+        playistsRepository.findAll().forEach(list::add);
         return list;
     }
 	
 	@Transactional
-	public Playlist create(Playlist p) {
-		List<Mp3File> list = listAllMp3Files();
+	public Playlist createPlaylist(Playlist p) {
+//		List<Mp3File> list = listAllMp3Files();
+		List<Mp3File> list = loadMp3FilesFromDirectory(p.getSourceDirectory());
 		p.setMp3files(list);
-		plalyistsRepository.save(p);
+		playistsRepository.save(p);
 		return p;
 	}
+	
+	@Transactional
+    public void deletePlaylist(Integer id) {
+    	Playlist p = playistsRepository.findOne(id);
+    	repository.delete(p.getMp3files());
+        playistsRepository.delete(p);
+        // TODO https://stackoverflow.com/questions/7197181/jpa-unidirectional-many-to-one-and-cascading-delete
+    }
 	
 	public List<Mp3File> listAllMp3Files() {
 		List<Mp3File> list = new ArrayList<Mp3File>();
@@ -69,5 +82,38 @@ public class Omp3pServiceImpl {
             return task;
         }
     }
+    
+    /**
+	 * Load mp3 files from directory
+	 * @param directory
+	 * @return
+	 */
+	private List<Mp3File> loadMp3FilesFromDirectory(String directory) {
+		
+		File dir = new File(directory);
+		File[] files = dir.listFiles(new FileFilter() {
+			
+			@Override
+			public boolean accept(File pathname) {
+				return pathname.isFile() && (pathname.getAbsolutePath().toLowerCase().endsWith(".mp3"));
+			}
+		});
+		
+		List<Mp3File> list = new ArrayList<Mp3File>();
+		
+		if (files == null) {
+			return list;
+		}
+		
+		for (int i = 0; i < files.length; i++) {
+			Mp3File mp3 = new Mp3File();
+			mp3.setPath(files[i].getAbsolutePath());
+			mp3.setHash(Utils4j.getMd5Checksum(new File(files[i].getAbsolutePath())));
+			mp3 = ID3Tag.getMetadata(mp3);
+			list.add(mp3);
+		}
+				
+		return list;
+	}
 
 }

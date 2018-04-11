@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,14 +25,26 @@ public class Playlist {
     @Column(name = "playlist_id")
 	private int id;
 	
-	@Column(name = "playlist_name", unique = true, nullable = false, length = 64)
+	@Column(name = "playlist_name", unique = false, nullable = false, length = 64)
 	private String name;
 	
-	@OneToMany(cascade=CascadeType.ALL, targetEntity=Mp3File.class, fetch=FetchType.EAGER)
+	@Column(name = "playlist_source_dir", unique = false, nullable = false)
+	private String sourceDirectory;
+	
+//	@OneToMany(cascade=CascadeType.ALL, targetEntity=Mp3File.class, fetch=FetchType.EAGER)
+//	@JoinColumn(name="playlist_id")
 //	@ManyToMany(cascade=CascadeType.ALL, targetEntity=Mp3File.class, fetch=FetchType.EAGER)
 //	@JoinTable(name = "playlist_mp3file",
 //			joinColumns = { @JoinColumn(name = "playlist_id") },
 //			inverseJoinColumns = { @JoinColumn(name = "file_id") })
+	
+	
+	
+	@ManyToOne
+    @JoinColumn(name = "playlist_id")
+    private Playlist parentNode;
+
+    @OneToMany(mappedBy = "parentNode", cascade = CascadeType.REMOVE)
 	private List<Mp3File> mp3files;
 	
 	
@@ -61,6 +74,14 @@ public class Playlist {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSourceDirectory() {
+		return sourceDirectory;
+	}
+
+	public void setSourceDirectory(String sourceDirectory) {
+		this.sourceDirectory = sourceDirectory;
 	}
 
 	public List<Mp3File> getMp3files() {

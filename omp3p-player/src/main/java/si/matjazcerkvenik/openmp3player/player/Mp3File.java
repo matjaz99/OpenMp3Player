@@ -27,6 +27,24 @@ public class Mp3File implements Cloneable {
 	@Column(name = "path")
 	private String path;
 	
+	@Column(name = "title")
+	private String title;
+	
+	@Column(name = "artist")
+	private String artist;
+	
+	@Column(name = "album")
+	private String album;
+	
+	@Column(name = "genre")
+	private String genre;
+	
+	@Column(name = "yearReleased")
+	private String yearReleased;
+	
+	@Column(name = "size")
+	private int size = 0;
+	
 	@OneToMany(cascade=CascadeType.ALL, targetEntity=Tag.class, fetch=FetchType.EAGER)
 	private List<Tag> tags = null;
 	
@@ -63,6 +81,54 @@ public class Mp3File implements Cloneable {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getYearReleased() {
+		return yearReleased;
+	}
+
+	public void setYearReleased(String yearReleased) {
+		this.yearReleased = yearReleased;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	public List<Tag> getTags() {

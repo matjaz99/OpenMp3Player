@@ -24,12 +24,17 @@ public class Omp3pServerStart {
 	
 	@RequestMapping(value = "/playlists", method = RequestMethod.GET)
 	public List<Playlist> findAllPlaylists() {
-		return service.listAllPlaylists();
+		return service.getAllPlaylists();
 	}
 	
 	@RequestMapping(value = "/playlists", method = RequestMethod.POST)
 	public Playlist create(@Valid @RequestBody Playlist p) {
-		return service.create(p);
+		return service.createPlaylist(p);
+	}
+	
+	@RequestMapping(value = "/playlists/{id}", method = RequestMethod.DELETE)
+	public void deletePlaylist(@PathVariable Integer id) {
+		service.delete(id);
 	}
 	
 	@RequestMapping(value = "/files", method = RequestMethod.GET)

@@ -16,6 +16,11 @@
 			<version>1.6.3</version>
 		</dependency>
 		<dependency>
+			<groupId>si.matjazcerkvenik.utils4j</groupId>
+			<artifactId>utils4j</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.farng</groupId>
 			<artifactId>jid3lib</artifactId>
 			<version>0.5.4</version>
