@@ -22,7 +22,7 @@ public class Playlist {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "playlist_id")
+    @Column(name = "id")
 	private int id;
 	
 	@Column(name = "playlist_name", unique = false, nullable = false, length = 64)
@@ -40,11 +40,10 @@ public class Playlist {
 	
 	
 	
-	@ManyToOne
-    @JoinColumn(name = "playlist_id")
-    private Playlist parentNode;
+	
 
-    @OneToMany(mappedBy = "parentNode", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL, targetEntity=Mp3File.class, fetch=FetchType.EAGER)
+//	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Mp3File> mp3files;
 	
 	

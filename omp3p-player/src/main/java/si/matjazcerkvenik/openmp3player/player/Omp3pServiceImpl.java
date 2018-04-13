@@ -30,7 +30,7 @@ public class Omp3pServiceImpl {
 	@Transactional
 	public Playlist createPlaylist(Playlist p) {
 //		List<Mp3File> list = listAllMp3Files();
-		List<Mp3File> list = loadMp3FilesFromDirectory(p.getSourceDirectory());
+		List<Mp3File> list = loadMp3FilesFromDirectory(p);
 		p.setMp3files(list);
 		playistsRepository.save(p);
 		return p;
@@ -38,9 +38,9 @@ public class Omp3pServiceImpl {
 	
 	@Transactional
     public void deletePlaylist(Integer id) {
-    	Playlist p = playistsRepository.findOne(id);
-    	repository.delete(p.getMp3files());
-        playistsRepository.delete(p);
+//    	Playlist p = playistsRepository.findOne(id);
+//    	repository.delete(p.getMp3files());
+        playistsRepository.delete(id);
         // TODO https://stackoverflow.com/questions/7197181/jpa-unidirectional-many-to-one-and-cascading-delete
     }
 	
@@ -88,9 +88,9 @@ public class Omp3pServiceImpl {
 	 * @param directory
 	 * @return
 	 */
-	private List<Mp3File> loadMp3FilesFromDirectory(String directory) {
+	private List<Mp3File> loadMp3FilesFromDirectory(Playlist p) {
 		
-		File dir = new File(directory);
+		File dir = new File(p.getSourceDirectory());
 		File[] files = dir.listFiles(new FileFilter() {
 			
 			@Override
@@ -110,6 +110,7 @@ public class Omp3pServiceImpl {
 			mp3.setPath(files[i].getAbsolutePath());
 			mp3.setHash(Utils4j.getMd5Checksum(new File(files[i].getAbsolutePath())));
 			mp3 = ID3Tag.getMetadata(mp3);
+			mp3.setPlaylist(p);
 			list.add(mp3);
 		}
 				

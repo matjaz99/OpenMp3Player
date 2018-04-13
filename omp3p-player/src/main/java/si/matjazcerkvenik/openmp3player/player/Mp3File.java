@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,7 +20,7 @@ public class Mp3File implements Cloneable {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "file_id")
+    @Column(name = "id")
 	private int id;
 	
 	@Column(name = "hash")
@@ -45,8 +47,12 @@ public class Mp3File implements Cloneable {
 	@Column(name = "size")
 	private int size = 0;
 	
-	@OneToMany(cascade=CascadeType.ALL, targetEntity=Tag.class, fetch=FetchType.EAGER)
-	private List<Tag> tags = null;
+//	@OneToMany(cascade=CascadeType.ALL, targetEntity=Tag.class, fetch=FetchType.EAGER)
+//	private List<Tag> tags = null;
+	
+	@ManyToOne
+    @JoinColumn(name = "playlist_id", nullable = false)
+    private Playlist playlist;
 	
 	public Mp3File() {
 	}
@@ -131,12 +137,20 @@ public class Mp3File implements Cloneable {
 		this.size = size;
 	}
 
-	public List<Tag> getTags() {
-		return tags;
+//	public List<Tag> getTags() {
+//		return tags;
+//	}
+//
+//	public void setTags(List<Tag> tags) {
+//		this.tags = tags;
+//	}
+
+	public Playlist getPlaylist() {
+		return playlist;
 	}
 
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
+	public void setPlaylist(Playlist playlist) {
+		this.playlist = playlist;
 	}
 
 	
