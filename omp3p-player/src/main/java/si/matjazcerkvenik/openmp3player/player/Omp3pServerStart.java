@@ -34,7 +34,7 @@ public class Omp3pServerStart {
 	
 	@RequestMapping(value = "/playlists/{id}", method = RequestMethod.DELETE)
 	public void deletePlaylist(@PathVariable Integer id) {
-		service.delete(id);
+		service.deletePlaylist(id);
 	}
 	
 	@RequestMapping(value = "/files", method = RequestMethod.GET)

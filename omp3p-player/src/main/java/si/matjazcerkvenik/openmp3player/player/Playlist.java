@@ -31,19 +31,9 @@ public class Playlist {
 	@Column(name = "playlist_source_dir", unique = false, nullable = false)
 	private String sourceDirectory;
 	
-//	@OneToMany(cascade=CascadeType.ALL, targetEntity=Mp3File.class, fetch=FetchType.EAGER)
-//	@JoinColumn(name="playlist_id")
-//	@ManyToMany(cascade=CascadeType.ALL, targetEntity=Mp3File.class, fetch=FetchType.EAGER)
-//	@JoinTable(name = "playlist_mp3file",
-//			joinColumns = { @JoinColumn(name = "playlist_id") },
-//			inverseJoinColumns = { @JoinColumn(name = "file_id") })
-	
-	
-	
 	
 
-    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL, targetEntity=Mp3File.class, fetch=FetchType.EAGER)
-//	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL/*, targetEntity=Mp3File.class*/, fetch=FetchType.EAGER)
 	private List<Mp3File> mp3files;
 	
 	

@@ -51,7 +51,7 @@ public class Mp3File implements Cloneable {
 //	private List<Tag> tags = null;
 	
 	@ManyToOne
-    @JoinColumn(name = "playlist_id", nullable = false)
+    @JoinColumn(name = "playlist_id"/*, nullable = false*/)
     private Playlist playlist;
 	
 	public Mp3File() {
