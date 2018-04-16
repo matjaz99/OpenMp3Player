@@ -3,6 +3,7 @@ package si.matjazcerkvenik.openmp3player.player;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -27,10 +28,14 @@ public class Omp3pServiceImpl {
         return list;
     }
 	
+	public Playlist getPlaylist(int id) {
+        return playistsRepository.findOne(id);
+    }
+	
 	@Transactional
 	public Playlist createPlaylist(Playlist p) {
 		List<Mp3File> list = loadMp3FilesFromDirectory(p);
-		p.setMp3files(list);
+		p.setMp3files(new HashSet<>(list));
 		playistsRepository.save(p);
 		return p;
 	}
@@ -49,6 +54,10 @@ public class Omp3pServiceImpl {
 		List<Mp3File> list = new ArrayList<Mp3File>();
         repository.findAll().forEach(list::add);
         return list;
+    }
+	
+	public long getMp3FilesSize() {
+        return repository.count();
     }
 	
 	@Transactional

@@ -27,6 +27,11 @@ public class Omp3pServerStart {
 		return service.getAllPlaylists();
 	}
 	
+	@RequestMapping(value = "/playlists/{id}", method = RequestMethod.GET)
+	public Playlist getPlaylist(@PathVariable Integer id) {
+		return service.getPlaylist(id);
+	}
+	
 	@RequestMapping(value = "/playlists", method = RequestMethod.POST)
 	public Playlist create(@Valid @RequestBody Playlist p) {
 		return service.createPlaylist(p);
@@ -40,6 +45,11 @@ public class Omp3pServerStart {
 	@RequestMapping(value = "/files", method = RequestMethod.GET)
 	public List<Mp3File> findAllMp3Files() {
 		return service.listAllMp3Files();
+	}
+	
+	@RequestMapping(value = "/files/size", method = RequestMethod.GET)
+	public long getMp3FilesSize() {
+		return service.getMp3FilesSize();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

@@ -1,6 +1,7 @@
 package si.matjazcerkvenik.openmp3player.player;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ public class Playlist {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "playlist_id")
 	private int id;
 	
 	@Column(name = "playlist_name", unique = false, nullable = false, length = 64)
@@ -33,8 +34,8 @@ public class Playlist {
 	
 	
 
-    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL/*, targetEntity=Mp3File.class*/, fetch=FetchType.EAGER)
-	private List<Mp3File> mp3files;
+    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL/*, targetEntity=Mp3File.class, fetch=FetchType.EAGER*/)
+	private Set<Mp3File> mp3files;
 	
 	
 
@@ -73,11 +74,11 @@ public class Playlist {
 		this.sourceDirectory = sourceDirectory;
 	}
 
-	public List<Mp3File> getMp3files() {
+	public Set<Mp3File> getMp3files() {
 		return mp3files;
 	}
 
-	public void setMp3files(List<Mp3File> mp3files) {
+	public void setMp3files(Set<Mp3File> mp3files) {
 		this.mp3files = mp3files;
 	}
 
