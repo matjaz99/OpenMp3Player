@@ -50,7 +50,7 @@ public class Mp3File implements Cloneable {
 //	@OneToMany(cascade=CascadeType.ALL, targetEntity=Tag.class, fetch=FetchType.EAGER)
 //	private List<Tag> tags = null;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE, fetch=FetchType.LAZY)
     @JoinColumn(name = "playlist_id"/*, nullable = false*/)
     private Playlist playlist;
 	
@@ -151,6 +151,13 @@ public class Mp3File implements Cloneable {
 
 	public void setPlaylist(Playlist playlist) {
 		this.playlist = playlist;
+	}
+
+	@Override
+	public String toString() {
+		return "Mp3File [id=" + id + ", hash=" + hash + ", path=" + path + ", title=" + title + ", artist=" + artist
+				+ ", album=" + album + ", genre=" + genre + ", yearReleased=" + yearReleased + ", size=" + size
+				+ ", playlist=" + playlist + "]";
 	}
 
 	

@@ -20,31 +20,34 @@ public class Omp3pServiceImpl {
 	private Mp3FilesRepository repository;
 	
 	@Autowired
-	private PlaylistsRepository playistsRepository;
+	private PlaylistsRepository playlistsRepository;
 	
 	public List<Playlist> getAllPlaylists() {
-		List<Playlist> list = new ArrayList<Playlist>();
-        playistsRepository.findAll().forEach(list::add);
-        return list;
+//		List<Playlist> list = new ArrayList<Playlist>();
+//        playistsRepository.findAll().forEach(list::add);
+//        return list;
+		List<Playlist> list = playlistsRepository.findAll();
+		list.forEach(System.out::println);
+		return list;
     }
 	
 	public Playlist getPlaylist(int id) {
-        return playistsRepository.findOne(id);
+        return playlistsRepository.findOne(id);
     }
 	
 	@Transactional
 	public Playlist createPlaylist(Playlist p) {
 		List<Mp3File> list = loadMp3FilesFromDirectory(p);
-		p.setMp3files(new HashSet<>(list));
-		playistsRepository.save(p);
+//		p.setMp3files(new HashSet<>(list));
+		playlistsRepository.save(p);
 		return p;
 	}
 	
 	@Transactional
     public void deletePlaylist(Integer id) {
-    	Playlist p = playistsRepository.findOne(id);
+    	Playlist p = playlistsRepository.findOne(id);
 //    	repository.delete(p.getMp3files());
-        playistsRepository.delete(p);
+        playlistsRepository.delete(p);
         // TODO https://stackoverflow.com/questions/7197181/jpa-unidirectional-many-to-one-and-cascading-delete
     }
 	
@@ -122,6 +125,7 @@ public class Omp3pServiceImpl {
 			mp3 = ID3Tag.getMetadata(mp3);
 //			mp3.setPlaylist(p);
 			list.add(mp3);
+			p.addMp3File(mp3);
 		}
 				
 		return list;

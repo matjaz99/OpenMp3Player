@@ -1,5 +1,6 @@
 package si.matjazcerkvenik.openmp3player.player;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class Playlist {
 	
 	
 
-    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL/*, targetEntity=Mp3File.class, fetch=FetchType.EAGER*/)
+    @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL, orphanRemoval = true/*, targetEntity=Mp3File.class*/, fetch=FetchType.EAGER)
 	private Set<Mp3File> mp3files;
 	
 	
@@ -81,10 +82,22 @@ public class Playlist {
 	public void setMp3files(Set<Mp3File> mp3files) {
 		this.mp3files = mp3files;
 	}
+	
+	public void addMp3File(Mp3File mp3File) {
+		if (mp3files == null) {
+			mp3files = new HashSet<Mp3File>();
+		}
+		mp3files.add(mp3File);
+	}
 
 	@Override
 	public String toString() {
-		return "PLAYLIST: " + name;
+		StringBuffer sb = new StringBuffer();
+		sb.append("PLAYLIST: " + name + "\n");
+		for (Mp3File mp3File : mp3files) {
+			sb.append("\t" + mp3File.toString() + "\n");
+		}
+		return sb.toString();
 	}
 
 }
