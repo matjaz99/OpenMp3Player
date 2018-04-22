@@ -14,6 +14,9 @@ Tutorial with Derby on Spring Boot
 https://github.com/springframeworkguru/spring-boot-apache-derby-example
 https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
 
+This tutorial explains OneToMany mapping great. But I still cannot figure out why bidirectional relationship in embedded Derby doesn't work.
+https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
+
 https://github.com/mkyong/spring-embedded-database
 
 Check this for mp3 player implementations in Java:
