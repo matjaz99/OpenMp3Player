@@ -1,10 +1,14 @@
-package si.matjazcerkvenik.openmp3player.jlayer;
+package si.matjazcerkvenik.openmp3player.player;
 
-import si.matjazcerkvenik.openmp3player.player.IPlayer;
-import si.matjazcerkvenik.openmp3player.player.IPlayerCallback;
-import si.matjazcerkvenik.openmp3player.player.PlayerStatus;
+import org.springframework.stereotype.Service;
 
+import si.matjazcerkvenik.openmp3player.jlayer.SoundJLayer;
+import si.matjazcerkvenik.simplelogger.SimpleLogger;
+
+@Service
 public class JLayerPlayer implements IPlayer, IPlayerCallback {
+	
+	private SimpleLogger logger = null;
 	
 	private SoundJLayer player = null;
 	private PlayerStatus status = PlayerStatus.STOPPED;
@@ -38,7 +42,6 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 	public void resume() {
 		// no implementation
 	}
-	
 	
 	@Override
 	public PlayerStatus getStatus() {

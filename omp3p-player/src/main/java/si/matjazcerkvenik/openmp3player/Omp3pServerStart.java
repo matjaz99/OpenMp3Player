@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.player;
+package si.matjazcerkvenik.openmp3player;
 
 import java.util.List;
 
@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import si.matjazcerkvenik.openmp3player.model.Mp3File;
+import si.matjazcerkvenik.openmp3player.model.Omp3pServiceImpl;
 import si.matjazcerkvenik.openmp3player.model.Playlist;
+import si.matjazcerkvenik.openmp3player.player.JLayerPlayer;
 
 @RestController
 @RequestMapping("/openmp3player/rest")
@@ -24,8 +26,11 @@ public class Omp3pServerStart {
 	@Autowired
 	private Omp3pServiceImpl service;
 	
+//	@Autowired
+//	private IPlayer player;
+	
 	@Autowired
-	private PlayerImpl player;
+	private JLayerPlayer player;
 	
 	
 	@RequestMapping(value = "/playlists", method = RequestMethod.GET)
@@ -94,7 +99,7 @@ public class Omp3pServerStart {
 		} else {
 			System.out.println("player: unknown command : " + action);
 		}
-		System.out.println(player.getPlayerRef());
+		System.out.println("Player #" + player.hashCode());
 		return null;
 	}
 	

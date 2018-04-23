@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.player;
+package si.matjazcerkvenik.openmp3player.model;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -11,10 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import si.matjazcerkvenik.openmp3player.id3.ID3Tag;
-import si.matjazcerkvenik.openmp3player.model.Mp3File;
-import si.matjazcerkvenik.openmp3player.model.Mp3FilesRepository;
-import si.matjazcerkvenik.openmp3player.model.Playlist;
-import si.matjazcerkvenik.openmp3player.model.PlaylistsRepository;
 import si.matjazcerkvenik.utils4j.Utils4j;
 
 @Service
