@@ -3,7 +3,6 @@ package si.matjazcerkvenik.openmp3player.player;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,6 +10,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import si.matjazcerkvenik.openmp3player.id3.ID3Tag;
+import si.matjazcerkvenik.openmp3player.model.Mp3File;
+import si.matjazcerkvenik.openmp3player.model.Mp3FilesRepository;
+import si.matjazcerkvenik.openmp3player.model.Playlist;
+import si.matjazcerkvenik.openmp3player.model.PlaylistsRepository;
 import si.matjazcerkvenik.utils4j.Utils4j;
 
 @Service

@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.player;
+package si.matjazcerkvenik.openmp3player.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

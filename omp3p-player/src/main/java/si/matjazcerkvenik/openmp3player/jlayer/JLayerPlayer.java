@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.player.jlayer;
+package si.matjazcerkvenik.openmp3player.jlayer;
 
 import si.matjazcerkvenik.openmp3player.player.IPlayer;
 import si.matjazcerkvenik.openmp3player.player.IPlayerCallback;

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import si.matjazcerkvenik.openmp3player.model.Mp3File;
+import si.matjazcerkvenik.openmp3player.model.Playlist;
+
 @RestController
 @RequestMapping("/openmp3player/rest")
 @SpringBootApplication
@@ -20,6 +23,9 @@ public class Omp3pServerStart {
 	
 	@Autowired
 	private Omp3pServiceImpl service;
+	
+	@Autowired
+	private PlayerImpl player;
 	
 	
 	@RequestMapping(value = "/playlists", method = RequestMethod.GET)
@@ -62,7 +68,7 @@ public class Omp3pServerStart {
 //		return service.update(id, mp3file);
 //	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/files/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable Integer id) {
 		service.delete(id);
 	}
@@ -72,5 +78,24 @@ public class Omp3pServerStart {
 	public static void main(String[] args) {
         SpringApplication.run(Omp3pServerStart.class, args);
     }
+	
+	@RequestMapping(value = "/player", method = RequestMethod.POST)
+	public Mp3File player(@Valid @RequestBody String action) {
+		if (action.equalsIgnoreCase("play")) {
+			System.out.println("player: play");
+		} else if (action.equalsIgnoreCase("pause")) {
+			System.out.println("player: pause");
+		} else if (action.equalsIgnoreCase("stop")) {
+			System.out.println("player: stop");
+		} else if (action.equalsIgnoreCase("next")) {
+			System.out.println("player: next");
+		} else if (action.equalsIgnoreCase("prev")) {
+			System.out.println("player: prev");
+		} else {
+			System.out.println("player: unknown command : " + action);
+		}
+		System.out.println(player.getPlayerRef());
+		return null;
+	}
 	
 }

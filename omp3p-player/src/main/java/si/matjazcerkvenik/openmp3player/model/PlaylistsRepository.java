@@ -1,4 +1,4 @@
-package si.matjazcerkvenik.openmp3player.player;
+package si.matjazcerkvenik.openmp3player.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
