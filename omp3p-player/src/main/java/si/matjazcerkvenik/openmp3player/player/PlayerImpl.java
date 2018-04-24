@@ -1,12 +1,11 @@
 package si.matjazcerkvenik.openmp3player.player;
 
-import org.springframework.stereotype.Service;
-
 import si.matjazcerkvenik.openmp3player.jlayer.SoundJLayer;
+import si.matjazcerkvenik.openmp3player.model.Mp3File;
+import si.matjazcerkvenik.openmp3player.model.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
-@Service
-public class JLayerPlayer implements IPlayer, IPlayerCallback {
+public class PlayerImpl implements IPlayer, IPlayerCallback {
 	
 	private SimpleLogger logger = null;
 	
@@ -14,7 +13,7 @@ public class JLayerPlayer implements IPlayer, IPlayerCallback {
 	private PlayerStatus status = PlayerStatus.STOPPED;
 	
 
-	public JLayerPlayer() {
+	public PlayerImpl() {
 	}
 
 
