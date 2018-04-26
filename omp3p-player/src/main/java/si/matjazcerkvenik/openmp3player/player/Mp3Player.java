@@ -1,6 +1,9 @@
 package si.matjazcerkvenik.openmp3player.player;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import si.matjazcerkvenik.openmp3player.model.Mp3File;
@@ -8,7 +11,8 @@ import si.matjazcerkvenik.openmp3player.model.Omp3pServiceImpl;
 import si.matjazcerkvenik.openmp3player.model.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
-@Service
+//@Service
+@Component
 public class Mp3Player {
 	
 	private SimpleLogger logger = null;
@@ -22,13 +26,16 @@ public class Mp3Player {
 	private Omp3pServiceImpl service;
 	
 	
+//	@Autowired
 	public Mp3Player() {
 		
 		// logger = OContext.getInstance().getLogger();
 		
+//		this.service = service;
+		
 		player = new PlayerImpl();
 		
-		activePlaylist = service.getAllPlaylists().get(0);
+//		activePlaylist = service.getAllPlaylists().get(0);
 		if (activePlaylist == null) {
 			activePlaylist = new Playlist();
 		}

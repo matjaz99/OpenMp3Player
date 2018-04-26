@@ -7,6 +7,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,22 +20,23 @@ import si.matjazcerkvenik.openmp3player.model.Mp3File;
 import si.matjazcerkvenik.openmp3player.model.Omp3pServiceImpl;
 import si.matjazcerkvenik.openmp3player.model.Playlist;
 import si.matjazcerkvenik.openmp3player.player.Mp3Player;
-import si.matjazcerkvenik.openmp3player.player.PlayerImpl;
 
 @RestController
 @RequestMapping("/openmp3player/rest")
 @SpringBootApplication
+//@Configuration
+//@ComponentScan("si.matjazcerkvenik.openmp3player")
 public class Omp3pServerStart {
 	
 	@Autowired
 	private Omp3pServiceImpl service;
 	
 	@Autowired
-	private Mp3Player player;
+	private Mp3Player mp3Player;
 	
 	
 	public static void main(String[] args) {
-        SpringApplication.run(Omp3pServerStart.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(Omp3pServerStart.class, args);
     }
 	
 	
@@ -89,12 +93,12 @@ public class Omp3pServerStart {
 	public Mp3File player(@Valid @RequestBody String action) {
 		if (action.equalsIgnoreCase("play")) {
 			System.out.println("player: play");
-			player.play(0);
+			mp3Player.play(0);
 		} else if (action.equalsIgnoreCase("pause")) {
 			System.out.println("player: pause");
 		} else if (action.equalsIgnoreCase("stop")) {
 			System.out.println("player: stop");
-			player.stop();
+			mp3Player.stop();
 		} else if (action.equalsIgnoreCase("next")) {
 			System.out.println("player: next");
 		} else if (action.equalsIgnoreCase("prev")) {
@@ -102,7 +106,7 @@ public class Omp3pServerStart {
 		} else {
 			System.out.println("player: unknown command : " + action);
 		}
-		System.out.println("Player #" + player.hashCode());
+		System.out.println("Player #" + mp3Player.hashCode());
 		return null;
 	}
 	
