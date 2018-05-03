@@ -19,7 +19,7 @@ import si.matjazcerkvenik.utils4j.Utils4j;
 public class Omp3pServiceImpl {
 	
 	@Autowired
-	private Mp3FilesRepository repository;
+	private Mp3FilesRepository mp3FilesRepository;
 	
 	@Autowired
 	private PlaylistsRepository playlistsRepository;
@@ -31,6 +31,10 @@ public class Omp3pServiceImpl {
 		List<Playlist> list = playlistsRepository.findAll();
 		list.forEach(System.out::println);
 		return list;
+    }
+	
+	public long getPlaylistsSize() {
+        return playlistsRepository.count();
     }
 	
 	public Playlist getPlaylist(int id) {
@@ -57,19 +61,19 @@ public class Omp3pServiceImpl {
 	
 	public List<Mp3File> listAllMp3Files() {
 		List<Mp3File> list = new ArrayList<Mp3File>();
-        repository.findAll().forEach(list::add);
+        mp3FilesRepository.findAll().forEach(list::add);
         return list;
     }
 	
 	public long getMp3FilesSize() {
-        return repository.count();
+        return mp3FilesRepository.count();
     }
 	
 	@Transactional
 	public Mp3File create(Mp3File m) {
 		m.setHash("" + System.currentTimeMillis());
 //		m.setPath("path");
-		m = repository.save(m);
+		m = mp3FilesRepository.save(m);
 		return m;
 	}
 	
@@ -84,11 +88,11 @@ public class Omp3pServiceImpl {
     @Transactional
     public void delete(Integer id) {
     	Mp3File m = findOneSafe(id);
-        repository.delete(m);
+        mp3FilesRepository.delete(m);
     }
     
     private Mp3File findOneSafe(Integer id) {
-    	Mp3File task = repository.findOne(id);
+    	Mp3File task = mp3FilesRepository.findOne(id);
         if (task == null) {
 //            throw new TaskNotFoundException();
         	System.out.println("Mp3File not found");

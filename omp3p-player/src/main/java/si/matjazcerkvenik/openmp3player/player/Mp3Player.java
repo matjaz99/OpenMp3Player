@@ -1,5 +1,7 @@
 package si.matjazcerkvenik.openmp3player.player;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,13 +13,20 @@ import si.matjazcerkvenik.openmp3player.model.Omp3pServiceImpl;
 import si.matjazcerkvenik.openmp3player.model.Playlist;
 import si.matjazcerkvenik.simplelogger.SimpleLogger;
 
-//@Service
-@Component
+/**
+ * This class represents the whole mp3 player. This means the player implementation 
+ * itself and holds a current (active) playlist.
+ * 
+ * @author matjaz
+ *
+ */
+@Service
+//@Component
 public class Mp3Player {
 	
 	private SimpleLogger logger = null;
 	
-	private IPlayer player = null;
+	private IPlayer player = new PlayerImpl();
 	private boolean repeatOn = false;
 	private Mp3File currentlyPlaying = null;
 	private Playlist activePlaylist = null;
@@ -26,24 +35,27 @@ public class Mp3Player {
 	private Omp3pServiceImpl service;
 	
 	
-//	@Autowired
-	public Mp3Player() {
+//	public Mp3Player() {
 		
 		// logger = OContext.getInstance().getLogger();
-		
-//		this.service = service;
-		
-		player = new PlayerImpl();
+				
+//		player = new PlayerImpl();
 		
 //		activePlaylist = service.getAllPlaylists().get(0);
-		if (activePlaylist == null) {
-			activePlaylist = new Playlist();
-		}
+//		if (activePlaylist == null) {
+//			activePlaylist = new Playlist();
+//		}
 		
 		// logger.info("Mp3Player: #" + this.hashCode());
 		
-	}
+//	}
 	
+	@PostConstruct
+	public void init() {
+		System.out.println("init()");
+//		player = new PlayerImpl();
+		
+	}
 	
 	
 	/**
@@ -62,6 +74,8 @@ public class Mp3Player {
 	 * @return title of the song
 	 */
 	public void play(int i) {
+		
+		activePlaylist = service.getAllPlaylists().get(0);
 		
 		if (currentlyPlaying != null) {
 			stop();

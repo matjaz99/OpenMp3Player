@@ -45,6 +45,11 @@ public class Omp3pServerStart {
 		return service.getAllPlaylists();
 	}
 	
+	@RequestMapping(value = "/playlists/size", method = RequestMethod.GET)
+	public long getPlaylistsSize() {
+		return service.getPlaylistsSize();
+	}
+	
 	@RequestMapping(value = "/playlists/{id}", method = RequestMethod.GET)
 	public Playlist getPlaylist(@PathVariable Integer id) {
 		return service.getPlaylist(id);
