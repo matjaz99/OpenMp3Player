@@ -8,8 +8,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import si.matjazcerkvenik.openmp3player.id3.ID3Tag;
@@ -25,9 +23,6 @@ public class Omp3pServiceImpl {
 	private PlaylistsRepository playlistsRepository;
 	
 	public List<Playlist> getAllPlaylists() {
-//		List<Playlist> list = new ArrayList<Playlist>();
-//        playistsRepository.findAll().forEach(list::add);
-//        return list;
 		List<Playlist> list = playlistsRepository.findAll();
 		list.forEach(System.out::println);
 		return list;
@@ -52,14 +47,12 @@ public class Omp3pServiceImpl {
 	@Transactional
     public void deletePlaylist(Integer id) {
     	Playlist p = playlistsRepository.findOne(id);
-//    	repository.delete(p.getMp3files());
         playlistsRepository.delete(p);
-        // TODO https://stackoverflow.com/questions/7197181/jpa-unidirectional-many-to-one-and-cascading-delete
     }
 	
 	
 	
-	public List<Mp3File> listAllMp3Files() {
+	public List<Mp3File> getAllMp3Files() {
 		List<Mp3File> list = new ArrayList<Mp3File>();
         mp3FilesRepository.findAll().forEach(list::add);
         return list;
@@ -67,6 +60,11 @@ public class Omp3pServiceImpl {
 	
 	public long getMp3FilesSize() {
         return mp3FilesRepository.count();
+    }
+	
+	public Mp3File getMp3File(int id) {
+		Mp3File m = mp3FilesRepository.findOne(id);
+        return m;
     }
 	
 	@Transactional

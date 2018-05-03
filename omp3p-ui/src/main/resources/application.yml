@@ -1,5 +1,6 @@
-resource:
-  url: http://localhost:8083/openmp3player/rest
+omp3p:
+  resource:
+    url: http://localhost:8083/openmp3player/rest
 server:
   port: 8080
 spring:

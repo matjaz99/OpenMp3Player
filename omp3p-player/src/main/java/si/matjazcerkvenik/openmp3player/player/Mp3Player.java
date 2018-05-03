@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import si.matjazcerkvenik.openmp3player.LogUtil;
 import si.matjazcerkvenik.openmp3player.model.Mp3File;
 import si.matjazcerkvenik.openmp3player.model.Omp3pServiceImpl;
 import si.matjazcerkvenik.openmp3player.model.Playlist;
@@ -24,9 +25,10 @@ import si.matjazcerkvenik.simplelogger.SimpleLogger;
 //@Component
 public class Mp3Player {
 	
-	private SimpleLogger logger = null;
+//	private SimpleLogger logger = null;
 	
-	private IPlayer player = new PlayerImpl();
+//	private IPlayer player = new PlayerImpl();
+	private IPlayer player;
 	private boolean repeatOn = false;
 	private Mp3File currentlyPlaying = null;
 	private Playlist activePlaylist = null;
@@ -53,7 +55,8 @@ public class Mp3Player {
 	@PostConstruct
 	public void init() {
 		System.out.println("init()");
-//		player = new PlayerImpl();
+//		logger.getLogger().info("init player");
+		player = new PlayerImpl();
 		
 	}
 	
@@ -90,6 +93,31 @@ public class Mp3Player {
 //				+ activePlaylist.getName() + ", MP3: "
 //				+ currentlyPlaying.toString());
 		player.play(currentlyPlaying.getPath());
+				
+	}
+	
+	
+	public Mp3File play(int playlist_id, int mp3File_id) {
+		
+		activePlaylist = service.getPlaylist(playlist_id);
+		
+		if (activePlaylist.getMp3files().isEmpty()) {
+			return null;
+		}
+		
+		if (currentlyPlaying != null) {
+			stop();
+		}
+		
+		currentlyPlaying = service.getMp3File(mp3File_id);
+		
+//		currentlyPlaying = activePlaylist.getMp3files().get(mp3File_id);
+//		logger.info("Mp3Player:play(): playlist: "
+//				+ activePlaylist.getName() + ", MP3: "
+//				+ currentlyPlaying.toString());
+		player.play(currentlyPlaying.getPath());
+		
+		return currentlyPlaying;
 				
 	}
 	

@@ -2,9 +2,11 @@ package si.matjazcerkvenik.openmp3player;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -24,8 +26,6 @@ import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 @RestController
 @RequestMapping("/openmp3player/rest")
 @SpringBootApplication
-//@Configuration
-//@ComponentScan("si.matjazcerkvenik.openmp3player")
 public class Omp3pServerStart {
 	
 	@Autowired
@@ -34,11 +34,18 @@ public class Omp3pServerStart {
 	@Autowired
 	private Mp3Player mp3Player;
 	
+	@Autowired
+	private LogUtil util;
 	
 	public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Omp3pServerStart.class, args);
     }
 	
+	@PostConstruct
+	public void init() {
+		System.out.println("Initializing OMP3P");
+		
+	}
 	
 	@RequestMapping(value = "/playlists", method = RequestMethod.GET)
 	public List<Playlist> findAllPlaylists() {
@@ -67,7 +74,7 @@ public class Omp3pServerStart {
 	
 	@RequestMapping(value = "/files", method = RequestMethod.GET)
 	public List<Mp3File> findAllMp3Files() {
-		return service.listAllMp3Files();
+		return service.getAllMp3Files();
 	}
 	
 	@RequestMapping(value = "/files/size", method = RequestMethod.GET)
@@ -91,11 +98,28 @@ public class Omp3pServerStart {
 	}
 	
 	
-	
+	@RequestMapping(value = "/player/{action}/{playlist_id}/{mp3File_id}", method = RequestMethod.GET)
+	public Mp3File playerGet(@PathVariable String action, @PathVariable Integer playlist_id, @PathVariable Integer mp3File_id) {
+		
+		System.out.println("Player #" + mp3Player.hashCode() + ", action=" + action + ", playlist_id=" + playlist_id + ", mp3File_id=" + mp3File_id);
+		
+		if (action.equalsIgnoreCase("play")) {
+			return mp3Player.play(playlist_id, mp3File_id);
+		} else if (action.equalsIgnoreCase("pause")) {
+		} else if (action.equalsIgnoreCase("stop")) {
+			mp3Player.stop();
+		} else if (action.equalsIgnoreCase("next")) {
+		} else if (action.equalsIgnoreCase("prev")) {
+		} else {
+			System.out.println("WARN: unknown action : " + action);
+		}
+		
+		return null;
+	}
 	
 	
 	@RequestMapping(value = "/player", method = RequestMethod.POST)
-	public Mp3File player(@Valid @RequestBody String action) {
+	public Mp3File playerPost(@Valid @RequestBody String action) {
 		if (action.equalsIgnoreCase("play")) {
 			System.out.println("player: play");
 			mp3Player.play(0);

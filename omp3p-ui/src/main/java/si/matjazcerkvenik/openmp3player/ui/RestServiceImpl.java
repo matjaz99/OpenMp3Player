@@ -15,15 +15,19 @@ public class RestServiceImpl {
 	@Autowired
     private RestTemplate restTemplate;
 	
-	@Value("${resource.url}")
-	private String resource;
+	@Value("${omp3p.resource.url}")
+	private String resourceUrl;
+	
+	public List<Playlist> getAllPlaylists() {
+	    return Arrays.stream(restTemplate.getForObject(resourceUrl + "/playlists", Playlist[].class)).collect(Collectors.toList());
+	}
 	
 	public List<Mp3File> findAll() {
-	    return Arrays.stream(restTemplate.getForObject(resource, Mp3File[].class)).collect(Collectors.toList());
+	    return Arrays.stream(restTemplate.getForObject(resourceUrl, Mp3File[].class)).collect(Collectors.toList());
 	}
 	
 	public Mp3File create(Mp3File task) {
-	    return restTemplate.postForObject(resource, task, Mp3File.class);
+	    return restTemplate.postForObject(resourceUrl, task, Mp3File.class);
 	}
 	
 }

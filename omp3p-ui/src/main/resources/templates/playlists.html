@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: header"></head>
+<body>
+
+	<div class="container">
+		
+		<div th:replace="template :: topLayer"></div>
+		
+		<div th:replace="template :: playerControls"></div>
+		
+		<h1>My playlists</h1>
+		
+		<div th:each="p : ${playlists}">
+			<div>
+				<form th:method="put" th:action="@{/}">
+					<input type="hidden" name="id" th:value="${p.id}" />
+					<input type="hidden" name="hash" th:value="${p.name}" />
+					<span th:text="${p.name}"></span>
+				</form>
+			</div>
+			<div>
+				<form th:method="delete" th:action="@{/}">
+					<input type="hidden" name="id" th:value="${p.id}" />
+					<button class="button u-full-width" type="submit">Delete</button>
+				</form>
+			</div>
+		</div>
+		<hr />
+		<div th:replace="template :: footer"></div>
+	</div>
+
+</body>
+</html>

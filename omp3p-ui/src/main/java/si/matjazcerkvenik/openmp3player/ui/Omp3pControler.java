@@ -17,10 +17,10 @@ public class Omp3pControler {
     private RestServiceImpl service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-    public String findAll(Model model) {
-        model.addAttribute("files", service.findAll());
-        model.addAttribute("newMp3File", new Mp3File());
-        return "mp3files";
+    public String findAllPlaylists(Model model) {
+        model.addAttribute("playlists", service.getAllPlaylists());
+        model.addAttribute("newPlist", new Playlist());
+        return "playlists";
     }
 	
 	@RequestMapping(method = RequestMethod.POST)
