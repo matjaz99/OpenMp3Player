@@ -17,8 +17,10 @@
 	</div>
 	
 	<div th:fragment="playerControls">
-		<button>Play</button>
-		<button>Stop</button>
+		<form action="#" data-th-action="@{/player}" data-th-object="${model}" method="post">
+		     <button type="submit" name="action" value="Play">Play</button>
+		     <button type="submit" name="action" value="Stop">Stop</button>
+		</form>
 	</div>
 	
 	<p th:fragment="footer">This is footer</p>

@@ -22,12 +22,20 @@ public class RestServiceImpl {
 	    return Arrays.stream(restTemplate.getForObject(resourceUrl + "/playlists", Playlist[].class)).collect(Collectors.toList());
 	}
 	
+	public Playlist getSinglePlaylists(int id) {
+		System.out.println("getSinglePlaylists id=" + id);
+		Playlist p = restTemplate.getForObject(resourceUrl + "/playlists/" + id, Playlist.class);
+		return p;
+	}
+	
 	public List<Mp3File> findAll() {
 	    return Arrays.stream(restTemplate.getForObject(resourceUrl, Mp3File[].class)).collect(Collectors.toList());
 	}
 	
-	public Mp3File create(Mp3File task) {
-	    return restTemplate.postForObject(resourceUrl, task, Mp3File.class);
+	public Mp3File create(Mp3File m) {
+	    return restTemplate.postForObject(resourceUrl, m, Mp3File.class);
 	}
+	
+	
 	
 }
