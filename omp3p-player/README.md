@@ -1,13 +1,27 @@
 ## OpenMp3Player v4
 
 
+Import external libraries into local maven repository:
+
+$ mvn install:install-file -Dfile=./external_libs/jid3lib-0.5.4.jar -DgroupId=org.farng -DartifactId=jid3lib -Dversion=0.5.4 -Dpackaging=jar
+
+$ mvn install:install-file -Dfile=./external_libs/jl1.0.1.jar -DgroupId=javazoom.jl -DartifactId=jlayer -Dversion=1.0.1 -Dpackaging=jar
 
 
-$ mvn install:install-file -Dfile=/Users/matjaz/Developer/git-workspace/OpenMp3Player/omp3p-v3/lib/jid3lib-0.5.4.jar -DgroupId=org.farng -DartifactId=jid3lib -Dversion=0.5.4 -Dpackaging=jar
+#### Endpoints
 
-$ mvn install:install-file -Dfile=/Users/matjaz/Developer/git-workspace/OpenMp3Player/omp3p-v3/lib/jlayer-1.0.1.jar -DgroupId=javazoom.jl -DartifactId=jlayer -Dversion=1.0.1 -Dpackaging=jar
+Service endpoint: [http://localhost:8083/openmp3player/rest](http://localhost:8083/openmp3player/rest)
 
 
+Support for Swager is based on tutorial:
+https://www.vojtechruzicka.com/documenting-spring-boot-rest-api-swagger-springfox/
+
+Swager API spec: [http://localhost:8083/v2/api-docs](http://localhost:8083/v2/api-docs)
+
+Swager-UI: [http://localhost:8083/swagger-ui.html](http://localhost:8083/swagger-ui.html)
+
+
+#### Tutorials
 
 Tutorial with Derby on Spring Boot
 

@@ -6,18 +6,16 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.*;
 import si.matjazcerkvenik.openmp3player.model.Mp3File;
 import si.matjazcerkvenik.openmp3player.model.Omp3pServiceImpl;
 import si.matjazcerkvenik.openmp3player.model.Playlist;
@@ -26,6 +24,7 @@ import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 @RestController
 @RequestMapping("/openmp3player/rest")
 @SpringBootApplication
+@Api(value = "dvvse", description = "Set of endpoints for creating, retrieving, updating and deleting database of airplanes.")
 public class Omp3pServerStart {
 	
 	@Autowired
@@ -47,18 +46,24 @@ public class Omp3pServerStart {
 		
 	}
 	
+	@ApiOperation(value = "Get all playlists", notes = "Returns list of all playlists in DB.", responseContainer = "List", response = Playlist.class)
 	@RequestMapping(value = "/playlists", method = RequestMethod.GET)
 	public List<Playlist> findAllPlaylists() {
 		return service.getAllPlaylists();
 	}
 	
+	@ApiOperation(value = "Get size", notes = "Returns the number of playlists.")
 	@RequestMapping(value = "/playlists/size", method = RequestMethod.GET)
 	public long getPlaylistsSize() {
 		return service.getPlaylistsSize();
 	}
 	
+	@ApiOperation(value = "Get single airplane", notes = "Returns one airplane by its id.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Invalid ID", responseHeaders = @ResponseHeader(name = "X-Rack-Cache", description = "Explains whether or not a cache was used", response = Boolean.class)),
+            @ApiResponse(code = 404, message = "Airplane not found") })
 	@RequestMapping(value = "/playlists/{id}", method = RequestMethod.GET)
-	public Playlist getPlaylist(@PathVariable Integer id) {
+	public Playlist getPlaylist(@ApiParam(value = "ID of the airplane to be obtained. Cannot be empty.", required = true, defaultValue = "0") @PathVariable Integer id) {
 		return service.getPlaylist(id);
 	}
 	

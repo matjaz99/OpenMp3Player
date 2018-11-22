@@ -65,6 +65,15 @@ v4 - Spring Boot, Thymeleaf
 
 ### History
 -------------------
+
+4.0.1-beta.01
+november 2018
+
+- Based on SpringBoot
+- REST interface for player
+- Swagger documentation for REST
+
+
 3.0.0
 may 2015
 
