@@ -28,7 +28,7 @@ public class Omp3pServiceImpl {
 		return list;
     }
 	
-	public long getPlaylistsSize() {
+	public long getPlaylistCount() {
         return playlistsRepository.count();
     }
 	
@@ -58,7 +58,7 @@ public class Omp3pServiceImpl {
         return list;
     }
 	
-	public long getMp3FilesSize() {
+	public long getMp3FileCount() {
         return mp3FilesRepository.count();
     }
 	

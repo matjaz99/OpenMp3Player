@@ -19,25 +19,33 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "playlist", schema="OMP3P")
+@ApiModel(description = "This is model of playlist. It contains a list of mp3 files.")
 public class Playlist {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+	@ApiModelProperty(notes = "Unique identifier", example = "0", required = false, position = 0)
 	private int id;
 	
 	@Column(name = "name", unique = false, nullable = false, length = 64)
+	@ApiModelProperty(notes = "Playlist name", example = "0", required = true, position = 1)
 	private String name;
 	
 	@Column(name = "source_dir", unique = false, nullable = false)
+	@ApiModelProperty(notes = "Source directory with mp3 files", example = "0", required = false, position = 2)
 	private String sourceDirectory;
 	
 	
 
     @OneToMany(/*mappedBy = "playlist", */cascade = CascadeType.ALL, orphanRemoval = true/*, targetEntity=Mp3File.class, fetch=FetchType.LAZY*/)
 	@JoinColumn(name = "playlist_id")
+    @ApiModelProperty(notes = "List of mp3 files", required = false, position = 3)
     private List<Mp3File> mp3files;
 	
 	

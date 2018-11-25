@@ -24,7 +24,7 @@ import si.matjazcerkvenik.openmp3player.player.Mp3Player;
 @RestController
 @RequestMapping("/openmp3player/rest")
 @SpringBootApplication
-@Api(value = "dvvse", description = "Set of endpoints for creating, retrieving, updating and deleting database of airplanes.")
+@Api("API for viewing and managing playlists and controlling the player.")
 public class Omp3pServerStart {
 	
 	@Autowired
@@ -43,53 +43,79 @@ public class Omp3pServerStart {
 	@PostConstruct
 	public void init() {
 		System.out.println("Initializing OMP3P");
-		
 	}
 	
+	
+	
+	/*
+	 * PLAYLISTS
+	 */
+	
+	
 	@ApiOperation(value = "Get all playlists", notes = "Returns list of all playlists in DB.", responseContainer = "List", response = Playlist.class)
-	@RequestMapping(value = "/playlists", method = RequestMethod.GET)
-	public List<Playlist> findAllPlaylists() {
+	@RequestMapping(value = "/playlist/all", method = RequestMethod.GET)
+	public List<Playlist> getAllPlaylists() {
 		return service.getAllPlaylists();
 	}
 	
-	@ApiOperation(value = "Get size", notes = "Returns the number of playlists.")
-	@RequestMapping(value = "/playlists/size", method = RequestMethod.GET)
-	public long getPlaylistsSize() {
-		return service.getPlaylistsSize();
+	@ApiOperation(value = "Get playlist count", notes = "Returns the number of playlists.")
+	@RequestMapping(value = "/playlist/count", method = RequestMethod.GET)
+	public long getPlaylistCount() {
+		return service.getPlaylistCount();
 	}
 	
-	@ApiOperation(value = "Get single airplane", notes = "Returns one airplane by its id.")
+	@ApiOperation(value = "Get single playlist", notes = "Returns playlist by its ID.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Invalid ID", responseHeaders = @ResponseHeader(name = "X-Rack-Cache", description = "Explains whether or not a cache was used", response = Boolean.class)),
-            @ApiResponse(code = 404, message = "Airplane not found") })
-	@RequestMapping(value = "/playlists/{id}", method = RequestMethod.GET)
-	public Playlist getPlaylist(@ApiParam(value = "ID of the airplane to be obtained. Cannot be empty.", required = true, defaultValue = "0") @PathVariable Integer id) {
+            @ApiResponse(code = 404, message = "Playlist not found") })
+	@RequestMapping(value = "/playlist/{id}", method = RequestMethod.GET)
+	public Playlist getPlaylist(@ApiParam(value = "Playlist ID", required = true, defaultValue = "1") @PathVariable Integer id) {
 		return service.getPlaylist(id);
 	}
 	
-	@RequestMapping(value = "/playlists", method = RequestMethod.POST)
-	public Playlist create(@Valid @RequestBody Playlist p) {
-		return service.createPlaylist(p);
+	@ApiOperation(value = "Create playlist", notes = "Create new playlist. ID and hash are not required, they will be set automatically.")
+	@RequestMapping(value = "/playlist", method = RequestMethod.POST)
+	public Playlist createNewPlaylist(@ApiParam(value = "Playlist object", required = true) @Valid @RequestBody Playlist playlist) {
+		return service.createPlaylist(playlist);
 	}
 	
-	@RequestMapping(value = "/playlists/{id}", method = RequestMethod.DELETE)
-	public void deletePlaylist(@PathVariable Integer id) {
+	@ApiOperation(value = "Delete playlist", notes = "Delete playlist. This action does not remove mp3 files in DB.")
+	@RequestMapping(value = "/playlist/{id}", method = RequestMethod.DELETE)
+	public void deletePlaylist(@ApiParam(value = "Playlist ID", required = true, defaultValue = "0") @PathVariable Integer id) {
 		service.deletePlaylist(id);
 	}
 	
-	@RequestMapping(value = "/files", method = RequestMethod.GET)
-	public List<Mp3File> findAllMp3Files() {
+	
+	
+	
+	/*
+	 * MP3 FILES
+	 */
+	
+	
+	@ApiOperation(value = "Get all mp3 files", notes = "Returns list of all mp3 files in DB.", responseContainer = "List", response = Mp3File.class)
+	@RequestMapping(value = "/mp3file/all", method = RequestMethod.GET)
+	public List<Mp3File> getAllMp3Files() {
 		return service.getAllMp3Files();
 	}
 	
-	@RequestMapping(value = "/files/size", method = RequestMethod.GET)
-	public long getMp3FilesSize() {
-		return service.getMp3FilesSize();
+	@ApiOperation(value = "Get mp3 files count", notes = "Returns the number of mp3 files.")
+	@RequestMapping(value = "/mp3file/count", method = RequestMethod.GET)
+	public long getMp3FileCount() {
+		return service.getMp3FileCount();
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public Mp3File create(@Valid @RequestBody Mp3File mp3file) {
+	@ApiOperation(value = "Create mp3 file", notes = "Create new mp3 file. ID and hash are not required, they will be set automatically.")
+	@RequestMapping(value = "/mp3file", method = RequestMethod.POST)
+	public Mp3File create(@ApiParam(value = "Mp3 file object", required = true) @Valid @RequestBody Mp3File mp3file) {
 		return service.create(mp3file);
+	}
+	
+	@ApiOperation(value = "Get single mp3 file", notes = "Returns mp3 file by its ID.")
+    @ApiResponses(value = { @ApiResponse(code = 404, message = "Mp3 file not found") })
+	@RequestMapping(value = "/mp3file/{id}", method = RequestMethod.GET)
+	public Mp3File getMp3File(@ApiParam(value = "Mp3 file ID", required = true, defaultValue = "1") @PathVariable int id) {
+		return service.getMp3File(id);
 	}
 	
 //	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -97,10 +123,19 @@ public class Omp3pServerStart {
 //		return service.update(id, mp3file);
 //	}
 
-	@RequestMapping(value = "/files/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable Integer id) {
+	@ApiOperation(value = "Delete mp3 file", notes = "Delete mp3 file with given ID.")
+	@RequestMapping(value = "/mp3file/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable int id) {
 		service.delete(id);
 	}
+	
+	
+	
+	
+	
+	/*
+	 * PLAYER
+	 */
 	
 	
 	@RequestMapping(value = "/player/{action}/{playlist_id}/{mp3File_id}", method = RequestMethod.GET)
@@ -120,6 +155,22 @@ public class Omp3pServerStart {
 		}
 		
 		return null;
+	}
+	
+	@RequestMapping(value = "/player/play/{playlist_id}/{mp3File_id}", method = RequestMethod.GET)
+	public Mp3File play(@PathVariable Integer playlist_id, @PathVariable Integer mp3File_id) {
+		
+		System.out.println("Player #" + mp3Player.hashCode() + ", action=play, playlist_id=" + playlist_id + ", mp3File_id=" + mp3File_id);
+		
+		return mp3Player.play(playlist_id, mp3File_id);
+	}
+	
+	@RequestMapping(value = "/player/stop", method = RequestMethod.GET)
+	public void stop() {
+		
+		System.out.println("Player #" + mp3Player.hashCode() + ", action=stop");
+		
+		mp3Player.stop();
 	}
 	
 	

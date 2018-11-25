@@ -14,37 +14,50 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "mp3file", schema="OMP3P")
+@ApiModel(description = "This is model of mp3 file with ID3 tags")
 public class Mp3File implements Cloneable {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+	@ApiModelProperty(notes = "Unique identifier", example = "0", required = false, position = 0)
 	private int id;
 	
 	@Column(name = "hash")
+	@ApiModelProperty(notes = "Unique hashcode", example = "0", required = false, position = 1)
 	private String hash;
 	
 	@Column(name = "path")
+	@ApiModelProperty(notes = "Absolute path to file", example = "/music/MySong.mp3", required = true, position = 2)
 	private String path;
 	
 	@Column(name = "title")
+	@ApiModelProperty(notes = "Song title", example = "Lucy in the sky with diamonds", required = false, position = 3)
 	private String title;
 	
 	@Column(name = "artist")
+	@ApiModelProperty(notes = "Artist or band name", example = "The beatles", required = false, position = 4)
 	private String artist;
 	
 	@Column(name = "album")
+	@ApiModelProperty(notes = "Album name", example = "/music/MySong.mp3", required = false, position = 5)
 	private String album;
 	
 	@Column(name = "genre")
+	@ApiModelProperty(notes = "Genre", example = "Rock", required = false, position = 6)
 	private String genre;
 	
 	@Column(name = "yearReleased")
+	@ApiModelProperty(notes = "Year released", example = "1967", required = false, position = 7)
 	private String yearReleased;
 	
 	@Column(name = "size")
+	@ApiModelProperty(notes = "Size", required = false, position = 8)
 	private int size = 0;
 	
 //	@OneToMany(cascade=CascadeType.ALL, targetEntity=Tag.class, fetch=FetchType.EAGER)
