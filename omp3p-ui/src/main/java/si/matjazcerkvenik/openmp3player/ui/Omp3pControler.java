@@ -18,7 +18,7 @@ public class Omp3pControler {
 	@Autowired
     private RestServiceImpl service;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/playlists", method = RequestMethod.GET)
     public String findAllPlaylists(Model model) {
         model.addAttribute("playlists", service.getAllPlaylists());
         model.addAttribute("newPlist", new Playlist());
