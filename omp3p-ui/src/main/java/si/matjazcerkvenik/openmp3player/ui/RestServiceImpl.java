@@ -19,7 +19,7 @@ public class RestServiceImpl {
 	private String resourceUrl;
 	
 	public List<Playlist> getAllPlaylists() {
-	    return Arrays.stream(restTemplate.getForObject(resourceUrl + "/playlists", Playlist[].class)).collect(Collectors.toList());
+	    return Arrays.stream(restTemplate.getForObject(resourceUrl + "/playlist/all", Playlist[].class)).collect(Collectors.toList());
 	}
 	
 	public Playlist getSinglePlaylists(int id) {

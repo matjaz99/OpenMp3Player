@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/OpenMp3Player")
-public class Omp3pControler {
+public class UiControler {
 	
 	@Autowired
     private RestServiceImpl service;
+	
 	
 	@RequestMapping(value="/playlists", method = RequestMethod.GET)
     public String findAllPlaylists(Model model) {
