@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
 <head th:replace="template :: header"></head>
+</head>
 <body>
 
 	<div class="container">
@@ -23,7 +24,7 @@
 			<div>
 				<form th:method="delete" th:action="@{/}">
 					<input type="hidden" name="id" th:value="${p.id}" />
-					<button class="button u-full-width" type="submit">Delete</button>
+					<button type="submit" class="btn btn-danger" role="button">Delete</button>
 				</form>
 			</div>
 		</div>
@@ -35,6 +36,10 @@
 		<hr />
 		<div th:replace="template :: footer"></div>
 	</div>
-
+	
+	<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/oscript.js" th:src="@{/js/oscript.js}"></script>
+	
 </body>
 </html>
