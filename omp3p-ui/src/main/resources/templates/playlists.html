@@ -29,11 +29,16 @@
 			</div>
 		</div>
 		<hr />
+		
 		<div th:each="p : ${playlists}">
-<!-- 			<p th:text="${p.name}"></p> -->
+			<p>
+			
 			<a th:href="@{/OpenMp3Player/playlist/{id}(id=${p.id})}" th:text="${p.name}"></a>
+			</p>
 		</div>
+		
 		<hr />
+		
 		<div th:replace="template :: footer"></div>
 	</div>
 	
