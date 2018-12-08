@@ -13,6 +13,8 @@
 		
 		<h1>My playlists</h1>
 		
+		<p><span th:text="#{welcome.message}" ></span></p>
+		
 		<div th:each="p : ${playlists}">
 			<div>
 				<form th:method="put" th:action="@{/}">
