@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.*;
+import si.matjazcerkvenik.openmp3player.exceptions.NotFoundException;
 import si.matjazcerkvenik.openmp3player.model.Mp3File;
 import si.matjazcerkvenik.openmp3player.model.Omp3pServiceImpl;
 import si.matjazcerkvenik.openmp3player.model.Playlist;
@@ -70,7 +71,9 @@ public class Omp3pServerStart {
             @ApiResponse(code = 404, message = "Playlist not found") })
 	@RequestMapping(value = "/playlist/{id}", method = RequestMethod.GET)
 	public Playlist getPlaylist(@ApiParam(value = "Playlist ID", required = true, defaultValue = "1") @PathVariable Integer id) {
-		return service.getPlaylist(id);
+		Playlist p = service.getPlaylist(id);
+		if (p == null) throw new NotFoundException();
+		return p;
 	}
 	
 	@ApiOperation(value = "Create playlist", notes = "Create new playlist. ID and hash are not required, they will be set automatically.")
@@ -115,7 +118,9 @@ public class Omp3pServerStart {
     @ApiResponses(value = { @ApiResponse(code = 404, message = "Mp3 file not found") })
 	@RequestMapping(value = "/mp3file/{id}", method = RequestMethod.GET)
 	public Mp3File getMp3File(@ApiParam(value = "Mp3 file ID", required = true, defaultValue = "1") @PathVariable int id) {
-		return service.getMp3File(id);
+		Mp3File m = service.getMp3File(id);
+		if (m == null) throw new NotFoundException();
+		return m;
 	}
 	
 //	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)

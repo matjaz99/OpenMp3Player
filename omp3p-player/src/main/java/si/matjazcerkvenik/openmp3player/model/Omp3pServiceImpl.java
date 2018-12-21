@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -33,7 +34,8 @@ public class Omp3pServiceImpl {
     }
 	
 	public Playlist getPlaylist(int id) {
-        return playlistsRepository.findOne(id);
+//        return playlistsRepository.findOne(id);
+        return playlistsRepository.findById(id).orElse(null);
     }
 	
 	@Transactional
@@ -46,7 +48,8 @@ public class Omp3pServiceImpl {
 	
 	@Transactional
     public void deletePlaylist(Integer id) {
-    	Playlist p = playlistsRepository.findOne(id);
+//    	Playlist p = playlistsRepository.findOne(id);
+		Playlist p = playlistsRepository.findById(id).orElse(null);
         playlistsRepository.delete(p);
     }
 	
@@ -63,7 +66,7 @@ public class Omp3pServiceImpl {
     }
 	
 	public Mp3File getMp3File(int id) {
-		Mp3File m = mp3FilesRepository.findOne(id);
+		Mp3File m = mp3FilesRepository.findById(id).orElse(null);
         return m;
     }
 	
@@ -90,7 +93,7 @@ public class Omp3pServiceImpl {
     }
     
     private Mp3File findOneSafe(Integer id) {
-    	Mp3File task = mp3FilesRepository.findOne(id);
+    	Mp3File task = mp3FilesRepository.findById(id).orElse(null);
         if (task == null) {
 //            throw new TaskNotFoundException();
         	System.out.println("Mp3File not found");

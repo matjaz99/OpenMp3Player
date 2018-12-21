@@ -20,6 +20,10 @@ Swager API spec: [http://localhost:8083/v2/api-docs](http://localhost:8083/v2/ap
 
 Swager-UI: [http://localhost:8083/swagger-ui.html](http://localhost:8083/swagger-ui.html)
 
+Actuator: [http://localhost:8083/actuator](http://localhost:8083/actuator)
+
+Prometheus metrics: [http://localhost:8083/actuator/prometheus](http://localhost:8083/actuator/prometheus)
+
 
 #### Tutorials
 
