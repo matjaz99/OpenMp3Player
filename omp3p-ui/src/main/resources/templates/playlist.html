@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="template :: header"></head>
 <body>
 
@@ -10,15 +9,53 @@
 		
 		<div th:replace="template :: playerControls"></div>
 		
-		<h1>Playlist</h1>
+		<h1 th:text="${playlist.name}">Playlist</h1>
 		
-		<p th:text="${playlist.name}"></p>
-		<p th:text="${playlist.id}"></p>
-		<hr />
 		
 		<div th:each="m : ${playlist.mp3files}">
-<!-- 			<p th:text="${p.name}"></p> -->
-			<a th:href="@{/OpenMp3Player/mp3file/{id}(id=${m.id})}" th:text="${m.path}"></a>
+			
+			<div class="row">
+			<div class="holder">
+			
+				<div class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+					<button class="btn btn-default" type="button">
+						<span class="glyphicon glyphicon-play"></span>
+					</button>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+					<span>
+<!-- 					<a th:href="@{/OpenMp3Player/playlist/{id}(id=${playlist.id})/{fileId}(fileId=${m.id})}" th:text="${m.title}">Title</a> -->
+					<a th:href="@{/OpenMp3Player/playlist/{id}(id=${playlist.id})/{fid}(fid=${m.id})}" th:text="${m.title}">Title</a>
+					<p th:text="${m.artist}">Artist</p>
+					</span>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div>tags tags tags</div>
+				</div>
+				<div class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    
+					    <span class="glyphicon glyphicon-option-horizontal"></span>
+					  </button>
+					  
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">Action</a></li>
+					    <li><a href="#">Another action</a></li>
+					    <li><a href="#">Something else here</a></li>
+					    <li role="separator" class="divider"></li>
+					    <li><a href="#">Separated link</a></li>
+					  </ul>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+			</div>
+			</div>
+			
 		</div>
 		
 		<hr />

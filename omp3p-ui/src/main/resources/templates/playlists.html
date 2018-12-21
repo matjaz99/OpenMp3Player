@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
 <head th:replace="template :: header"></head>
-</head>
 <body>
 
 	<div class="container">
@@ -12,41 +10,36 @@
 		<div th:replace="template :: playerControls"></div>
 		
 		<h1>My playlists</h1>
-		
-		<p><span th:text="#{welcome.message}" ></span></p>
-		
+				
 		<div th:each="p : ${playlists}">
-			<div>
+			
+			<div class="row">
+			<div class="holder">
+			<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
 				<form th:method="put" th:action="@{/}">
 					<input type="hidden" name="id" th:value="${p.id}" />
 					<input type="hidden" name="hash" th:value="${p.name}" />
-					<span th:text="${p.name}"></span>
+<!-- 					<span th:text="${p.name}"></span> -->
+					<a th:href="@{/OpenMp3Player/playlist/{id}(id=${p.id})}" th:text="${p.name}"></a>
 				</form>
 			</div>
-			<div>
+			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
 				<form th:method="delete" th:action="@{/}">
 					<input type="hidden" name="id" th:value="${p.id}" />
 					<button type="submit" class="btn btn-danger" role="button">Delete</button>
 				</form>
 			</div>
-		</div>
-		<hr />
-		
-		<div th:each="p : ${playlists}">
-			<p>
+			</div>
+			</div>
 			
-			<a th:href="@{/OpenMp3Player/playlist/{id}(id=${p.id})}" th:text="${p.name}"></a>
-			</p>
 		</div>
-		
 		<hr />
 		
+		<p><span th:text="#{welcome.message}" ></span></p>
 		<div th:replace="template :: footer"></div>
 	</div>
 	
-	<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-	<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-	<script src="../static/js/oscript.js" th:src="@{/js/oscript.js}"></script>
+	
 	
 </body>
 </html>

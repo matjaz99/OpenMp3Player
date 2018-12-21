@@ -23,8 +23,7 @@ public class RestServiceImpl {
 	}
 	
 	public Playlist getSinglePlaylists(int id) {
-		System.out.println("getSinglePlaylists id=" + id);
-		Playlist p = restTemplate.getForObject(resourceUrl + "/playlists/" + id, Playlist.class);
+		Playlist p = restTemplate.getForObject(resourceUrl + "/playlist/" + id, Playlist.class);
 		return p;
 	}
 	

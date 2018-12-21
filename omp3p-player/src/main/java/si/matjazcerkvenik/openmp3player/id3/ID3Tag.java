@@ -28,6 +28,8 @@ public class ID3Tag {
 				System.out.println("ID3Tag:getMetadata(): parsing ID3v1: " + mp3.getPath());
 				if (tag.getSongTitle().trim().length() > 0) {
 					mp3.setTitle(validate(tag.getSongTitle()));
+				} else {
+					mp3.setTitle(mp3.getFilename());
 				}
 				mp3.setArtist(validate(tag.getLeadArtist()));
 				mp3.setAlbum(validate(tag.getAlbumTitle()));
@@ -42,6 +44,8 @@ public class ID3Tag {
 				System.out.println("ID3Tag:getMetadata(): parsing ID3v2: " + mp3.getPath());
 				if (tag2.getSongTitle().trim().length() > 0) {
 					mp3.setTitle(validate(tag2.getSongTitle()));
+				} else {
+					mp3.setTitle(mp3.getFilename());
 				}
 				mp3.setArtist(validate(tag2.getLeadArtist()));
 				mp3.setAlbum(validate(tag2.getAlbumTitle()));

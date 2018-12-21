@@ -33,6 +33,21 @@ public class UiControler {
 		return "playlist";
 	}
 	
+	@RequestMapping(value="/playlist/{id}/{fileId}", method=RequestMethod.GET)
+	public String getMp3File(@PathVariable Integer id, @PathVariable Integer fileId, Model model) {
+		Playlist p = service.getSinglePlaylists(id);
+		Mp3File m = null;
+		for (Mp3File mp : p.getMp3files()) {
+			if (mp.getId() == fileId) {
+				m = mp;
+				break;
+			}
+		}
+		model.addAttribute("playlist", p);
+		model.addAttribute("mp3file", m);
+		return "mp3file";
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("newMp3File") Mp3File task) {
         service.create(task);

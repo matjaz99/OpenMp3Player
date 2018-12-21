@@ -128,6 +128,7 @@ public class Omp3pServiceImpl {
 		for (int i = 0; i < files.length; i++) {
 			Mp3File mp3 = new Mp3File();
 			mp3.setPath(files[i].getAbsolutePath());
+			mp3.setFilename(files[i].getName());
 			mp3.setHash(Utils4j.getMd5Checksum(new File(files[i].getAbsolutePath())));
 			mp3 = ID3Tag.getMetadata(mp3);
 //			mp3.setPlaylist(p);

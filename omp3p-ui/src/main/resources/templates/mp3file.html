@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: header"></head>
+<body>
+
+	<div class="container">
+	
+		<div th:replace="template :: topLayer"></div>
+		
+		<div th:replace="template :: playerControls"></div>
+		
+<!-- 		<ol class="breadcrumb"> -->
+<!-- 		  <li><a href="#">Home</a></li> -->
+<!-- 		  <li><a th:href="@{/OpenMp3Player/playlist/${playlist.id}}" th:text="${playlist.name}">Library</a></li> -->
+<!-- 		  <li class="active">Data</li> -->
+<!-- 		</ol> -->
+		
+		<div>
+			<table>
+				<tr>
+					<td>Title</td>
+					<td th:text="${mp3file.title}"></td>
+				</tr>
+				<tr>
+					<td>Artist</td>
+					<td th:text="${mp3file.artist}"></td>
+				</tr>
+				<tr>
+					<td>Album</td>
+					<td th:text="${mp3file.album}"></td>
+				</tr>
+				<tr>
+					<td>Path</td>
+					<td th:text="${mp3file.path}"></td>
+				</tr>
+			</table>
+		</div>
+		<hr />
+		
+		
+		<div th:replace="template :: footer"></div>
+		
+	</div>
+
+</body>
+</html>

@@ -36,28 +36,32 @@ public class Mp3File implements Cloneable {
 	@ApiModelProperty(notes = "Absolute path to file", example = "/music/MySong.mp3", required = true, position = 2)
 	private String path;
 	
+	@Column(name = "filename")
+	@ApiModelProperty(notes = "File name", example = "MySong.mp3", required = false, position = 3)
+	private String filename;
+	
 	@Column(name = "title")
-	@ApiModelProperty(notes = "Song title", example = "Lucy in the sky with diamonds", required = false, position = 3)
+	@ApiModelProperty(notes = "Song title", example = "Lucy in the sky with diamonds", required = false, position = 4)
 	private String title;
 	
 	@Column(name = "artist")
-	@ApiModelProperty(notes = "Artist or band name", example = "The beatles", required = false, position = 4)
+	@ApiModelProperty(notes = "Artist or band name", example = "The beatles", required = false, position = 5)
 	private String artist;
 	
 	@Column(name = "album")
-	@ApiModelProperty(notes = "Album name", example = "/music/MySong.mp3", required = false, position = 5)
+	@ApiModelProperty(notes = "Album name", example = "/music/MySong.mp3", required = false, position = 6)
 	private String album;
 	
 	@Column(name = "genre")
-	@ApiModelProperty(notes = "Genre", example = "Rock", required = false, position = 6)
+	@ApiModelProperty(notes = "Genre", example = "Rock", required = false, position = 7)
 	private String genre;
 	
 	@Column(name = "yearReleased")
-	@ApiModelProperty(notes = "Year released", example = "1967", required = false, position = 7)
+	@ApiModelProperty(notes = "Year released", example = "1967", required = false, position = 8)
 	private String yearReleased;
 	
 	@Column(name = "size")
-	@ApiModelProperty(notes = "Size", required = false, position = 8)
+	@ApiModelProperty(notes = "Size", required = false, position = 9)
 	private int size = 0;
 	
 //	@OneToMany(cascade=CascadeType.ALL, targetEntity=Tag.class, fetch=FetchType.EAGER)
@@ -100,6 +104,14 @@ public class Mp3File implements Cloneable {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 	public String getTitle() {
