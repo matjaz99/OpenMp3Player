@@ -16,9 +16,11 @@
 	</div>
 	
 	<div th:fragment="playerControls">
-		<form action="#" data-th-action="@{/player}" data-th-object="${model}" method="post">
+		<form action="#" data-th-action="@{/OpenMp3Player/player}" data-th-object="${model}" method="post">
 		     <button type="submit" name="action" value="Play" class="btn btn-default" role="button">Play</button>
 		     <button type="submit" name="action" value="Stop" class="btn btn-default" role="button">Stop</button>
+		     <button type="submit" name="action" value="Next" class="btn btn-default" role="button">Next</button>
+		     <button type="submit" name="action" value="Prev" class="btn btn-default" role="button">Prev</button>
 		</form>
 	</div>
 	

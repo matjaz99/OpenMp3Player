@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/OpenMp3Player")
@@ -54,9 +55,16 @@ public class UiControler {
         return "redirect:/";
     }
 	
-	@RequestMapping(value="/rest/player/play", method=RequestMethod.GET, params="action=save")
+	@RequestMapping(value="/player", method=RequestMethod.POST, params="action=Play")
 	public void play() {
-		
+		System.out.println("PLAY");
+		// https://www.mkyong.com/spring-boot/spring-boot-ajax-example/
+		// https://stackoverflow.com/questions/31401669/thymeleaf-multiple-submit-button-in-one-form
+	}
+	
+	@RequestMapping(value="/player", method=RequestMethod.POST, params="action=Stop")
+	public void stop() {
+		System.out.println("STOP");
 	}
 	
 }
