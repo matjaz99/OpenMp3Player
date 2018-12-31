@@ -27,12 +27,24 @@ public class RestServiceImpl {
 		return p;
 	}
 	
+	public Playlist createPlaylist(Playlist p) {
+		return restTemplate.postForObject(resourceUrl + "/playlist/", p, Playlist.class);
+	}
+	
+	public void deletePlaylist(int id) {
+		restTemplate.delete(resourceUrl + "/playlist/" + id);
+	}
+	
 	public List<Mp3File> findAll() {
 	    return Arrays.stream(restTemplate.getForObject(resourceUrl, Mp3File[].class)).collect(Collectors.toList());
 	}
 	
 	public Mp3File create(Mp3File m) {
 	    return restTemplate.postForObject(resourceUrl, m, Mp3File.class);
+	}
+	
+	public Mp3File play(int playlistId, int fileId) {
+		return restTemplate.getForObject(resourceUrl + "/play/" + playlistId + "/" + fileId, Mp3File.class);
 	}
 	
 	

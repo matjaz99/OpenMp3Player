@@ -9,13 +9,23 @@
 		
 		<div th:replace="template :: playerControls"></div>
 		
-		<h1>My playlists</h1>
+		
+		<div class="row">
+			<div class="holder">
+				<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+					<h1>My playlists</h1>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<span><a th:href="@{/OpenMp3Player/playlist/add}" th:text="Add" class="glyphicon glyphicon-plus"></a></span>
+				</div>
+			</div>
+		</div>
 				
 		<div th:each="p : ${playlists}">
 			
 			<div class="row">
 			<div class="holder">
-			<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 				<form th:method="put" th:action="@{/}">
 					<input type="hidden" name="id" th:value="${p.id}" />
 					<input type="hidden" name="hash" th:value="${p.name}" />
@@ -23,11 +33,12 @@
 					<a th:href="@{/OpenMp3Player/playlist/{id}(id=${p.id})}" th:text="${p.name}"></a>
 				</form>
 			</div>
-			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
-				<form th:method="delete" th:action="@{/}">
+			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+				<form th:method="delete" th:action="@{/OpenMp3Player/playlist/delete/submit}">
 					<input type="hidden" name="id" th:value="${p.id}" />
-					<button type="submit" class="btn btn-danger" role="button">Delete</button>
+					
 				</form>
+				<button th:id="@{deletePlaylistBtn-{id}(id=${p.id})}" type="submit" class="btn btn-danger btn-sm" role="button">Delete</button>
 			</div>
 			</div>
 			</div>

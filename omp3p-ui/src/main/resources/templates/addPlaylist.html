@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: header"></head>
+<body>
+
+	<div class="container">
+		
+		<div th:replace="template :: topLayer"></div>
+		
+		<div th:replace="template :: playerControls"></div>
+		
+		<h1>Add playlist</h1>
+				
+		<form id="addPlaylistForm" action="#" th:action="@{/OpenMp3Player/playlist/add/submit}" th:object="${playlist}" method="post">
+			
+			<div class="input-group input-group-lg">
+				<span class="input-group-addon">Playlist name</span>
+				<input type="text" th:field="*{name}" class="form-control" placeholder="eg. Rock">
+			</div>
+			<div class="input-group input-group-lg">
+				<span class="input-group-addon">Directory path</span>
+				<input type="text" th:field="*{sourceDirectory}" class="form-control" placeholder="eg. /users/john/music/rock">
+			</div>
+			<button type="submit" name="add" value="Add playlist" class="btn btn-default" role="button">Add playlist</button>
+			<input type="reset" value="Reset" class="btn btn-default" />
+			
+		</form>
+		
+		<hr />
+		
+		<p><span th:text="#{welcome.message}" ></span></p>
+		<div th:replace="template :: footer"></div>
+	</div>
+	
+	
+	
+</body>
+</html>

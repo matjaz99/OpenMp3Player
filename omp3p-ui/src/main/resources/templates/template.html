@@ -16,18 +16,20 @@
 	</div>
 	
 	<div th:fragment="playerControls">
-		<form action="#" data-th-action="@{/OpenMp3Player/player}" data-th-object="${model}" method="post">
-		     <button type="submit" name="action" value="Play" class="btn btn-default" role="button">Play</button>
-		     <button type="submit" name="action" value="Stop" class="btn btn-default" role="button">Stop</button>
-		     <button type="submit" name="action" value="Next" class="btn btn-default" role="button">Next</button>
-		     <button type="submit" name="action" value="Prev" class="btn btn-default" role="button">Prev</button>
+		<form id="playerForm">
+		     <button id="btnPlay" type="submit" name="action" value="Play" class="btn btn-default" role="button">Play</button>
+		     <button id="btnStop" type="submit" name="action" value="Stop" class="btn btn-default" role="button">Stop</button>
+		     <button id="btnNext" type="submit" name="action" value="Next" class="btn btn-default" role="button">Next</button>
+		     <button id="btnPrev" type="submit" name="action" value="Prev" class="btn btn-default" role="button">Prev</button>
 		</form>
+		<div id="feedback"></div>
 	</div>
 	
 	<div th:fragment="footer">This is footer
 	
 	<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 	<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/bootbox.min.js" th:src="@{/js/bootbox.min.js}"></script>
 	<script src="../static/js/oscript.js" th:src="@{/js/oscript.js}"></script>
 	</div>
 	

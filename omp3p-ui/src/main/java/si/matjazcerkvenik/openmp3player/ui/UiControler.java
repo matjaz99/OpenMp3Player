@@ -20,7 +20,7 @@ public class UiControler {
     private RestServiceImpl service;
 	
 	
-	@RequestMapping(value="/playlists", method = RequestMethod.GET)
+	@RequestMapping(value="/playlists", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String findAllPlaylists(Model model) {
         model.addAttribute("playlists", service.getAllPlaylists());
         model.addAttribute("newPlist", new Playlist());
@@ -49,13 +49,31 @@ public class UiControler {
 		return "mp3file";
 	}
 	
+	@RequestMapping(value="/playlist/add", method=RequestMethod.GET)
+	public String gotoAddPlaylist(Model model) {
+		model.addAttribute("playlist", new Playlist());
+		return "addPlaylist";
+	}
+	
+	@RequestMapping(value="/playlist/add/submit", method=RequestMethod.POST)
+	public String addPlaylistSubmit(@ModelAttribute Playlist playlist) {
+		service.createPlaylist(playlist);
+		return "redirect:/OpenMp3Player/playlists";
+	}
+	
+	@RequestMapping(value="/playlist/delete/submit/{id}", method=RequestMethod.DELETE)
+	public String deletePlaylistSubmit(@PathVariable Integer id) {
+		service.deletePlaylist(id);
+		return "redirect:/OpenMp3Player/playlists";
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("newMp3File") Mp3File task) {
         service.create(task);
         return "redirect:/";
     }
 	
-	@RequestMapping(value="/player", method=RequestMethod.POST, params="action=Play")
+	@RequestMapping(value="/player", method=RequestMethod.POST)
 	public void play() {
 		System.out.println("PLAY");
 		// https://www.mkyong.com/spring-boot/spring-boot-ajax-example/

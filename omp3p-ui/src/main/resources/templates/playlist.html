@@ -17,7 +17,7 @@
 			<div class="row">
 			<div class="holder">
 			
-				<div class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
 					<button class="btn btn-default" type="button">
 						<span class="glyphicon glyphicon-play"></span>
 					</button>
@@ -25,7 +25,7 @@
 				<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
 					<span>
 <!-- 					<a th:href="@{/OpenMp3Player/playlist/{id}(id=${playlist.id})/{fileId}(fileId=${m.id})}" th:text="${m.title}">Title</a> -->
-					<a th:href="@{/OpenMp3Player/playlist/{id}(id=${playlist.id})/{fid}(fid=${m.id})}" th:text="${m.title}">Title</a>
+					<a th:href="@{/OpenMp3Player/playlist/{id}/{fid}(id=${playlist.id},fid=${m.id})}" th:text="${m.title}">Title</a>
 					<p th:text="${m.artist}">Artist</p>
 					</span>
 				</div>
